@@ -2,7 +2,6 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-*.dll
 /API/E-Compound.Solution/E-Compound.API/bin
 /Backend/src/dist
 /Backend/src/node_modules
