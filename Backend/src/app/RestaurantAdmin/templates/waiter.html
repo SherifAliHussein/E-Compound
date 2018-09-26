@@ -1,0 +1,55 @@
+<div >
+	<div style="margin-bottom:10px">
+		<button ng-disabled="waiterCtrl.waiters.totalCount == waiterCtrl.waitersLimit"  ng-click="waiterCtrl.openWaiterDialog()" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddWaiterBtn' | translate}}</button>
+	</div>
+	<div ng-if="waiterCtrl.waiters.results.length == 0">
+		<span>{{'NoWaiterAvailable' | translate}}</span>
+	</div>
+	<!-- <span>
+		{{waiterCtrl.waiters.totalCount}} / {{waiterCtrl.waitersLimit}} ({{'consumedAndTotal' | translate}})
+	</span> -->
+	
+	<div class="pmd-card pmd-z-depth pmd-card-custom-view" ng-if="waiterCtrl.waiters.results.length > 0">
+		<div class="table-responsive">
+			<table class="table pmd-table table-hover">
+				<thead>
+					<tr>
+						<th >{{'Name' | translate}}</th>
+						<th >{{'UserName' | translate}}</th>
+						<th >{{'Title' | translate}}</th>
+						<!-- <th >{{'startDatelbl' | translate}}</th>
+						<th >{{'endDatelbl' | translate}}</th> -->
+						
+						<th ></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="waiter in waiterCtrl.waiters.results">
+						<td data-title="Name" width="30%">{{waiter.name}}</td>
+						<td>
+                            {{waiter.userName}}
+						</td>
+						<td>
+                            {{waiter.branchTitleDictionary[selectedLanguage]}}
+						</td>
+						<!-- <td>
+                            {{waiter.start}}
+						</td>
+						<td>
+                            {{waiter.end}}
+						</td> -->
+						<td >
+							<i class="material-icons md-dark pmd-md cursorPointer font25" ng-click="waiterCtrl.openEditWaiterDialog($index)">mode_edit</i> 
+							<i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="waiterCtrl.openDeleteWaiterDialog(waiter.userName,waiter.userId)">delete</i>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div style="text-align:center;" paging page="1" page-size="10" total="waiterCtrl.waiters.totalCount" paging-action="waiterCtrl.changePage( page)"
+		flex="nogrow" show-prev-next="true" show-first-last="true" hide-if-empty="true" disabled-class="hide">
+		   </div>
+	</div> 
+
+
+</div>					

@@ -1,0 +1,129 @@
+<div ng-class="{page2:(selectedLanguage == 'en-us' && (pageitems.pageNumber % 2) === 0) || (selectedLanguage == 'ar-eg' && (pageitems.pageNumber % 2) !== 0)
+, page1:(selectedLanguage == 'en-us' && (pageitems.pageNumber % 2) !== 0) || (selectedLanguage == 'ar-eg' && (pageitems.pageNumber % 2) === 0)}">
+            <div class="main_data" ng-repeat="item in pageitems.itemModels">
+                <div class="col-sm-4 col-xs-4 col-md-4">
+                    <img ng-src="{{item.imageURL}}?type=orignal2" alt="" style="max-height: 69px;" />
+
+                </div> <div class="col-sm-8 col-xs-8 col-md-8">
+                  
+                    <h3>
+                            {{item.itemNameDictionary[selectedLanguage] < 25 ? 'item.itemNameDictionary[selectedLanguage]' : item.itemNameDictionary[selectedLanguage] | limitTo:25}}   
+           </h3>
+                            <p> 
+                             
+                            {{item.itemDescriptionDictionary[selectedLanguage] < 90 ? 'item.itemDescriptionDictionary[selectedLanguage]' : item.itemDescriptionDictionary[selectedLanguage] | limitTo:90}} 
+                         
+                          </p> 
+                    <div class="col-sm-12 col-xs-12 col-md-12 no_padding">
+
+                        <div class="col-sm-5 col-xs-5 col-md-5 no_padding">
+                            <div class="item_price" ng-repeat="size in item.sizes |limitTo:3"><h5 class="y_price">{{size.price}}</h5>   <span class="ssss">{{size.sizeNameDictionary[selectedLanguage]}}</span></div>
+                            <!-- <p class="item_price">110 <span class="ssss">M</span></p>
+                            <p class="item_price">130 <span class="ssss">L</span></p> -->
+                        </div>
+                        <div class="col-sm-7 col-xs-7 col-md-7 edits no_padding">
+
+                            <a href="javascript:void(0);" ng-click="viewItemDetail(item)"  data-lity-target="#inline2" data-lity><img src="assets/img/view.png" alt="" /></a>
+                            <!-- <a style="cursor: pointer;" ng-click="addItemToCart(item)">
+                                <img src="assets/img/plus.png" alt="" />
+                            
+                            </a> -->
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+            <!-- <div class="main_data">
+                <div class="col-sm-4 col-xs-4 col-md-4">
+                    <img src="{{products[3].image}}" alt="" />
+
+                </div> <div class="col-sm-8 col-xs-8 col-md-8">
+                    <h3>{{products[3].name}}</h3>
+                    <p>
+                        {{products[3].description}}
+                    </p>
+
+                    <div class="col-sm-12 col-xs-12 col-md-12 no_padding">
+
+                        <div class="col-sm-5 col-xs-5 col-md-5 no_padding">
+                            <p class="item_price">100  <span class="ssss">S</span></p>
+                            <p class="item_price">110 <span class="ssss">M</span></p>
+                            <p class="item_price">130 <span class="ssss">L</span></p>
+                        </div>
+                        <div class="col-sm-7 col-xs-7 col-md-7 edits no_padding">
+
+                            <a href="#inline2" data-lity><img src="img/view.png" alt="" /></a>
+                            <a style="cursor: pointer;" ng-click="addItemToCart(products[3])"><img src="img/plus.png" alt="" /></a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+            </div> <div class="main_data">
+                <div class="col-sm-4 col-xs-4 col-md-4">
+                    <img src="{{products[6].image}}" alt="" />
+
+                </div> <div class="col-sm-8 col-xs-8 col-md-8">
+                    <h3>{{products[6].name}}</h3>
+                    <p>
+                        {{products[6].description}}
+                    </p>
+
+                    <div class="col-sm-12 col-xs-12 col-md-12 no_padding">
+
+                        <div class="col-sm-5 col-xs-5 col-md-5 no_padding">
+                            <p class="item_price">100  <span class="ssss">S</span></p>
+                            <p class="item_price">110 <span class="ssss">M</span></p>
+                            <p class="item_price">130 <span class="ssss">L</span></p>
+                        </div>
+                        <div class="col-sm-7 col-xs-7 col-md-7 edits no_padding">
+
+                            <a href="#inline2" data-lity><img src="img/view.png" alt="" /></a>
+                            <a style="cursor: pointer;" ng-click="addItemToCart(products[6])"><img src="img/plus.png" alt="" /></a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+            <div class="main_data">
+                <div class="col-sm-4 col-xs-4 col-md-4">
+                    <img src="{{products[10].image}}" alt="" />
+
+                </div> <div class="col-sm-8 col-xs-8 col-md-8">
+                    <h3>{{products[10].name}}</h3>
+                    <p>
+                        {{products[10].description}}
+                    </p>
+
+                    <div class="col-sm-12 col-xs-12 col-md-12 no_padding">
+
+                        <div class="col-sm-5 col-xs-5 col-md-5 no_padding">
+                            <p class="item_price">100  <span class="ssss">S</span></p>
+                            <p class="item_price">110 <span class="ssss">M</span></p>
+                            <p class="item_price">130 <span class="ssss">L</span></p>
+                        </div>
+                        <div class="col-sm-7 col-xs-7 col-md-7 edits no_padding">
+
+                            <a href="#inline2" data-lity><img src="img/view.png" alt="" /></a>
+                            <a style="cursor: pointer;" ng-click="addItemToCart(products[10])"><img src="img/plus.png" alt="" /></a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+            </div> -->
+</div>

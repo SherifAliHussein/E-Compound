@@ -1,0 +1,41 @@
+<div class="pmd-card pmd-z-depth">
+    <div class="pmd-card-title">
+        <div class="media-body media-middle">
+            <span ng-repeat="controlEnum in videoControler.controls|filter: {id: videoControler.featureControl.control}"> {{controlEnum.text | translate}} </span>
+        </div>
+        <div class="media-right datetimepicker">
+            <button  ng-click="videoControler.addNew()" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'Add' | translate}}</button>
+        </div>
+    </div>
+    <div class="pmd-card-body" >
+        <div  style="text-align: center;">
+            <img ng-show="videoControler.isLoading" src="assets/img/loading.gif" style="height: 80px;">
+            <span ng-if="videoControler.featureDetails.results.length <=0 ">{{'NoData'|translate}}</span>
+        </div>
+        <div class="table-responsive" ng-show="!videoControler.isLoading && videoControler.featureDetails.results.length > 0">
+            <table class="table pmd-table table-hover">
+                <thead>
+                    <tr>
+                        <th >{{'Name' | translate}}</th>                   
+                        <th ></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="featureDetail in videoControler.featureDetails.results">
+                        <td data-title="Name" >{{featureDetail.link}}</td>
+                        <!-- <td data-title="Name">
+                                <span ng-if="featureDetail.isFree">{{'freelbl' |translate}}</span>
+                                <span ng-if="!featureDetail.isFree">{{featureDetail.price}}</span>
+                            </td> -->
+                        <td >
+                            <i class="material-icons md-dark pmd-md cursorPointer font25" ng-click="videoControler.openEditDialog($index);">mode_edit</i>
+                            <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="videoControler.openDeleteDialog(featureDetail.link,featureDetail.featureDetailId)">delete</i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="text-align:center;" paging page="1" page-size="10" total="textControler.featureDetails.totalCount" paging-action="textControler.changePage(page)"
+        flex="nogrow" show-prev-next="true" show-first-last="true" hide-if-empty="true" disabled-class="hide"></div>
+    </div> 
+</div>

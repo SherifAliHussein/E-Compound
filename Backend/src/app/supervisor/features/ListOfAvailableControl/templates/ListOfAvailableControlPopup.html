@@ -1,0 +1,89 @@
+
+
+<div class="modal-content">
+        
+        <form class="form-horizontal" name="newForm">
+    <div class="modal-header bordered">
+        <div >{{listOfAvailableControlDlCtrl.featureName[selectedLanguage]}}</div>
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" ng-class="{'active':$index == 0}" ng-repeat="lang in listOfAvailableControlDlCtrl.language">
+                <a href="javascript:void(0);" data-target="#{{lang.value}}-form" aria-controls="home" role="tab" data-toggle="tab">
+                    {{lang.value | translate}}
+                </a>
+            </li>
+        </ul>
+        <div class="pmd-card">
+            <div class="pmd-card-body">
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tablist" class="tab-pane" ng-class="{'active':$index == 0}" ng-repeat="lang in listOfAvailableControlDlCtrl.language" id="{{lang.value}}-form">
+                        <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+                            <label for="first-name"> {{ lang.value+'Name' | translate}} </label>
+                            <input required type="text" class="mat-input form-control" name="featureNameDictionary{{lang.value+'Name'}}" ng-model="listOfAvailableControlDlCtrl.featureDetail.descriptionDictionary[lang.key]" ng-minlength="3" ng-maxlength="40">
+                            <div ng-messages="newForm.featureNameDictionary{{lang.value+'Name'}}.$error">
+                                <div ng-show="newForm.featureNameDictionary{{lang.value+'Name'}}.$error.required && !newForm.featureNameDictionary{{lang.value+'Name'}}.$pristine">{{'requiredErr' | translate}}</div>
+                                <div ng-show="(newForm.featureNameDictionary{{lang.value+'Name'}}.$error.minlength || newForm.featureNameDictionary{{lang.value+'Name'}}.$error.maxlength) && !newForm.featureNameDictionary{{lang.value+'Name'}}.$error.required">{{'NameLengthError' | translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="group-fields clearfix row col-md-2">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="checkbox pmd-default-theme">
+                    <label class=" checkbox-pmd-ripple-effect">
+                        <input type="checkbox" ng-model="listOfAvailableControlDlCtrl.featureDetail.isFree">
+                        <span>{{'IsFreeLbl' | translate}}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed" 
+        ng-if="!listOfAvailableControlDlCtrl.featureDetail.isFree">
+            <label for="first-name"> {{ 'priceLbl' | translate}} </label>
+            <input type="number" class="mat-input form-control" name="price" ng-model="listOfAvailableControlDlCtrl.featureDetail.price" >
+        </div>
+        <!-- <button class="close" type="button" ng-click="listOfAvailableControlDlCtrl.close()">×</button> -->
+    </div>
+    
+    <div class="modal-body">
+        
+            <div ng-repeat="day in listOfAvailableControlDlCtrl.days" class="row">
+                <label  class="col-md-2">
+                    <input type="checkbox"ng-model="day.isSelected" ng-change="listOfAvailableControlDlCtrl.changeDay(day)">
+                    {{day.text|translate}}
+                </label>
+                 
+                <!-- <div class="row"> -->
+                    <div class="col-md-2"> 
+                        <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+                            <label class="control-label" for="regular1">Start Date</label>
+                            <input ng-disabled="!day.isSelected" ng-required="day.isSelected" 
+                            name="datepicker-start{{day.id}}" datetimepicker ng-model="day.startTime" type="text" class="form-control" id="datepicker-start{{day.id}}">
+                        </div>
+                    </div>
+                    <div class="col-md-2"> 
+                        <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+                            <label class="control-label" for="regular1">End Date</label>
+                            <input ng-disabled="!day.isSelected" ng-required="day.isSelected" 
+                            name="datepicker-end{{day.id}}" datetimepicker ng-model="day.endTime" type="text" class="form-control" id="datepicker-end{{day.id}}">
+                        </div>
+                    </div>
+                <!-- </div> -->
+                <div  class="col-md-2 form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+                    <label for="first-name"> {{ 'NumberLbl' | translate}} </label>
+                    <input ng-disabled="!day.isSelected" type="number" ng-required="day.isSelected && newForm.max{{day.id}}.$error" 
+                    name="max{{day.id}}"class="mat-input form-control" ng-model="day.max" ng-min="1">
+                </div>
+        </div>
+    </div>
+        </form>
+    <div class="pmd-modal-action text-right">
+        <button ng-disabled="newForm.$invalid || listOfAvailableControlDlCtrl.isChanged ||
+        (!listOfAvailableControlDlCtrl.featureDetail.isFree && listOfAvailableControlDlCtrl.featureDetail.price<=0)
+        || (listOfAvailableControlDlCtrl.days|filter:{isSelected:true}).length<=0 " class="btn pmd-ripple-effect btn-primary" type="button" ng-click="listOfAvailableControlDlCtrl.save()">{{'saveChangesBtn' | translate}}</button>
+        <button class="btn pmd-ripple-effect btn-default" type="button" ng-click="listOfAvailableControlDlCtrl.close()">{{'DiscardBtn' | translate}}</button>
+    </div>
+</div>

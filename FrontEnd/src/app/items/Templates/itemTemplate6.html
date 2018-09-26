@@ -1,0 +1,57 @@
+<div class="new_title_page" ng-class="{page2:(selectedLanguage == 'en-us' && (pageitems.pageNumber % 2) === 0) || (selectedLanguage == 'ar-eg' && (pageitems.pageNumber % 2) !== 0)
+, page1:(selectedLanguage == 'en-us' && (pageitems.pageNumber % 2) !== 0) || (selectedLanguage == 'ar-eg' && (pageitems.pageNumber % 2) === 0)}">
+
+    <div class="img_header">
+        <img ng-src="{{pageitems.itemModels[0].imageURL}}" style="max-height: 139px" />
+        <div class="image_content">
+            <h3>{{pageitems.itemModels[0].itemNameDictionary[selectedLanguage]}}</h3>
+        </div>
+        <!-- <img src="assets/img/img1.jpg" /> -->
+    </div>
+    <div class="main_data main_data2" ng-show="pageitems.itemModels[1] != null">
+
+        <div class="new_image">
+            <div class="col-sm-6 col-xs-6 col-md-6 no_left">
+                <img ng-src="{{pageitems.itemModels[1].imageURL}}?type=orignal2" alt="" />
+                <div class="image_content2">
+                    <h3>{{pageitems.itemModels[1].itemNameDictionary[selectedLanguage]}}</h3>
+
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-6 col-md-6 no_right">
+
+                <img ng-src="{{pageitems.itemModels[2].imageURL}}?type=orignal2" alt="" />
+                <div class="image_content2">
+                    <h3>{{pageitems.itemModels[2].itemNameDictionary[selectedLanguage]}}</h3>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="new_data" ng-repeat="item in pageitems.itemModels">
+            <div class="col-sm-6 col-xs-6 col-md-6" ng-class="{'no_left':$index%2===0,'no_right':$index%2!==0}">
+                <div class="col-sm-10 col-xs-10 col-md-10 no_padding main_margin" style="margin-top: 2px;margin-bottom: 2px;">
+                    <h3 class="new_title">
+                        {{item.itemNameDictionary[selectedLanguage] < 20 ? 'item.itemNameDictionary[selectedLanguage]' : item.itemNameDictionary[selectedLanguage] | limitTo:20}}
+                    </h3>
+                    <p>
+                        {{item.itemDescriptionDictionary[selectedLanguage] < 40 ? 'item.itemDescriptionDictionary[selectedLanguage]' : item.itemDescriptionDictionary[selectedLanguage] | limitTo:40}}
+                    </p>
+                </div>
+                <div class="col-sm-2 col-xs-2 col-md-2 edits no_padding">
+
+                    <a href="javascript:void(0);" ng-click="viewItemDetail(item)" data-lity-target="#inline2" data-lity><img src="assets/img/view.png" alt=""/></a>
+                    <!-- <a href="#"><img src="assets/img/plus.png" alt=""/></a> -->
+                    <a style="cursor: pointer;" ng-click="addItemToCart(pageitems.itemModels[0])">
+                        <!-- <img src="assets/img/plus.png" alt=""/> -->
+                    </a>
+                </div>
+            </div>
+            
+           
+        </div>
+
+
+    </div>
+
+</div>

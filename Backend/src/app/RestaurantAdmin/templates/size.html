@@ -1,0 +1,36 @@
+<div >
+        <div style="margin-bottom:10px">
+            <button  ng-click="$state.go('newsize');" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddSizeBtn' | translate}}</button>
+    
+        </div>
+        <div ng-if="sizeCtrl.sizes.results.length == 0">
+                <span>{{'NoSizesAvailable' | translate}}</span>
+            </div>
+        <div class="pmd-card pmd-z-depth pmd-card-custom-view" ng-if="sizeCtrl.sizes.results.length > 0">
+            <div class="table-responsive">
+                <table class="table pmd-table table-hover">
+                    <thead>
+                        <tr>
+                            <th >{{'Name' | translate}}</th>
+                            <th ></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="size in sizeCtrl.sizes.results">
+                            <td data-title="Name" width="30%">{{size.sizeNameDictionary[selectedLanguage]}}</td>
+                            <td  width="70%">
+                                <i class="material-icons md-dark pmd-md cursorPointer font25" ng-click="$state.go('editsize',{sizeId: size.sizeId});">mode_edit</i> 
+                                <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="sizeCtrl.openDeleteSizeDialog(size.sizeName,size.sizeId)">delete</i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="text-align:center;" paging page="1" page-size="10" total="sizeCtrl.sizes.totalCount" paging-action="sizeCtrl.changePage( page)"
+            flex="nogrow" show-prev-next="true" show-first-last="true" hide-if-empty="true" disabled-class="hide">
+               </div>
+        </div> 
+    
+    
+    </div>					
+    

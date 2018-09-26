@@ -1,0 +1,64 @@
+<div class="modal-content">
+        <div class="modal-header bordered">
+            <h2 class="pmd-card-title-text">{{'newCategoryLbl' | translate}}</h2>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" name="newCategoryForm">
+                <!-- <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                    <label for="first-name">{{'Name' | translate}}</label>
+                    <input required type="text" class="mat-input form-control" name="categoryName" ng-model="categoryDlCtrl.categoryName"  ng-minlength="3" ng-maxlength="40">
+                    <div ng-messages="newCategoryForm.categoryName.$error" >
+                        <div ng-if="newCategoryForm.categoryName.$error.required && !newCategoryForm.categoryName.$pristine">{{'requiredErr' | translate}}</div>
+                        <div ng-if="(newCategoryForm.categoryName.$error.minlength || newCategoryForm.categoryName.$error.maxlength) && !newCategoryForm.categoryName.$error.required">{{'NameLengthError' | translate}}</div>
+                    </div>
+                </div> -->
+                <div> 
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" ng-class="{'active':$index == 0}" ng-repeat="lang in categoryDlCtrl.language">
+                            <a href="javascript:void(0);" data-target="#{{lang.value}}-form" aria-controls="home" role="tab" data-toggle="tab">
+                                {{lang.value | translate}}
+                            </a>
+                        </li>
+                        <!-- <li role="presentation">
+                            <a href="javascript:void(0);" data-target="#arabic-form" aria-controls="about" role="tab" data-toggle="tab">{{'arabic' | translate}}</a>
+                        </li> -->
+                    </ul>
+                    <div class="pmd-card">
+                        <div class="pmd-card-body">
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tablist" class="tab-pane" ng-class="{'active':$index == 0}" ng-repeat="lang in categoryDlCtrl.language" id="{{lang.value}}-form">
+                                    <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                        <label for="first-name"> {{ lang.value+'Name' | translate}} </label>
+                                        <input required type="text" class="mat-input form-control" name="categoryNameDictionary{{lang.value+'Name'}}" ng-model="categoryDlCtrl.categoryNameDictionary[lang.key]" ng-minlength="3" ng-maxlength="100">
+                                        <div ng-messages="newCategoryForm.categoryNameDictionary{{lang.value+'Name'}}.$error" >    
+                                            <div ng-show="newCategoryForm.categoryNameDictionary{{lang.value+'Name'}}.$error.required && !newCategoryForm.categoryNameDictionary{{lang.value+'Name'}}.$pristine">{{'requiredErr' | translate}}</div>
+                                            <div ng-show="(newCategoryForm.categoryNameDictionary{{lang.value+'Name'}}.$error.minlength || newCategoryForm.categoryNameDictionary{{lang.value+'Name'}}.$error.maxlength) && !newCategoryForm.categoryNameDictionary{{lang.value+'Name'}}.$error.required">{{'NameLengthError' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed" >       
+                        <input id="categoryImage" name="categoryImage" style="display: none;" onchange="angular.element(this).scope().AddCategoryImage(this.files)" type="file" required>
+                        <button ng-click="categoryDlCtrl.LoadUploadImage()" >{{'UploadImageBtn' | translate}}</button>
+                        <span > <i class="material-icons md-dark pmd-md warrningIcon">warning</i> {{'RecommendedCategoryImage' | translate}}</span>
+                        <img ng-src="{{categoryDlCtrl.categoryImage}}" style="max-height: 137px;max-width: 210px;">
+                        <div ng-messages="newCategoryForm.categoryImage.$error" >
+                            <div ng-if="newCategoryForm.categoryImage.$error.required">{{'requiredErr' | translate}}</div>
+                        </div>
+                </div>
+            </form>
+        </div>
+        <div class="pmd-modal-action text-right">
+            <button ng-disabled="newCategoryForm.$invalid  || categoryDlCtrl.categoryImage== null || categoryDlCtrl.isChanged" class="btn pmd-ripple-effect btn-primary" type="button" ng-click="categoryDlCtrl.AddNewCategory()">{{'saveChangesBtn' | translate}}</button>
+            <button class="btn pmd-ripple-effect btn-default" type="button" ng-click="categoryDlCtrl.close()">{{'DiscardBtn' | translate}}</button>
+        </div>
+    </div>
+    
+        
+    

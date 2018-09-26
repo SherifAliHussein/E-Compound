@@ -1,0 +1,45 @@
+<style>
+        .lity-close:hover{
+            top: 40px !important;
+        }
+        .lity-close{
+            top: 40px !important;
+        }
+    </style>
+<div class="col-md-12 col-sm-12 col-xs-12 subs">
+    <div class="col-md-4 col-sm-4 col-xs-12 tybes" ng-repeat="h in menuCtrl.menus"> 
+        <div class="sub_content"> 
+            <img ng-src="{{ h.imageURL}}" alt="" style="max-height: 286px;">
+            <div class="main_over">
+                <a  href="javascript:void(0);"  data-lity-target="#inline2" data-lity ng-click="menuCtrl.ShowId(h.menuId)">
+                <!-- <a   data-ng-click="ShowId(h.menuId)"  > -->
+
+                <!-- <a href="javascript:void(0);" data-ng-click="ShowId(6)"  data-lity> -->
+                    <div class="active">
+
+                        <p>{{ h.menuNameDictionary[selectedLanguage] }}</p>
+                        <!-- <button  ng-click="menuCtrl.openShowCategoryDialog(h.menuId)" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddbackgroundBtn' | translate}}</button> -->
+
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<div id="inline2" class="main_lity lity-hide subs">
+    <div class="col-md-4 col-sm-4 col-xs-12 tybes" ng-repeat="item in menuCtrl.categories">
+        <div class="sub_content3">
+            <img ng-src="{{item.imageURL}}" alt="" style="max-height: 129px;">
+            <div class="main_over2">
+                <div type="submit" ng-click="$state.go('Items', {featureId: $stateParams.featureId,restaurantId:menuCtrl.restaurantId,menuId: item.menuId,categoryId: item.categoryId});" class="active_pop meat" data-lity-close >
+                    <!-- <img src="{{item.imageURL}}" alt="" /> -->
+                    <p data-lity-close>{{item.categoryNameDictionary[selectedLanguage]}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

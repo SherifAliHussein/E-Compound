@@ -1,0 +1,40 @@
+<div class="modal-content">
+        <div class="modal-header bordered">
+            <button class="close" type="button" ng-click="editSideItemDlCtrl.close()">×</button>
+            <h2 class="pmd-card-title-text">{{'UpdateSizeLbl' | translate}}</h2>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" name="editSideItemForm">
+                <div ng-if="editSideItemDlCtrl.mode=='map'">
+                    <select required class="select-simple form-control pmd-select2" 
+                            ng-options="item.sideItemName for item in editSideItemDlCtrl.englishSideItems"  
+                            ng-model="editSideItemDlCtrl.selectedSideItem">
+                    </select>
+                    <div ng-if="editSideItemDlCtrl.englishSideItems.length <=0">{{'NoSideItemDefault' | translate}} </div>                    
+                </div>
+                <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+                    <label for="first-name">{{'Name' | translate}}</label>
+                    <input required type="text" class="mat-input form-control" name="sideItemName" ng-model="editSideItemDlCtrl.sideItemName" ng-minlength="3" ng-maxlength="100">
+                    <div ng-messages="editSideItemForm.sideItemName.$error" >
+                        <div ng-if="editSideItemForm.sideItemName.$error.required && !editSideItemForm.sideItemName.$pristine">{{'requiredErr' | translate}}</div>
+                        <div ng-if="(editSideItemForm.sideItemName.$error.minlength || editSideItemForm.sideItemName.$error.maxlength) && !editSideItemForm.sideItemName.$error.required">{{'NameLengthError' | translate}}</div>
+                    </div>
+                </div>
+                
+                <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed" ng-if="editSideItemDlCtrl.mode=='edit'">
+                        <label for="first-name">{{'value' | translate}}</label>
+                        <input required type="number" class="mat-input form-control" name="value" ng-model="editSideItemDlCtrl.value"  min="1">
+                        <div ng-messages="editSideItemForm.value.$error" >
+                            <div ng-if="editSideItemForm.value.$error.required && !editSideItemForm.value.$pristine">{{'requiredErr' | translate}}</div>
+                        </div>
+                    </div>
+            </form>
+        </div>
+        <div class="pmd-modal-action text-right">
+            <button ng-disabled="editSideItemForm.$invalid" class="btn pmd-ripple-effect btn-primary" type="button" ng-click="editSideItemDlCtrl.updateSideItem()">{{'saveChangesBtn' | translate}}</button>
+            <button class="btn pmd-ripple-effect btn-default" type="button" ng-click="editSideItemDlCtrl.close()">{{'DiscardBtn' | translate}}</button>
+        </div>
+    </div>
+    
+        
+    

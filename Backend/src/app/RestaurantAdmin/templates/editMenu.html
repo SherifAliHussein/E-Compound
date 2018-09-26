@@ -1,0 +1,70 @@
+<div class="modal-content">
+	<div class="modal-header bordered">
+		<h2 class="pmd-card-title-text">{{'UpdateMenuLbl' | translate}}</h2>
+	</div>
+	<div class="modal-body">
+		<form class="form-horizontal" name="editMenuForm">
+			<!-- <div ng-if="editMenuDlCtrl.mode=='map'">
+				<select required class="select-simple form-control pmd-select2" 
+						ng-options="item.menuName for item in editMenuDlCtrl.englishMenus"  
+						ng-model="editMenuDlCtrl.selectedMenu">
+				</select>
+				<div ng-if="editMenuDlCtrl.englishMenus.length <=0">{{'NoMenuDefault' | translate}} </div>
+			</div> -->
+			<!-- <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+				<label for="first-name">{{'Name' | translate}}</label>
+				<input required type="text" class="mat-input form-control" name="menuName" ng-model="editMenuDlCtrl.menuName" ng-minlength="3" ng-maxlength="40">
+				<div ng-messages="editMenuForm.menuName.$error" >
+					<div ng-if="editMenuForm.menuName.$error.required && !editMenuForm.menuName.$pristine">{{'requiredErr' | translate}}</div>
+					<div ng-if="(editMenuForm.menuName.$error.minlength || editMenuForm.menuName.$error.maxlength) && !editMenuForm.menuName.$error.required">{{'NameLengthError' | translate}}</div>
+					
+                </div>
+			</div> -->
+			<div> 
+                    <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                	<li role="presentation" ng-class="{'active':$index == 0}" ng-repeat="lang in editMenuDlCtrl.language">
+                    	<a href="javascript:void(0);" data-target="#{{lang.value}}-form" aria-controls="home" role="tab" data-toggle="tab">
+                        	{{lang.value | translate}}
+                        </a>
+                    </li>
+                    <!-- <li role="presentation">
+					<a href="javascript:void(0);" data-target="#arabic-form" aria-controls="about" role="tab" data-toggle="tab">{{'arabic' | translate}}</a>
+					</li> -->
+                </ul>
+                <div class="pmd-card">
+					<div class="pmd-card-body">
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tablist" class="tab-pane" ng-class="{'active':$index == 0}" ng-repeat="lang in editMenuDlCtrl.language" id="{{lang.value}}-form">
+                                <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+                                    <label for="first-name"> {{ lang.value+'Name' | translate}} </label>
+                                    <input required type="text" class="mat-input form-control" name="menuNameDictionary{{lang.value+'Name'}}" ng-model="editMenuDlCtrl.menu.menuNameDictionary[lang.key]" ng-minlength="3" ng-maxlength="40">
+                                    <div ng-messages="editMenuForm.menuNameDictionary{{lang.value+'Name'}}.$error" >        
+                                    	<div ng-show="editMenuForm.menuNameDictionary{{lang.value+'Name'}}.$error.required && !editMenuForm.menuNameDictionary{{lang.value+'Name'}}.$pristine">{{'requiredErr' | translate}}</div>
+                                        <div ng-show="(editMenuForm.menuNameDictionary{{lang.value+'Name'}}.$error.minlength || editMenuForm.menuNameDictionary{{lang.value+'Name'}}.$error.maxlength) && !editMenuForm.menuNameDictionary{{lang.value+'Name'}}.$error.required">{{'NameLengthError' | translate}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">       
+					<input id="menuImage" name="menuImage" style="display: none;" onchange="angular.element(this).scope().AddMenuImage(this.files)" type="file" required>
+					<button ng-click="editMenuDlCtrl.LoadUploadImage()" >{{'UploadImageBtn' | translate}}</button>
+					<span > <i class="material-icons md-dark pmd-md warrningIcon">warning</i> {{'RecommendedMenuImage' | translate}}</span>
+					<img ng-src="{{editMenuDlCtrl.menu.imageURL}}" style="max-height: 286px;max-width: 477px;">
+					<div ng-messages="editMenuForm.menuImage.$error" >
+						<div ng-if="editMenuForm.menuImage.$error.required">{{'requiredErr' | translate}}</div>
+					</div>
+			</div>
+		</form>
+	</div>
+	<div class="pmd-modal-action text-right">
+		<button ng-disabled="editMenuForm.$invalid" class="btn pmd-ripple-effect btn-primary" type="button" ng-click="editMenuDlCtrl.updateMenu()">{{'saveChangesBtn' | translate}}</button>
+		<button class="btn pmd-ripple-effect btn-default" type="button" ng-click="editMenuDlCtrl.close()">{{'DiscardBtn' | translate}}</button>
+	</div>
+</div>
+
+	

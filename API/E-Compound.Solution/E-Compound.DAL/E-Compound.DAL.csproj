@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6CB1CE2D-95DF-4C24-A371-1B8D979D76A5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>E_Compound.DAL</RootNamespace>
+    <AssemblyName>E-Compound.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.4\lib\net45\CommonServiceLocator.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Unity.Abstractions, Version=3.1.1.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.4\lib\net45\Unity.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Unity.Configuration, Version=5.1.3.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.4\lib\net45\Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.5.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.4\lib\net45\Unity.Container.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Unity.Interception, Version=5.3.0.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.4\lib\net45\Unity.Interception.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Unity.Interception.Configuration, Version=5.1.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.4\lib\net45\Unity.Interception.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Unity.RegistrationByConvention, Version=2.1.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.4\lib\net45\Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Unity.ServiceLocation, Version=2.1.0.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.4\lib\net45\Unity.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ECompoundDALConfig.cs" />
+    <Compile Include="Entities\ECompoundContext.cs" />
+    <Compile Include="Entities\Model\Admin.cs" />
+    <Compile Include="Entities\Model\Available.cs" />
+    <Compile Include="Entities\Model\Background.cs" />
+    <Compile Include="Entities\Model\Branch.cs" />
+    <Compile Include="Entities\Model\BranchTranslation.cs" />
+    <Compile Include="Entities\Model\Building.cs" />
+    <Compile Include="Entities\Model\Category.cs" />
+    <Compile Include="Entities\Model\CategoryTranslation.cs" />
+    <Compile Include="Entities\Model\Feature.cs" />
+    <Compile Include="Entities\Model\FeatureControl.cs" />
+    <Compile Include="Entities\Model\FeatureDetail.cs" />
+    <Compile Include="Entities\Model\FeatureDetailTranslation.cs" />
+    <Compile Include="Entities\Model\FeaturesBackground.cs" />
+    <Compile Include="Entities\Model\FeatureTranslation.cs" />
+    <Compile Include="Entities\Model\FeedBack.cs" />
+    <Compile Include="Entities\Model\Floor.cs" />
+    <Compile Include="Entities\Model\Item.cs" />
+    <Compile Include="Entities\Model\ItemSideItem.cs" />
+    <Compile Include="Entities\Model\ItemSize.cs" />
+    <Compile Include="Entities\Model\ItemTranslation.cs" />
+    <Compile Include="Entities\Model\Menu.cs" />
+    <Compile Include="Entities\Model\MenuTranslation.cs" />
+    <Compile Include="Entities\Model\Package.cs" />
+    <Compile Include="Entities\Model\Page.cs" />
+    <Compile Include="Entities\Model\Receptionist.cs" />
+    <Compile Include="Entities\Model\RefreshToken.cs" />
+    <Compile Include="Entities\Model\Request.cs" />
+    <Compile Include="Entities\Model\RequestDetail.cs" />
+    <Compile Include="Entities\Model\Restaurant.cs" />
+    <Compile Include="Entities\Model\RestaurantAdmin.cs" />
+    <Compile Include="Entities\Model\RestaurantTranslation.cs" />
+    <Compile Include="Entities\Model\RestaurantType.cs" />
+    <Compile Include="Entities\Model\RestaurantTypeTranslation.cs" />
+    <Compile Include="Entities\Model\RestaurantWaiter.cs" />
+    <Compile Include="Entities\Model\Room.cs" />
+    <Compile Include="Entities\Model\SideItem.cs" />
+    <Compile Include="Entities\Model\SideItemTranslation.cs" />
+    <Compile Include="Entities\Model\Size.cs" />
+    <Compile Include="Entities\Model\SizeTranslation.cs" />
+    <Compile Include="Entities\Model\Supervisor.cs" />
+    <Compile Include="Entities\Model\SupervisorFeature.cs" />
+    <Compile Include="Entities\Model\Template.cs" />
+    <Compile Include="Entities\Model\User.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\E-Compound.Common\E-Compound.Common.csproj">
+      <Project>{4FEC86EE-17FC-4117-8629-80500CF6E514}</Project>
+      <Name>E-Compound.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Frameworks\Repository.Pattern.Ef6\Repository.Pattern.Ef6.csproj">
+      <Project>{F68A1D19-93FB-47C1-A22B-42BEA3E4FD8C}</Project>
+      <Name>Repository.Pattern.Ef6</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Frameworks\Repository.Pattern\Repository.Pattern.csproj">
+      <Project>{6E682A14-C872-4813-B620-76E108DEA683}</Project>
+      <Name>Repository.Pattern</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,40 @@
+<div >
+       
+    <div style="margin-bottom:10px">
+            <button  ng-click="backgroundCtrl.openbackgroundDialog()" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddbackgroundBtn' | translate}}</button>
+            <!-- <span ng-if="!backgroundCtrl.Backgrounds.isParentTranslated"> <i class="material-icons md-dark pmd-md warrningIcon">warning</i> {{'MenuNotTranslated' | translate}}</span> -->
+        </div> 
+        <div ng-if="backgroundCtrl.Backgrounds.results.length == 0">
+                <span>{{'NoBackgroundAvailable' | translate}}</span>
+        </div>
+        <div class="pmd-card pmd-z-depth pmd-card-custom-view" ng-if="backgroundCtrl.Backgrounds.results.length > 0">
+            <div class="table-responsive">
+                <table class="table pmd-table table-hover">
+                    <thead>
+                        <tr> 
+                            <th >{{'Imagelbl' | translate}}</th>
+                            <th >{{'status' | translate}}</th>
+                            <th ></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-class="{'red-text': Background.isSelected == true }" ng-repeat="Background in backgroundCtrl.Backgrounds.results"> 
+                            <td data-title="Image" ><img ng-src="{{Background.imageUrl}}" ng-alt="{{Background.BackgroundName}}" style="max-height: 200px;max-width: 200px;"/></td>
+                            <!-- <td></td> -->
+                            <td>
+                                 <a ng-show="Background.isSelected"   class="cursorPointer" style="color: white;">{{'CurrentBtn' | translate}}</a>
+                                 <a ng-show="!Background.isSelected" ng-click="backgroundCtrl.Activate(Background)" class="cursorPointer">{{'NotCurrentBtn' | translate}}</a>
+                            </td>
+                          
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="text-align:center;" paging page="1" page-size="10" total="backgroundCtrl.Backgrounds.totalCount" paging-action="backgroundCtrl.changePage( page)"
+            flex="nogrow" show-prev-next="true" show-first-last="true" hide-if-empty="true" disabled-class="hide">
+               </div>
+        </div> 
+    
+    
+    </div>					
+    

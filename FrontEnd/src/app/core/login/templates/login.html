@@ -1,0 +1,43 @@
+<div ng-if="!isLoggedIn()" >
+  	<!-- <div class="header">
+        <img class="logo" src="assets/img/logo.png" alt="logo" />
+    </div> -->
+   
+    <div class="container">
+         <form ng-submit="submit(username,password)">
+            <div class="col-md-6 col-sm-12 col-xs-12 main_form" style="background-color: black !important;    background-image: unset;">
+                <h3>Sign In</h3>
+                <div class="name main_field">
+                <input type="text" required ng-change="reset()" name="username" ng-model="username" placeholder="Name" class=" main_input" />
+                </div>
+                
+                <div class="pass main_field">
+                 <input type="password" required ng-change="reset()" name="password" ng-model="password"  placeholder="......" class=" main_input" />
+                 </div>
+                 <div ng-if="invalidLoginInfo" style="width: 70%;margin-left: auto;color:red">
+                    <span>Incorrect username or password.</span>
+                </div>
+                <div ng-if="inActiveUser" class="loginFailed"  style="width: 70%;margin-left: auto;color:red">
+                    <span>Your account is deleted.</span>
+                </div>
+                <div ng-if="restaurantInActiveUser" class="loginFailed"  style="margin-left: auto;color:red">
+                    <span>Restaurant is not activated, please contact your admin.</span>
+                </div>
+                <div ng-if="PackageExpired" class="loginFailed"  style="margin-left: auto;color:red">
+                    <span>Your account is expired, please contact your admin.</span>
+                </div>
+                <div ng-if="PackageNotActivated" class="loginFailed"  style="margin-left: auto;color:red">
+                    <span>Your account is not activated, please contact your admin.</span>
+                </div>
+                
+                <div ng-if="AccountDeActivated" class="loginFailed"  style="margin-left: auto;color:red">
+                    <span>Your Account is deactivated, please contact your admin.</span>
+                </div>
+                
+                <input type="submit" class="login" value="Sign In" >
+                
+            </div>
+        </form>
+    
+    </div>
+</div>

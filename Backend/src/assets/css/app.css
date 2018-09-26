@@ -1,0 +1,74 @@
+.deleteButton{
+	color:red;
+}
+.cursorPointer{
+	cursor:pointer;
+}
+.font25{
+	font-size: 25px !important;
+}
+.loginFailed{
+	padding-left: 16px;
+    color: red;
+}
+.warrningIcon{
+	font-size: 20px !important;
+	color: #d7e15e !important;
+}
+.font12{
+	font-size:12px;
+}
+.disabled {
+	cursor: not-allowed;
+  }
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}
+.clientViewBody{
+	background-color: #83bde6fa
+}
+	.clientView{
+		margin-left: 0px !important;
+		padding-top: 0px !important;
+		
+	}
+	.header{   
+		
+		overflow: hidden;}
+.settings{float: right;
+	margin-right: 0%;
+	margin-top: 1%;
+}
+.settings a{
+	float: right;
+	margin-right: 8px;
+}
+ .lang { float: right;
+	color: #fff;
+	font-weight: bold;
+	margin-right: 5%;
+	background-color: rgba(0, 0, 0, 0.8);
+	padding: 6px;
+	border-radius: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-size: 15px;
+	margin-left: 15px;
+}
+.ClientViewcontent {
+    min-height: 0 !important;
+	margin-left: 0px !important;
+	padding-top: 0px !important;
+}
+.ngProgressLiteBar {
+    background: #ff5f5f !important;
+}
+
+.ngProgressLite .ngProgressLiteBarShadow {
+    box-shadow: 0 0 10px #ff5f5f, 0 0 5px #ff5f5f !important;
+}
+.red-text {
+	
+	color: white;
+background-color: #4285f4 !important;
+}

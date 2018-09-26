@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="home" ng-cloak ng-controller="homeCtrl">
+
+<head>
+    <!-- <base href="/"> -->
+    <title>E-Guest</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <!-- <link rel="stylesheet" href="{{selectedLanguage == 'ar'? 'bundle-ar.css?v=#{VERSION_REPlACE}#': 'bundle-en.css?v=#{VERSION_REPlACE}#'}}" />  -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <link rel="stylesheet" ng-href="bundle-{{selectedLanguage}}.css?v=#{VERSION_REPlACE}#" />
+    <!-- <link rel="stylesheet" href="bundle-en.css?v=#{VERSION_REPlACE}#" />  -->
+
+    <!-- Attach necessary scripts -->
+    <!-- <script type="text/javascript" src="jquery-1.4.4.min.js"></script> -->
+
+    <style>
+        .logout {
+            font-size: 15px;
+            float: right;
+        }
+
+        .clientViewBody {
+            background-color: #83bde6fa
+        }
+
+        .my-custom-stars .button .material-icons {
+            font-size: 15px;
+        }
+
+        .my-custom-stars .button .material-icons a:focus,
+        a:hover {
+            text-decoration: none;
+        }
+
+        .hideMinus a:first-child {
+            display: none;
+        }
+
+        #footer {
+            position: fixed;
+            bottom: 2px;
+            left: 84%;
+            width: 15%;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body style="background-image:url({{isRestaurantPage()? globalInfo.backgroundUrl:user.role === 'Room'? featureBackground.imageUrl:''}})">
+    <!-- ng-class="{ clientViewBody: user.role === 'Room'}"> -->
+
+    <!-- <body style="background-image:url({{globalInfo.backgroundUrl}})"> -->
+    <div class="header" ng-if="isLoggedIn()">
+        <!-- <img class="logo" src="assets/img/logo.png" alt="logo" /> -->
+        <img class="logo" ng-show="globalInfo.logoUrl !=null" ng-src="{{globalInfo.logoUrl}}" alt="logo" />
+        <div ng-if="cartIcon">
+            <a ng-click="$state.go('cart',{featureId: $stateParams.featureId,restaurantId:$stateParams.restaurantId});" ng-show="homeTotalNo > 0">
+                <!-- <a ng-click="$state.go('cart');" ng-show="disabled"> -->
+
+                <div class="main_cart_bg">
+                    <img class="cart_icon" style='    cursor: pointer;' src="../assets/img/cart_icon.png" alt="" />
+                    <span class="cart_icon">{{'Total' | translate}} : {{homeTotalNo}} </span>
+                </div>
+
+            </a>
+        </div>
+        <div class="settings">
+            <a ng-if="selectedLanguage == 'ar-eg'" href="javascript:void(0)" ng-click="changeLanguage('en-us')">
+                <p class="lang">EN</p>
+            </a>
+            <a ng-if="selectedLanguage == 'en-us'" href="javascript:void(0)" ng-click="changeLanguage('ar-eg')">
+                <p class="lang">AR</p>
+            </a>
+            <a ng-show="isRestaurantPage()" href="javascript:void(0);" ng-click="getAllComments()" data-lity-target="#comments" data-lity>
+                <!-- <i class="material-icons" style="font-size: 30px;margin-top: 5px;cursor: pointer;">feedback</i> -->
+                <p class="logout">{{'feedbackbtn' | translate}}</p>
+            </a>
+            <!-- <a   href="javascript:void(0)" ng-click="logout()" ng-show="globalInfo.logoUrl !=null">
+                            <p class="logout">{{'Logout' | translate}}</p>
+                        </a> -->
+            <a href="javascript:void(0)" ng-click="globalInfo.featureMode = !globalInfo.featureMode ;$state.go('Features');" ng-show="globalInfo.logoUrl !=null || !globalInfo.featureMode ">
+                <p class="logout">{{'BackToFeatures' | translate}}</p>
+            </a>
+        </div>
+    </div>
+
+    <div ui-view layout="column"></div>
+    <div id="comments" class="main_lity lity-hide isloaded">
+        <div style="    text-align: center;">
+            <jk-rating-stars rating="globalInfo.rate" read-only="true"></jk-rating-stars>
+        </div>
+        <div>
+            <jk-rating-stars rating="rate" class="my-custom-stars hideMinus"></jk-rating-stars>
+            <!-- <div> -->
+            <div>
+                <input type="text" ng-model="createBy" placeholder="{{'Name' |translate}}" style="border-radius: 25px;padding: 5px;"> </div>
+            <div>
+                <textarea rows="4" style="resize: none;padding: 5px;     width: 100%;
+                    margin-bottom: 5px;
+                    margin-top: 5px;
+                    border-radius: 25px;" ng-max="200" ng-model="comment" placeholder="{{'yourComment' |translate}}"></textarea>
+
+                <div>
+                    <span class="col-md-11">
+                        <button style="border-radius: 10px;" ng-click="applyComment(rate,createBy,comment)" data-lity-close ng-disabled="(comment == '' || comment.length>200) && rate <=0">
+                        {{'SumbitReviewBtn'|translate}}</button>
+                    </span>
+                    <div> {{200- comment.length}}</div>
+                </div>
+            </div>
+            <hr style="margin-top: 20px !important">
+        </div>
+        <div style="overflow: auto;max-height: 300px;">
+            <div ng-repeat="feedback in feedbacks.results">
+                <span ng-if=" feedback.createBy ==''">{{'Guest' | translate}}</span> {{feedback.roomName}}
+                <span>{{feedback.createBy}}</span>
+                <div style="direction: ltr;">{{feedback.createTime}}</div>
+                <jk-rating-stars ng-if="feedback.rate>0" rating="feedback.rate" read-only="true" class="my-custom-stars"></jk-rating-stars>
+                <span>{{feedback.comment}}</span>
+                <hr>
+            </div>
+            <div style="text-align: center" ng-if="feedbacks.nextPageURL != null">
+                <a href="javascript:void(0)" ng-click="getMoreComments()" style="cursor: pointer;">{{'morereviewsbtn' | translate}}</a>
+            </div>
+        </div>
+
+    </div>
+    <!-- <div id="footer" ng-init="t=false">
+        <i class="material-icons" ng-click="t=!t">chat</i> <span>Chat</span>
+        <input  type="text" id="message" />
+        <input type="hidden" id="displayname" />
+       <br/>
+        <input  type="button" id="sendmessage" value="أرسال الرسالة" />
+ 
+        <ul id="discussion"></ul>
+        <div ng-show="t">
+                <div>cherif:  safdsafd</div>
+                <div>cherif:  safdsafd</div>
+                <div>cherif:  safdsafd</div>
+                <div>cherif:  safdsafd</div>
+            </div>
+            <input ng-show="t" type="text" placeholder="type">
+    </div> -->
+    <!-- scripts area -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script> -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script src="libs.js?v=#{VERSION_REPlACE}#"></script>
+    <script src="core.js?v=#{VERSION_REPlACE}#"></script>
+    <script src="app.js?v=#{VERSION_REPlACE}#"></script>
+    <script src="templates.js?v=#{VERSION_REPlACE}#"></script>
+    <script ng-src="turn.min-en.js" ng-if="selectedLanguage == 'en-us'"></script>
+    <script ng-src="turn.min-ar.js" ng-if="selectedLanguage == 'ar-eg'"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/signalr.js/2.3.0/jquery.signalR.min.js"></script>
+    <script src="http://localhost:36402/signalr/hubs"></script> -->
+    
+    <!-- <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('serviceWorker.js').then(function(registration) {
+                console.log('Service Worker registered');
+            }).catch(function(err) {
+                console.log('Service Worker registration failed: ', err);
+            });
+        }
+    </script> -->
+
+</body>
+
+</html>

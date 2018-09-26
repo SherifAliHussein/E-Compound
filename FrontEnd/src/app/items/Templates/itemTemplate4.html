@@ -1,0 +1,119 @@
+<div ng-class="{page2:(selectedLanguage == 'en-us' && (pageitems.pageNumber % 2) === 0) || (selectedLanguage == 'ar-eg' && (pageitems.pageNumber % 2) !== 0)
+, page1:(selectedLanguage == 'en-us' && (pageitems.pageNumber % 2) !== 0) || (selectedLanguage == 'ar-eg' && (pageitems.pageNumber % 2) === 0)}">
+    <div class="offers_list">
+                <div class="lists" ng-repeat="item in pageitems.itemModels"> 
+                    <h3>
+                            {{item.itemNameDictionary[selectedLanguage] < 20 ? 'item.itemNameDictionary[selectedLanguage]' : item.itemNameDictionary[selectedLanguage] | limitTo:20}}   
+        
+         </h3>
+                    <div class="col-sm-12 col-xs-12 col-md-12">
+
+                            <p style=""> 
+                                    
+                                     {{item.itemDescriptionDictionary[selectedLanguage] < 63 ? 'item.itemDescriptionDictionary[selectedLanguage]' : item.itemDescriptionDictionary[selectedLanguage] | limitTo:63 }} 
+                                
+                                 </p>  
+
+                    </div>
+
+                    <div class="col-sm-12 col-xs-12 col-md-12 items_edit">
+                        
+                                <p class="list_price" ng-repeat="size in item.sizes |limitTo:3">{{size.price}} <span class="ssss">{{size.sizeNameDictionary[selectedLanguage]}}</span> </p>
+                       
+                        
+                        <div class="lists_action">
+                            <a href="javascript:void(0);" ng-click="viewItemDetail(item)"  data-lity-target="#inline2" data-lity><img src="assets/img/view.png" alt="" /></a>
+                            <!-- <a style="cursor: pointer;" ng-click="addItemToCart(item)"><img src="assets/img/plus.png" alt="" /></a> -->
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- <div class="lists">
+                    <h3>{{products[8].name}}</h3>
+                    <div class="col-sm-7 col-xs-7 col-md-7">
+
+
+                        <p>{{products[8].description}}</p>
+
+                    </div>
+
+                    <div class="col-sm-5 col-xs-5 col-md-5 items_edit">
+
+                        <p class="list_price">{{products[8].price}} EGP</p>
+                        <div class="lists_action">
+                            <a href="#inline2" data-lity><img src="img/view.png" alt="" /></a>
+                            <a style="cursor: pointer;" ng-click="addItemToCart(products[8])"><img src="img/plus.png" alt="" /></a>
+
+                        </div>
+
+                    </div>
+
+                </div><div class="lists">
+                    <h3>{{products[9].name}}</h3>
+                    <div class="col-sm-7 col-xs-7 col-md-7">
+
+
+                        <p>{{products[9].description}}</p>
+
+                    </div>
+
+                    <div class="col-sm-5 col-xs-5 col-md-5 items_edit">
+
+                        <p class="list_price">{{products[9].price}} EGP</p>
+                        <div class="lists_action">
+                            <a href="#inline2" data-lity><img src="img/view.png" alt="" /></a>
+                            <a style="cursor: pointer;" ng-click="addItemToCart(products[9])"><img src="img/plus.png" alt="" /></a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="lists">
+                    <h3>{{products[10].name}}</h3>
+                    <div class="col-sm-7 col-xs-7 col-md-7">
+
+
+                        <p>{{products[10].description}}</p>
+
+                    </div>
+
+                    <div class="col-sm-5 col-xs-5 col-md-5 items_edit">
+
+                        <p class="list_price">{{products[10].price}} EGP</p>
+                        <div class="lists_action">
+                            <a href="#inline2" data-lity><img src="img/view.png" alt="" /></a>
+                            <a style="cursor: pointer;" ng-click="addItemToCart(products[10])"><img src="img/plus.png" alt="" /></a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="lists">
+                    <h3>{{products[7].name}}</h3>
+                    <div class="col-sm-7 col-xs-7 col-md-7">
+
+
+                        <p>{{products[7].description}}</p>
+
+                    </div>
+
+                    <div class="col-sm-5 col-xs-5 col-md-5 items_edit">
+
+                        <p class="list_price">{{products[7].price}} EGP</p>
+                        <div class="lists_action">
+                            <a href="#inline2" data-lity><img src="img/view.png" alt="" /></a>
+                            <a style="cursor: pointer;" ng-click="addItemToCart(products[7])"><img src="img/plus.png" alt="" /></a>
+
+                        </div>
+
+                    </div>
+
+                </div> -->
+
+            </div>
+</div>

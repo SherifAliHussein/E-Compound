@@ -1,0 +1,22 @@
+<div class="modal-content">
+    <div class="modal-header bordered">
+        <button class="close" type="button" ng-click="editFloorDlCtrl.close()">×</button>
+        <h2 class="pmd-card-title-text">{{'UpdateFloorLbl' | translate}}</h2>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" name="updateFloorForm">
+            <div class="form-group pmd-textfield pmd-textfield-floating-label  pmd-textfield-floating-label-completed">
+                <label for="first-name">{{'roomName' | translate}}</label>
+                <input required type="text" class="mat-input form-control" name="floorName" ng-model="editFloorDlCtrl.Floor.floorName" ng-maxlength="20">
+                <div ng-messages="updateFloorForm.floorName.$error" >
+                    <div ng-if="updateFloorForm.floorName.$error.required && !updateFloorForm.floorName.$pristine">{{'requiredErr' | translate}}</div>
+                    <div ng-if="(updateFloorForm.floorName.$error.maxlength) && !updateFloorForm.roomName.$error.required">{{'maximumMsg' | translate}} 20</div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="pmd-modal-action text-right">
+        <button ng-disabled="updateFloorForm.$invalid" class="btn pmd-ripple-effect btn-primary" type="button" ng-click="editFloorDlCtrl.updateFloor()">{{'saveChangesBtn' | translate}}</button>
+        <button class="btn pmd-ripple-effect btn-default" type="button" ng-click="editFloorDlCtrl.close()">{{'DiscardBtn' | translate}}</button>
+    </div>
+</div>

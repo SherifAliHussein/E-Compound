@@ -1,0 +1,54 @@
+<div class="modal-content">
+	<div class="modal-header bordered">
+		<h2 class="pmd-card-title-text">{{'NewRestaurantTypeLbl' | translate}}</h2>
+	</div>
+	<div class="modal-body">
+		<form class="form-horizontal" name="newTypeForm">
+			<!-- <div class="form-group pmd-textfield pmd-textfield-floating-label">
+				<label for="first-name">{{'Name' | translate}}</label>
+				<input required type="text" class="mat-input form-control" name="typeName" ng-model="restTypeDlCtrl.typeName" ng-minlength="3" ng-maxlength="40">
+				<div ng-messages="newTypeForm.typeName.$error" >
+                    <div ng-if="newTypeForm.typeName.$error.required && !newTypeForm.typeName.$pristine">{{'requiredErr' | translate}}</div>
+					<div ng-if="(newTypeForm.typeName.$error.minlength || newTypeForm.typeName.$error.maxlength) && !newTypeForm.typeName.$error.required">{{'NameLengthError' | translate}}</div>
+                </div>
+			</div> -->
+			<div> 
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" ng-class="{'active':$index == 0}" ng-repeat="lang in restTypeDlCtrl.language">
+						<a href="javascript:void(0);" data-target="#{{lang.value}}-form" aria-controls="home" role="tab" data-toggle="tab">
+							{{lang.value | translate}}
+						</a>
+					</li>
+					<!-- <li role="presentation">
+						<a href="javascript:void(0);" data-target="#arabic-form" aria-controls="about" role="tab" data-toggle="tab">{{'arabic' | translate}}</a>
+					</li> -->
+				</ul>
+				<div class="pmd-card">
+					<div class="pmd-card-body">
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div role="tablist" class="tab-pane" ng-class="{'active':$index == 0}" ng-repeat="lang in restTypeDlCtrl.language" id="{{lang.value}}-form">
+								<div class="form-group pmd-textfield pmd-textfield-floating-label">
+									<label for="first-name"> {{ lang.value+'Name' | translate}} </label>
+									<input required type="text" class="mat-input form-control" name="typeNameDictionary{{lang.value+'Name'}}" ng-model="restTypeDlCtrl.typeNameDictionary[lang.key]" ng-minlength="3" ng-maxlength="40">
+									<div ng-messages="newTypeForm.typeNameDictionary{{lang.value+'Name'}}.$error" >
+										
+										<div ng-show="newTypeForm.typeNameDictionary{{lang.value+'Name'}}.$error.required && !newTypeForm.typeNameDictionary{{lang.value+'Name'}}.$pristine">{{'requiredErr' | translate}}</div>
+										<div ng-show="(newTypeForm.typeNameDictionary{{lang.value+'Name'}}.$error.minlength || newTypeForm.typeNameDictionary{{lang.value+'Name'}}.$error.maxlength) && !newTypeForm.typeNameDictionary{{lang.value+'Name'}}.$error.required">{{'NameLengthError' | translate}}</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> 
+		</form>
+	</div>
+	<div class="pmd-modal-action text-right">
+		<button ng-disabled="newTypeForm.$invalid" class="btn pmd-ripple-effect btn-primary" type="button" ng-click="restTypeDlCtrl.AddNewType()">{{'saveChangesBtn' | translate}}</button>
+		<button class="btn pmd-ripple-effect btn-default" type="button" ng-click="$state.go('restaurantType');">{{'DiscardBtn' | translate}}</button>
+	</div>
+</div>
+
+	

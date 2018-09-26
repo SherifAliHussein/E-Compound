@@ -1,0 +1,51 @@
+<div class="pmd-card pmd-z-depth">
+    <div class="pmd-card-title">
+        <div class="media-body media-middle">
+            <span ng-repeat="controlEnum in textAndImageControler.controls|filter: {id: textAndImageControler.featureControl.control}"> {{controlEnum.text | translate}} </span>
+            <div class="pmd-switch" style="font-size: 14px;">
+                <label>{{'singleSelect' | translate}}</label>
+                <label style="margin-bottom: 0 !important;margin-left: 5px;margin-right: 5px;">
+                    <input type="checkbox"ng-model="textAndImageControler.controlType" ng-change="textAndImageControler.switch()"> <span class="pmd-switch-label"></span>
+                </label>
+                <label>{{'multiSelect' | translate}}</label>
+            </div>
+        </div>
+        <div class="media-right datetimepicker">
+            <button  ng-click="textAndImageControler.addNew()" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'Add' | translate}}</button>
+        </div>
+    </div>
+    <div class="pmd-card-body">
+        <div  style="text-align: center;">
+            <img ng-show="textAndImageControler.isLoading" src="assets/img/loading.gif" style="height: 80px;">
+            <span ng-if="textAndImageControler.featureDetails.results.length <=0 ">{{'NoData'|translate}}</span>
+        </div>
+        <div class="table-responsive" ng-show="!textAndImageControler.isLoading && textAndImageControler.featureDetails.results.length > 0">
+            <table class="table pmd-table table-hover">
+                <thead>
+                    <tr>
+                        <th >{{'Name' | translate}}</th>
+                        <th >{{'Imagelbl' | translate}}</th>                        
+                        <th>{{'priceLbl' | translate}}</th>                        
+                        <th ></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="featureDetail in textAndImageControler.featureDetails.results">
+                        <td data-title="Name" >{{featureDetail.descriptionDictionary[selectedLanguage]}}</td>
+                        <td data-title="logo" ><img ng-src="{{featureDetail.imageURL}}?type='thumbnail'&date={{textAndImageControler.Now}}" style="max-height: 200px;max-width: 200px;"/></td>
+                        <td data-title="Name">
+                                <span ng-if="featureDetail.isFree">{{'freelbl' |translate}}</span>
+                                <span ng-if="!featureDetail.isFree">{{featureDetail.price}}</span>
+                            </td>
+                        <td >
+                            <i class="material-icons md-dark pmd-md cursorPointer font25" ng-click="textAndImageControler.openEditDialog($index);">mode_edit</i>
+                            <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="textAndImageControler.openDeleteDialog(featureDetail.descriptionDictionary[selectedLanguage],featureDetail.featureDetailId)">delete</i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="text-align:center;" paging page="1" page-size="10" total="textAndImageControler.featureDetails.totalCount" paging-action="textAndImageControler.changePage(page)"
+        flex="nogrow" show-prev-next="true" show-first-last="true" hide-if-empty="true" disabled-class="hide"></div>
+    </div> 
+</div>

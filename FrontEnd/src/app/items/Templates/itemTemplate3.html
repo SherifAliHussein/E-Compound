@@ -1,0 +1,75 @@
+<div ng-class="{page2:(selectedLanguage == 'en-us' && (pageitems.pageNumber % 2) === 0) || (selectedLanguage == 'ar-eg' && (pageitems.pageNumber % 2) !== 0)
+, page1:(selectedLanguage == 'en-us' && (pageitems.pageNumber % 2) !== 0) || (selectedLanguage == 'ar-eg' && (pageitems.pageNumber % 2) === 0)}">
+            <div class="img_header">
+                <img ng-src="{{pageitems.itemModels[0].imageURL}}" style="max-height: 139px;" />
+            </div>
+
+            <div class="main_data">
+                <div class="col-sm-8 col-xs-8 col-md-8">
+                        <h3>
+                                {{pageitems.itemModels[0].itemNameDictionary[selectedLanguage] < 20 ? 'pageitems.itemModels[0].itemNameDictionary[selectedLanguage]' : pageitems.itemModels[0].itemNameDictionary[selectedLanguage] | limitTo:20 }}  
+               </h3>
+                              <!-- <p style="white-space: pre;min-height: 40px;">{{pageitems.itemModels[0].itemDescription | limitTo:50}} </p> -->
+                              <p style="min-height: 40px;"> 
+                                 
+                                {{pageitems.itemModels[0].itemDescriptionDictionary[selectedLanguage] < 200 ? 'pageitems.itemModels[0].itemDescriptionDictionary[selectedLanguage]' : pageitems.itemModels[0].itemDescriptionDictionary[selectedLanguage] | limitTo:200 }}  
+                             
+                              </p> 
+
+                </div>
+
+
+                <div class="col-sm-4 col-xs-4 col-md-4">
+                    <div class="row_size" >
+                        <div class="col-sm-7 col-xs-7 col-md-7 no_padding">
+                            <div class="item_price" ng-repeat="size in pageitems.itemModels[0].sizes |limitTo:3"><h5 class="y_price">{{size.price}}</h5> <span class="ssss">{{size.sizeNameDictionary[selectedLanguage]}}</span></div>
+                            <!-- <p class="item_price">110 <span class="ssss">M</span></p>
+                            <p class="item_price">130 <span class="ssss">L</span></p> -->
+                        </div>
+                        <div class="col-sm-5 col-xs-5 col-md-5 edits no_padding" style="padding-right: 5px!important;">
+
+                            <a  href="javascript:void(0);" ng-click="viewItemDetail(pageitems.itemModels[0])"  data-lity-target="#inline2" data-lity><img src="assets/img/view.png" alt="" /></a>
+
+                            <!-- <a style="cursor: pointer;" ng-click="addItemToCart(pageitems.itemModels[0])"><img src="assets/img/plus.png" alt="" /></a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="img_header" ng-show="pageitems.itemModels[1] != null">
+                <img ng-src="{{pageitems.itemModels[1].imageURL}}" style="max-height: 139px;" />
+            </div>
+
+            <div class="main_data" ng-show="pageitems.itemModels[1] != null">
+                <div class="col-sm-8 col-xs-8 col-md-8">
+                        <h3>
+                                {{pageitems.itemModels[1].itemNameDictionary[selectedLanguage] < 20 ? 'pageitems.itemModels[1].itemNameDictionary[selectedLanguage]' : pageitems.itemModels[1].itemNameDictionary[selectedLanguage] | limitTo:20}}   
+            
+             </h3>
+                      
+                        <p style="min-height: 40px;"> 
+                            
+                             {{pageitems.itemModels[1].itemDescriptionDictionary[selectedLanguage] < 200 ? 'pageitems.itemModels[1].itemDescriptionDictionary[selectedLanguage]' : pageitems.itemModels[1].itemDescriptionDictionary[selectedLanguage] | limitTo:200}}   
+                        
+                         </p> 
+                </div>
+
+
+                <div class="col-sm-4 col-xs-4 col-md-4">
+                    <div class="row_size"  >
+                        <div class="col-sm-7 col-xs-7 col-md-7 no_padding">
+                            <div class="item_price" ng-repeat="size in pageitems.itemModels[1].sizes |limitTo:3"><h5 class="y_price">{{size.price}}</h5> <span class="ssss">{{size.sizeNameDictionary[selectedLanguage]}}</span></div>
+                            
+                            <!-- <p class="item_price">110 <span class="ssss">M</span></p>
+                            <p class="item_price">130 <span class="ssss">L</span></p> -->
+                        </div>
+                        <div class="col-sm-5 col-xs-5 col-md-5 edits no_padding" style="padding-right: 5px!important;">
+
+                            <a href="javascript:void(0);" ng-click="viewItemDetail(pageitems.itemModels[1])"  data-lity-target="#inline2" data-lity><img src="assets/img/view.png" alt="" /></a>
+
+                            <!-- <a style="cursor: pointer;" ng-click="addItemToCart(pageitems.itemModels[1])"><img src="assets/img/plus.png" alt="" /></a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>

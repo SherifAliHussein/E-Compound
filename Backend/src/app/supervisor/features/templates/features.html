@@ -1,0 +1,68 @@
+<div >    
+    
+    <!-- <div class="pmd-card pmd-z-depth" > -->
+        <ul class="nav nav-tabs" role="tablist" ng-show="!manageFeaturesCtrl.isAvailable && !manageFeaturesCtrl.islistAvailable">
+            <li role="presentation" ng-class="{'active':$index == 0}" ng-repeat="feature in manageFeaturesCtrl.features">
+                <a href="javascript:void(0);" data-target="#{{feature.featureId}}-form" aria-controls="home" role="tab" data-toggle="tab">
+                    {{feature.featureNameDictionary[selectedLanguage]}}
+                </a>
+            </li>
+        </ul>
+        <div class="pmd-card" ng-show="!manageFeaturesCtrl.isAvailable && !manageFeaturesCtrl.islistAvailable">
+            <div class="pmd-card-body">
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tablist" class="tab-pane" ng-class="{'active':$index == 0}" ng-repeat="feature in manageFeaturesCtrl.features" id="{{feature.featureId}}-form">
+                        <div ng-repeat="featureControl in feature.featureControl">
+                            <!-- <div ng-if="featureControl.control == 0"> -->
+                                <!-- <div class="pmd-card pmd-z-depth">
+                                    <div class="pmd-card-title">
+                                        <div class="media-body media-middle">
+                                            <span ng-repeat="controlEnum in manageFeaturesCtrl.controls|filter: {id: featureControl.control}"> {{controlEnum.text | translate}} </span>
+                                        </div>
+                                        <div class="media-right datetimepicker">
+                                            <button  ng-click="roomsCtrl.openRoomDialog()" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddRoomBtn' | translate}}</button>
+                                        </div>
+                                    </div>
+                                    <div class="pmd-card-body">
+                                        <div class="table-responsive" ng-if="featureControl.featureDetails.length > 0">
+                                            <table class="table pmd-table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th >{{'Name' | translate}}</th>
+                                                        <th ></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="featureDetail in featureControl.featureDetails">
+                                                        <td data-title="Name" >{{featureDetail.descriptionDictionary[selectedLanguage]}}</td>
+                                                        <td >
+                                                            <i class="material-icons md-dark pmd-md cursorPointer font25" ng-click="roomsCtrl.openEditRoomDialog($index);">mode_edit</i>
+                                                            <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="roomsCtrl.openDeleteRoomDialog(room.roomName,room.roomId)">delete</i>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div> 
+                                <!-- </div> --
+                            </div> -->
+                            <text-Control ng-if="featureControl.control == 0" feature-Control="featureControl" selected-Language="selectedLanguage" ></text-Control>
+                            <video-Control ng-if="featureControl.control == 3" feature-Control="featureControl" selected-Language="selectedLanguage" ></video-Control>
+                            <textandimage-Control ng-if="featureControl.control == 2" feature-Control="featureControl" selected-Language="selectedLanguage" ></textandimage-Control>
+                            <image-Control ng-if="featureControl.control == 1" feature-Control="featureControl" selected-Language="selectedLanguage" ></image-Control>
+                            <available-Control ng-if="featureControl.control == 4" feature-Control="featureControl" selected-Language="selectedLanguage" is-Available="manageFeaturesCtrl.isAvailable" feature-Name="feature.featureNameDictionary" ></available-Control>
+                            <listofavailable-Control ng-if="featureControl.control == 6" feature-Control="featureControl" selected-Language="selectedLanguage" islist-Available="manageFeaturesCtrl.islistAvailable" feature-Name="feature.featureNameDictionary" ></listofavailable-Control>
+                            <hr>
+                        </div>
+                        <div style="text-align: center" ng-if="feature.type=='Restaurant'">{{'NoActionForFeature'|translate}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- </div>  -->
+    <available-Control-Form ng-if="manageFeaturesCtrl.isAvailable" feature-Control="featureControl" selected-Language="selectedLanguage" is-Available="manageFeaturesCtrl.isAvailable" ></available-Control-Form>
+    <listofavailable-Control-Form ng-if="manageFeaturesCtrl.islistAvailable" feature-Control="featureControl" selected-Language="selectedLanguage" islist-Available="manageFeaturesCtrl.islistAvailable" ></listofavailable-Control-Form>
+    
+</div>					
+    

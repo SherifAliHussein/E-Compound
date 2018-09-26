@@ -3,3 +3,24 @@
 ################################################################################
 
 *.dll
+/API/E-Compound.Solution/E-Compound.API/bin
+/Backend/src/dist
+/Backend/src/node_modules
+/FrontEnd/src/dist
+/FrontEnd/src/node_modules
+/API/E-Compound.Solution/.vs
+/API/E-Compound.Solution/E-Compound.API/obj
+/API/E-Compound.Solution/E-Compound.BLL/bin
+/API/E-Compound.Solution/E-Compound.BLL/obj
+/API/E-Compound.Solution/E-Compound.Common/bin
+/API/E-Compound.Solution/E-Compound.Common/obj
+/API/E-Compound.Solution/E-Compound.DAL/bin
+/API/E-Compound.Solution/E-Compound.DAL/obj
+/API/E-Compound.Solution/E-Compound.Resources/bin
+/API/E-Compound.Solution/E-Compound.Resources/obj
+/API/E-Compound.Solution/Frameworks/Repository.Pattern/obj
+/API/E-Compound.Solution/Frameworks/Repository.Pattern/bin
+/API/E-Compound.Solution/Frameworks/Repository.Pattern.Ef6/bin
+/API/E-Compound.Solution/Frameworks/Repository.Pattern.Ef6/obj
+/API/E-Compound.Solution/Frameworks/Service.Pattern/bin
+/API/E-Compound.Solution/Frameworks/Service.Pattern/obj

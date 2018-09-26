@@ -1,0 +1,32 @@
+<div >
+	<div style="margin-bottom:10px">
+		<button  ng-click="$state.go('newRestaurantType');" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddType' | translate}}</button>
+
+	</div>
+	<div ng-if="restaurantTypeCtrl.restaurantTypes.length == 0">
+			<span>{{'NoRestaurantTypesAvailable' | translate}}</span>
+		</div>
+	<div class="pmd-card pmd-z-depth pmd-card-custom-view" ng-if="restaurantTypeCtrl.restaurantTypes.length > 0">
+		<div class="table-responsive">
+			<table class="table pmd-table table-hover">
+				<thead>
+					<tr>
+						<th >{{'Name' | translate}}</th>
+						<th ></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="type in restaurantTypeCtrl.restaurantTypes">
+						<td data-title="Name" width="70%">{{type.typeNameDictionary[selectedLanguage]}}</td>
+						<td width="30%">
+							<i class="material-icons md-dark pmd-md cursorPointer font25" ng-click="$state.go('editRestaurantType', {restaurantTypeId: type.restaurantTypeId});">mode_edit</i> 
+							<i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="restaurantTypeCtrl.openDeleteTypeDialog(type.typeName,type.restaurantTypeId)">delete</i>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div> 
+
+
+</div>					

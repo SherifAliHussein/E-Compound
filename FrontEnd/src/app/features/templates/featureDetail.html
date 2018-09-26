@@ -1,0 +1,323 @@
+<style>
+    /* .ui-carousel .carousel-wrapper {
+        text-align: center !important;max-width:800px !important;max-height:400px !important;
+    }
+    
+    .ui-carousel .slide{
+        text-align: center !important;
+        background-color: black;
+        height: 100%;
+    } */
+    .ui-carousel{
+        width: 90%
+    }
+    .ui-carousel .carousel-wrapper{
+        background-color: black;
+    }
+    /* .ui-carousel .track{
+        width: 100%
+    } */
+    .datetimepicker .table td, .datetimepicker .table th .active{
+        position: unset !important;
+        padding:5px !important;
+        border:unset !important;
+        width: unset !important;
+    }
+    .datetimepicker span.active {
+        position: unset !important;
+        width:25% !important;
+        padding:unset !important;
+        border:unset !important
+    }
+    .lity-close:hover{
+        top: 40px !important;
+    }
+    .lity-close{
+        top: 40px !important;
+    }
+    .ui-select-bootstrap>.ui-select-choices>li>div{
+        position: unset;
+        border:unset;
+        padding:unset;
+        width: unset;
+
+    }
+    .ui-select-choices-group>div{
+        position: unset;
+        border:unset;
+        padding:unset;
+        width: unset;
+    }
+    .pmd-table.table>tbody>tr>td, .pmd-table.table>tbody>tr>th, .pmd-table.table>tfoot>tr>td, .pmd-table.table>tfoot>tr>th, .pmd-table.table>thead>tr>td, .pmd-table.table>thead>tr>th{
+        text-align: unset !important;
+    }
+    .datetimepicker .disabled, .datetimepicker .disabled:hover{
+        color: #715f5f;
+    }
+    .datetimepicker{
+        overflow-x: unset;
+    }
+    .mCSB_container{
+        min-height: 400px;
+    }
+    /* .ui-select-multiple.ui-select-bootstrap input.ui-select-search{
+        width: 65% !important;
+    } */
+</style>
+
+<div class="main_field_3">
+        <div  style="padding: 10px;color: white;margin-top: -80px">
+                <img ng-src="{{featureDetailCtrl.feature.imageURL}}?type='thumbnail'" style="border-radius: 100px;"/>
+                <span>{{featureDetailCtrl.feature.featureNameDictionary[selectedLanguage]}}</span>
+            </div>
+            
+            <div class="pmd-modal-action main_field_3_text" style="    margin-right: 10px;
+            margin-top: -50px;
+            margin-bottom: 20px;">
+                <!-- <textarea rows="2" style="resize: none;padding: 5px;     width: 85%;
+                margin-bottom: 5px;
+                margin-top: 5px;
+                border-radius: 25px;" ng-max="200" ng-model="featureDetailCtrl.comment" placeholder="{{'yourComment' |translate}} ({{'optinal' |translate}})"></textarea> -->
+                <button class="btn pmd-ripple-effect btn-primary" ng-disabled="requestForm.$invalid " ng-click="featureDetailCtrl.request()"  type="button" data-lity-target="#confirmatioRequest" data-lity >{{'requestbtn' | translate}}</button>
+            <!-- </div> -->
+            <div style="color: white" ng-show="featureDetailCtrl.lastRequest.requestId !=undefined">
+                    {{'lastrequestStatus' | translate}} {{featureDetailCtrl.lastRequest.createTime}} {{featureDetailCtrl.lastRequest.status | translate}}
+                 <span ng-show="featureDetailCtrl.lastRequest.status != 'Pending'"> {{featureDetailCtrl.lastRequest.modifyTime}}</span>
+                </div>
+            </div>
+            
+</div>
+
+<div >
+    <form name="requestForm">
+        <center>
+            <div ng-scrollbars  ng-scrollbars-config="featureDetailCtrl.config" class="modal-content main_field_2 col-md-5" ng-if="(featureDetailCtrl.feature.featureControl | filter: {control:0}).length > 0 
+                ||(featureDetailCtrl.feature.featureControl | filter: {control:2}).length > 0 
+                ||(featureDetailCtrl.feature.featureControl | filter: {control:4}).length > 0 
+                || (featureDetailCtrl.feature.featureControl | filter: {control:5}).length > 0
+                || (featureDetailCtrl.feature.featureControl | filter: {control:6}).length > 0"
+                style="padding:0 10px 0 10px;margin: 0 30px 0 30px;overflow-x: hidden;overflow-y: auto;max-height: 500px;background: rgba(8, 8, 8, 0.32);color: white">
+                    
+                <div ng-repeat="featureControl in featureDetailCtrl.feature.featureControl| filter: featureDetailCtrl.filterFeatureLeftSide" style="padding: 5px;height: 100%;" >
+                    <div class="column">
+                    <div ng-if="featureControl.control == 0" class="row">
+                            <!-- <div > -->
+                            <ui-select required ng-if="featureControl.controlType == 'Multiple'"style="width: 90%"   multiple ng-model="featureControl.selectedOption" theme="bootstrap" >
+                                <ui-select-match placeholder="{{'SelectMulti'|translate}}">{{$item.descriptionDictionary[selectedLanguage]}}</ui-select-match>
+                                <ui-select-choices repeat="featureDetail in featureControl.featureDetails| filter: $select.search" >
+                                       <span style="font-weight: 400 !important;"> {{featureDetail.descriptionDictionary[selectedLanguage]}}</span>
+                                </ui-select-choices>
+                            </ui-select>
+                            <ui-select required ng-if="featureControl.controlType == 'Single'"  style="width: 90%" ng-model="featureControl.selectedOption" theme="bootstrap"  >
+                                <ui-select-match placeholder="{{'SelectSingle'|translate}}">{{featureControl.selectedOption.descriptionDictionary[selectedLanguage]}}</ui-select-match>
+                                <ui-select-choices repeat="featureDetail in featureControl.featureDetails| filter: $select.search">
+                                        {{featureDetail.descriptionDictionary[selectedLanguage]}}
+                                </ui-select-choices>
+                            </ui-select>
+                    </div> 
+                    
+                    <div ng-if="featureControl.control == 2"class="row">
+                        <div ng-repeat="featureDetail in featureControl.featureDetails" >
+                            <div class="col-md-4">
+                                <div class="column">
+                                    <label style="display: grid;align-items: center;"  > 
+                                        <img ng-src="{{featureDetail.imageURL}}?type='thumbnail'"/>
+                                        <span>{{featureDetail.descriptionDictionary[selectedLanguage]}}</span>
+                                        <input type="checkbox" ng-if="featureControl.controlType == 'Multiple'" ng-required="(featureControl.featureDetails|filter:{isSelected:true}).length<=0" ng-model="featureDetail.isSelected">
+                                        <input type="radio" ng-if="featureControl.controlType == 'Single'" required ng-model="featureControl.selectedOption"
+                                        ng-value="featureDetail" name="textAndImageRadio">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="featureControl.control == 4" >
+                        <div ng-show="featureDetailCtrl.isFrom">
+                            <span style="    font-size: 20px;">{{'from'|translate}}</span>
+                            <datetimepicker  required 
+                            data-datetimepicker-config="{minuteStep:30}"
+                            data-before-render="featureDetailCtrl.checkAvailableFrom($view, $dates, $leftDate, $upDate, $rightDate,featureControl)"
+                            data-ng-model="featureControl.from" ng-change="featureDetailCtrl.availableChange(featureControl)"></datetimepicker>
+                        </div>
+                        <div ng-show="featureDetailCtrl.isTo">
+                            <span  style="    font-size: 20px;">{{'to'|translate}}</span>
+                            <datetimepicker  required 
+                            data-datetimepicker-config="{minuteStep:30,startView:'hour'}"
+                            data-before-render="featureDetailCtrl.checkAvailableTo($view, $dates, $leftDate, $upDate, $rightDate,featureControl)"
+                            data-ng-model="featureControl.to"  ng-change="featureDetailCtrl.availableChange(featureControl)"></datetimepicker>
+                        </div>
+                        <div ng-show="featureControl.from != null">{{'from'|translate}}: {{featureControl.from| date:"MM/dd/yyyy  h:mma"}}</div>
+                        
+                        <div ng-show="featureControl.to != null">{{'to'|translate}}:
+                            {{featureControl.to| date:"MM/dd/yyyy  h:mma"}}                                    
+                        </div>
+                    </div> 
+                    <div ng-if="featureControl.control == 5" >
+                            <!-- <p class="input-group">
+                                    <input type="text" class="form-control" datetime-picker="MM/dd/yyyy HH:mm" ng-model="featureDetailCtrl.picker3.date" is-open="featureDetailCtrl.picker3.open" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="featureDetailCtrl.openCalendar($event, 'picker3')"><i class="fa fa-calendar"></i></button>
+                            </span>
+                                </p> -->
+                                <datetimepicker  required 
+                               data-before-render="featureDetailCtrl.beforeRender($view, $dates, $leftDate, $upDate, $rightDate)"
+                                data-ng-model="featureControl.date"></datetimepicker>
+                                {{featureControl.date| date:"MM/dd/yyyy  h:mma"}}
+                    </div>                
+                    <div ng-if="featureControl.control == 6" >
+                        <div>
+                            <ui-select required ng-if="featureControl.controlType == 'Single'" ng-change="featureDetailCtrl.listOfAvailabiltyChange(featureControl)"  style="width: 90%" ng-model="featureControl.selectedOption" theme="bootstrap"  >
+                                <ui-select-match placeholder="{{'SelectSingle'|translate}}">{{featureControl.selectedOption.descriptionDictionary[selectedLanguage]}}</ui-select-match>
+                                <ui-select-choices repeat="featureDetail in featureControl.featureDetails| filter: $select.search">
+                                        {{featureDetail.descriptionDictionary[selectedLanguage]}}
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div ng-if="featureDetailCtrl.isFrom && featureControl.selectedOption != null" >
+                            <span style="    font-size: 20px;">{{'from'|translate}}</span>
+                            <datetimepicker  required 
+                            data-datetimepicker-config="{minuteStep:30,renderOn:'featureDetailCtrl.listOfAvailabiltyChange'}"
+                            data-before-render="featureDetailCtrl.checkAvailableFrom($view, $dates, $leftDate, $upDate, $rightDate,featureControl)"
+                            data-ng-model="featureControl.from" ng-change="featureDetailCtrl.availableChange(featureControl)"></datetimepicker>
+                        </div>
+                        <div ng-if="featureDetailCtrl.isTo && featureControl.selectedOption != null">
+                            <span  style="    font-size: 20px;">{{'to'|translate}}</span>
+                            <datetimepicker  required 
+                            data-datetimepicker-config="{minuteStep:30,startView:'hour'}"
+                            data-before-render="featureDetailCtrl.checkAvailableTo($view, $dates, $leftDate, $upDate, $rightDate,featureControl)"
+                            data-ng-model="featureControl.to"  ng-change="featureDetailCtrl.availableChange(featureControl)"></datetimepicker>
+                        </div>
+                        <div ng-show="featureControl.from != null">{{'from'|translate}}: {{featureControl.from| date:"MM/dd/yyyy  h:mma"}}</div>
+                        
+                        <div ng-show="featureControl.to != null">{{'to'|translate}}:
+                            {{featureControl.to| date:"MM/dd/yyyy  h:mma"}}                                    
+                        </div>
+            </div> 
+                <br>
+                    </div> 
+                </div>
+                <!-- <div > -->
+                    
+            </div>
+        
+        
+            <div ng-scrollbars  ng-scrollbars-config="featureDetailCtrl.config" class="modal-content main_field_2 col-md-6" ng-if="(featureDetailCtrl.feature.featureControl | filter: {control:1}).length > 0
+                || (featureDetailCtrl.feature.featureControl | filter: {control:3}).length > 0"
+                style="padding:0 10px 0 10px;margin: 0 10px 0 10px;overflow-x: hidden;overflow-y: auto;max-height: 500px;background: rgba(8, 8, 8, 0.32);color: white">
+                    
+                <div ng-repeat="featureControl in featureDetailCtrl.feature.featureControl| filter: featureDetailCtrl.filterFeatureRightSide" style="padding: 5px;" >
+                    <div class="column">      
+                    <div ng-if="featureControl.control == 1" >
+                        <!-- <center> -->
+                            <ui-carousel 
+                            slides="featureControl.featureDetails"
+                            slides-to-show="1"
+                            slides-to-scroll="1"
+                            initial-slide="0"
+                            autoplay="true"
+                            autoplay-speed="20000"
+                            
+                            dots="true">            
+                                <carousel-item  >
+                                    <div style="text-align: center !important;">
+                                            <img ng-src="{{item.imageURL}}" height="100%" width="100%" />
+                                    </div>
+                                    
+                                </carousel-item>
+                            </ui-carousel>
+                        <!-- </center> -->
+                    </div>
+                    <div ng-if="featureControl.control == 3"class="row">
+                            <!-- <center> -->
+                                <ui-carousel 
+                                    slides="featureControl.featureDetails"
+                                    slides-to-show="1"
+                                    slides-to-scroll="1"
+                                    initial-slide="0"
+                                    
+                                    
+                                    dots="true">            
+                                    <carousel-item  >
+                                        <iframe ng-src="{{item.link}}"
+                                        height="315" width="100%" frameborder="0" allowfullscreen></iframe>
+                                    </carousel-item>
+                                </ui-carousel>
+                            <!-- </center> -->
+                    </div>
+                            
+                <!-- <hr> -->
+                <br>
+                    </div> 
+                </div>
+                <!-- <div > -->
+                
+            </div>
+        </center>
+    </form>
+</div>
+
+<div id="confirmatioRequest" class="main_lity lity-hide subs">
+        <!-- <div class="col-md-4 col-sm-4 col-xs-12 tybes" > -->
+            <form name="requestConfirmForm">
+            <div >
+                <div>
+                        {{'requestConfirmationLbl' | translate}}<strong>{{featureDetailCtrl.feature.featureNameDictionary[selectedLanguage]}}</strong>? 
+                </div>
+                <div class="table-responsive pmd-card pmd-z-depth" ng-if="featureDetailCtrl.newRequest.requestDetails.length>0">
+                    <table class="table table-mc-red pmd-table" >
+                        <thead>
+                            <th style="font-size: 20px;">{{'Name'|translate}}</th>
+                            <th style="font-size: 20px;">{{'NUM'|translate}}</th>
+                            <th style="font-size: 20px;">{{'Price' |translate}}</th>
+                            <th style="font-size: 20px;">{{'Total'|translate}}</th>
+                            <!-- <th></th> -->
+                        </thead>
+                        <tbody >
+                            <tr ng-repeat="featureDetail in featureDetailCtrl.newRequest.requestDetails">
+                                <td>
+                                    <!-- {{featureDetailCtrl.feature.featureControl}} -->
+                                    <span ng-repeat="featureDetailName in featureDetailCtrl.feature.featureControl|filter: {featureDetails:{featureDetailId: featureDetail.featureDetailId}}">
+                                        <!-- {{featureDetailName.featureDetails}} -->
+                                        <span ng-repeat="item in featureDetailName.featureDetails|filter: {featureDetailId: featureDetail.featureDetailId}">
+                                            {{item.descriptionDictionary[selectedLanguage]}}
+                                        </span>
+                                     </span>  
+                                     <div ng-show="featureDetail.from != null">{{'from'|translate}}: {{featureDetail.from| date:"MM/dd/yyyy  h:mma"}}</div>
+                                     
+                                     <div ng-show="featureDetail.to != null">{{'to'|translate}}:
+                                         {{featureDetail.to| date:"MM/dd/yyyy  h:mma"}}                                    
+                                     </div>                                  
+                                </td>
+                                <td>
+                                    <input type="number" ng-model="featureDetail.number" min="1" max="{{featureDetailCtrl.availableNumberRequest}}">
+                                    
+                                </td>
+                                <td>
+                                    {{featureDetail.price}}
+                                </td>
+                                <td>
+                                    {{featureDetail.number * featureDetail.price}}
+                                </td>
+                                <!-- <td>
+                                    <input class="btn btn-danger" type="button" ng-click="featureDetailCtrl.removeFeatureDetail($index)" value="{{'Remove' | translate}}" />
+                                </td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- {{featureDetailCtrl.newRequest}} -->
+                  
+                </div>  <span>
+                            {{featureDetailCtrl.newRequest.requestTime | date:"MM/dd/yyyy  h:mma"}}
+                    </span>
+                <div>
+                     <textarea rows="2" style="resize: none;padding: 5px;     width: 85%;
+                    margin-bottom: 5px;
+                    margin-top: 5px;
+                    border-radius: 25px;" ng-max="200" ng-model="featureDetailCtrl.comment" placeholder="{{'yourComment' |translate}} ({{'optinal' |translate}})"></textarea>
+                </div>
+            </div>   
+        </form>     
+        <!-- </div> -->
+        <button ng-disabled="requestConfirmForm.$invalid " class="btn pmd-ripple-effect btn-primary" type="button" data-lity-close ng-click="featureDetailCtrl.confirmRequest()">{{'ApproveBtn' | translate}}</button>
+        <!-- <button class="btn pmd-ripple-effect btn-default pmd-btn-flat" type="button" ng-click="requestDlCtrl.close()">{{'cancelBtn' | translate}}</button> -->
+</div>

@@ -1,0 +1,57 @@
+<script type="text/javascript">
+	$(document).ready(function() {
+		// <!-- Select Multiple Tags -->
+		$(".select-tags").select2({
+			tags: false,
+			theme: "bootstrap",
+		})
+	});
+</script>
+<div class="modal-content">
+        <div class="modal-header bordered">
+            <button class="close" type="button" ng-click="supervisorDlCtrl.close()">×</button>
+            <h2 class="pmd-card-title-text">{{'NewSupervisorLbl' | translate}}</h2>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" name="newSupervisorForm">
+                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                    <label for="first-name">{{'UserName' | translate}}</label>
+                    <input required type="text" class="mat-input form-control" name="userName" ng-model="supervisorDlCtrl.userName" ng-minlength="3" ng-maxlength="100">
+                    <div ng-messages="newSupervisorForm.userName.$error" >
+                        <div ng-if="newSupervisorForm.userName.$error.required && !newSupervisorForm.userName.$pristine">{{'requiredErr' | translate}}</div>
+                        <div ng-if="(newSupervisorForm.userName.$error.minlength || newSupervisorForm.userName.$error.maxlength) && !newSupervisorForm.userName.$error.required">{{'NameLengthError' | translate}}</div>
+                    </div>
+                </div>
+                <div class="form-group pmd-textfield pmd-textfield-floating-label" >
+                        <label for="first-name">{{'SupervisorUserPasswordLbl' | translate}}</label>
+                        <input required type="password" class="mat-input form-control" name="password" ng-model="supervisorDlCtrl.password" ng-minlength="8" ng-maxlength="25">
+                        <div ng-messages="newSupervisorForm.password.$error" >
+                            <div ng-if="newSupervisorForm.password.$error.required && !newSupervisorForm.password.$pristine">{{'requiredErr' | translate}}</div>
+                            <div ng-if="(newSupervisorForm.password.$error.minlength || newSupervisorForm.password.$error.maxlength) && !newSupervisorForm.password.newPassword.$error.required">Password length must be 8-25 char.</div>
+                        </div>
+                    </div>
+                    <div class="form-group pmd-textfield pmd-textfield-floating-label" >
+                        <label for="first-name">{{'ConfirmPasswordLbl' | translate}}</label>
+                        <input required type="password" class="mat-input form-control" name="confirmPassword"  ng-model="supervisorDlCtrl.confirmPassword" equalto="newSupervisorForm.password" >
+                        <div ng-messages="newSupervisorForm.confirmPassword.$error" >
+                            <div ng-if="newSupervisorForm.confirmPassword.$error.required && !newSupervisorForm.confirmPassword.$pristine">{{'requiredErr' | translate}}</div>
+                            <div ng-if="newSupervisorForm.confirmPassword.$error.equalto && !newSupervisorForm.confirmPassword.$error.required">Passwords don't match.</div>
+                        </div>
+                    </div>
+                    <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed"  >
+                        <label>{{'selectFeatureLbl' | translate}}</label>
+                        <select  class="form-control select-tags pmd-select2-tags" multiple ng-model="supervisorDlCtrl.SelectedFeature" name="SelectedFeature">
+                            <option ng-repeat="feature in supervisorDlCtrl.features"  ng-value="{{feature}}">{{feature.featureNameDictionary[supervisorDlCtrl.selectedLanguage]}}</option>                    
+                        </select>
+                        <div ng-if="newSupervisorForm.SelectedFeature.$error.required && !newSupervisorForm.SelectedFeature.$pristine">{{'requiredErr' | translate}}</div>
+                    </div>
+            </form>
+        </div>
+        <div class="pmd-modal-action text-right">
+            <button ng-disabled="newSupervisorForm.$invalid || (supervisorDlCtrl.SelectedFeature.length<=0 )" class="btn pmd-ripple-effect btn-primary" type="button" ng-click="supervisorDlCtrl.AddNewSupervisor()">{{'saveChangesBtn' | translate}}</button>
+            <button class="btn pmd-ripple-effect btn-default" type="button" ng-click="supervisorDlCtrl.close()">{{'DiscardBtn' | translate}}</button>
+        </div>
+    </div>
+    
+        
+    

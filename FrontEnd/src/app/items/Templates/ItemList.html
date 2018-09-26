@@ -1,0 +1,29 @@
+<div id="flipbook" >
+        <div></div>
+    <div   ng-repeat="page in itempagectrl" >
+    
+    <div ng-if="page.templateId == 1" style="height: 100%;">
+            <page-Template1 pageitems="page"  itemdetails="itemdetails" selected-Language="selectedLanguage" style="height: 100%;"></page-Template1>
+    </div>
+    
+    <div ng-if="page.templateId == 2" style="height: 100%;">
+            <page-Template2 pageitems="page"  itemdetails="itemdetails" selected-Language="selectedLanguage" style="height: 100%;"></page-Template2>
+    </div>
+    <div ng-if="page.templateId == 3"style="height: 100%;" >
+            <page-Template3 pageitems="page"  itemdetails="itemdetails" selected-Language="selectedLanguage" style="height: 100%;"></page-Template3>
+    </div>
+    <div ng-if="page.templateId == 4" style="height: 100%;">
+            <page-Template4 pageitems="page"  itemdetails="itemdetails" selected-Language="selectedLanguage" style="height: 100%;"></page-Template4>
+    </div>
+
+    <div ng-if="page.templateId == 5" style="height: 100%;">
+        <page-Template5 pageitems="page"  itemdetails="itemdetails" selected-Language="selectedLanguage" style="height: 100%;"></page-Template4>
+</div>
+<div ng-if="page.templateId == 6" style="height: 100%;">
+        <page-Template6 pageitems="page"  itemdetails="itemdetails" selected-Language="selectedLanguage" style="height: 100%;"></page-Template4>
+</div>
+    </div>
+    
+</div>
+      
+      

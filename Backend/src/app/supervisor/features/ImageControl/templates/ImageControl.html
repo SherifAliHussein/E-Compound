@@ -1,0 +1,44 @@
+<div class="pmd-card pmd-z-depth">
+    <div class="pmd-card-title">
+        <div class="media-body media-middle">
+            <span ng-repeat="controlEnum in imageControler.controls|filter: {id: imageControler.featureControl.control}"> {{controlEnum.text | translate}} </span>
+        </div>
+        <div class="media-right datetimepicker">
+            <button  ng-click="imageControler.addNew()" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'Add' | translate}}</button>
+        </div>
+    </div>
+    <div class="pmd-card-body">
+        <div  style="text-align: center;">
+            <img ng-show="imageControler.isLoading" src="assets/img/loading.gif" style="height: 80px;">
+            <span ng-if="imageControler.featureDetails.results.length <=0 ">{{'NoData'|translate}}</span>
+        </div>
+        <div class="table-responsive" ng-show="!imageControler.isLoading && imageControler.featureDetails.results.length > 0">
+            <table class="table pmd-table table-hover">
+                <thead>
+                    <tr>
+                        <!-- <th >{{'Name' | translate}}</th> -->
+                        <th >{{'Imagelbl' | translate}}</th>                        
+                        <!-- <th>{{'priceLbl' | translate}}</th>                         -->
+                        <th ></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="featureDetail in imageControler.featureDetails.results">
+                        <!-- <td data-title="Name" >{{featureDetail.descriptionDictionary[selectedLanguage]}}</td> -->
+                        <td data-title="logo" ><img ng-src="{{featureDetail.imageURL}}?type='thumbnail'&date={{imageControler.Now}}" style="max-height: 200px;max-width: 200px;"/></td>
+                        <!-- <td data-title="Name">
+                                <span ng-if="featureDetail.isFree">{{'freelbl' |translate}}</span>
+                                <span ng-if="!featureDetail.isFree">{{featureDetail.price}}</span>
+                            </td> -->
+                        <td >
+                            <i class="material-icons md-dark pmd-md cursorPointer font25" ng-click="imageControler.openEditDialog($index);">mode_edit</i>
+                            <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="imageControler.openDeleteDialog('',featureDetail.featureDetailId)">delete</i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="text-align:center;" paging page="1" page-size="10" total="imageControler.featureDetails.totalCount" paging-action="imageControler.changePage(page)"
+        flex="nogrow" show-prev-next="true" show-first-last="true" hide-if-empty="true" disabled-class="hide"></div>
+    </div> 
+</div>

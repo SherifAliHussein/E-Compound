@@ -1,0 +1,63 @@
+<div class="modal-content">
+        <div class="modal-header bordered">
+            <h2 class="pmd-card-title-text">{{'UpdateSizeLbl' | translate}}</h2>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" name="editSizeForm">
+                <!-- <div ng-if="editSizeDlCtrl.mode=='map'">
+                    <select required class="select-simple form-control pmd-select2" 
+                            ng-options="item.sizeName for item in editSizeDlCtrl.englishSizes"  
+                            ng-model="editSizeDlCtrl.selectedSize">
+                    </select>
+                    <div ng-if="editSizeDlCtrl.englishSizes.length <=0">{{'NoSizeDefault' | translate}} </div>
+                </div> -->
+                <div> 
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" ng-class="{'active':$index == 0}" ng-repeat="lang in editSizeDlCtrl.language">
+                            <a href="javascript:void(0);" data-target="#{{lang.value}}-form" aria-controls="home" role="tab" data-toggle="tab">
+                                {{lang.value | translate}}
+                            </a>
+                        </li>
+                        <!-- <li role="presentation">
+                            <a href="javascript:void(0);" data-target="#arabic-form" aria-controls="about" role="tab" data-toggle="tab">{{'arabic' | translate}}</a>
+                        </li> -->
+                    </ul>
+                    <div class="pmd-card">
+                        <div class="pmd-card-body">
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tablist" class="tab-pane" ng-class="{'active':$index == 0}" ng-repeat="lang in editSizeDlCtrl.language" id="{{lang.value}}-form">
+                                    <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+                                        <label for="first-name"> {{ lang.value+'Name' | translate}} </label>
+                                        <input required type="text" class="mat-input form-control" name="sizeNameDictionary{{lang.value+'Name'}}" ng-model="editSizeDlCtrl.size.sizeNameDictionary[lang.key]" ng-minlength="3" ng-maxlength="10">
+                                        <div ng-messages="editSizeForm.sizeNameDictionary{{lang.value+'Name'}}.$error" >
+                                            
+                                            <div ng-show="editSizeForm.sizeNameDictionary{{lang.value+'Name'}}.$error.required && !editSizeForm.sizeNameDictionary{{lang.value+'Name'}}.$pristine">{{'requiredErr' | translate}}</div>
+                                            <div ng-show="(editSizeForm.sizeNameDictionary{{lang.value+'Name'}}.$error.minlength || editSizeForm.sizeNameDictionary{{lang.value+'Name'}}.$error.maxlength) && !editSizeForm.sizeNameDictionary{{lang.value+'Name'}}.$error.required">{{'SizeLengthError' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+
+                <!-- <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+                    <label for="first-name">{{'Name' | translate}}</label>
+                    <input required type="text" class="mat-input form-control" name="sizeName" ng-model="editSizeDlCtrl.sizeName" ng-minlength="1" ng-maxlength="10">
+                    <div ng-messages="editSizeForm.sizeName.$error" >
+                        <div ng-if="editSizeForm.sizeName.$error.required && !editSizeForm.sizeName.$pristine">{{'requiredErr' | translate}}</div>
+                        <div ng-if="(editSizeForm.sizeName.$error.minlength || editSizeForm.sizeName.$error.maxlength) && !editSizeForm.sizeName.$error.required">{{'SizeLengthError' | translate}}</div>
+                    </div>
+                </div> -->
+            </form>
+        </div>
+        <div class="pmd-modal-action text-right">
+            <button ng-disabled="editSizeForm.$invalid" class="btn pmd-ripple-effect btn-primary" type="button" ng-click="editSizeDlCtrl.updateSize()">{{'saveChangesBtn' | translate}}</button>
+            <button class="btn pmd-ripple-effect btn-default" type="button" ng-click="editSizeDlCtrl.close()">{{'DiscardBtn' | translate}}</button>
+        </div>
+    </div>
+    
+        
+    

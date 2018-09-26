@@ -1,0 +1,26 @@
+<div class="modal-content">
+      <div class="modal-body">
+    <div  ng-repeat="c in showCategoryDlCtrl.categories.results">
+            <div id="tab-{{c.menuId}}" class="main_lity"  >
+               
+				<a  data-ng-click="$state.go('Items', {categoryId: category.categoryId});">
+                     <div class="col-md-4 col-sm-4 col-xs-12 tybes">
+               <div class="sub_content3">
+             
+               <img src="{{c.imageURL}}" alt="">
+               <div class="main_over2">
+               <div class="active">
+               <p>{{c.categoryName}}  </p>
+               </div>
+               </div>
+               </div>
+               </div>
+				</a>
+               </div>
+    
+            </div>
+            </div>
+    </div>
+    
+        
+    

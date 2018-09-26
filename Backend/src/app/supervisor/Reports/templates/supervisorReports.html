@@ -1,0 +1,165 @@
+<!-- <script type="text/javascript">
+    $(document).ready(function () {
+        $(".direct-expand").click(function(){
+            debugger;
+         //   $(".direct-child-table").slideToggle(300);
+            $(this).toggleClass( "child-table-collapse" );
+        });
+    });
+    </script> -->
+    <script>
+            // Linked date and time picker 
+            // start date date and time picker 
+            $('#datepicker-start').datetimepicker();
+    
+            // End date date and time picker 
+            $('#datepicker-end').datetimepicker({
+                useCurrent: false 
+            });
+            
+            // start date picke on chagne event [select minimun date for end date datepicker]
+            $("#datepicker-start").on("dp.change", function (e) {
+                $('#datepicker-end').data("DateTimePicker").minDate(e.date);
+            });
+            // Start date picke on chagne event [select maxmimum date for start date datepicker]
+            $("#datepicker-end").on("dp.change", function (e) {
+                $('#datepicker-start').data("DateTimePicker").maxDate(e.date);
+            });
+        </script>
+    <div >
+        <div class="row">
+        <div  class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed col-md-2" >
+            <label>{{'Rooms' | translate}}</label>
+            <select class="select-simple form-control pmd-select2" 
+                ng-options="room.roomName for room in reportsCtrl.rooms" 
+                ng-model="reportsCtrl.selectedRoom">
+            </select>
+        </div>
+        <div  ng-if="user.role !== 'Waiter'"  class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed col-md-2" >
+            <label>{{'Featureslbl' | translate}}</label>
+            <select class="select-simple form-control pmd-select2" 
+                ng-options="feature.featureNameDictionary[selectedLanguage] for feature in reportsCtrl.features" 
+                ng-model="reportsCtrl.selectedFeature">
+            </select>
+        </div>
+        
+        <div class="col-md-2"> 
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                <label class="control-label" for="regular1">{{'From'|translate}}</label>
+                <input type="text" class="form-control" id="datepicker-start">
+            </div>
+        </div>
+        <div class="col-md-2"> 
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                <label class="control-label" for="regular1">{{'To'|translate}}</label>
+                <input type="text" class="form-control" id="datepicker-end">
+            </div>
+        </div>
+        <div class="pmd-modal-action text-right">
+                <button class="btn pmd-ripple-effect btn-primary" type="button" ng-click="reportsCtrl.changePage(1)">
+                    {{'applyFilterBtn' | translate}}
+                </button>
+        </div>
+    </div>
+        <div ng-show="reportsCtrl.requests.results.length == 0 && !reportsCtrl.isLoading">
+                <span>{{'NorequestsAvailable' | translate}}</span>
+        </div>
+        <div  style="text-align: center;">
+            <img ng-show="reportsCtrl.isLoading" src="assets/img/loading.gif" style="height: 80px;">
+        </div>
+        <button class="btn pmd-ripple-effect btn-primary" type="button" ng-click="reportsCtrl.downloadFile()">{{'ExportCsvBtn'|translate}}</button>
+        <button class="btn pmd-ripple-effect btn-primary" ng-show="reportsCtrl.canDownload" ng-click="reportsCtrl.download()" type="button" add-bom="true" charset="reportsCtrl.charEncode" csv-header="reportsCtrl.fileColumnHeaders" ng-csv="reportsCtrl.reportData" filename="{{reportsCtrl.fileName}}">{{'downloadBtn'|translate}}</button>
+        
+        <div class="pmd-card pmd-z-depth pmd-card-custom-view" ng-show="reportsCtrl.requests.results.length > 0 && !reportsCtrl.isLoading">
+            <div class="table-responsive pmd-card pmd-z-depth">
+                <table class="table table-mc-red pmd-table">
+                    <thead>
+                        <tr>
+                            <th >{{'RoomLbl' | translate}}</th>
+                            <th >{{'Featurelbl' | translate}}</th>
+                            <th >{{'CreateTime' | translate}}</th>
+                            <th >{{'StatusLbl' | translate}}</th>
+                            <th></th>                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat-start="request in reportsCtrl.requests.results" ng-style="{'background-color': request.status=='Pending'?'#f5f58a':''}">
+                            <td data-title="Name" >{{request.roomName}}</td>
+                            <td data-title="Name" >{{request.featureNameDictionary[selectedLanguage]}}</td>
+                            <td data-title="Name" >{{request.createTime}}</td>
+                            <td data-title="Name" >{{request.status|translate}} <span ng-if="request.status!='Pending'"> {{request.modifier}} {{request.modifyTime}}</span> </td>
+                           
+                            <!-- <td ng-if="user.role === 'Supervisor' && request.status =='Pending' && request.type=='Normal'">
+                                <a ng-click="reportsCtrl.Approve(request.featureId,request.requestId)" class="cursorPointer">{{'ApproveBtn' | translate}}</a>
+                                <a ng-click="reportsCtrl.Reject(request.requestId)" class="cursorPointer">{{'RejectBtn' | translate}}</a>
+                            </td> -->
+                            <!-- <td ng-if="user.role === 'Waiter' && request.status =='Pending' && request.type=='Restaurant'">
+                                    <a ng-click="reportsCtrl.Approve(request.featureId,request.requestId)" class="cursorPointer">{{'ApproveBtn' | translate}}</a>
+                                    <a ng-click="reportsCtrl.Reject(request.requestId)" class="cursorPointer">{{'RejectBtn' | translate}}</a>
+                                </td> -->
+                            <td class="pmd-table-row-action" >
+                                <span href="javascript:void(0);" ng-if="request.requestDetails.length >0 || request.comment !== null || request.requestTime !== null" ng-click="request.show=!request.show;reportsCtrl.showMore($event)" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm child-table-expand direct-expand"><i class="material-icons md-dark pmd-sm"></i></span>
+                            </td>
+                        </tr>
+                        <tr ng-repeat-end class="child-table"  ng-show="request.show">
+                                <td colspan="12">
+                                    <div class="direct-child-table" ng-if="request.requestDetails.length >0">
+                                        <table class="table pmd-table table-striped table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="4" style="text-align: center;">
+                                                        {{request.restaurantName[selectedLanguage]}}
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th ng-if="request.type=='Normal'">{{'DescriptionLbl' | translate}}</th>
+                                                    <th ng-if="request.type=='Restaurant'">{{'itemlbl' | translate}}</th>
+                                                    <th>{{'NumberLbl' | translate}}</th>
+                                                    <th>{{'priceLbl' |translate}}</th>
+                                                    <th>{{'totalpriceLbl'|translate}}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="requestDetail in request.requestDetails">
+                                                <td>{{requestDetail.descriptionDictionary[selectedLanguage]}}
+                                                        <div ng-show="requestDetail.from != null">{{'from'|translate}}: {{requestDetail.from}}</div>
+                                                        
+                                                        <div ng-show="requestDetail.to != null">{{'to'|translate}}:
+                                                            {{requestDetail.to}}                                    
+                                                        </div>  </td>
+                                                <td>{{requestDetail.number}}</td>
+                                                <td>
+                                                    <span ng-if="requestDetail.price <= 0">{{'freelbl' |translate}}</span>
+                                                    <span ng-if="requestDetail.price > 0">{{requestDetail.price}}</span>
+                                                </td>
+                                                <td>
+                                                    <span ng-if="requestDetail.price <= 0">{{'freelbl' |translate}}</span>
+                                                    <span ng-if="requestDetail.price > 0">{{requestDetail.price * requestDetail.number}} </span>
+                                                </td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <div style="background: white;padding: 5px;" ng-if="request.comment !== null"> 
+                                    <h2>{{'Comment'|translate}}: </h2>
+                                    <span>{{request.comment}}</span>
+                                </div>
+                                <div style="background: white;padding: 5px;" ng-if="request.requestTime !== null"> 
+                                    <!-- <h2 style="float: left;">{{'Time'|translate}}: </h2> -->
+                                    <h2 >{{'Time'|translate}}: </h2>
+                                    <span> {{request.requestTime}}</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="text-align:center;" paging page="reportsCtrl.currentPage" page-size="10" total="reportsCtrl.requests.totalCount" paging-action="reportsCtrl.changePage( page)"
+            flex="nogrow" show-prev-next="true" show-first-last="true" hide-if-empty="true" disabled-class="hide">
+                </div>
+        </div> 
+        
+    </div>					
+        

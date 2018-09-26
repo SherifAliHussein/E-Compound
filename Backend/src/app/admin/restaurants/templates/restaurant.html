@@ -1,0 +1,55 @@
+<div >
+	<div style="margin-bottom:10px">
+		<!-- <button ng-disabled="restaurantCtrl.waitersLimit.consumedUsers == restaurantCtrl.waitersLimit.maxNumUsers" ng-click="$state.go('newRestaurant');" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddRestaurantBtn' | translate}}</button> -->
+		<button  ng-click="$state.go('newRestaurant');" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddRestaurantBtn' | translate}}</button>
+
+	</div>
+	<div ng-if="restaurantCtrl.restaurant.results.length == 0">
+			<span>{{'NoRestaurantAvailable' | translate}}</span>
+		</div>
+		<!-- <span>
+			{{restaurantCtrl.waitersLimit.consumedUsers}} / {{restaurantCtrl.waitersLimit.maxNumUsers}} ({{'waitersLimitConsumedLbl'|translate}})
+		</span> -->
+		
+	<div class="pmd-card pmd-z-depth pmd-card-custom-view" ng-if="restaurantCtrl.restaurant.results.length >0">
+		
+		<div class="table-responsive">
+			<table class="table pmd-table table-hover">
+				<thead>
+					<tr>
+						<th >{{'Name' | translate}}</th>
+						<th >{{'LogoLbl' | translate}}</th>
+						<th >{{'DescriptionLbl' | translate}}</th>
+						<th >{{'AdminUserLbl' | translate}}</th>
+						<th >{{'TypeLbl' | translate}}</th>
+						<!-- <th>{{'waitersLimitConsumedLbl' | translate}}</th> -->
+						<!-- <th>{{'ReadyLbl' | translate}}</th> -->
+						<th >{{'status' | translate}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="restaurant in restaurantCtrl.restaurant.results">
+						<td data-title="Name"width="20%" >{{restaurant.restaurantNameDictionary[selectedLanguage]}}</td>
+						<td data-title="logo" ><img ng-src="{{restaurant.logoURL}}?type='thumbnail'&date={{restaurantCtrl.Now}}"  ng-alt="{{restaurant.restaurantName}}" style="max-height: 200px;max-width: 200px;"/></td>
+						<td data-title="Description" >{{restaurant.restaurantDescriptionDictionary[selectedLanguage]}}</td>
+						<td data-title="Admin user" width="15%" >{{restaurant.restaurantAdminUserName}}</td>
+						<td data-title="Type" width="10%" >{{restaurant.restaurantTypeNameDictionary[selectedLanguage]}}</td>
+						<!-- <td data-title="Type" width="5%" >{{restaurant.consumedWaiters}}/{{restaurant.waitersLimit}}</td> -->
+						<!-- <td width="5%">{{restaurant.isReady}}</td> -->
+						<td width="15%" >
+							<a ng-show="!restaurant.isActive" ng-click="restaurantCtrl.Activate(restaurant)" class="cursorPointer">{{'ActivateBtn' | translate}}</a>
+							<a ng-show="restaurant.isActive" ng-click="restaurantCtrl.Deactivate(restaurant)" class="cursorPointer">{{'DeActivateBtn' | translate}}</a>
+							<i class="material-icons md-dark pmd-md cursorPointer font25" ng-click="$state.go('editRestaurant', {restaurantId: restaurant.restaurantId});">mode_edit</i> 
+							<i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="restaurantCtrl.openDeleteRestaurantDialog(restaurant.restaurantName,restaurant.restaurantId)">delete</i>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div style="text-align:center;" paging page="1" page-size="10" total="restaurantCtrl.restaurant.totalCount" paging-action="restaurantCtrl.changePage( page)"
+		 flex="nogrow" show-prev-next="true" show-first-last="true" hide-if-empty="true" disabled-class="hide">
+			</div>
+	</div> 
+
+
+</div>					

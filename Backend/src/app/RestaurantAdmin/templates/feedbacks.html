@@ -1,0 +1,37 @@
+<div >
+    
+    <div ng-if="feedBackCtrl.feedBacks.results.length == 0">
+            <span>{{'NoFeedBacksAvailable' | translate}}</span>
+    </div>
+    <div class="pmd-card pmd-z-depth pmd-card-custom-view" ng-if="feedBackCtrl.feedBacks.results.length > 0">
+        <div class="table-responsive">
+            <table class="table pmd-table table-hover">
+                <thead>
+                    <tr>
+                        <th >{{'Name' | translate}}</th>
+                        <th>{{'RoomLbl' |translate}}</th>
+                        <th >{{'Comment' | translate}}</th>
+                        <th >{{'createdate' | translate}}</th>
+                        <th >{{'Rate' | translate}}</th>
+                        <th ></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="feedback in feedBackCtrl.feedBacks.results">
+                        <td data-title="Name"  ><span ng-if=" feedback.createBy ==''">{{'Guest' | translate}}</span>{{feedback.createBy}}</td>
+                        <td>{{feedback.roomName}}</td>
+                        <td ><span ng-if=" feedback.comment ==''">-</span>{{feedback.comment}}</td>
+                        <td data-title="Description">{{feedback.createTime}}</td>                        
+                        <td data-title="Description"><span ng-if=" feedback.rate == 0">-</span><span ng-if=" feedback.rate >0">{{feedback.rate}} / 5</span></td>                        
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="text-align:center;" paging page="1" page-size="10" total="feedBackCtrl.feedBacks.totalCount" paging-action="feedBackCtrl.changePage( page)"
+        flex="nogrow" show-prev-next="true" show-first-last="true" hide-if-empty="true" disabled-class="hide">
+           </div>
+    </div> 
+
+
+</div>					

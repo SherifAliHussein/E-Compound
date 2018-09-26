@@ -1,0 +1,112 @@
+<div class="row" id="card-masonry">
+    <div class="col-xs-10 col-sm-10 col-md-4">
+        <div class="pmd-card pmd-z-depth">
+            <div class="pmd-card-title">
+                <div class="media-body media-middle">
+                    <span>
+                        {{'ReceptionistLbl'|translate}}
+                    </span>
+                </div>
+                <!-- <div class="media-body media-middle">
+                </div> -->
+                <div class="media-right datetimepicker">
+                    <button ng-click="userCtrl.openReceptionistDialog()" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddReceptionistBtn' | translate}}</button>
+
+                </div>
+            </div>
+            <div class="pmd-card-body">
+                <div class="total-sales" ng-if="userCtrl.receptionists.results.length > 0">
+                    <div class="table-responsive">
+                        <table class="table pmd-table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{{'Name' | translate}}</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="receptionist in userCtrl.receptionists.results">
+                                    <td data-title="Name">{{receptionist.userName}}</td>
+
+                                    <td width="30%">
+                                        <i class="material-icons md-dark pmd-md cursorPointer font25" ng-click="userCtrl.openEditReceptionistDialog($index);">mode_edit</i>
+                                        <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="userCtrl.openDeleteReceptionistDialog(receptionist.userName,receptionist.userId)">delete</i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="text-align:center;" paging page="1" page-size="10" total="userCtrl.receptionists.totalCount" paging-action="userCtrl.changePageReceptionists( page)"
+                         flex="nogrow" show-prev-next="true" show-first-last="true" hide-if-empty="true" disabled-class="hide">
+                    </div>
+                </div>
+                <div  class="total-sales" ng-if="userCtrl.receptionists.results.length <= 0">
+                        {{'NoReceptionistLbl'|translate}}                        
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="col-xs-14 col-sm-14 col-md-8">
+            <div class="pmd-card pmd-z-depth">
+                <div class="pmd-card-title">
+                    <div class="media-body media-middle">
+                        <span>
+                            {{'SupervisorLbl'|translate}}
+                        </span>
+                    </div>
+                    <!-- <div class="media-body media-middle">
+                    </div> -->
+                    <div class="media-right datetimepicker">
+                        <button ng-click="userCtrl.openSupervisorDialog()" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddSupervisorBtn' | translate}}</button>
+    
+                    </div>
+                </div>
+                <div class="pmd-card-body">
+                    <div class="total-sales" ng-if="userCtrl.supervisors.results.length > 0">
+                        <div class="table-responsive">
+                            <table class="table pmd-table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>{{'Name' | translate}}</th>
+                                        <th>{{'Featureslbl' |translate}} </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="supervisor in userCtrl.supervisors.results">
+                                        <td data-title="Name">{{supervisor.userName}}</td>
+                                        <td>
+                                            <div ng-init="featureLimit=2">
+                                                <span ng-repeat="feature in supervisor.features|limitTo:featureLimit">
+                                                        {{feature.featureNameDictionary[selectedLanguage]}}<span ng-if="!$last">,</span>
+                                                </span>
+                                                <div class="cursorPointer font12" ng-show="supervisor.features.length > 2">
+                                                    <span  ng-show="featureLimit == 2" ng-click="featureLimit=supervisor.features.length">{{supervisor.features.length -2}} more features</span>
+                                                    <span  ng-show="featureLimit != 2" ng-click="featureLimit=2">Collapse</span>
+                                                </div>
+                                                <span ng-if="supervisor.features.length <= 0" style="    font-size: 14px;color: red;">
+                                                    {{'supervisorhasnofeature' | translate}} 
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td width="30%">
+                                            <i class="material-icons md-dark pmd-md cursorPointer font25" ng-click="userCtrl.openEditSupervisorDialog($index);">mode_edit</i>
+                                            <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="userCtrl.openDeleteSupervisorDialog(supervisor.userName,supervisor.userId)">delete</i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="text-align:center;" paging page="1" page-size="10" total="userCtrl.supervisors.totalCount" paging-action="userCtrl.changePageSupervisors( page)"
+                             flex="nogrow" show-prev-next="true" show-first-last="true" hide-if-empty="true" disabled-class="hide">
+                        </div>
+                    </div>
+                    <div  class="total-sales" ng-if="userCtrl.supervisors.results.length <= 0">
+                            {{'NoSupervisorLbl'|translate}}                        
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

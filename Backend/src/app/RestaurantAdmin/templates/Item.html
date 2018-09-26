@@ -1,0 +1,74 @@
+<div >
+    <div style="margin-bottom:10px">
+        <button  ng-click="$state.go('newItem',{categoryId: $stateParams.categoryId});" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddItemBtn' | translate}}</button>
+        <!-- <span ng-if="!itemCtrl.items.isParentTranslated"> <i class="material-icons md-dark pmd-md warrningIcon">warning</i> {{'CategoryNotTranslated' | translate}}</span> -->
+    </div>
+    
+    <div ng-if="itemCtrl.items.results.length == 0">
+            <span>{{'NoItemAvailable' | translate}}</span>
+    </div>
+    <div class="pmd-card pmd-z-depth pmd-card-custom-view" ng-if="itemCtrl.items.results.length > 0">
+        <div class="table-responsive">
+            <table class="table pmd-table table-hover">
+                <thead>
+                    <tr>
+                        <th >{{'Name' | translate}}</th>
+                        <th >{{'Imagelbl' | translate}}</th>
+                        <th >{{'DescriptionLbl' | translate}}</th>
+                        <!-- <th >{{'Pricelbl' | translate}}</th> -->
+                        <th >{{'size' | translate}}</th>
+                        <!-- <th >{{'sideItem' | translate}}</th> -->
+                        <th >{{'Review' | translate}}</th>
+                        <th >{{'status' | translate}}</th>
+                        <th ></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in itemCtrl.items.results">
+                        <td data-title="Name"  width="15%">{{item.itemNameDictionary[selectedLanguage]  | limitTo:10}}</td>
+                        <td data-title="Image" ><img ng-src="{{item.imageURL}}?type='thumbnail'&date={{itemCtrl.Now}}" ng-alt="{{item.itemName}}" style="max-height: 200px;max-width: 200px;"/></td>
+                        <td data-title="Description">{{item.itemDescriptionDictionary[selectedLanguage]  | limitTo:50}}</td>                        
+                        <!-- <td data-title="Description" width="5%">{{item.price}}</td>                         -->
+                        <td data-title="Size" width="10%" >
+                            <div ng-init="sizeLimit=2">
+                                <span ng-repeat="size in item.sizes|limitTo:sizeLimit">
+                                    {{size.sizeNameDictionary[selectedLanguage]}} <span>{{size.price}}</span><span ng-if="!$last">,</span>
+                                </span>
+                                <div class="cursorPointer font12" ng-show="item.sizes.length > 2">
+                                    <span  ng-show="sizeLimit == 2" ng-click="sizeLimit=item.sizes.length">{{item.sizes.length -2}} more size</span>
+                                    <span  ng-show="sizeLimit != 2" ng-click="sizeLimit=2">Collapse</span>
+                                </div>
+                            </div>
+                        </td>                        
+                        <!-- <td data-title="SideItems"  width="10%">
+                            <div ng-init="sideItemLimit=2">
+                                <span ng-repeat="sideItem in item.sideItems|limitTo:sideItemLimit">
+                                    {{sideItem.sideItemName}}<span ng-if="!$last">,</span>
+                                </span>
+                                <div class="cursorPointer font12" ng-show="item.sideItems.length > 2">
+                                    <span  ng-show="sideItemLimit == 2" ng-click="sideItemLimit=item.sideItems.length">{{item.sideItems.length -2}} more side items</span>
+                                    <span  ng-show="sideItemLimit != 2" ng-click="sideItemLimit=2">Collapse</span>
+                                </div>
+                            </div>
+                        </td>          -->
+                        <td  >{{item.like}} {{'likelbl' |translate}} / {{item.dislike}} {{'dislike'|translate}}</td>
+                        <td>
+                            <a ng-show="!item.isActive" ng-click="itemCtrl.Activate(item)" class="cursorPointer">{{'ActivateBtn' | translate}}</a>
+                            <a ng-show="item.isActive" ng-click="itemCtrl.Deactivate(item)" class="cursorPointer">{{'DeActivateBtn' | translate}}</a>
+                        </td>
+                        <td width="10%" >
+                            <!-- <a ng-click="$state.go('Category');" class="cursorPointer">{{'CategoriesBtn' | translate}}</a> -->
+                            <i class="material-icons md-dark pmd-md cursorPointer font25" ng-click="$state.go('editItem',{categoryId:item.categoryId,itemId:item.itemID});">mode_edit</i> 
+                            <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="itemCtrl.openDeleteItemDialog(item.itemName,item.itemID)">delete</i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="text-align:center;" paging page="1" page-size="10" total="itemCtrl.items.totalCount" paging-action="itemCtrl.changePage( page)"
+        flex="nogrow" show-prev-next="true" show-first-last="true" hide-if-empty="true" disabled-class="hide">
+           </div>
+    </div> 
+
+
+</div>					

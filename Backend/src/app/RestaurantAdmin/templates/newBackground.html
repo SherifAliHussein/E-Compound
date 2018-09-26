@@ -1,0 +1,27 @@
+<div class="modal-content">
+        <div class="modal-header bordered">
+            <button class="close" type="button" ng-click="backgroundCtrl.close()">×</button>
+            <h2 class="pmd-card-title-text">{{'NewbackgroundLbl' | translate}}</h2>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" name="newbackgroundForm">
+           
+                <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed" >       
+                        <input id="backgroundImage" name="backgroundImage" style="display: none;" onchange="angular.element(this).scope().AddbackgroundImage(this.files)" type="file" required>
+                        <button ng-click="backgroundCtrl.LoadUploadImage()" >{{'UploadImageBtn' | translate}}</button>
+                        <img ng-src="{{backgroundCtrl.backgroundImage}}" style="max-height: 200px;max-width: 200px;">
+                        <span > <i class="material-icons md-dark pmd-md warrningIcon">warning</i> {{'RecommendedBackgroundImage' | translate}}</span>
+                          <div ng-messages="newbackgroundForm.backgroundImage.$error" >
+                            <div ng-if="newbackgroundForm.backgroundImage.$error.required">{{'requiredErr' | translate}}</div>
+                        </div>
+                </div>
+            </form>
+        </div>
+        <div class="pmd-modal-action text-right">
+            <button ng-disabled="newbackgroundForm.$invalid  || backgroundCtrl.backgroundImage== null" class="btn pmd-ripple-effect btn-primary" type="button" ng-click="backgroundCtrl.AddNewbackground()">{{'saveChangesBtn' | translate}}</button>
+            <button class="btn pmd-ripple-effect btn-default" type="button" ng-click="backgroundCtrl.close()">{{'DiscardBtn' | translate}}</button>
+        </div>
+    </div>
+    
+        
+    

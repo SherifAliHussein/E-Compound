@@ -1,0 +1,107 @@
+<div class="pmd-card pmd-z-depth">
+    <div class="pmd-card-title">
+        <div class="media-body media-middle">
+            <span ng-repeat="controlEnum in listOfAvailableControler.controls|filter: {id: listOfAvailableControler.featureControl.control}"> {{controlEnum.text | translate}} </span>
+            <!-- <div class="pmd-switch" style="font-size: 14px;">
+                <label>{{'singleSelect' | translate}}</label>
+                <label style="margin-bottom: 0 !important;margin-left: 5px;margin-right: 5px;">
+                    <input type="checkbox"ng-model="listOfAvailableControler.controlType" ng-change="listOfAvailableControler.switch()"> <span class="pmd-switch-label"></span>
+                </label>
+                <label>{{'multiSelect' | translate}}</label>
+            </div> -->
+        </div>
+        <div class="media-right datetimepicker">
+            <button  ng-click="listOfAvailableControler.addNew()"  class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'Add' | translate}}</button>
+            
+            <!-- <button  ng-click="listOfAvailableControler.openEditDialog(0);" ng-show="listOfAvailableControler.featureDetails.results.length > 0 && listOfAvailableControler.featureDetails.results[0].availables.length > 0" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'EditBtn' | translate}}</button> -->
+            
+        </div>
+    </div>
+    <div class="pmd-card-body">
+        <div  style="text-align: center;">
+            <img ng-show="listOfAvailableControler.isLoading" src="assets/img/loading.gif" style="height: 80px;">
+            <span ng-if="listOfAvailableControler.featureDetails.results.length <=0 ">{{'NoData'|translate}}</span>
+        </div>
+        <div class="table-responsive" ng-show="!listOfAvailableControler.isLoading 
+        && listOfAvailableControler.featureDetails.results.length > 0 ">
+            <table class="table pmd-table table-hover">
+                <thead>
+                    <tr>
+                        <th >{{'Name' | translate}}</th>
+                        <th>{{'priceLbl' | translate}}</th>                        
+                        <!-- <th>{{'From' | translate}}</th>
+                        <th>{{'To' | translate}}</th>
+                        <th>{{'NumberLbl' | translate}}</th> -->
+                        <th ></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat-start="featureDetail in listOfAvailableControler.featureDetails.results">
+                        <td data-title="Name" >
+                           {{featureDetail.descriptionDictionary[selectedLanguage]}}
+                        </td>
+                        <td data-title="Name">
+                            <span ng-if="featureDetail.isFree">{{'freelbl' |translate}}</span>
+                            <span ng-if="!featureDetail.isFree">{{featureDetail.price}}</span>
+                        </td>
+                        <!-- <td data-title="Name">
+                            {{featureDetail.from}}
+                        </td>
+                        <td data-title="Name">
+                            {{featureDetail.to}}
+                        </td>
+                        <td data-title="Name">
+                            {{featureDetail.max}}
+                        </td> -->
+                        <td >
+                            
+                            <span href="javascript:void(0);" ng-click="featureDetail.show=!featureDetail.show;listOfAvailableControler.showMore($event)" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm child-table-expand direct-expand"><i class="material-icons md-dark pmd-sm"></i></span>
+                            <i class="material-icons md-dark pmd-md cursorPointer font25" ng-click="listOfAvailableControler.openEditDialog($index);">mode_edit</i>
+                            <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="listOfAvailableControler.openDeleteDialog(featureDetail.descriptionDictionary[selectedLanguage],featureDetail.featureDetailId)">delete</i>
+                        </td>
+                    </tr>
+                    <tr ng-repeat-end class="child-table"  ng-show="featureDetail.show">
+                            <td colspan="12">
+                                <div class="direct-child-table" ng-if="featureDetail.availables.length >0">
+                                    <table class="table pmd-table table-striped table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th >{{'Name' | translate}}</th>
+                                                <th>{{'From' | translate}}</th>
+                                                <th>{{'To' | translate}}</th>
+                                                <th>{{'NumberLbl' | translate}}</th>
+                                                <th ></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="featureAvailable in featureDetail.availables">
+                                            <td data-title="Name" >
+                                                <span ng-repeat="dayEnum in listOfAvailableControler.days|filter: {id: featureAvailable.day}"> {{dayEnum.text | translate}} </span>
+                                            </td>
+                                            <td data-title="Name">
+                                                {{featureAvailable.from}}
+                                            </td>
+                                            <td data-title="Name">
+                                                {{featureAvailable.to}}
+                                            </td>
+                                            <td data-title="Name">
+                                                {{featureAvailable.max}}
+                                            </td>
+                                            <!-- <td >
+                                                <i class="material-icons md-dark pmd-md cursorPointer font25" ng-click="listOfAvailableControler.openEditDialog($index);">mode_edit</i>
+                                                <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="listOfAvailableControler.openDeleteDialog('',featureAvailable.availableId)">delete</i>
+                                            </td> -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="text-align:center;" paging page="1" page-size="10" total="listOfAvailableControler.featureDetails.totalCount" paging-action="listOfAvailableControler.changePage(page)"
+        flex="nogrow" show-prev-next="true" show-first-last="true" hide-if-empty="true" disabled-class="hide"></div>
+    </div> 
+</div>

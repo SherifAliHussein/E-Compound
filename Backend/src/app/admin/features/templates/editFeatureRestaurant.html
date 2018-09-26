@@ -1,0 +1,80 @@
+<script type="text/javascript">
+	$(document).ready(function() {
+		// <!-- Select Multiple Tags -->
+		$(".select-tags").select2({
+			tags: false,
+			theme: "bootstrap",
+		})
+	});
+</script>
+<div class="modal-content">
+        <div class="modal-header bordered">
+            <h2 class="pmd-card-title-text">{{'UpdateFeatureLbl' | translate}}</h2>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" name="editFeatureForm">
+                <div>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" ng-class="{'active':$index == 0}" ng-repeat="lang in editFeatureDlCtrl.language">
+                            <a href="javascript:void(0);" data-target="#{{lang.value}}-form" aria-controls="home" role="tab" data-toggle="tab">
+                                {{lang.value | translate}}
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="pmd-card">
+                        <div class="pmd-card-body">
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tablist" class="tab-pane" ng-class="{'active':$index == 0}" ng-repeat="lang in editFeatureDlCtrl.language" id="{{lang.value}}-form">
+                                    <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+                                        <label for="first-name"> {{ lang.value+'Name' | translate}} </label>
+                                        <input required type="text" class="mat-input form-control" name="featureNameDictionary{{lang.value+'Name'}}" ng-model="editFeatureDlCtrl.feature.featureNameDictionary[lang.key]" ng-minlength="3" ng-maxlength="40">
+                                        <div ng-messages="editFeatureForm.featureNameDictionary{{lang.value+'Name'}}.$error">
+                                            <div ng-show="editFeatureForm.featureNameDictionary{{lang.value+'Name'}}.$error.required && !editFeatureForm.featureNameDictionary{{lang.value+'Name'}}.$pristine">{{'requiredErr' | translate}}</div>
+                                            <div ng-show="(editFeatureForm.featureNameDictionary{{lang.value+'Name'}}.$error.minlength || editFeatureForm.featureNameDictionary{{lang.value+'Name'}}.$error.maxlength) && !editFeatureForm.featureNameDictionary{{lang.value+'Name'}}.$error.required">{{'NameLengthError' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed" >       
+                        <input id="logoImage" name="logoImage" style="display: none;" onchange="angular.element(this).scope().AddFeatureImage(this.files)" type="file" required>
+                        <button ng-click="editFeatureDlCtrl.LoadUploadLogo()" >{{'UploadBtn' | translate}}</button>
+                        <img ng-src="{{editFeatureDlCtrl.feature.imageURL}}" style="max-height: 200px;max-width: 200px;">
+                        <div ng-messages="editFeatureForm.logoImage.$error" >
+                            <div ng-if="editFeatureForm.logoImage.$error.required">{{'requiredErr' | translate}}</div>
+                        </div>
+                    </div>
+    
+                    
+                
+                <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed"  >
+                        <label>{{'selectRestaurantLbl' | translate}}</label>
+                        <!-- <select  class="form-control select-tags pmd-select2-tags" multiple ng-model="editFeatureDlCtrl.feature.restaurants" name="SelectedFeature">
+                            <option ng-repeat="restaurant in editFeatureDlCtrl.restaurants"  ng-value="{{restaurant}}">{{restaurant.restaurantNameDictionary[selectedLanguage]}}</option>                    
+                        </select> -->
+                        <select required class="form-control select-tags pmd-select2-tags" multiple
+                        ng-change="editFeatureDlCtrl.restaurantChange()" ng-model="editFeatureDlCtrl.SelectedRestaurantId" name="SelectedFeature">
+                            <option ng-repeat="restaurant in editFeatureDlCtrl.restaurants" 
+                            ng-value="{{restaurant.restaurantId}}">
+                                {{restaurant.restaurantNameDictionary[selectedLanguage]}}
+                            </option>                    
+                        </select>
+                        <div ng-if="newFeatureForm.SelectedRestaurant.$error.required && !newFeatureForm.SelectedRestaurant.$pristine">{{'requiredErr' | translate}}</div>
+                    </div>
+                </div>
+            </form>
+    
+        </div>
+    <!-- </div> -->
+    <div class="pmd-modal-action text-right">
+        <button ng-disabled="editFeatureDlCtrl.feature.restaurants.length <= 0 || editFeatureForm.$invalid " class="btn pmd-ripple-effect btn-primary" type="button" ng-click="editFeatureDlCtrl.updateFeature()">{{'saveChangesBtn' | translate}}</button>
+        <button class="btn pmd-ripple-effect btn-default" type="button" ng-click="editFeatureDlCtrl.close()">{{'DiscardBtn' | translate}}</button>
+    </div>
+    </div>
+    
+    
+    

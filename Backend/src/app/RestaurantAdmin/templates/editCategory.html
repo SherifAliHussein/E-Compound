@@ -1,0 +1,71 @@
+<div class="modal-content">
+        <div class="modal-header bordered">
+            <h2 class="pmd-card-title-text">{{'UpdateCategoryLbl' | translate}}</h2>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" name="editCategoryForm">
+                <!-- <div ng-if="editCategoryDlCtrl.mode=='map'">
+                    <select required class="select-simple form-control pmd-select2" 
+                            ng-options="item.categoryName for item in editCategoryDlCtrl.englishCategories"  
+                            ng-model="editCategoryDlCtrl.selecteCategory">
+                    </select>
+                    <div ng-if="editCategoryDlCtrl.englishCategories.length <=0">{{'NoCategoryDefault' | translate}} </div>
+                </div> -->
+                <div> 
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" ng-class="{'active':$index == 0}" ng-repeat="lang in editCategoryDlCtrl.language">
+                            <a href="javascript:void(0);" data-target="#{{lang.value}}-form" aria-controls="home" role="tab" data-toggle="tab">
+                                {{lang.value | translate}}
+                            </a>
+                        </li>
+                        <!-- <li role="presentation">
+                            <a href="javascript:void(0);" data-target="#arabic-form" aria-controls="about" role="tab" data-toggle="tab">{{'arabic' | translate}}</a>
+                        </li> -->
+                    </ul>
+                    <div class="pmd-card">
+                        <div class="pmd-card-body">
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tablist" class="tab-pane" ng-class="{'active':$index == 0}" ng-repeat="lang in editCategoryDlCtrl.language" id="{{lang.value}}-form">
+                                    <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+                                        <label for="first-name"> {{ lang.value+'Name' | translate}} </label>
+                                        <input required type="text" class="mat-input form-control" name="categoryNameDictionary{{lang.value+'Name'}}" ng-model="editCategoryDlCtrl.category.categoryNameDictionary[lang.key]" ng-minlength="3" ng-maxlength="100">
+                                        <div ng-messages="editCategoryForm.categoryNameDictionary{{lang.value+'Name'}}.$error" >    
+                                            <div ng-show="editCategoryForm.categoryNameDictionary{{lang.value+'Name'}}.$error.required && !editCategoryForm.categoryNameDictionary{{lang.value+'Name'}}.$pristine">{{'requiredErr' | translate}}</div>
+                                            <div ng-show="(editCategoryForm.categoryNameDictionary{{lang.value+'Name'}}.$error.minlength || editCategoryForm.categoryNameDictionary{{lang.value+'Name'}}.$error.maxlength) && !editCategoryForm.categoryNameDictionary{{lang.value+'Name'}}.$error.required">{{'NameLengthError' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+                        <label for="first-name">{{'Name' | translate}}</label>
+                        <input required type="text" class="mat-input form-control" name="categoryName" ng-model="editCategoryDlCtrl.categoryName"  ng-minlength="3" ng-maxlength="40">
+                        <div ng-messages="editCategoryForm.categoryName.$error" >
+                            <div ng-if="editCategoryForm.categoryName.$error.required && !editCategoryForm.categoryName.$pristine">{{'requiredErr' | translate}}</div>
+                            <div ng-if="(editCategoryForm.categoryName.$error.minlength || editCategoryForm.categoryName.$error.maxlength) && !editCategoryForm.categoryName.$error.required">{{'NameLengthError' | translate}}</div>
+                        </div>
+                </div> -->
+                <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed"  >       
+                        <input id="categoryImage" name="categoryImage" style="display: none;" onchange="angular.element(this).scope().AddCategoryImage(this.files)" type="file" required>
+                        <button ng-click="editCategoryDlCtrl.LoadUploadImage()" >{{'UploadImageBtn' | translate}}</button>
+                        <span > <i class="material-icons md-dark pmd-md warrningIcon">warning</i> {{'RecommendedCategoryImage' | translate}}</span>
+                        <img ng-src="{{editCategoryDlCtrl.category.imageURL}}" style="max-height: 137px;max-width: 210px;">
+                        <div ng-messages="editCategoryForm.categoryImage.$error" >
+                            <div ng-if="editCategoryForm.categoryImage.$error.required">{{'requiredErr' | translate}}</div>
+                        </div>
+                </div>
+            </form>
+        </div>
+        <div class="pmd-modal-action text-right">
+            <button ng-disabled="editCategoryForm.$invalid" class="btn pmd-ripple-effect btn-primary" type="button" ng-click="editCategoryDlCtrl.updateCategory()">{{'saveChangesBtn' | translate}}</button>
+            <button class="btn pmd-ripple-effect btn-default" type="button" ng-click="editCategoryDlCtrl.close()">{{'DiscardBtn' | translate}}</button>
+        </div>
+    </div>
+    
+        
+    

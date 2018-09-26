@@ -1,0 +1,7 @@
+<div ng-class="{page2:(selectedLanguage == 'en-us' && (pageitems.pageNumber % 2) === 0) || (selectedLanguage == 'ar-eg' && (pageitems.pageNumber % 2) !== 0)
+, page1:(selectedLanguage == 'en-us' && (pageitems.pageNumber % 2) !== 0) || (selectedLanguage == 'ar-eg' && (pageitems.pageNumber % 2) === 0)}">
+<div class="cover"><img ng-src="{{pageitems.itemModels[0].imageURL}}?type=orignal2"alt="" />
+
+<h3>{{pageitems.itemModels[0].itemNameDictionary[selectedLanguage]}}</h3>
+</div>
+</div>

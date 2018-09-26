@@ -1,0 +1,154 @@
+<style>
+    .list {
+	list-style: none outside none;
+	margin: 10px 0 30px;
+}
+
+.apps-container {
+  border: 2px dotted blue;
+  margin: 10px 10px 0 0;
+  padding: 5px;
+  min-width:200px;
+  min-height:50px;
+}
+
+.app {
+	width: 170px;
+	padding: 5px 10px;
+	margin: 5px 0;
+	border: 2px solid #444;
+	border-radius: 5px;
+	background-color: #EA8A8A;
+/* 
+	font-size: 1.1em;
+	font-weight: bold; */
+	text-align: center;
+	cursor: move;
+    font-size: 15px;
+    background-color: #4285f4;
+    color: white;
+}
+
+
+/***  Extra ***/
+
+body {
+	font-family: Verdana, 'Trebuchet ms', Tahoma;
+}
+
+.logList {
+	margin-top: 20px;
+	width: 250px;
+	min-height: 300px;
+	padding: 5px 15px;
+	border: 5px solid #000;
+	border-radius: 15px;
+}
+
+.logItem {
+  margin-bottom: 10px;
+}
+
+.logList:before {
+	content: 'log';
+	padding: 0 5px;
+	position: relative;
+	top: -1.1em;
+	background-color: #FFF;
+}
+
+.container {
+	width: 750px;
+	margin: auto;
+}
+
+h2 {
+	text-align: center;
+}
+
+.floatleft {
+  float: left;
+}
+
+.floatright {
+  float: right;
+}
+
+.clear {
+  clear: both;
+}
+
+</style>
+<div class="modal-content" ng-if="itemOrderDlCtrl.menus.length > 0">
+    
+     <div class="modal-header bordered" >        
+             <div class="row">
+                 <div class="col-md-2">
+                     <div class="form-group">
+                         <select  class="select-simple form-control pmd-select2"
+                             ng-options="item.menuNameDictionary[selectedLanguage] for item in itemOrderDlCtrl.menus"  
+                             ng-model="itemOrderDlCtrl.selectedMenu"
+                             ng-change="itemOrderDlCtrl.changeMenu()">
+                         </select>
+                     </div>
+                 </div>
+                 <div class="col-md-2">
+                     <div class="form-group">
+                         <select   class="select-simple form-control pmd-select2"
+                             ng-options="item.categoryNameDictionary[selectedLanguage] for item in itemOrderDlCtrl.categories"  
+                             ng-model="itemOrderDlCtrl.selectedCategory"
+                             ng-change="itemOrderDlCtrl.changeCategory()">
+                         </select>
+                     </div>
+                 </div>
+                 <!-- <div class="col-md-6">
+                     <span>{{itemOrderDlCtrl.selectedCategory.itemCount}} / {{itemOrderDlCtrl.remainingItems}}</span>
+                     <span>({{'TotalRemaining' | translate}})</span>
+                 </div> -->
+             </div>
+             <!-- <span ng-show="!itemOrderDlCtrl.isCategoryTemplateReady">
+                 {{'selectTemplate'|translate}} {{itemOrderDlCtrl.page}}
+             </span> -->
+     </div>
+      <!-- <div class="floatleft">
+                    <h4>All Items</h4> 
+                    <div ui-sortable="sortableOptions" class="apps-container screen floatleft" ng-model="categoryItems">
+                        <div class="app" ng-repeat="itemObj in categoryItems">
+                            <i class="{{itemObj.itemID}}"></i> {{itemObj.itemName}}
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h4>Selected Items </h4>
+                    <div ui-sortable="sortableOptions" class="apps-container screen floatleft" ng-model="selectedCategoryItems">
+                        <div class="app" ng-repeat="itemObj in categoryItems">
+                            <i class="{{itemObj.Icon}}"></i> {{itemObj.DisplayValue}}
+                        </div>
+                    </div>
+                </div> -->
+            
+
+
+            <div class="modal-body">
+                <div class="row">
+                   
+                    <div ng-repeat="pageTemplate in itemOrderDlCtrl.categoryItems">
+                            <div class="col-md-3">
+                                    <div class="column">
+                                            <div class="row-md-2">
+                                <img ng-src="{{pageTemplate.imageURL}}" style="height: 200px;">
+                                <div ng-show="pageTemplate.itemModels.length != pageTemplate.itemCount && !$last">{{'TelmplateErrorCount'|translate}} {{pageTemplate.itemCount}}</div>
+                                <div ng-show="pageTemplate.itemModels.length<1 && $last">{{'MinimumMsg'|translate}} 1</div>
+                                <div ui-sortable="itemOrderDlCtrl.sortableOptions" class="apps-container screen floatleft" ng-change=" itemOrderDlCtrl.isValid()" ng-model="pageTemplate.itemModels">
+                                    <div class="app" ng-repeat="item in pageTemplate.itemModels" >{{item.itemNameDictionary[selectedLanguage]}}</div>
+                                </div>
+                                            </div>
+                                            </div>
+                        </div>
+                    </div>
+              </div>
+              
+              <button ng-disabled="itemOrderDlCtrl.isChanged || itemOrderDlCtrl.error " ng-click="itemOrderDlCtrl.Save()" style="margin-top:5px;" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'saveChangesBtn' | translate}}</button>
+              </div>
+              
+            </div>

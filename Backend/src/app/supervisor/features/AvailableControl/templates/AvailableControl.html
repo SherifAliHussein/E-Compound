@@ -1,0 +1,62 @@
+<div class="pmd-card pmd-z-depth">
+    <div class="pmd-card-title">
+        <div class="media-body media-middle">
+            <span ng-repeat="controlEnum in availableControler.controls|filter: {id: availableControler.featureControl.control}"> {{controlEnum.text | translate}} </span>
+            <!-- <div class="pmd-switch" style="font-size: 14px;">
+                <label>{{'singleSelect' | translate}}</label>
+                <label style="margin-bottom: 0 !important;margin-left: 5px;margin-right: 5px;">
+                    <input type="checkbox"ng-model="availableControler.controlType" ng-change="availableControler.switch()"> <span class="pmd-switch-label"></span>
+                </label>
+                <label>{{'multiSelect' | translate}}</label>
+            </div> -->
+        </div>
+        <div class="media-right datetimepicker">
+            <button  ng-click="availableControler.addNew()" ng-show="availableControler.featureDetails.results.length <= 0 || availableControler.featureDetails.results[0].availables.length <= 0" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'Add' | translate}}</button>
+            
+            <button  ng-click="availableControler.openEditDialog(0);" ng-show="availableControler.featureDetails.results.length > 0 && availableControler.featureDetails.results[0].availables.length > 0" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'EditBtn' | translate}}</button>
+            
+        </div>
+    </div>
+    <div class="pmd-card-body">
+        <div  style="text-align: center;">
+            <img ng-show="availableControler.isLoading" src="assets/img/loading.gif" style="height: 80px;">
+            <span ng-if="availableControler.featureDetails.results.length <=0 ">{{'NoData'|translate}}</span>
+        </div>
+        <div class="table-responsive" ng-show="!availableControler.isLoading 
+        && availableControler.featureDetails.results.length > 0 && availableControler.featureDetails.results[0].availables.length > 0">
+            <table class="table pmd-table table-hover">
+                <thead>
+                    <tr>
+                        <th >{{'Name' | translate}}</th>
+                        <th>{{'From' | translate}}</th>
+                        <th>{{'To' | translate}}</th>
+                        <th>{{'NumberLbl' | translate}}</th>
+                        <th ></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="featureAvailable in availableControler.featureDetails.results[0].availables">
+                        <td data-title="Name" >
+                            <span ng-repeat="dayEnum in availableControler.days|filter: {id: featureAvailable.day}"> {{dayEnum.text | translate}} </span>
+                        </td>
+                        <td data-title="Name">
+                            {{featureAvailable.from}}
+                        </td>
+                        <td data-title="Name">
+                            {{featureAvailable.to}}
+                        </td>
+                        <td data-title="Name">
+                            {{featureAvailable.max}}
+                        </td>
+                        <!-- <td >
+                            <i class="material-icons md-dark pmd-md cursorPointer font25" ng-click="availableControler.openEditDialog($index);">mode_edit</i>
+                            <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="availableControler.openDeleteDialog('',featureAvailable.availableId)">delete</i>
+                        </td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="text-align:center;" paging page="1" page-size="10" total="availableControler.featureDetails.totalCount" paging-action="availableControler.changePage(page)"
+        flex="nogrow" show-prev-next="true" show-first-last="true" hide-if-empty="true" disabled-class="hide"></div>
+    </div> 
+</div>

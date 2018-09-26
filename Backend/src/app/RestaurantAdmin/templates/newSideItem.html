@@ -1,0 +1,32 @@
+<div class="modal-content">
+        <div class="modal-header bordered">
+            <button class="close" type="button" ng-click="sideItemDlCtrl.close()">×</button>
+            <h2 class="pmd-card-title-text">{{'NewSideItemLbl' | translate}}</h2>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" name="newSideItemForm">
+                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                    <label for="first-name">{{'Name' | translate}}</label>
+                    <input required type="text" class="mat-input form-control" name="sideItemName" ng-model="sideItemDlCtrl.sideItemName"  ng-minlength="3" ng-maxlength="100">
+                    <div ng-messages="newSideItemForm.sideItemName.$error" >
+                        <div ng-if="newSideItemForm.sideItemName.$error.required && !newSideItemForm.sideItemName.$pristine">{{'requiredErr' | translate}}</div>
+                        <div ng-if="(newSideItemForm.sideItemName.$error.minlength || newSideItemForm.sideItemName.$error.maxlength) && !newSideItemForm.sideItemName.$error.required">{{'NameLengthError' | translate}}</div>
+                    </div>
+                </div>
+                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                    <label for="first-name">{{'value' | translate}}</label>
+                    <input required type="number" class="mat-input form-control" name="value" ng-model="sideItemDlCtrl.value"  min="1">
+                    <div ng-messages="newSideItemForm.value.$error" >
+                        <div ng-if="newSideItemForm.value.$error.required && !newSideItemForm.value.$pristine">{{'requiredErr' | translate}}</div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="pmd-modal-action text-right">
+            <button ng-disabled="newSideItemForm.$invalid || sideItemDlCtrl.isChanged" class="btn pmd-ripple-effect btn-primary" type="button" ng-click="sideItemDlCtrl.AddNewSideItem()">{{'saveChangesBtn' | translate}}</button>
+            <button class="btn pmd-ripple-effect btn-default" type="button" ng-click="sideItemDlCtrl.close()">{{'DiscardBtn' | translate}}</button>
+        </div>
+    </div>
+    
+        
+    

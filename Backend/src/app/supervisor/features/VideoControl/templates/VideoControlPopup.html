@@ -1,0 +1,45 @@
+<div class="modal-content">
+    <div class="modal-header bordered">
+        <button class="close" type="button" ng-click="videoControlDlCtrl.close()">×</button>
+        <!-- <h2 class="pmd-card-title-text">{{'NewFloorLbl' | translate}}</h2> -->
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" name="newForm">
+            <!-- <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" ng-class="{'active':$index == 0}" ng-repeat="lang in videoControlDlCtrl.language">
+                    <a href="javascript:void(0);" data-target="#{{lang.value}}-form" aria-controls="home" role="tab" data-toggle="tab">
+                        {{lang.value | translate}}
+                    </a>
+                </li>
+            </ul>
+            <div class="pmd-card">
+                <div class="pmd-card-body">
+                    <!-- Tab panes --
+                    <div class="tab-content">
+                        <div role="tablist" class="tab-pane" ng-class="{'active':$index == 0}" ng-repeat="lang in videoControlDlCtrl.language" id="{{lang.value}}-form">
+                            <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+                                <label for="first-name"> {{ lang.value+'Name' | translate}} </label>
+                                <input required type="text" class="mat-input form-control" name="featureNameDictionary{{lang.value+'Name'}}" ng-model="videoControlDlCtrl.featureDetail.descriptionDictionary[lang.key]" ng-minlength="3" ng-maxlength="40">
+                                <div ng-messages="newForm.featureNameDictionary{{lang.value+'Name'}}.$error">
+                                    <div ng-show="newForm.featureNameDictionary{{lang.value+'Name'}}.$error.required && !newForm.featureNameDictionary{{lang.value+'Name'}}.$pristine">{{'requiredErr' | translate}}</div>
+                                    <div ng-show="(newForm.featureNameDictionary{{lang.value+'Name'}}.$error.minlength || newForm.featureNameDictionary{{lang.value+'Name'}}.$error.maxlength) && !newForm.featureNameDictionary{{lang.value+'Name'}}.$error.required">{{'NameLengthError' | translate}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+                    <label for="first-name"> {{ lang.value+'Name' | translate}} </label>
+                    <input required type="text" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/" class="mat-input form-control" name="link" ng-model="videoControlDlCtrl.featureDetail.link" >
+                    <div ng-messages="newForm.link.$error">
+                        <div ng-show="newForm.link.$error.required && !newForm.link.$pristine">{{'requiredErr' | translate}}</div>
+                    </div>
+                </div>
+        </form>
+    </div>
+    <div class="pmd-modal-action text-right">
+        <button ng-disabled="newForm.$invalid || videoControlDlCtrl.isChanged" class="btn pmd-ripple-effect btn-primary" type="button" ng-click="videoControlDlCtrl.save()">{{'saveChangesBtn' | translate}}</button>
+        <button class="btn pmd-ripple-effect btn-default" type="button" ng-click="videoControlDlCtrl.close()">{{'DiscardBtn' | translate}}</button>
+    </div>
+</div>

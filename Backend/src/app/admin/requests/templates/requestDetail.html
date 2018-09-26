@@ -1,0 +1,36 @@
+<div class="modal-content">
+        <div class="modal-header bordered">
+            <button class="close" type="button" ng-click="requestDetailDlCtrl.close()">×</button>
+            <h2 class="pmd-card-title-text">{{'RequestDetailLbl' | translate}}</h2>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" name="requestDetailForm">
+                <div class="table-responsive">
+                    <table class="table pmd-table table-hover">
+                        <tbody>
+                            <tr ng-repeat="featureDetail in requestDetailDlCtrl.feature.featureDetails">
+                                <td data-title="Name" >
+                                    <label>
+                                        <input type="checkbox" ng-model="featureDetail.isSelectedDetail">
+                                        {{featureDetail.descriptionDictionary[requestDetailDlCtrl.language]}}
+                                    </label>
+                                </td>
+                                <td data-title="Name" >
+                                    <input ng-if="featureDetail.isSelectedDetail" style="text-align: center;" required type="number" name="price" ng-model="featureDetail.number" ng-min="1">
+                                </td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+        <div class="pmd-modal-action text-right">
+            <button ng-disabled="requestDetailForm.$invalid || 
+            (requestDetailDlCtrl.feature.featureDetails |filter: {isSelectedDetail: true}).length <=0" class="btn pmd-ripple-effect btn-primary" type="button" ng-click="requestDetailDlCtrl.Approve()">{{'ApproveBtn' | translate}}</button>
+            <button class="btn pmd-ripple-effect btn-default" type="button" ng-click="requestDetailDlCtrl.close()">{{'DiscardBtn' | translate}}</button>
+        </div>
+    </div>
+    
+        
+    

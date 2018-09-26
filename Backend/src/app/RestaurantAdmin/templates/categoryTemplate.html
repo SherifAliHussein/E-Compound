@@ -1,0 +1,90 @@
+<div ng-if="CategoryTemplateCtrl.menus.length == 0">
+        <span>{{'NoMenusAvailable' | translate}}</span>
+    </div>
+   
+<div class="modal-content" ng-if="CategoryTemplateCtrl.menus.length > 0">
+   
+    <div class="modal-header bordered" >        
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <select  class="select-simple form-control pmd-select2"
+                            ng-options="item.menuNameDictionary[selectedLanguage] for item in CategoryTemplateCtrl.menus"  
+                            ng-model="CategoryTemplateCtrl.selectedMenu"
+                            ng-change="CategoryTemplateCtrl.changeMenu()">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <select   class="select-simple form-control pmd-select2"
+                            ng-options="item.categoryNameDictionary[selectedLanguage] for item in CategoryTemplateCtrl.categories"  
+                            ng-model="CategoryTemplateCtrl.selectedCategory"
+                            ng-change="CategoryTemplateCtrl.changeCategory()">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <span>{{CategoryTemplateCtrl.selectedCategory.itemCount}} / {{CategoryTemplateCtrl.remainingItems}}</span>
+                    <span>({{'TotalRemaining' | translate}})</span>
+                </div>
+            </div>
+            <span ng-show="!CategoryTemplateCtrl.isCategoryTemplateReady">
+                {{'selectTemplate'|translate}} {{CategoryTemplateCtrl.page}}
+            </span>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div ng-repeat="template in CategoryTemplateCtrl.templates">
+                <div class="col-md-2">
+                    <label style="padding-right: 20px" >
+                        <div class="column">
+                            <div class="row-md-2">
+                                <div class="row">
+                                    <input ng-disabled="CategoryTemplateCtrl.isCategoryTemplateReady" type="radio" ng-model="CategoryTemplateCtrl.selectedTemplateId" value="{{CategoryTemplateCtrl.templates[$index].id}}">
+                                    <img ng-src="{{CategoryTemplateCtrl.templates[$index].imageURL}}" style="height: 200px;width: 150px;"/>
+                                </div>
+                            </div>
+                            <!-- <div class="row-md-2" style="text-align:center">
+                                <span>
+                                    maximum  {{CategoryTemplateCtrl.templates[$index].itemCount}} item
+                                </span>
+                            </div> -->
+                                
+                        </div>
+                    </label>
+                </div>
+
+            </div>
+        </div>
+        <button ng-disabled="CategoryTemplateCtrl.selectedTemplateId<=0" ng-click="CategoryTemplateCtrl.selectTemplate()" style="margin-bottom: 20px;" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">
+            {{'OkLbl'|translate}}
+        </button>
+    
+        <div class="row">
+            
+        <div ng-if="CategoryTemplateCtrl.selectedTemplates.length > 0">{{'selectedTemplates' | translate}}</div>
+            <div ng-repeat="template in CategoryTemplateCtrl.selectedTemplates"   >
+                 <div class="col-md-2">
+                    <div  >  
+                        <div style="padding-right: 20px"  >
+                            <div class="column">
+                                <div class="row-md-2">
+                                     <img ng-src="{{CategoryTemplateCtrl.selectedTemplates[$index].imageURL}}" style="height: 200px;"/>
+                                </div>
+                                <div class="row-md-2" style="text-align:center">
+                                    <span>
+                                       {{'pageLbl'|translate}} {{CategoryTemplateCtrl.selectedTemplates[$index].page}} 
+                                    </span>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button  ng-if="CategoryTemplateCtrl.selectedTemplates.length > 0" ng-disabled="!CategoryTemplateCtrl.isCategoryTemplateReady" ng-click="CategoryTemplateCtrl.save()"  class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'saveChangesBtn' | translate}}</button>
+    </div>
+</div>
+
+

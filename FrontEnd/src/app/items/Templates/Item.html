@@ -1,0 +1,96 @@
+
+<!-- <div class="sub_data">
+    <div class="main_category">
+        <div class="col-sm-12 col-xs-12 col-md-12 subs2">
+            <div class="sub_content">
+                <img src="{{itemCtrl.catgoryTemplates.menuImageURL}}" alt="" style="max-height: 177px;"/>
+<div class="sub_sub">
+                <div class="active_book">
+                    <p>{{itemCtrl.catgoryTemplates.menuName}}</p>
+                </div>
+            </div>
+            </div>
+            <div class="sub_content2">
+                <img src="{{itemCtrl.catgoryTemplates.categoryImageURL}}" alt="" style="max-height: 137px;"/>
+                <div class="sub_over over">
+                    <div class="active2">
+                        <p>{{itemCtrl.catgoryTemplates.categoryName}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+</div> -->
+<a class="back" href="javascript:void(0);"  ng-click="$state.go('menu',{featureId: $stateParams.featureId,restaurantId:itemCtrl.restaurantId})">
+    <img alt="" />
+</a>
+
+<!-- <div id="ttt"> -->
+        <flipbook itempagectrl="itemCtrl.catgoryTemplates.templates" itemdetails="itemCtrl.itemDetails" selected-Language="selectedLanguage"></flipbook>
+<!-- </div>  -->
+
+<div id="inline2" class="main_lity lity-hide">
+    <div class="col-sm-6 col-xs-6 col-md-6 header_pop">
+        <img src="{{itemCtrl.itemDetails.imageURL}}" alt="" style="max-height: 139px;"/>
+        <div class="menu_plus">
+            
+              
+              <!-- <p ng-repeat="size in itemCtrl.itemDetails.sizes">
+                  {{size.price}}
+                  <span>{{size.sizeName}}</span>
+                  <input type="radio" ng-model="selectedSize" ng-click="radioSizeClick(size)" name="name" required />
+
+              </p> -->
+              <div class="radio" ng-repeat="(key,val) in itemCtrl.itemDetails.sizes">
+                  <label>
+                    <input type="radio" class="radio_s"  ng-click="radioSizeClick(val,itemCtrl.itemDetails.itemID)" ng-model="$parent.checkradioasd" ng-value='val.sizeId'  >
+                    <span class="orange">{{val.price}}</span>
+                    <span>{{val.sizeNameDictionary[selectedLanguage]}}</span>
+                  </label>
+                </div>
+             </div>
+          </div>
+          <div class="col-sm-6 col-xs-6 col-md-6 "> 
+            <h3>{{itemCtrl.itemDetails.itemNameDictionary[selectedLanguage]}}</h3>
+            <div style="color: #a9a9a9;">
+                <img src="assets/img/like.svg" style="height: 22px;cursor: pointer;" ng-click="itemCtrl.likeItem(itemCtrl.itemDetails)"> ({{itemCtrl.itemDetails.like}})
+                <img src="assets/img/dislike.svg" style="height: 22px;cursor: pointer;" ng-click="itemCtrl.dislikeItem(itemCtrl.itemDetails)">({{itemCtrl.itemDetails.dislike}})
+            </div>
+            <p>{{itemCtrl.itemDetails.itemDescriptionDictionary[selectedLanguage]}}</p>
+       
+                <!--<div class="menu_plus" style="    margin-top: 41px;">
+                    <h3>Side Items</h3>
+    
+                    <p ng-repeat="side in itemCtrl.itemDetails.sideItems">
+                        <span>{{side.sideItemName}}</span>
+                        <span>{{side.value}}</span>
+                        <input type="checkbox" ng-model="selectedSide" ng-click="checkSideClick(side)" name="name" required  >
+                    </p>
+                    <br>
+                    * Please note the Max Side Item Value : {{itemCtrl.itemDetails.maxSideItemValue}}
+                </div>-->
+         
+        </div>
+          <div class="main_counter" >
+                <span class="main_arrow"><img  class="arrow_img" ng-click="removeCounter()" style="" ng-src="../assets/img/Subtract.png" /></span>
+
+                <input  type="number" ng-model="selectedCount" class="form-control counter" value="1" readonly="readonly">
+                <span><img class="arrow_img" ng-click="addCounter()" style="" ng-src="../assets/img/plus.png" /></span>
+
+                <!-- <select ng-model="selectedCount" ng-init="selectedCount = itemCtrl.counts[0]" ng-options="x for x in itemCtrl.counts"></select> -->
+             <input type="button" class="btn add" ng-click="addItemToCart(itemCtrl.itemDetails)" ng-disabled="!displayAdd" value="{{'Add' | translate}}" data-lity-close>
+            </div>
+    <!-- </div> -->
+   
+ 
+    
+    <!-- <div class="col-sm-6 col-xs-6 col-md-6">
+        <p>simply dummy text of the printing and
+            typesetting industry. Lorem Ipsum has
+            been the industry's standard dummy t
+            ext ever since the 1500s, when an unknown ....
+        </p>
+    </div> -->
+</div>

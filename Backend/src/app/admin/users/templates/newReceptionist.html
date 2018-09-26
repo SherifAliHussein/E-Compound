@@ -1,0 +1,41 @@
+<div class="modal-content">
+        <div class="modal-header bordered">
+            <button class="close" type="button" ng-click="receptionistDlCtrl.close()">×</button>
+            <h2 class="pmd-card-title-text">{{'NewReceptionistLbl' | translate}}</h2>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" name="newReceptionistForm">
+                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                    <label for="first-name">{{'UserName' | translate}}</label>
+                    <input required type="text" class="mat-input form-control" name="userName" ng-model="receptionistDlCtrl.userName" ng-minlength="3" ng-maxlength="100">
+                    <div ng-messages="newReceptionistForm.userName.$error" >
+                        <div ng-if="newReceptionistForm.userName.$error.required && !newReceptionistForm.userName.$pristine">{{'requiredErr' | translate}}</div>
+                        <div ng-if="(newReceptionistForm.userName.$error.minlength || newReceptionistForm.userName.$error.maxlength) && !newReceptionistForm.userName.$error.required">{{'NameLengthError' | translate}}</div>
+                    </div>
+                </div>
+                <div class="form-group pmd-textfield pmd-textfield-floating-label" >
+                        <label for="first-name">{{'ReceptionistUserPasswordLbl' | translate}}</label>
+                        <input required type="password" class="mat-input form-control" name="password" ng-model="receptionistDlCtrl.password" ng-minlength="8" ng-maxlength="25">
+                        <div ng-messages="newReceptionistForm.password.$error" >
+                            <div ng-if="newReceptionistForm.password.$error.required && !newReceptionistForm.password.$pristine">{{'requiredErr' | translate}}</div>
+                            <div ng-if="(newReceptionistForm.password.$error.minlength || newReceptionistForm.password.$error.maxlength) && !newReceptionistForm.password.newPassword.$error.required">Password length must be 8-25 char.</div>
+                        </div>
+                    </div>
+                    <div class="form-group pmd-textfield pmd-textfield-floating-label" >
+                        <label for="first-name">{{'ConfirmPasswordLbl' | translate}}</label>
+                        <input required type="password" class="mat-input form-control" name="confirmPassword"  ng-model="receptionistDlCtrl.confirmPassword" equalto="newReceptionistForm.password" >
+                        <div ng-messages="newReceptionistForm.confirmPassword.$error" >
+                            <div ng-if="newReceptionistForm.confirmPassword.$error.required && !newReceptionistForm.confirmPassword.$pristine">{{'requiredErr' | translate}}</div>
+                            <div ng-if="newReceptionistForm.confirmPassword.$error.equalto && !newReceptionistForm.confirmPassword.$error.required">Passwords don't match.</div>
+                        </div>
+                    </div>
+            </form>
+        </div>
+        <div class="pmd-modal-action text-right">
+            <button ng-disabled="newReceptionistForm.$invalid" class="btn pmd-ripple-effect btn-primary" type="button" ng-click="receptionistDlCtrl.AddNewReceptionist()">{{'saveChangesBtn' | translate}}</button>
+            <button class="btn pmd-ripple-effect btn-default" type="button" ng-click="receptionistDlCtrl.close()">{{'DiscardBtn' | translate}}</button>
+        </div>
+    </div>
+    
+        
+    

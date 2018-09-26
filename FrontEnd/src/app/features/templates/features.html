@@ -1,0 +1,56 @@
+
+<div style="background-color: #83bde6fa" >
+    <div >
+        
+        <div ng-repeat="feature in featureCtrl.features.results" ng-if="globalInfo.featureMode" >
+            <div class="col-md-2">
+                <div class="column cursorPointer" ng-if="feature.type=='Normal'" 
+                ng-click="$state.go('featureDetail',{featureId: feature.featureId})"
+                  style="cursor: pointer; border-radius: 7px;box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 50px rgba(0,0,0,.24);color: white; background: rgba(8, 8, 8, 0.32);margin-bottom: 10px;">
+                        <div>
+                            <img ng-src="{{feature.imageURL}}?type='thumbnail' "  style="width: 100%;border-radius: 150px;"/>
+                            <div style="text-align: center;font-weight: bold;height: 50px;display: grid;align-items: center;">
+                                  {{feature.featureNameDictionary[selectedLanguage]}}
+                                
+                            </div>
+                        </div>
+                </div>
+                <div class="column cursorPointer" ng-if="feature.type=='Restaurant'"
+                ng-click="featureCtrl.showRestaurants($index)"
+                  style="cursor: pointer; border-radius: 7px;box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 50px rgba(0,0,0,.24);color: white;background: rgba(8, 8, 8, 0.32);margin-bottom: 10px;">
+                        <div>
+                            <img ng-src="{{feature.imageURL}}?type='thumbnail' "  style="width: 100%;border-radius: 150px;"/>
+                            <div style="text-align: center;font-weight: bold;height: 50px;display: grid;align-items: center;">
+                                  {{feature.featureNameDictionary[selectedLanguage]}}
+                            
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <div ng-repeat="restaurant in featureCtrl.features.results[featureCtrl.selectedFeatureIndex].restaurants"ng-if="!globalInfo.featureMode"    >
+            <div class="col-md-2">
+                <div class="column cursorPointer" 
+                ng-click="$state.go('menu',{featureId: featureCtrl.features.results[featureCtrl.selectedFeatureIndex].featureId,restaurantId:restaurant.restaurantId})"
+                style="cursor: pointer; border-radius: 7px;box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 50px rgba(0,0,0,.24);color: white;background: rgba(8, 8, 8, 0.32);margin-bottom: 10px;">
+                        <div>
+                            <img ng-src="{{restaurant.imageURL}}?type='thumbnail' "  style="width: 100%;border-radius: 150px;"/>
+                            <div style="text-align: center;font-weight: bold;height: 50px;display: grid;align-items: center;">
+                                {{restaurant.restaurantNameDictionary[selectedLanguage]}}
+                            
+                            </div>
+                        </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="inline2" class="main_lity lity-hide subs">
+    <!-- <div class="col-md-4 col-sm-4 col-xs-12 tybes" > -->
+        <div class="modal-body">{{'requestConfirmationLbl' | translate}}<strong>{{featureCtrl.selectedFeatureName}}</strong>? </div>        
+    <!-- </div> -->
+    <button class="btn pmd-ripple-effect btn-primary pmd-btn-flat" type="button" data-lity-close ng-click="featureCtrl.confirmRequest(featureCtrl.selectedFeatureId)">{{'ApproveBtn' | translate}}</button>
+    <!-- <button class="btn pmd-ripple-effect btn-default pmd-btn-flat" type="button" ng-click="requestDlCtrl.close()">{{'cancelBtn' | translate}}</button> -->
+</div>

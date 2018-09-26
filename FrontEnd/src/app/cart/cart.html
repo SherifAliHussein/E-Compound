@@ -1,0 +1,73 @@
+
+   <a class="back" href="javascript:void(0);"  ng-click="$state.go('menu',{featureId: $stateParams.featureId,restaurantId:$stateParams.restaurantId})">
+    <img alt="" />
+</a>
+<div class="container">
+
+    <form>
+
+        <div class="col-md-8 col-sm-8 col-xs-12 main_cart">
+            <h3 class="cart_title">{{'CheckOut' | translate}}</h3>
+
+            <table width="100%" border="0">
+                <tbody>
+                    <tr>
+                        <th>{{'Item' | translate}}</th>
+                        <th>{{'NUM' | translate}}</th>
+                        <th>{{'Price' | translate}}</th>
+                        <th></th> 
+                    </tr>
+                    <tr ng-repeat="c in cartCtrl.repeatCart">
+                        <td>
+                            <div class="col-md-4 col-sm-4 col-xs-4 no_padding">
+
+                                <img ng-src="{{c.itemobj.imageURL}}" />
+                            </div>
+                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                <h3> {{c.itemobj.itemNameDictionary[selectedLanguage] | limitTo:20}}</h3>
+                                <p>
+                                   {{c.itemobj.itemDescriptionDictionary[selectedLanguage] | limitTo:63}}
+                                </p>
+                            </div>
+
+                        </td>
+                       
+                            <td>   
+                                    <span ><img  class="arrow_img" ng-click="removeCounter($index)" style="width: 21px!important;height: 21px!important;" ng-src="../assets/img/Subtract2.png" /></span>
+                                <input style="width: 36px;color: black !important;"  type="number"  ng-model="c.itemobj.count" readonly="readonly">
+                                <span><img class="arrow_img" ng-click="addCounter($index)" style="width: 21px!important;height: 21px!important;" ng-src="../assets/img/plus2.png" /></span>
+        
+                        </td>
+                        <td>
+                            </td> <td><span class="bold_td">{{c.size.price*c.itemobj.count}} {{'SAR' | translate}}</span></td>
+                        <td> <input class="btn btn-danger" type="button" ng-click="removeCounter($index)" value="{{'Remove' | translate}}" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr />
+
+            <div class="footer">
+
+                <div class="checkout_btn" ng-disabled="cartCtrl.isChanged">
+                    <input type="button" class="" value="{{'CheckOut' | translate}}" ng-click="checkOut()">
+
+                </div>
+
+                <div class="cart">
+                    <h4>{{'Total' | translate}}</h4>
+                    <h5>{{totalItem}} {{'SAR' | translate}}</h5>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

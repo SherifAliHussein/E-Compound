@@ -1,0 +1,24 @@
+<div class="modal-content">
+    <div class="modal-header bordered">
+        <button class="close" type="button" ng-click="buildingDlCtrl.close()">×</button>
+        <h2 class="pmd-card-title-text">{{'NewBuildingLbl' | translate}}</h2>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" name="newBuildingForm">
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                <label for="first-name">{{'buildingName' | translate}}</label>
+                <input required type="text" class="mat-input form-control" name="buildingName" ng-model="buildingDlCtrl.buildingName" ng-maxlength="20">
+                <div ng-messages="newBuildingForm.buildingName.$error" >
+                    <div ng-if="newBuildingForm.buildingName.$error.required && !newBuildingForm.buildingName.$pristine">{{'requiredErr' | translate}}</div>
+                    <div ng-if="(newBuildingForm.buildingName.$error.maxlength) && !newBuildingForm.buildingName.$error.required">{{'maximumMsg' | translate}} 20</div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="pmd-modal-action text-right">
+        <button ng-disabled="newBuildingForm.$invalid" class="btn pmd-ripple-effect btn-primary" type="button" ng-click="buildingDlCtrl.AddNewBuilding()">{{'saveChangesBtn' | translate}}</button>
+        <button class="btn pmd-ripple-effect btn-default" type="button" ng-click="buildingDlCtrl.close()">{{'DiscardBtn' | translate}}</button>
+    </div>
+</div>
+
+    

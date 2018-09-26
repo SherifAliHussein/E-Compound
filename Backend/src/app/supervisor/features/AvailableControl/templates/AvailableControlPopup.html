@@ -1,0 +1,63 @@
+
+
+<div class="modal-content">
+        
+    <div class="modal-header bordered">
+        <div class="col-md-2">{{availableControlDlCtrl.featureName[selectedLanguage]}}</div>
+        <div class="group-fields clearfix row col-md-2">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="checkbox pmd-default-theme">
+                    <label class=" checkbox-pmd-ripple-effect">
+                        <input type="checkbox" ng-model="availableControlDlCtrl.featureDetail.isFree">
+                        <span>{{'IsFreeLbl' | translate}}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed" 
+        ng-if="!availableControlDlCtrl.featureDetail.isFree">
+            <label for="first-name"> {{ 'priceLbl' | translate}} </label>
+            <input type="number" class="mat-input form-control" name="price" ng-model="availableControlDlCtrl.featureDetail.price" >
+        </div>
+        <!-- <button class="close" type="button" ng-click="availableControlDlCtrl.close()">×</button> -->
+    </div>
+    
+    <div class="modal-body">
+        <form class="form-horizontal" name="newForm">
+            <div ng-repeat="day in availableControlDlCtrl.days" class="row">
+                <label  class="col-md-2">
+                    <input type="checkbox"ng-model="day.isSelected" ng-change="listOfAvailableControlDlCtrl.changeDay(day)">
+                    {{day.text|translate}}
+                </label>
+                 
+                <!-- <div class="row"> -->
+                    <div class="col-md-2"> 
+                        <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+                            <label class="control-label" for="regular1">Start Date</label>
+                            <input ng-disabled="!day.isSelected" ng-required="day.isSelected" 
+                            name="datepicker-start{{day.id}}" datetimepicker ng-model="day.startTime" type="text" class="form-control" id="datepicker-start{{day.id}}">
+                        </div>
+                    </div>
+                    <div class="col-md-2"> 
+                        <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+                            <label class="control-label" for="regular1">End Date</label>
+                            <input ng-disabled="!day.isSelected" ng-required="day.isSelected" 
+                            name="datepicker-end{{day.id}}" datetimepicker ng-min="day.startTime" ng-model="day.endTime" type="text" class="form-control" id="datepicker-end{{day.id}}">
+                        </div>
+                    </div>
+                <!-- </div> -->
+                <div  class="col-md-2 form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+                    <label for="first-name"> {{ 'NumberLbl' | translate}} </label>
+                    <input ng-disabled="!day.isSelected" type="number" ng-required="day.isSelected && newForm.max{{day.id}}.$error" 
+                    name="max{{day.id}}"class="mat-input form-control" ng-model="day.max" ng-min="1">
+                </div>
+        </div>
+        </form>
+    </div>
+    <div class="pmd-modal-action text-right">
+        <button ng-disabled="newForm.$invalid || availableControlDlCtrl.isChanged ||
+        (!availableControlDlCtrl.featureDetail.isFree && availableControlDlCtrl.featureDetail.price<=0)
+        || (availableControlDlCtrl.days|filter:{isSelected:true}).length<=0 " class="btn pmd-ripple-effect btn-primary" type="button" ng-click="availableControlDlCtrl.save()">{{'saveChangesBtn' | translate}}</button>
+        <button class="btn pmd-ripple-effect btn-default" type="button" ng-click="availableControlDlCtrl.close()">{{'DiscardBtn' | translate}}</button>
+    </div>
+</div>
