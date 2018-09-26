@@ -31,6 +31,7 @@ namespace E_Compound.DAL.Entities.Model
         public virtual ICollection<RestaurantType> RestaurantTypes { get; set; }
         public virtual ICollection<Building> Buildings { get; set; }
         public virtual ICollection<Floor> Floors { get; set; }
+        public virtual ICollection<UnitType> UnitTypes { get; set; }
         public long? FeaturesBackgroundId { get; set; }
 
     }

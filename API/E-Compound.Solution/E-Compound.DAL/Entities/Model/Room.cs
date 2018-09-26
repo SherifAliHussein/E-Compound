@@ -33,5 +33,14 @@ namespace E_Compound.DAL.Entities.Model
         [ForeignKey("Floor")]
         public long? FloorId { get; set; }
         public virtual Floor Floor { get; set; }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        [ForeignKey("Unit")]
+        public long UnitId { get; set; }
+        public virtual Unit Unit { get; set; }
+
     }
 }

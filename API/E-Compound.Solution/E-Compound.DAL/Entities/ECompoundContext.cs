@@ -53,6 +53,9 @@ namespace E_Compound.DAL.Entities
         public DbSet<FeaturesBackground> FeaturesBackgrounds { get; set; }
         public DbSet<FeatureControl> FeatureControls { get; set; }
         public DbSet<Available> Availables { get; set; }
+        public DbSet<UnitType> UnitTypes{ get; set; }
+        public DbSet<UnitTypeTranslation> UnitTypeTranslations{ get; set; }
+        public DbSet<Unit> Units{ get; set; }
         //public DbSet<Control> Controls { get; set; }
         //public DbSet<ControlTranslation> ControlTranslations { get; set; }
 
