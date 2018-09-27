@@ -33,5 +33,11 @@ namespace E_Compound.DAL.Entities.Model
 
         [Column(TypeName = "datetime2")]
         public DateTime? To { get; set; }
+
+        public string Name { get; set; }
+        public string IdNumber { get; set; }
+        public string IdType { get; set; }
+
+
     }
 }

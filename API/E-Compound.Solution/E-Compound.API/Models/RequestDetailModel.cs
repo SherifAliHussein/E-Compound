@@ -16,5 +16,8 @@ namespace E_Compound.API.Models
         //public bool IsFree { get; set; }
         public DateTime? From { get; set; }
         public DateTime? To { get; set; }
+        public string Name { get; set; }
+        public string IdNumber { get; set; }
+        public string IdType { get; set; }
     }
 }

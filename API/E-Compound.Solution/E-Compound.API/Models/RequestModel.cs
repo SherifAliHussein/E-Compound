@@ -24,5 +24,8 @@ namespace E_Compound.API.Models
         public List<RequestDetailModel> RequestDetails { get; set; }
         public string Comment { get; set; }
         public DateTime? RequestTime { get; set; }
+        public int Count { get; set; }
+        public string InvetationType { get; set; }
+
     }
 }

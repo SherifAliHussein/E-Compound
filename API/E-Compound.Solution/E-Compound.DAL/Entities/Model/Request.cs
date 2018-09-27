@@ -40,5 +40,8 @@ namespace E_Compound.DAL.Entities.Model
         public string Comment { get; set; }
         [Column(TypeName = "datetime2")]
         public DateTime? RequestTime { get; set; }
+
+        public int Count { get; set; }
+        public Enums.InvetationType InvetationType { get; set; }
     }
 }

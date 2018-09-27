@@ -58,5 +58,10 @@ namespace E_Compound.Common
             Friday,
             Saturday
         }
+        public enum InvetationType
+        {
+            Single,
+            Family
+        }
     }
 }

@@ -27,5 +27,7 @@ namespace E_Compound.BLL.DTOs
         public List<RequestDetailDto> RequestDetails { get; set; }
         public string Comment { get; set; }
         public DateTime? RequestTime { get; set; }
+        public int Count { get; set; }
+        public Enums.InvetationType InvetationType { get; set; }
     }
 }
