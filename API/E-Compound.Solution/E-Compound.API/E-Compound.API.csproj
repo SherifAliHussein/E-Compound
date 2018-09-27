@@ -259,6 +259,7 @@
     <Compile Include="Controllers\SideItemsController.cs" />
     <Compile Include="Controllers\SizesController.cs" />
     <Compile Include="Controllers\TemplatesController.cs" />
+    <Compile Include="Controllers\UnitTypeController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WaitersController.cs" />
     <Compile Include="Infrastructure\ActionResult\PagedResponseActionResult.cs" />
@@ -307,6 +308,9 @@
     <Compile Include="Models\SizeModel.cs" />
     <Compile Include="Models\SupervisorModel.cs" />
     <Compile Include="Models\TemplateModel.cs" />
+    <Compile Include="Models\UnitModel.cs" />
+    <Compile Include="Models\UnitTypeModel.cs" />
+    <Compile Include="Models\UnitTypeTranslationModel.cs" />
     <Compile Include="Models\UserConsumedModel.cs" />
     <Compile Include="Models\UserHubModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

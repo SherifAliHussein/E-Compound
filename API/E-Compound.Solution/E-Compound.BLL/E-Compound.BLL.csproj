@@ -142,11 +142,15 @@
     <Compile Include="DataServices\Interfaces\ISupervisorFeatureService.cs" />
     <Compile Include="DataServices\Interfaces\ISupervisorService.cs" />
     <Compile Include="DataServices\Interfaces\ITemplateService.cs" />
+    <Compile Include="DataServices\Interfaces\IUnitService.cs" />
+    <Compile Include="DataServices\Interfaces\IUnitTypeService.cs" />
+    <Compile Include="DataServices\Interfaces\IUnitTypeTranslationService.cs" />
     <Compile Include="DataServices\Interfaces\IUserService.cs" />
     <Compile Include="DataServices\ItemService.cs" />
     <Compile Include="DataServices\ItemSideItemService.cs" />
     <Compile Include="DataServices\ItemSizeService.cs" />
     <Compile Include="DataServices\ItemTranslationService.cs" />
+    <Compile Include="DataServices\UnitTypeTranslationService.cs" />
     <Compile Include="DataServices\MenuService.cs" />
     <Compile Include="DataServices\MenuTranslationService.cs" />
     <Compile Include="DataServices\PackageService.cs" />
@@ -169,6 +173,8 @@
     <Compile Include="DataServices\SupervisorFeatureService.cs" />
     <Compile Include="DataServices\SupervisorService.cs" />
     <Compile Include="DataServices\TemplateService.cs" />
+    <Compile Include="DataServices\UnitService.cs" />
+    <Compile Include="DataServices\UnitTypeService.cs" />
     <Compile Include="DataServices\UserService.cs" />
     <Compile Include="DTOs\AdminDto.cs" />
     <Compile Include="DTOs\AvailableDto.cs" />
@@ -212,6 +218,9 @@
     <Compile Include="DTOs\SizeDto.cs" />
     <Compile Include="DTOs\SupervisorDto.cs" />
     <Compile Include="DTOs\TemplateDTO.cs" />
+    <Compile Include="DTOs\UnitDto.cs" />
+    <Compile Include="DTOs\UnitTypeDto.cs" />
+    <Compile Include="DTOs\UnitTypeTranslationDto.cs" />
     <Compile Include="DTOs\UserConsumed.cs" />
     <Compile Include="DTOs\UserDto.cs" />
     <Compile Include="ECompoundBLLConfig.cs" />
@@ -242,6 +251,8 @@
     <Compile Include="Services\Interfaces\ISideItemFacade.cs" />
     <Compile Include="Services\Interfaces\ISizeFacade.cs" />
     <Compile Include="Services\Interfaces\ITemplateFacade.cs" />
+    <Compile Include="Services\Interfaces\IUnitFacade.cs" />
+    <Compile Include="Services\Interfaces\IUnitTypeFacade.cs" />
     <Compile Include="Services\Interfaces\IUserFacade.cs" />
     <Compile Include="Services\ItemFacade.cs" />
     <Compile Include="Services\ManageStorage\IManageStorage.cs" />
@@ -254,6 +265,8 @@
     <Compile Include="Services\SideItemFacade.cs" />
     <Compile Include="Services\SizeFacade.cs" />
     <Compile Include="Services\TemplateFacade.cs" />
+    <Compile Include="Services\UnitFacade.cs" />
+    <Compile Include="Services\UnitTypeFacade.cs" />
     <Compile Include="Services\UserFacade.cs" />
   </ItemGroup>
   <ItemGroup />
