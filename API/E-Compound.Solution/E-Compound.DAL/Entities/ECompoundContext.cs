@@ -60,7 +60,7 @@ namespace E_Compound.DAL.Entities
         //public DbSet<ControlTranslation> ControlTranslations { get; set; }
 
 
-        public ECompoundContext() : base("name=ECuestDB")
+        public ECompoundContext() : base("name=ECompoundDB")
         {
             Database.SetInitializer<ECompoundContext>(null);
 
@@ -127,6 +127,10 @@ namespace E_Compound.DAL.Entities
 
             modelBuilder.Entity<Floor>()
                 .HasRequired(c => c.Admin)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<UnitType>()
+                .HasRequired(c => c.Creater)
                 .WithMany()
                 .WillCascadeOnDelete(false);
         }

@@ -24,6 +24,7 @@ namespace E_Compound.Common.CustomException
         RequestStatusChanged,
         UserDeleted,
         UserDeactivated,
+        UnitTypeNotFound,
 
 
         UnSupportedLanguage,
