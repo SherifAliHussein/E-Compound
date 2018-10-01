@@ -16,8 +16,8 @@ namespace E_Compound.DAL.Entities.Model
             Units = new List<Unit>();
         }
         public long UnitTypeId { get; set; }
-        public ICollection<UnitTypeTranslation> UnitTypeTranslations { get; set; }
-        public ICollection<Unit> Units{ get; set; }
+        public virtual ICollection<UnitTypeTranslation> UnitTypeTranslations { get; set; }
+        public virtual ICollection<Unit> Units{ get; set; }
         public int Limit { get; set; }
         [ForeignKey("Creater")]
         public long CreationBy { get; set; }

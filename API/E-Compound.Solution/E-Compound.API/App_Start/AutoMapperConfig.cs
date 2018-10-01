@@ -21,7 +21,7 @@ namespace E_Compound.API.App_Start
                 .ForMember(dto => dto.Type, m => m.MapFrom(src => src.Type.ToString()));
             mapperConfiguration.CreateMap<FeatureModel, FeatureDto>()
                 .ForMember(dto => dto.Type, m => m.MapFrom(src => Enum.Parse(typeof(Enums.FeatureType), src.Type)));
-                ;
+       
 
             mapperConfiguration.CreateMap<ReceptionistModel, ReceptionistDto>();
             mapperConfiguration.CreateMap<ReceptionistDto, ReceptionistModel>();
@@ -31,6 +31,9 @@ namespace E_Compound.API.App_Start
             
             mapperConfiguration.CreateMap<FeatureDetailModel, FeatureDetailDto>();
             mapperConfiguration.CreateMap<FeatureDetailDto, FeatureDetailModel>();
+
+            mapperConfiguration.CreateMap<UnitTypeDto, UnitTypeModel>().ReverseMap();
+            mapperConfiguration.CreateMap<UnitDto, UnitModel>().ReverseMap();
 
             mapperConfiguration.CreateMap<FeatureInfoDto, FeatureInfoModel>();
             

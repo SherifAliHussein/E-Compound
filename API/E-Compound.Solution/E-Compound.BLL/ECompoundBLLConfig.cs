@@ -36,6 +36,17 @@ namespace E_Compound.BLL
                 .ForMember(dto => dto.DescriptionDictionary, m => m.MapFrom(src => src.FeatureDetailTranslations.ToDictionary(translation => translation.Language.ToLower(), translation => translation.Description)))
                 .ForMember(dto => dto.Availables, m => m.MapFrom(src => src.Availables.Where(x=>!x.IsDeleted).ToList()));
 
+            mapperConfiguration.CreateMap<UnitTypeDto, UnitType>()
+                .ForMember(dto => dto.UnitTypeTranslations, m => m.MapFrom(src => src.TitleDictionary.Select(x => new UnitTypeTranslation { Name= x.Value, Language = x.Key }).ToList()));
+
+            mapperConfiguration.CreateMap<UnitType, UnitTypeDto>()
+                .ForMember(dto => dto.TitleDictionary,
+                    m => m.MapFrom(src => src.UnitTypeTranslations.ToDictionary(translation => translation.Language.ToLower(), translation => translation.Name)));
+
+            mapperConfiguration.CreateMap<UnitTypeTranslationDto, UnitTypeTranslation>().ReverseMap();
+
+            mapperConfiguration.CreateMap<Unit, UnitDto>().ReverseMap();
+
             mapperConfiguration.CreateMap<FeatureDto, Feature>()
                 .ForMember(dto => dto.FeatureTranslations, m => m.MapFrom(src => src.FeatureNameDictionary.Select(x=>new FeatureTranslation {FeatureName = x.Value,Language = x.Key}).ToList()))
                // .ForMember(dto => dto.FeatureDetails, m => m.MapFrom(src => src.FeatureDetails))
@@ -290,6 +301,9 @@ namespace E_Compound.BLL
                 .RegisterType<IPageService, PageService>(new PerResolveLifetimeManager())
                 .RegisterType<IBranchService, BranchService>(new PerResolveLifetimeManager())
                 .RegisterType<IBranchTranslationService, BranchTranslationService>(new PerResolveLifetimeManager())
+                .RegisterType<IUnitTypeService, UnitTypeService>(new PerResolveLifetimeManager())
+                .RegisterType<IUnitTypeTranslationService, UnitTypeTranslationService>(new PerResolveLifetimeManager())
+                .RegisterType<IUnitService, UnitService>(new PerResolveLifetimeManager())
                 .RegisterType<IFeedBackService, FeedBackService>(new PerResolveLifetimeManager())
                 .RegisterType<IBuildingService, BuildingService>(new PerResolveLifetimeManager())
                 .RegisterType<IFloorService, FloorService>(new PerResolveLifetimeManager())

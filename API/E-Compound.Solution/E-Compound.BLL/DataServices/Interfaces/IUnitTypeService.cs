@@ -12,5 +12,6 @@ namespace E_Compound.BLL.DataServices.Interfaces
     public interface IUnitTypeService : IService<UnitType>
     {
         PagedResultsDto GetAllPagingUnitTypes(long userId, int page, int pageSize);
+        List<UnitType> GetUnitTypes(long userId);
     }
 }

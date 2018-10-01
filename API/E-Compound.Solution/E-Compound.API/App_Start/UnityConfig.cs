@@ -72,6 +72,10 @@ namespace E_Compound.API
                 
                 ;
 
+                .RegisterType<IUnitTypeFacade, UnitTypeFacade>(new PerResolveLifetimeManager())
+                .RegisterType<IUnitFacade, UnitFacade>(new PerResolveLifetimeManager())
+                .RegisterType<IFeaturesBackgroundFacade, FeaturesBackgroundFacade>(new PerResolveLifetimeManager());
+             
 
             ECompoundBLLConfig.RegisterTypes(container);
             if (applyDependencyResolver)

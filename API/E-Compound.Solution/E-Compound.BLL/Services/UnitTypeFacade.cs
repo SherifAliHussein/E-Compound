@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using E_Compound.BLL.DataServices.Interfaces;
 using E_Compound.BLL.DTOs;
 using E_Compound.BLL.Services.Interfaces;
@@ -31,6 +32,13 @@ namespace E_Compound.BLL.Services
             return unitTypes;
         }
 
+        public List<UnitTypeDto> GetUnitTypes(long userId)
+        {
+            var unitTypes = _unitTypeService.GetUnitTypes(userId);
+
+            return Mapper.Map<List<UnitTypeDto>>(unitTypes);
+        }
+
         public void DeleteUnitType(long unitTypeId)
         {
             var unitType = _unitTypeService.Find(unitTypeId);
@@ -42,29 +50,14 @@ namespace E_Compound.BLL.Services
 
         public void AddUnitType(UnitTypeDto unitTypeDto, long userId)
         {
-            var unitType = new UnitType();
-            //var nameValid = _currencyService.emailValidation(currencyDto.ContactEmail);
-
-            //foreach (var item in nameValid)
-            //{
-            //    if (nameValid != null && item.UserID == userID) throw new NotFoundException(ErrorCodes.RepeatedContactEmail);
-            //}
-
+            var unitType = Mapper.Map<UnitType>(unitTypeDto);
+        
             unitType.CreateTime = DateTime.Now;
             unitType.CreationBy = userId;
             unitType.IsDeleted = false;
-            _unitTypeService.Insert(unitType);
 
-            var unitTypeTrans = new UnitTypeTranslation();
-            unitTypeTrans.Language = "en";
-            unitTypeTrans.Name = unitTypeDto.TitleDictionary["en"];
-            unitTypeTrans.UnitTypeId = unitType.UnitTypeId;
-            _unitTypeTranslationService.Insert(unitTypeTrans);
-            SaveChanges();
-            unitTypeTrans.Language = "ar";
-            unitTypeTrans.Name = unitTypeDto.TitleDictionary["ar"];
-            unitTypeTrans.UnitTypeId = unitType.UnitTypeId;
-            _unitTypeTranslationService.Insert(unitTypeTrans);
+            _unitTypeTranslationService.InsertRange(unitType.UnitTypeTranslations);
+            _unitTypeService.Insert(unitType);
             SaveChanges();
         }
 
@@ -72,12 +65,7 @@ namespace E_Compound.BLL.Services
         {
             var unitType = _unitTypeService.Find(unitTypeDto.UnitTypeId);
             if (unitType == null) throw new NotFoundException(ErrorCodes.UnitTypeNotFound);
-            //var nameValid = _currencyService.emailValidation(currencyDto.ContactName);
-            //foreach (var item in nameValid)
-            //{
-            //    if (nameValid != null && item.ContactID != contactDto.ContactID && item.UserID == userID) throw new NotFoundException(ErrorCodes.RepeatedContactEmail);
-            //}
-            // if (nameValid != null && nameValid.ContactID != contactDto.ContactID) throw new NotFoundException(ErrorCodes.RepeatedContactEmail);
+
             unitType.ModifyTime = DateTime.Now;
             unitType.ModifiedBy = userId;
             _unitTypeService.Update(unitType);
@@ -86,14 +74,14 @@ namespace E_Compound.BLL.Services
 
             for (int i = 0; i < 2; i++)
             {
-                if (unitTypeTrans[i].Language == "en")
+                if (unitTypeTrans[i].Language == "en-us")
                 {
-                    unitTypeTrans[i].Name = unitTypeDto.TitleDictionary["en"];
+                    unitTypeTrans[i].Name = unitTypeDto.TitleDictionary["en-us"];
                     SaveChanges();
                 }
-                else if (unitTypeTrans[i].Language == "ar")
+                else if (unitTypeTrans[i].Language == "ar-eg")
                 {
-                    unitTypeTrans[i].Name = unitTypeDto.TitleDictionary["ar"];
+                    unitTypeTrans[i].Name = unitTypeDto.TitleDictionary["ar-eg"];
                     SaveChanges();
                 }
             }

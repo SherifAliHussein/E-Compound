@@ -13,5 +13,6 @@ namespace E_Compound.BLL.Services.Interfaces
         void DeleteUnitType(long unitTypeId);
         void AddUnitType(UnitTypeDto unitTypeDto, long userId);
         void UpdateUnitType(long userId, UnitTypeDto unitTypeDto);
+        List<UnitTypeDto> GetUnitTypes(long userId);
     }
 }
