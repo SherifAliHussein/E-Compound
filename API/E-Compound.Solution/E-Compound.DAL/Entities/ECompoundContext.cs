@@ -69,6 +69,7 @@ namespace E_Compound.DAL.Entities
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            
             modelBuilder.Entity<Feature>()
                 .HasRequired(c => c.Creater)
                 .WithMany()
@@ -129,7 +130,14 @@ namespace E_Compound.DAL.Entities
                 .HasRequired(c => c.Admin)
                 .WithMany()
                 .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<UnitType>()
+                .HasRequired(c => c.Creater)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+
+            modelBuilder.Entity<Unit>()
                 .HasRequired(c => c.Creater)
                 .WithMany()
                 .WillCascadeOnDelete(false);

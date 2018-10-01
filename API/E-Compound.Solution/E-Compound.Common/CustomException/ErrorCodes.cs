@@ -25,6 +25,7 @@ namespace E_Compound.Common.CustomException
         UserDeleted,
         UserDeactivated,
         UnitTypeNotFound,
+        UnitNotFound,
 
 
         UnSupportedLanguage,

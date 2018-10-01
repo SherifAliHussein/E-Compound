@@ -118,6 +118,8 @@
             "supervisorhasnofeature":"feature deleted or deactivated",
             "requestConfirmationLbl":"Are you sure you want request ",
             "roomsLimitConsumedLbl":"consumed / limit rooms",
+            "unitTypes":"Unit Types",
+            "UnitType":"Unit Type",
 
 /////////////////////////Restaurants en
             "restaurantType" : "Restaurant types",
@@ -336,10 +338,32 @@
             "applyFilterBtn":"apply filter",
             "Reports":"Reports",
             "ExportCsvBtn":"Export to csv",
-            "downloadBtn":"download"
+            "downloadBtn":"download",
+            "NoUnitTypeAvailable":"No Unit Type Available",
+            "AddUnitTypeLbl":"Add Unit Type",
+            "Title":"Title",
+            "UpdateUnitTypeLbl":"Update Unit Type",
+            "DeleteSuccess": "Deleted Successfully",
+            "EditSuccess":"Edited Successfully",
+            "units":"Units",
+            "NoUnitAvailable":"No Unit Available",
+            "AddUnitLbl":"Add Unit",
+            "UnitNameLbl":"Unit Name"
         }
         
         var ar_translations = {
+            "UnitNameLbl":"اسم الوحده",
+            "AddUnitLbl":"اضافة وحده",
+            "NoUnitAvailable":"لا يوجد وحدات متاحه",
+            "units":"الوحدات",
+            "EditSuccess" : "تم التعديل بنجاح",
+            "DeleteSuccess":"تم المسح بنجاح",
+            "UpdateUnitTypeLbl":"تعديل نوع الوحدة",
+            "Title":"عنوان",
+            "AddUnitTypeLbl":"اضافة نوع وحدة",
+            "NoUnitTypeAvailable":"لا يوجد نوع وحدة متاح",
+            "UnitType":"نوع الوحدة",
+            "unitTypes": "أنواع الوحدات",
             "Featureslbl" : "خدمات",
             "Name" : " الاسم",
             "englishName" : "الاسم انجليزي",
