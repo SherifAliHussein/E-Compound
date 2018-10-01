@@ -151,7 +151,11 @@
             "Pending":"Pending",
             "Approved":"Approved on",
             "Rejected":"Rejected on",
-            "lastrequestStatus":"last request create on"
+            "lastrequestStatus":"last request create on",
+            "countLbl":" Entrance Count",
+            "addcountLbl":"Add",
+            "date":"Date"
+            
             
         }
         
@@ -308,7 +312,10 @@
             "Pending":"قيد الانتظار",
             "Approved":"وافق في",
             "Rejected":"رفض في",
-            "lastrequestStatus":"اخر طلب في "
+            "lastrequestStatus":"اخر طلب في ",
+            "countLbl":"عدد المدعويين",
+            "addcountLbl":"اضافه",
+            "date":"التاريخ"
         }
         
         $translateProvider.translations('en-us',en_translations);

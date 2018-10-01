@@ -17,7 +17,7 @@
     'checklist-model',
     'jkAngularRatingStars',
     'ui.carousel',
-    'ui.bootstrap.datetimepicker',
+    // 'ui.bootstrap.datetimepicker',
     'ngScrollbars',
     'ngSanitize',
     'ui.select',
