@@ -2,7 +2,7 @@
     
     <!-- <div class="pmd-card pmd-z-depth" > -->
         <ul class="nav nav-tabs" role="tablist" ng-show="!manageFeaturesCtrl.isAvailable && !manageFeaturesCtrl.islistAvailable">
-            <li role="presentation" ng-class="{'active':$index == 0}" ng-repeat="feature in manageFeaturesCtrl.features">
+            <li role="presentation" ng-class="{'active':$index == 0}" ng-repeat="feature in manageFeaturesCtrl.features | filter:{ isDeleted: 'false' }">
                 <a href="javascript:void(0);" data-target="#{{feature.featureId}}-form" aria-controls="home" role="tab" data-toggle="tab">
                     {{feature.featureNameDictionary[selectedLanguage]}}
                 </a>

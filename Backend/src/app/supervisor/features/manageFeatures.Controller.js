@@ -11,6 +11,7 @@
 
         var vm = this;
         vm.features = featuresPrepService;
+        console.log( vm.features);
         vm.controls = controlEnum;
         vm.isAvailable = false;
         vm.islistAvailable = false;

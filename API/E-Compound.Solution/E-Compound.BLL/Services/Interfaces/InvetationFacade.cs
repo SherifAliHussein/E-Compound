@@ -1,9 +1,10 @@
 ﻿using System;
+using E_Compound.BLL.DTOs;
 
 namespace E_Compound.BLL.Services.Interfaces
 {
     public interface IInvetationFacade
     {
-        bool CheckUnitInvetationLimit(long featureId, long userId, DateTime dateTime, int limit); 
+        UnitDto CheckUnitInvetationLimit(long featureId, long userId, DateTime dateTime, int limit); 
     }
 }

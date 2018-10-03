@@ -118,6 +118,7 @@
     <Compile Include="Entities\Model\RestaurantType.cs" />
     <Compile Include="Entities\Model\RestaurantTypeTranslation.cs" />
     <Compile Include="Entities\Model\RestaurantWaiter.cs" />
+    <Compile Include="Entities\Model\Technician.cs" />
     <Compile Include="Entities\Model\Room.cs" />
     <Compile Include="Entities\Model\SideItem.cs" />
     <Compile Include="Entities\Model\SideItemTranslation.cs" />

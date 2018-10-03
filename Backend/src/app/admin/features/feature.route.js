@@ -19,7 +19,9 @@
                     },
                     resolve: {
                         featuresPrepService: featuresPrepService,
-                        featureAsRestaurantPrepService:featureAsRestaurantPrepService
+                        featureAsRestaurantPrepService:featureAsRestaurantPrepService,
+                        featureAsInvitationPrepService:featureAsInvitationPrepService,
+                        featureAsTicketPrepService:featureAsTicketPrepService
                     }
                  
                 })                
@@ -89,6 +91,67 @@
                       
                     }
                 }) 
+                .state('newFeatureInvetition', {
+                    url: '/newFeatureInvetition',
+                    templateUrl: './app/admin/features/templates/newFeatureInvitation.html',
+                    controller: 'newFeatureInvitationController',
+                    'controllerAs': 'newFeatureCtrl',
+                    data: {
+                        permissions: {
+                            only: ['admin'],
+                           redirectTo: 'root'
+                        }
+                    } 
+                 
+                })
+                
+              .state('editFeatureInvetition', {
+                  url: '/feature/:featureId/Invetition',
+                  templateUrl: './app/admin/features/templates/editFeatureInvitation.html',
+                  controller: 'editFeatureInvitationController',
+                  'controllerAs': 'editFeatureDlCtrl',
+                  data: {
+                      permissions: {
+                          only: ['Admin'],
+                         redirectTo: 'root'
+                      }
+                  },
+                  resolve: {
+                    featurePrepService: featurePrepService, 
+                    
+                  }
+              }) 
+              .state('newFeatureTicket', {
+                url: '/newFeatureTicket',
+                templateUrl: './app/admin/features/templates/newFeatureTicket.html',
+                controller: 'newFeatureTicketController',
+                'controllerAs': 'newFeatureCtrl',
+                data: {
+                    permissions: {
+                        only: ['admin'],
+                       redirectTo: 'root'
+                    }
+                } 
+             
+            })
+            
+          .state('editFeatureTicket', {
+              url: '/feature/:featureId/Ticket',
+              templateUrl: './app/admin/features/templates/editFeatureTicket.html',
+              controller: 'editFeatureTicketController',
+              'controllerAs': 'editFeatureDlCtrl',
+              data: {
+                  permissions: {
+                      only: ['Admin'],
+                     redirectTo: 'root'
+                  }
+              },
+              resolve: {
+                featurePrepService: featurePrepService 
+                
+              }
+          }) 
+              
         });
         
         featuresPrepService.$inject = ['FeatureResource']
@@ -104,6 +167,16 @@
         featureAsRestaurantPrepService.$inject = ['FeatureResource']
         function featureAsRestaurantPrepService(FeatureResource) {
             return FeatureResource.checkFeatureAsRestaurant().$promise;
+        }
+       
+        featureAsInvitationPrepService.$inject = ['FeatureResource']
+        function featureAsInvitationPrepService(FeatureResource) {
+            return FeatureResource.checkFeatureAsInvitation().$promise;
+        }
+
+        featureAsTicketPrepService.$inject = ['FeatureResource']
+        function featureAsTicketPrepService(FeatureResource) {
+            return FeatureResource.CheckFeatureAsTicket().$promise;
         }
 
         restaurantsNamePrepService.$inject = ['RestaurantResource']

@@ -24,20 +24,26 @@ namespace E_Compound.BLL.Services
             _roomService = roomService;
         }
 
-        public bool CheckUnitInvetationLimit(long featureId, long userId, DateTime dateTime,int limit)
+        public UnitDto CheckUnitInvetationLimit(long featureId, long userId, DateTime dateTime, int limit)
+        //public bool CheckUnitInvetationLimit(long featureId, long userId, DateTime dateTime,int limit)
         {
             bool returnStatus = false;
+            var unitDto = new UnitDto();
             int unitLimit = 0;
             var userUnit = _roomService.Query(x => x.UserId == userId).Select().FirstOrDefault();
-            var check = userUnit.Requests.Where(x => x.CreateTime == dateTime && x.FeatureId == featureId &&
-                                                     x.Status == Enums.RequestStatus.Pending &&
-                                                     x.Status == Enums.RequestStatus.Approved).Select(s => s.Count);
+            var check = userUnit.Requests.Where(x => x.CreateTime.Date == dateTime.Date &&
+                                                      x.CreationBy == userId &&
+                                                      x.FeatureId == featureId &&
+                                                     (x.Status == Enums.RequestStatus.Pending ||
+                                                     x.Status == Enums.RequestStatus.Approved)).Select(x => x.Count);
             unitLimit = userUnit.Unit.UnitType.Limit;
-            if (unitLimit >= (check.Sum() + limit))
+            if (unitLimit > (check.Sum() + limit))
             {
                 returnStatus = true;
             }
-            return returnStatus;
+            unitDto = Mapper.Map<UnitDto>(userUnit.Unit);
+            unitDto.IsLimit = returnStatus;
+            return unitDto;
         }
 
     }

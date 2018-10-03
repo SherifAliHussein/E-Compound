@@ -17,7 +17,7 @@ namespace E_Compound.API.Controllers
         [HttpGet]
         public IHttpActionResult GetAboutById(long featureId, string datetime, int limit)
         {
-            bool requests = _invetationFacade.CheckUnitInvetationLimit(featureId, UserId, Convert.ToDateTime(datetime), limit);
+            var requests = _invetationFacade.CheckUnitInvetationLimit(featureId, UserId, Convert.ToDateTime(datetime), limit);
             return Ok(requests);
         }
     }

@@ -228,6 +228,22 @@ namespace E_Compound.API.Controllers
             return Ok(Mapper.Map<FeatureModel>(_FeatureFacade.CheckFeatureAsRestaurant(UserId)));
         }
 
+        [AuthorizeRoles(Enums.RoleType.Admin)]
+        [Route("api/Features/Invitation", Name = "CheckFeatureAsInvitation")]
+        [HttpGet]
+        public IHttpActionResult CheckFeatureAsInvitation()
+        {
+            return Ok(Mapper.Map<FeatureModel>(_FeatureFacade.CheckFeatureAsInvitation(UserId)));
+        }
+
+        [AuthorizeRoles(Enums.RoleType.Admin)]
+        [Route("api/Features/Ticket", Name = "CheckFeatureAsTicket")]
+        [HttpGet]
+        public IHttpActionResult CheckFeatureAsTicket()
+        {
+            return Ok(Mapper.Map<FeatureModel>(_FeatureFacade.CheckFeatureAsTicket(UserId)));
+        }
+
         [AuthorizeRoles(Enums.RoleType.Supervisor)]
         [Route("api/Features/Detail/{featureControlId:long}", Name = "GeFeatureDetails")]
         [HttpGet]

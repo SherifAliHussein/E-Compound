@@ -49,5 +49,15 @@ namespace E_Compound.BLL.DataServices
         {
             return _repository.Query(x => x.CreationBy == adminId && x.Type == Enums.FeatureType.Restaurant && !x.IsDeleted).Select().FirstOrDefault();
         }
+
+        public Feature CheckFeatureAsInvitation(long adminId)
+        {
+            return _repository.Query(x => x.CreationBy == adminId && x.Type == Enums.FeatureType.Invetation && !x.IsDeleted).Select().FirstOrDefault();
+        }
+
+        public Feature CheckFeatureAsTicket(long adminId)
+        {
+            return _repository.Query(x => x.CreationBy == adminId && x.Type == Enums.FeatureType.Ticket && !x.IsDeleted).Select().FirstOrDefault();
+        }    
     }
 }

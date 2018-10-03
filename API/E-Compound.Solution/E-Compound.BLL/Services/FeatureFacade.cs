@@ -386,7 +386,15 @@ namespace E_Compound.BLL.Services
         {
             return Mapper.Map<FeatureDto>(_featureService.CheckFeatureAsRestaurant(adminId));
         }
+        public FeatureDto CheckFeatureAsInvitation(long adminId)
+        {
+            return Mapper.Map<FeatureDto>(_featureService.CheckFeatureAsInvitation(adminId));
+        }
 
+        public FeatureDto CheckFeatureAsTicket(long adminId)
+        {
+            return Mapper.Map<FeatureDto>(_featureService.CheckFeatureAsTicket(adminId));
+        }
         //public List<ControlDto> GetAllControl()
         //{
         //    return Mapper.Map<List<ControlDto>>(_controlService.Queryable().Select(x=>x).ToList());
