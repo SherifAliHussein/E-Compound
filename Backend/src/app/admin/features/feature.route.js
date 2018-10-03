@@ -35,11 +35,7 @@
                             only: ['admin'],
                            redirectTo: 'root'
                         }
-                    },
-                    // resolve: {
-                    //   controlsPrepService: controlsPrepService
-                    // }
-                 
+                    }
                 })
                 .state('editFeature', {
                       url: '/feature/:featureId',
@@ -53,8 +49,7 @@
                           }
                       },
                       resolve: {
-                        featurePrepService: featurePrepService,
-                      //  controlsPrepService: controlsPrepService                        
+                        featurePrepService: featurePrepService
                       }
                   })               
                   .state('newFeatureRestaurant', {
@@ -148,7 +143,6 @@
               },
               resolve: {
                 featurePrepService: featurePrepService 
-                
               }
           }) 
               

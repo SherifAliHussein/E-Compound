@@ -52,7 +52,6 @@
 			updateFeature.featureId = vm.feature.featureId;
 			updateFeature.isImageChange = isImageChange;
             updateFeature.type = "1";
-            // updateFeature.restaurants = vm.feature.restaurants;
             updateFeature.restaurants = [];
 			vm.SelectedRestaurant.forEach(function(element) {
                 updateFeature.restaurants.push(element);
@@ -102,7 +101,6 @@
 
                         reader.onloadend = function () {
 							vm.feature.imageURL = reader.result;
-                            // $scope.Photo = reader.result;
                             $scope.$apply();
                         };
                         if (logoFile) {

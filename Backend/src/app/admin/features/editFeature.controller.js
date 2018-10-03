@@ -79,7 +79,6 @@
 			
         }
         vm.edit = function(featureDetail){
-			// index = index + ((vm.currentPage) *10);
             vm.featureDetailDescDictionary=featureDetail.descriptionDictionary;
             vm.price=featureDetail.price;
             vm.isFree=featureDetail.isFree;
@@ -89,7 +88,6 @@
 			vm.featureDetailId = featureDetail.featureDetailId
 		}
         vm.remove = function(featureDetail){
-			// index = index + ((vm.currentPage) *10);
 			featureDetail.isDeleted = true;
         }
         
@@ -105,7 +103,6 @@
 		vm.updateFeature = function(){
             var updateFeature = new FeatureResource();
             updateFeature.featureNameDictionary = vm.feature.featureNameDictionary;
-           // updateFeature.hasDetails = vm.feature.hasDetails;
            var count = 1;
            updateFeature.featureControl =[]
            vm.SelectedControl.forEach(function(element) {
@@ -115,22 +112,6 @@
 			updateFeature.featureId = vm.feature.featureId;
 			updateFeature.isImageChange = isImageChange;
 			updateFeature.type = "0";
-			// if(vm.feature.hasDetails){
-            //     updateFeature.featureDetails = vm.feature.featureDetails
-            //     // if(vm.editmode){
-            //     //     updateFeature.featureDetails[vm.editIndex].descriptionDictionary=vm.featureDetailDescDictionary;
-            //     //     updateFeature.featureDetails[vm.editIndex].price = vm.isFree?0:vm.price;
-            //     //     updateFeature.featureDetails[vm.editIndex].isFree = vm.isFree;
-            //     // }
-            //     // else{
-            //     //     if(vm.featureDetailDescDictionary !=null && (vm.price >0 || vm.isFree))
-            //     //     updateFeature.featureDetails.push({
-            //     //         descriptionDictionary:vm.featureDetailDescDictionary,
-            //     //         price:vm.isFree?0:vm.price,
-            //     //         isFree:vm.isFree
-            //     //     })
-            //     // }
-			// }
 			var model = new FormData();
 			model.append('data', JSON.stringify(updateFeature));
 			model.append('file', featureImage);
@@ -151,17 +132,6 @@
 					ToastService.show("right","bottom","fadeInUp",data.data.message,"error");
                 }
 			);
-			// updateFeature.$update().then(
-            //     function(data, status) {
-			// 		ToastService.show("right","bottom","fadeInUp",$translate.instant('FeatureUpdateSuccess'),"success");
-			// 		 vm.isChanged = false;                     
-			// 		 $state.go('features');
-            //     },
-            //     function(data, status) {
-            //         vm.isChanged = false;                     
-			// 		ToastService.show("right","bottom","fadeInUp",data.data.message,"error");
-            //     }
-            // );
             
 		}
 		vm.LoadUploadLogo = function () {
@@ -186,7 +156,6 @@
 
                         reader.onloadend = function () {
 							vm.feature.imageURL = reader.result;
-                            // $scope.Photo = reader.result;
                             $scope.$apply();
                         };
                         if (logoFile) {

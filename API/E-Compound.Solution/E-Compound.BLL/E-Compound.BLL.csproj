@@ -289,7 +289,7 @@
       <Name>E-Compound.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\E-Compound.DAL\E-Compound.DAL.csproj">
-      <Project>{6CB1CE2D-95DF-4C24-A371-1B8D979D76A5}</Project>
+      <Project>{6cb1ce2d-95df-4c24-a371-1b8d979d76a5}</Project>
       <Name>E-Compound.DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Frameworks\Repository.Pattern.Ef6\Repository.Pattern.Ef6.csproj">

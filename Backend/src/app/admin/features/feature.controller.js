@@ -16,7 +16,6 @@
 		vm.featureAsTicket = featureAsTicketPrepService;
 		console.log(vm.features)
 		$('.pmd-sidebar-nav>li>a').removeClass("active")
-		//$($('.pmd-sidebar-nav').children()[0].children[0]).addClass("active")
 		
 		function refreshFeatures(){
 			var k = FeatureResource.getAllFeatures({ page:vm.currentPage }).$promise.then(function(results) {
