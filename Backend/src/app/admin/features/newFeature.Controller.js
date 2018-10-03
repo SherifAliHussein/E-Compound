@@ -79,25 +79,8 @@
                 newFeature.featureControl.push({control:element.id,order:count})
                 count++;
             }, this);
-            // newFeature.featureControl = vm.SelectedControl;
             newFeature.type = "0";
-            // if(vm.hasDetails){
-            //     newFeature.featureDetails = vm.featureDetails
-            //     // if(vm.editmode){
-            //     //     vm.featureDetails[vm.editIndex].descriptionDictionary=vm.featureDetailDescDictionary;
-            //     //     vm.featureDetails[vm.editIndex].price = vm.isFree?0:vm.price;
-            //     //     vm.featureDetails[vm.editIndex].isFree = vm.isFree;
-            //     // }
-            //     // else{
-                    
-            //     //     vm.featureDetails.push({
-            //     //         descriptionDictionary:vm.featureDetailDescDictionary,
-            //     //         price:vm.isFree?0:vm.price,
-            //     //         isFree:vm.isFree
-            //     //     })
-            //     // }
-            // }
-
+         
             var model = new FormData();
 			model.append('data', JSON.stringify(newFeature));
 			model.append('file', featureImage);
@@ -119,17 +102,6 @@
                 }
             );
 
-            // newFeature.$create().then(
-            //     function(data, status) {
-			// 		ToastService.show("right","bottom","fadeInUp",$translate.instant('FeatureAddSuccess'),"success");
-			// 		 vm.isChanged = false;                     
-            //          $state.go('features');                     
-            //     },
-            //     function(data, status) {
-            //         vm.isChanged = false;                     
-			// 		ToastService.show("right","bottom","fadeInUp",data.data.message,"error");
-            //     }
-            // );
         }
         vm.LoadUploadLogo = function () {
             $("#logoImage").click();
@@ -151,7 +123,6 @@
 
                         reader.onloadend = function () {
                             vm.featureImage = reader.result;
-                            // $scope.Photo = reader.result;
                             $scope.$apply();
                         };
                         if (logoFile) {

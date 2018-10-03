@@ -105,7 +105,6 @@ console.log( vm.requests)
         function ApproveRequest(requestId,requestDetail){            
             var requestApproval = new RequestResource();
             requestApproval.requestDetails = requestDetail
-            // requestApproval.requestModel ={requestDetails:requestDetail,featureId:1};
 			
             requestApproval.$Approve({requestId:requestId}).then(
                 function(data, status) {
@@ -115,41 +114,10 @@ console.log( vm.requests)
 					ToastService.show("right","bottom","fadeInUp",data.data.message,"error");
                 }
             );
-            // RequestResource.Approve({requestId:requestId})
-            // .$promise.then(function(result){
-            //     refreshRequests()
-            // },
-            // function(data, status) {
-            //     ToastService.show("right","bottom","fadeInUp",data.data.message,"error");
-            // })
         }
 
         vm.Approve = function(featureId,requestId){
             ApproveRequest(requestId);
-            // FeatureResource.getFeature({featureId:featureId}).$promise.then(function(result){
-            //     if(!result.hasDetails || result.type == "Restaurant"){
-            //         ApproveRequest(requestId)
-            //     }
-            //     else {
-            //         var modalContent = $uibModal.open({
-            //             templateUrl: './app/admin/requests/templates/requestDetail.html',
-            //             controller: 'requestDetailDialogController',
-            //             controllerAs: 'requestDetailDlCtrl',
-            //             resolve:{
-            //                 feature:function(){ return result},
-            //                 requestId:function(){ return requestId},
-            //                 callBackFunction:function(){return ApproveRequest;},
-            //                 language:function(){return $scope.selectedLanguage;}
-                            
-            //             }
-                        
-            //         });
-            //     }
-            // },
-			// function(data, status) {
-			// 	ToastService.show("right","bottom","fadeInUp",data.data.message,"error");
-			// })
-            
         }
         vm.Reject = function(requestId){
             RequestResource.Reject({requestId:requestId})

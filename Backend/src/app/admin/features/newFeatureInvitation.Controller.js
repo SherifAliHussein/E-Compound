@@ -74,7 +74,6 @@
 
                         reader.onloadend = function () {
                             vm.featureImage = reader.result;
-                            // $scope.Photo = reader.result;
                             $scope.$apply();
                         };
                         if (logoFile) {
