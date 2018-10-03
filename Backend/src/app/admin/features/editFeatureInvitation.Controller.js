@@ -34,8 +34,7 @@
             updateFeature.hasDetails = vm.feature.hasDetails;
 			updateFeature.featureId = vm.feature.featureId;
 			updateFeature.isImageChange = isImageChange;
-            updateFeature.type = "1";
-            // updateFeature.Invitations = vm.feature.Invitations;
+            updateFeature.type = "2"; 
             updateFeature.Invitations = [];
 			vm.SelectedInvitation.forEach(function(element) {
                 updateFeature.Invitations.push(element);

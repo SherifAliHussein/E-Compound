@@ -28,16 +28,12 @@
             }
             else{
                 newUnit.UnitTypeId = $scope.unitType.unitTypeId;
-            }
-
-            
-          
+            } 
             newUnit.$updateUnit().then(
                 function (data, status) {
                     ToastService.show("right", "bottom", "fadeInUp", $translate.instant('EditSuccess'), "success");
                     callBackFunction();
-                    $uibModalInstance.dismiss('cancel');
-                    //$state.go('product');
+                    $uibModalInstance.dismiss('cancel'); 
 
                 },
                 function (data, status) {

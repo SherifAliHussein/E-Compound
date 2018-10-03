@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Repository.Pattern.Ef6;
 
 namespace E_Compound.DAL.Entities.Model
 {
-    public class Technician:Entity
+    public class Technician : User
     {
-        public long TechnicianId { get; set; }
-
+        public Technician()
+        {
+            Requests = new List<Request>(); 
+        }
+        public virtual List<Request> Requests { get; set; }
+        public UserCategory UserCategory { get; set; }
     }
 }

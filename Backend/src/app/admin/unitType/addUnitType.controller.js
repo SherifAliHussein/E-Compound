@@ -11,15 +11,14 @@
         $scope.unitTypeList;
         vm.titleDictionary;
         $scope.getId="0";
-        $scope.language = appCONSTANTS.supportedLanguage;
-       // console.log(appCONSTANTS.supportedLanguage);
+        $scope.language = appCONSTANTS.supportedLanguage; 
         $scope.changeId=function (val){
             $scope.getId=val;
         }
         
         function refreshUnitTypes(){
 			var k = UnitTypePagingResource.getAllPagingUnitTypes({page:vm.currentPage}).$promise.then(function(results) {
-				//vm.Now = $scope.getCurrentTime();	
+			 
 				$scope.unitTypeList = results;
 			},
             function(data, status) {
