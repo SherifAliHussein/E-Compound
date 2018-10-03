@@ -18,7 +18,9 @@ namespace E_Compound.BLL.Services.Interfaces
         FeatureDto GetFeature(long featureId);
         PagedResultsDto GetAllActiveFeatures(long adminId, int page, int pageSize, string role);
         FeatureDto CheckFeatureAsRestaurant(long adminId);
-       // List<ControlDto> GetAllControl();
+        FeatureDto CheckFeatureAsInvitation(long adminId);
+        FeatureDto CheckFeatureAsTicket(long adminId);
+        // List<ControlDto> GetAllControl();
         List<FeatureDto> GetAllFeatureForSupervisor(long userId);
 
         PagedResultsDto GeFeatureDetails(long featureControlId,int page,int pageSize);

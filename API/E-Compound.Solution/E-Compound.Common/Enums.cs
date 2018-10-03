@@ -21,7 +21,8 @@ namespace E_Compound.Common
         {
             Pending,
             Approved,
-            Rejected
+            Rejected,
+            Assigned
         }
 
         public enum FeatureType

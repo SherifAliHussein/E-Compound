@@ -9,15 +9,15 @@ using E_Compound.Common;
 
 namespace E_Compound.DAL.Entities.Model
 {
-    public class User:Entity
+    public class User : Entity
     {
         [Key]
         public long UserId { get; set; }
-        
+
         public string UserName { get; set; }
-        
+
         public string Password { get; set; }
-        
+
         public Enums.RoleType Role { get; set; }
 
         public bool IsDeleted { get; set; }

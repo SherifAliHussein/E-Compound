@@ -7,7 +7,7 @@
 
             $stateProvider
                 .state('Invetations', {
-                    url: '/Invetation',
+                    url: '/Invetation/:featureId',
                     templateUrl: './app/invetation/templates/invetation.html',
                     controller: 'invetationController',
                     'controllerAs': 'InvetationCtrl',
@@ -17,10 +17,17 @@
                             redirectTo: 'root'
                         }
                     } 
-                    
+                    ,
+                    resolve: {
+                        featureDetailPrepService: featureDetailPrepService 
+                    }
                 }) 
         });
-        
+        featureDetailPrepService.$inject = ['FeatureResource','$stateParams']
+        function featureDetailPrepService(FeatureResource,$stateParams) {
+            return FeatureResource.getFeature({featureId: $stateParams.featureId}).$promise;
+        }
+
         InvetationsPrepService.$inject = ['InvetationResource']
         function InvetationsPrepService(InvetationResource) {
             return InvetationResource.getAllActivatedInvetations({pageSize:0}).$promise;

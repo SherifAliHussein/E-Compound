@@ -46,6 +46,8 @@
             "ConfirmPasswordLbl":"Confirm password",            
             "AddFeatureBtn":"Add feature",
             "AddRestaurantFeatureBtn":"Add restaurant feature",
+            "AddInvitionFeatureBtn":"Add invitition feature",
+            "AddTicketFeatureBtn":"Add Ticket feature",
             "newFeatureLbl":"New Feature",
             "UpdateFeatureLbl":"Update Feature",
             "hasDetailsLbl":"Has details?",
@@ -110,6 +112,7 @@
             "RejectBtn":"Reject",
             "RequestDetailLbl":"Request detail",
             "NumberLbl":"Count",
+            "invetationTypeLbl":"invetation Type",
             "roomName":"Room name",
             "RoomPasswordLbl":"Room Password",
             "Pending":"Pending",
@@ -348,7 +351,10 @@
             "units":"Units",
             "NoUnitAvailable":"No Unit Available",
             "AddUnitLbl":"Add Unit",
-            "UnitNameLbl":"Unit Name"
+            "UnitNameLbl":"Unit Name",
+            "idType":"id Type",
+            "idNumber":"id Number",
+            "username":"username",
         }
         
         var ar_translations = {
@@ -407,6 +413,8 @@
             "MinimumMsg":"علي الاقل",
             "AddFeatureBtn":"اضف خدمة",
             "AddRestaurantFeatureBtn":"اضف خدمة المطعم",
+            "AddInvitionFeatureBtn":"اضف خدمة الدعوات", 
+            "AddTicketFeatureBtn":" اضف خدمة", 
             "newFeatureLbl":"خدمة جديده",
             "UpdateFeatureLbl":"تحديث خدمة",
             "hasDetailsLbl":"هل لديه تفاصيل؟",
@@ -470,6 +478,7 @@
             "RejectBtn":"رفض",
             "RequestDetailLbl":"تفاصيل الطلب",
             "NumberLbl":"عدد",
+            "invetationTypeLbl":"نوع الدعوه",
             "roomName":"اسم الغرفه",
             "RoomPasswordLbl":"كلمة مرور الغرفة",
             "Pending":"قيد الانتظار",
@@ -703,7 +712,10 @@
             "applyFilterBtn":"تطبيق التصفية",
             "Reports":"تقارير",
             "ExportCsvBtn":"csv تصدير الى",
-            "downloadBtn":"تحميل"
+            "downloadBtn":"تحميل",
+            "idType":"id Type",
+            "idNumber":"id Number",
+            "username":"الاسم",
         }
         
         $translateProvider.translations('en-us',en_translations);

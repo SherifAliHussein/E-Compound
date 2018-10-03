@@ -14,7 +14,7 @@
         vm.rooms = [{roomId:0,roomName:"All rooms"}];
         vm.selectedRoom = vm.rooms[0];
         vm.rooms = vm.rooms.concat(roomsNamePrepService);
-
+console.log( vm.requests)
         
         vm.features = [{featureId:0,featureNameDictionary:{'en-us':"All features",'ar-eg':"كل الميزات"}}];
         vm.selectedFeature = vm.features[0];

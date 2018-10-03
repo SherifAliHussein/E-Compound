@@ -18,7 +18,7 @@ namespace E_Compound.DAL.Entities.Model
         public string Name { get; set; }
 
         [ForeignKey("Creater")]
-        public long CreationBy { get; set; }
+        public long? CreationBy { get; set; }
         public virtual Admin Creater { get; set; }
         [Column(TypeName = "datetime2")]
         public DateTime CreateTime { get; set; }

@@ -2,6 +2,8 @@
     <div style="margin-bottom:10px">
         <button  ng-click="$state.go('newFeature');" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddFeatureBtn' | translate}}</button>
         <button ng-disabled="featureCtrl.featureAsRestaurant.featureId != null"  ng-click="$state.go('newFeatureRestaurant');" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddRestaurantFeatureBtn' | translate}}</button>
+        <button ng-disabled="featureCtrl.featureAsInvitation.featureId != null"  ng-click="$state.go('newFeatureInvetition');" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddInvitionFeatureBtn' | translate}}</button>
+        <button ng-disabled="featureCtrl.featureAsTicket.featureId != null"  ng-click="$state.go('newFeatureInvetition');" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddTicketFeatureBtn' | translate}}</button>
         
     </div>
     
@@ -42,6 +44,7 @@
                         <td width="30%">
                             <i ng-if="feature.type=='Normal'" class="material-icons md-dark pmd-md cursorPointer font25" ng-click="$state.go('editFeature',{featureId: feature.featureId});">mode_edit</i> 
                             <i ng-if="feature.type=='Restaurant'" class="material-icons md-dark pmd-md cursorPointer font25" ng-click="$state.go('editFeatureRestaurant',{featureId: feature.featureId});">mode_edit</i> 
+                            <i ng-if="feature.type=='Invetation'" class="material-icons md-dark pmd-md cursorPointer font25" ng-click="$state.go('editFeatureInvetition',{featureId: feature.featureId});">mode_edit</i> 
                             <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="featureCtrl.openDeleteFeatureDialog(feature.featureNameDictionary[selectedLanguage],feature.featureId)">delete</i>
                         </td>
                     </tr>

@@ -3,16 +3,18 @@
 	
     angular
         .module('home')
-        .controller('featureController', ['$scope','$stateParams','$translate', 'appCONSTANTS', 'controlEnum','$uibModal', 'FeatureResource','ActivateFeatureResource','DeactivateFeatureResource','featuresPrepService','featureAsRestaurantPrepService','ToastService',  featureController])
+        .controller('featureController', ['$scope','$stateParams','$translate', 'appCONSTANTS', 'controlEnum','$uibModal', 'FeatureResource','ActivateFeatureResource','DeactivateFeatureResource','featuresPrepService','featureAsRestaurantPrepService','featureAsInvitationPrepService','featureAsTicketPrepService','ToastService',  featureController])
 
-    function featureController($scope,$stateParams ,$translate , appCONSTANTS, controlEnum,$uibModal, FeatureResource,ActivateFeatureResource,DeactivateFeatureResource,featuresPrepService,featureAsRestaurantPrepService,ToastService){
+    function featureController($scope,$stateParams ,$translate , appCONSTANTS, controlEnum,$uibModal, FeatureResource,ActivateFeatureResource,DeactivateFeatureResource,featuresPrepService,featureAsRestaurantPrepService,featureAsInvitationPrepService,featureAsTicketPrepService,ToastService){
 
         var vm = this;
         vm.features = featuresPrepService;
 		vm.Now = $scope.getCurrentTime();
 		vm.control = controlEnum;
 		vm.featureAsRestaurant = featureAsRestaurantPrepService;
-		console.log(featureAsRestaurantPrepService)
+		vm.featureAsInvitation = featureAsInvitationPrepService;
+		vm.featureAsTicket = featureAsTicketPrepService;
+		console.log(vm.features)
 		$('.pmd-sidebar-nav>li>a').removeClass("active")
 		//$($('.pmd-sidebar-nav').children()[0].children[0]).addClass("active")
 		
