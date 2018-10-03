@@ -251,6 +251,7 @@
     <Compile Include="Services\Interfaces\IMenuFacade.cs" />
     <Compile Include="Services\Interfaces\IFeedBackFacade.cs" />
     <Compile Include="Services\Interfaces\IRefreshTokenFacade.cs" />
+    <Compile Include="Services\Interfaces\InvetationFacade.cs" />
     <Compile Include="Services\Interfaces\IRequestFacade.cs" />
     <Compile Include="Services\Interfaces\IRestaurantFacade.cs" />
     <Compile Include="Services\Interfaces\IRoomFacade.cs" />
@@ -266,6 +267,7 @@
     <Compile Include="Services\ManageStorage\ManageStorage.cs" />
     <Compile Include="Services\MenuFacade.cs" />
     <Compile Include="Services\RefreshTokenFacade.cs" />
+    <Compile Include="Services\InvetationFacade.cs" />
     <Compile Include="Services\RequestFacade.cs" />
     <Compile Include="Services\RestaurantFacade.cs" />
     <Compile Include="Services\RoomFacade.cs" />

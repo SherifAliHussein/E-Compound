@@ -253,6 +253,7 @@
     <Compile Include="Controllers\FloorsController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\MenusController.cs" />
+    <Compile Include="Controllers\InvetationController.cs" />
     <Compile Include="Controllers\RequestsController.cs" />
     <Compile Include="Controllers\RestaurantsController.cs" />
     <Compile Include="Controllers\RoomsController.cs" />

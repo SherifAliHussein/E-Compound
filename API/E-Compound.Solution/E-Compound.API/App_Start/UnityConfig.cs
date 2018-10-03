@@ -67,6 +67,11 @@ namespace E_Compound.API
                 .RegisterType<IFeedBackFacade, FeedBackFacade>(new PerResolveLifetimeManager())
                 .RegisterType<IBuildingFacade, BuildingFacade>(new PerResolveLifetimeManager())
                 .RegisterType<IFloorFacade, FloorFacade>(new PerResolveLifetimeManager())
+                .RegisterType<IFeaturesBackgroundFacade, FeaturesBackgroundFacade>(new PerResolveLifetimeManager())
+                .RegisterType<IInvetationFacade, InvetationFacade>(new PerResolveLifetimeManager())
+                
+                ;
+
                 .RegisterType<IUnitTypeFacade, UnitTypeFacade>(new PerResolveLifetimeManager())
                 .RegisterType<IUserCategoryFacade, UserCategoryFacade>(new PerResolveLifetimeManager())
                 .RegisterType<IUnitFacade, UnitFacade>(new PerResolveLifetimeManager())

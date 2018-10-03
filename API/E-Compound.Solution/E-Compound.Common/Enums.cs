@@ -27,7 +27,9 @@ namespace E_Compound.Common
         public enum FeatureType
         {
             Normal,
-            Restaurant
+            Restaurant,
+            Invetation,
+            Ticket
         }
 
         public enum Control
