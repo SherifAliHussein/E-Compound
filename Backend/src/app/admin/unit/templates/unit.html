@@ -21,8 +21,9 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="unit in unitList.results">
-                            <td  data-title="Name" width="20%">{{unit.Name}}</td>
-                            <td  data-title="Name" width="20%">{{(unitTypeList | filter : {unitTypeId:unit.unitTypeId})[0].titleDictionary[selectedLanguage]}}
+                            <td  data-title="Name" width="20%">{{unit.name}}</td>
+                            <td  data-title="Name" width="20%">{{unit.unitType.titleDictionary[selectedLanguage]}}</td>
+                            <!-- <td  data-title="Name" width="20%">{{(unitTypeList | filter : {unitTypeId:unit.unitTypeId})[0].titleDictionary[selectedLanguage]}} -->
                             <td ng-class="{'red-text': user.isActive == false }" width="15%">
                                 <i class="material-icons md-dark pmd-md cursorPointer font25" ng-click="unitCtrl.UpdateUnit(unit)">mode_edit</i>
                                 <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="unitCtrl.DeleteUnit(unit.unitId)">delete</i>

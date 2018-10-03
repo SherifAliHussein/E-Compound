@@ -3,15 +3,15 @@
 
     angular
         .module('home')
-        .controller('addUnitController', ['$rootScope', '$scope', '$filter', 'unitTypesPagingPrepService', 'AddUnitResource','UnitPagingResource', 'callBackFunction', '$translate', '$uibModal','$uibModalInstance', '$state', '$localStorage', 'authorizationService', 'appCONSTANTS', 'ToastService', addUnitController]);
+        .controller('addUnitController', ['$rootScope', '$scope', '$filter', 'selectedLanguage', 'unitTypesPagingPrepService', 'AddUnitResource','UnitPagingResource', 'callBackFunction', '$translate', '$uibModal','$uibModalInstance', '$state', '$localStorage', 'authorizationService', 'appCONSTANTS', 'ToastService', addUnitController]);
 
 
-    function addUnitController($rootScope, $scope, $filter, unitTypesPagingPrepService, AddUnitResource, UnitPagingResource, callBackFunction, $translate, $uibModal, $uibModalInstance, $state, $localStorage, authorizationService, appCONSTANTS, ToastService) {
+    function addUnitController($rootScope, $scope, $filter, selectedLanguage, unitTypesPagingPrepService, AddUnitResource, UnitPagingResource, callBackFunction, $translate, $uibModal, $uibModalInstance, $state, $localStorage, authorizationService, appCONSTANTS, ToastService) {
         var vm = this;
         $scope.unitList;
-      //  $scope.selectedLanguage = selectedLanguage;
+        $scope.selectedLanguage = selectedLanguage;
         $scope.unitTypeList = unitTypesPagingPrepService;
-        $scope.language = appCONSTANTS.supportedLanguage;
+       // $scope.language = appCONSTANTS.supportedLanguage;
 
         $scope.changeId=function (val){
             $scope.getId=val;
@@ -41,6 +41,7 @@
         $scope.AddNewUnit = function () {
             var newUnit = new AddUnitResource();
             newUnit.Name = $scope.Name;
+            newUnit.UnitTypeId = $scope.unitType.unitTypeId;
 
             newUnit.$addUnit().then(
                 function (data, status) {

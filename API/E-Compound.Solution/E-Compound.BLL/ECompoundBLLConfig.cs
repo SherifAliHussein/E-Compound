@@ -45,6 +45,16 @@ namespace E_Compound.BLL
 
             mapperConfiguration.CreateMap<UnitTypeTranslationDto, UnitTypeTranslation>().ReverseMap();
 
+
+            mapperConfiguration.CreateMap<UserCategoryDto, UserCategory>()
+                .ForMember(dto => dto.UserCategoryTranslations, m => m.MapFrom(src => src.TitleDictionary.Select(x => new UserCategoryTranslation() { Name = x.Value, Language = x.Key }).ToList()));
+
+            mapperConfiguration.CreateMap<UserCategory, UserCategoryDto>()
+                .ForMember(dto => dto.TitleDictionary,
+                    m => m.MapFrom(src => src.UserCategoryTranslations.ToDictionary(translation => translation.Language.ToLower(), translation => translation.Name)));
+
+            mapperConfiguration.CreateMap<UserCategoryTranslationDto, UserCategoryTranslation>().ReverseMap();
+
             mapperConfiguration.CreateMap<Unit, UnitDto>().ReverseMap();
 
             mapperConfiguration.CreateMap<FeatureDto, Feature>()
@@ -302,6 +312,8 @@ namespace E_Compound.BLL
                 .RegisterType<IBranchService, BranchService>(new PerResolveLifetimeManager())
                 .RegisterType<IBranchTranslationService, BranchTranslationService>(new PerResolveLifetimeManager())
                 .RegisterType<IUnitTypeService, UnitTypeService>(new PerResolveLifetimeManager())
+                .RegisterType<IUserCategoryService, UserCategoryService>(new PerResolveLifetimeManager())
+                .RegisterType<IUserCategoryTranslationService, UserCategoryTranslationService>(new PerResolveLifetimeManager())
                 .RegisterType<IUnitTypeTranslationService, UnitTypeTranslationService>(new PerResolveLifetimeManager())
                 .RegisterType<IUnitService, UnitService>(new PerResolveLifetimeManager())
                 .RegisterType<IFeedBackService, FeedBackService>(new PerResolveLifetimeManager())

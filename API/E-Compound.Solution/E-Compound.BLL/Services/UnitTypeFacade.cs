@@ -16,13 +16,15 @@ namespace E_Compound.BLL.Services
     public class UnitTypeFacade : BaseFacade, IUnitTypeFacade
     {
         private IUnitTypeService _unitTypeService;
+        private IUnitService _unitService;
         private IUnitTypeTranslationService _unitTypeTranslationService;
 
 
-        public UnitTypeFacade(IUnitTypeService unitTypeService, IUnitTypeTranslationService unitTypeTranslationService, IUnitOfWorkAsync unitOfWork) : base(unitOfWork)
+        public UnitTypeFacade(IUnitTypeService unitTypeService, IUnitService unitService, IUnitTypeTranslationService unitTypeTranslationService, IUnitOfWorkAsync unitOfWork) : base(unitOfWork)
         {
             _unitTypeService = unitTypeService;
             _unitTypeTranslationService = unitTypeTranslationService;
+            _unitService = unitService;
         }
 
         public PagedResultsDto GetAllPagingUnitTypes(long userId, int page, int pageSize)
@@ -39,10 +41,13 @@ namespace E_Compound.BLL.Services
             return Mapper.Map<List<UnitTypeDto>>(unitTypes);
         }
 
-        public void DeleteUnitType(long unitTypeId)
+        public void DeleteUnitType(long userId, long unitTypeId)
         {
             var unitType = _unitTypeService.Find(unitTypeId);
             if (unitType == null) throw new NotFoundException(ErrorCodes.UnitTypeNotFound);
+
+            var hasRelation = _unitService.RelationValidation(userId, unitTypeId);
+            if (hasRelation != null) throw new NotFoundException(ErrorCodes.UnitTypeHasRelation);
             unitType.IsDeleted = true;
             _unitTypeService.Update(unitType);
             SaveChanges();
@@ -55,6 +60,7 @@ namespace E_Compound.BLL.Services
             unitType.CreateTime = DateTime.Now;
             unitType.CreationBy = userId;
             unitType.IsDeleted = false;
+            unitType.Limit = unitTypeDto.Limit;
 
             _unitTypeTranslationService.InsertRange(unitType.UnitTypeTranslations);
             _unitTypeService.Insert(unitType);
@@ -67,7 +73,9 @@ namespace E_Compound.BLL.Services
             if (unitType == null) throw new NotFoundException(ErrorCodes.UnitTypeNotFound);
 
             unitType.ModifyTime = DateTime.Now;
+            unitType.Limit = unitTypeDto.Limit;
             unitType.ModifiedBy = userId;
+
             _unitTypeService.Update(unitType);
 
             var unitTypeTrans = _unitTypeTranslationService.GetTransByUnitTypeId(unitType.UnitTypeId);

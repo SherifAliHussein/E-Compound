@@ -30,6 +30,18 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <hr>
+
+                            <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+                                <label for="first-name">{{'Limit' | translate}}</label>
+                                <input required type="text" class="mat-input form-control" name="limit" ng-pattern="/^[0-9]*$/" ng-model="editUnitTypeCtrl.unitTypeObj.limit" ng-minlength="1" ng-maxlength="2">
+                                <div ng-messages="newUnitTypeForm.limit.$error" class="error">
+                                    <div ng-show="newUnitTypeForm.limit.$error.pattern">{{'NumbersOnly' | translate}}</div>
+                                    <div ng-if="newUnitTypeForm.limit.$error.required && !newUnitTypeForm.limit.$pristine">{{'LimitReqError' | translate}}</div>
+                                    <div ng-if="(newUnitTypeForm.limit.$error.minlength || newUnitTypeForm.limit.$error.maxlength)">{{'LimitLengthError' | translate}}</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

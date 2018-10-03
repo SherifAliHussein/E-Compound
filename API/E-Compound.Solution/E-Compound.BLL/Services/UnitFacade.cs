@@ -16,9 +16,11 @@ namespace E_Compound.BLL.Services
     public class UnitFacade : BaseFacade, IUnitFacade
     {
         private IUnitService _unitService;
-        public UnitFacade(IUnitService unitService, IUnitOfWorkAsync unitOfWork) : base(unitOfWork)
+        private IRoomService _roomService;
+        public UnitFacade(IUnitService unitService, IRoomService roomService, IUnitOfWorkAsync unitOfWork) : base(unitOfWork)
         {
             _unitService = unitService;
+            _roomService = roomService;
         }
 
         public PagedResultsDto GetAllPagingUnits(long userId, int page, int pageSize)
@@ -51,6 +53,18 @@ namespace E_Compound.BLL.Services
             unit.UnitTypeId = unitDto.UnitTypeId;
             _unitService.Update(unit);
             
+            SaveChanges();
+        }
+
+        public void DeleteUnit(long userId, long unitId)
+        {
+            var unit = _unitService.Find(unitId);
+            if (unit == null) throw new NotFoundException(ErrorCodes.UnitNotFound);
+
+            var hasRelation = _roomService.RelationValidation(userId, unitId);
+            if (hasRelation != null) throw new NotFoundException(ErrorCodes.UnitHasRelation);
+            unit.IsDeleted = true;
+            _unitService.Update(unit);
             SaveChanges();
         }
     }

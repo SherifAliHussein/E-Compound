@@ -29,5 +29,14 @@ namespace E_Compound.DAL.Entities.Model
         public virtual Admin Modifier { get; set; }
         [Column(TypeName = "datetime2")]
         public DateTime ModifyTime { get; set; }
+
+
+        [ForeignKey("Deleter")]
+        public long? DeletedBy { get; set; }
+        public virtual Admin Deleter { get; set; }
+        [Column(TypeName = "datetime2")]
+        public DateTime DeleteTime { get; set; }
+        public bool IsDeleted { get; set; }
+        public bool IsActive { get; set; }
     }
 }

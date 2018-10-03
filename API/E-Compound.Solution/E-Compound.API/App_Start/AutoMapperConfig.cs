@@ -35,6 +35,8 @@ namespace E_Compound.API.App_Start
             mapperConfiguration.CreateMap<UnitTypeDto, UnitTypeModel>().ReverseMap();
             mapperConfiguration.CreateMap<UnitDto, UnitModel>().ReverseMap();
 
+            mapperConfiguration.CreateMap<UserCategoryDto, UserCategoryModel>().ReverseMap();
+
             mapperConfiguration.CreateMap<FeatureInfoDto, FeatureInfoModel>();
             
 

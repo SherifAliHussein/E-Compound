@@ -32,5 +32,12 @@ namespace E_Compound.BLL.DataServices
         {
             return _repository.Query(x => !x.IsDeleted && x.PackageId == packageId).Select().Count();
         }
+
+        public Room RelationValidation(long userId, long unitId)
+        {
+            var room = _repository.Query(x => x.UnitId == unitId).Select()
+                .FirstOrDefault();
+            return room;
+        }
     }
 }

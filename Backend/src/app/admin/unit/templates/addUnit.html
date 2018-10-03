@@ -19,19 +19,11 @@
 
             <div class="form-group pmd-textfield pmd-textfield-floating-label">
                 <label for="first-name">{{'UnitType' | translate}}</label>
-                <select class="form-control" style="width:50% !important" ng-model="UnitType" 
+                <select class="form-control" style="width:50% !important" ng-model="unitType" 
                     ng-options="unitType as unitType.titleDictionary[selectedLanguage] for unitType in unitTypeList">
                 </select>
             </div>
 
-            {{selectedLanguage}}
-
-            {{unitTypeList[0].titleDictionary}}
-            <div ng-repeat="x in unitTypeList">
-                {{x.titleDictionary[selectedLanguage]}}
-            </div>
-
-            sadfg
         </form>
         <div class="pmd-modal-action text-right">
             <button ng-disabled="newUnitForm.$invalid" class="btn pmd-ripple-effect btn-primary" type="button" ng-click="AddNewUnit()">{{'saveChangesBtn' | translate}}</button>

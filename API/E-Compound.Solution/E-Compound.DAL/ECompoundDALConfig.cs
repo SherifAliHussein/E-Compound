@@ -44,6 +44,8 @@ namespace E_Compound.DAL
                 .RegisterType<IRepositoryAsync<Room>, Repository<Room>>(new PerResolveLifetimeManager())
                 .RegisterType<IRepositoryAsync<UnitType>, Repository<UnitType>>(new PerResolveLifetimeManager())
                 .RegisterType<IRepositoryAsync<UnitTypeTranslation>, Repository<UnitTypeTranslation>>(new PerResolveLifetimeManager())
+                .RegisterType<IRepositoryAsync<UserCategory>, Repository<UserCategory>>(new PerResolveLifetimeManager())
+                .RegisterType<IRepositoryAsync<UserCategoryTranslation>, Repository<UserCategoryTranslation>>(new PerResolveLifetimeManager())
                 .RegisterType<IRepositoryAsync<Unit>, Repository<Unit>>(new PerResolveLifetimeManager())
                 .RegisterType<IRepositoryAsync<Request>, Repository<Request>>(new PerResolveLifetimeManager())
                 .RegisterType<IRepositoryAsync<RequestDetail>, Repository<RequestDetail>>(

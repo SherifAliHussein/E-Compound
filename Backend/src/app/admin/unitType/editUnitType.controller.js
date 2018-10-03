@@ -27,6 +27,7 @@
             var newUnitType = new UpdateUnitTypeResource();
             newUnitType.TitleDictionary = vm.unitTypeObj.titleDictionary;
             newUnitType.UnitTypeId = vm.unitTypeObj.unitTypeId;           
+            newUnitType.Limit = vm.unitTypeObj.limit;           
            
             newUnitType.$updateUnitType().then(
                 function (data, status) {

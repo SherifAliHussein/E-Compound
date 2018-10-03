@@ -9,6 +9,9 @@ namespace E_Compound.Common.CustomException
     public enum ErrorCodes
     {
         UserNotFound,
+        UserCategoryNotFound,
+        UnitHasRelation,
+        UnitTypeHasRelation,
         EmptyFeatureName,
         FeatureNameExceedLength,
         FeatureNameAlreadyExist,

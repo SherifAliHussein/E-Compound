@@ -124,12 +124,16 @@
     <Compile Include="Entities\Model\Size.cs" />
     <Compile Include="Entities\Model\SizeTranslation.cs" />
     <Compile Include="Entities\Model\Supervisor.cs" />
+    <Compile Include="Entities\Model\SupervisorCategory.cs" />
     <Compile Include="Entities\Model\SupervisorFeature.cs" />
+    <Compile Include="Entities\Model\Technician.cs" />
     <Compile Include="Entities\Model\Template.cs" />
     <Compile Include="Entities\Model\Unit.cs" />
     <Compile Include="Entities\Model\UnitType.cs" />
     <Compile Include="Entities\Model\UnitTypeTranslation.cs" />
     <Compile Include="Entities\Model\User.cs" />
+    <Compile Include="Entities\Model\UserCategory.cs" />
+    <Compile Include="Entities\Model\UserCategoryTranslation.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

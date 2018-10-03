@@ -22,9 +22,16 @@ namespace E_Compound.BLL.DataServices
         {
             PagedResultsDto results = new PagedResultsDto();
             results.TotalCount = _repository.Queryable().Count(x => x.CreationBy == userId);
-            results.Data = Mapper.Map<List<Unit>, List<UnitDto>>(_repository.Query(x => x.CreationBy == userId).Select().OrderBy(x => x.UnitId).Skip((page - 1) * pageSize)
+            results.Data = Mapper.Map<List<Unit>, List<UnitDto>>(_repository.Query(x => x.CreationBy == userId && !x.IsDeleted).Select().OrderBy(x => x.UnitId).Skip((page - 1) * pageSize)
                 .Take(pageSize).ToList());
             return results;
+        }
+
+        public Unit RelationValidation(long userId, long unitTypeId)
+        {
+            var unit = _repository.Query(x => x.UnitTypeId == unitTypeId && x.CreationBy == userId).Select()
+                .FirstOrDefault();
+            return unit;
         }
     }
 }

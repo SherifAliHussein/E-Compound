@@ -10,7 +10,7 @@ namespace E_Compound.BLL.DTOs
     {
         public long UnitTypeId { get; set; }
         
-        public List<UnitDto> Units { get; set; }
+        //public List<UnitDto> Units { get; set; }
         public int Limit { get; set; }
         public long CreationBy { get; set; }
         public DateTime CreateTime { get; set; }

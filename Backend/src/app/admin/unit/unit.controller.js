@@ -10,7 +10,7 @@
         var vm = this;
      
         $scope.unitList = unitPagingPrepService;
-        $scope.unitTypeList = unitTypesPagingPrepService;
+        //$scope.unitTypeList = unitTypesPagingPrepService;
          
         function refreshUnits(){
 			var k = UnitPagingResource.getAllPagingUnits({page:vm.currentPage}).$promise.then(function(results) {
@@ -36,7 +36,7 @@
             },
             
             function(data, status) {
-				ToastService.show("right","bottom","fadeInUp",data.message,"error");
+				ToastService.show("right","bottom","fadeInUp",data.data.message,"error");
             });
         }
 
@@ -48,7 +48,9 @@
                 controllerAs: 'editUnitCtrl',
                 resolve:{
                     Unit: function(){return unit},
-                    callBackFunction:function(){return refreshUnits;}
+                    callBackFunction:function(){return refreshUnits;},
+                    selectedLanguage : function(){return $scope.selectedLanguage;},
+                    unitTypesPagingPrepService : function(){return unitTypesPagingPrepService;}
                 }
             });
         }
@@ -61,7 +63,7 @@
                 resolve:{
                     callBackFunction: function(){return refreshUnits;},
                     unitTypesPagingPrepService : function(){return unitTypesPagingPrepService;},
-                    //selectedLanguage : function(){return selectedLanguage;}
+                    selectedLanguage : function(){return $scope.selectedLanguage;}
                 }
 
             });

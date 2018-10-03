@@ -52,5 +52,14 @@ namespace E_Compound.API.Controllers
             _unitFacade.UpdateUnit(UserId, Mapper.Map<UnitDto>(unitModel));
             return Ok();
         }
+
+        [AuthorizeRoles(Enums.RoleType.Admin)]
+        [Route("api/Units/{unitId:long}", Name = "DeleteUnit")]
+        [HttpDelete]
+        public IHttpActionResult DeleteUnit(long unitId)
+        {
+            _unitFacade.DeleteUnit(UserId, unitId);
+            return Ok();
+        }
     }
 }

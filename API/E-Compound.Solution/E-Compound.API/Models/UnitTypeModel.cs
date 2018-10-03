@@ -9,7 +9,7 @@ namespace E_Compound.API.Models
     {
         public long UnitTypeId { get; set; }
         public List<UnitTypeTranslationModel> UnitTypeTranslations { get; set; }
-        public List<UnitModel> Units { get; set; }
+        //public List<UnitModel> Units { get; set; }
         public int Limit { get; set; }
         public long CreationBy { get; set; }
         public AdminModel Creater { get; set; }

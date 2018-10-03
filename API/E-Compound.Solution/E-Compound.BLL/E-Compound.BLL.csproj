@@ -145,6 +145,8 @@
     <Compile Include="DataServices\Interfaces\IUnitService.cs" />
     <Compile Include="DataServices\Interfaces\IUnitTypeService.cs" />
     <Compile Include="DataServices\Interfaces\IUnitTypeTranslationService.cs" />
+    <Compile Include="DataServices\Interfaces\IUserCategoryService.cs" />
+    <Compile Include="DataServices\Interfaces\IUserCategoryTranslationService.cs" />
     <Compile Include="DataServices\Interfaces\IUserService.cs" />
     <Compile Include="DataServices\ItemService.cs" />
     <Compile Include="DataServices\ItemSideItemService.cs" />
@@ -175,6 +177,8 @@
     <Compile Include="DataServices\TemplateService.cs" />
     <Compile Include="DataServices\UnitService.cs" />
     <Compile Include="DataServices\UnitTypeService.cs" />
+    <Compile Include="DataServices\UserCategoryService.cs" />
+    <Compile Include="DataServices\UserCategoryTranslationService.cs" />
     <Compile Include="DataServices\UserService.cs" />
     <Compile Include="DTOs\AdminDto.cs" />
     <Compile Include="DTOs\AvailableDto.cs" />
@@ -221,6 +225,8 @@
     <Compile Include="DTOs\UnitDto.cs" />
     <Compile Include="DTOs\UnitTypeDto.cs" />
     <Compile Include="DTOs\UnitTypeTranslationDto.cs" />
+    <Compile Include="DTOs\UserCategoryDto.cs" />
+    <Compile Include="DTOs\UserCategoryTranslationDto.cs" />
     <Compile Include="DTOs\UserConsumed.cs" />
     <Compile Include="DTOs\UserDto.cs" />
     <Compile Include="ECompoundBLLConfig.cs" />
@@ -253,6 +259,7 @@
     <Compile Include="Services\Interfaces\ITemplateFacade.cs" />
     <Compile Include="Services\Interfaces\IUnitFacade.cs" />
     <Compile Include="Services\Interfaces\IUnitTypeFacade.cs" />
+    <Compile Include="Services\Interfaces\IUserCategoryFacade.cs" />
     <Compile Include="Services\Interfaces\IUserFacade.cs" />
     <Compile Include="Services\ItemFacade.cs" />
     <Compile Include="Services\ManageStorage\IManageStorage.cs" />
@@ -267,6 +274,7 @@
     <Compile Include="Services\TemplateFacade.cs" />
     <Compile Include="Services\UnitFacade.cs" />
     <Compile Include="Services\UnitTypeFacade.cs" />
+    <Compile Include="Services\UserCategoryFacade.cs" />
     <Compile Include="Services\UserFacade.cs" />
   </ItemGroup>
   <ItemGroup />

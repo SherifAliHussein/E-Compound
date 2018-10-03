@@ -70,7 +70,7 @@ namespace E_Compound.API.Controllers
         [HttpDelete]
         public IHttpActionResult DeleteUnitType(long unitTypeId)
         {
-            _unitTypeFacade.DeleteUnitType(unitTypeId);
+            _unitTypeFacade.DeleteUnitType(UserId, unitTypeId);
             return Ok();
         }
     }

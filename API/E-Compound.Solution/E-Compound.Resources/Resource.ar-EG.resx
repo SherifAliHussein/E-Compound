@@ -273,6 +273,12 @@
   <data name="SizeNameAlreadyExist" xml:space="preserve">
     <value>هذا الحجم موجود بالفعل</value>
   </data>
+  <data name="UnitHasRelation" xml:space="preserve">
+    <value>هناك تترابط بين الممستخدم و الوحده</value>
+  </data>
+  <data name="UnitTypeHasRelation" xml:space="preserve">
+    <value>هناك تترابط بين نوع الوحدة و الوحده</value>
+  </data>
   <data name="UserDeactivated" xml:space="preserve">
     <value>المستخدم غير مفعل</value>
   </data>

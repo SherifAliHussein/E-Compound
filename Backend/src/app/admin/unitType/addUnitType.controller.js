@@ -41,6 +41,7 @@
         $scope.AddNewUnitType = function () {
             var newUnitType = new AddUnitTypeResource();
             newUnitType.TitleDictionary = vm.titleDictionary;
+            newUnitType.Limit = $scope.Limit;
 
             newUnitType.$addUnitType().then(
                 function (data, status) {

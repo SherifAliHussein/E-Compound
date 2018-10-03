@@ -348,10 +348,26 @@
             "units":"Units",
             "NoUnitAvailable":"No Unit Available",
             "AddUnitLbl":"Add Unit",
-            "UnitNameLbl":"Unit Name"
+            "UnitNameLbl":"Unit Name",
+            "Unit":"Unit",
+            "UpdateUnitLbl":"Update Unit",
+            "Limit":"Invitees' Limit",
+            "TextOnly":"Text Only",
+            "NumbersOnly":"Numbers Only",
+            "LimitReqError":"Invitees' Limit Required",
+            "LimitLengthError":"Limit should be from 1:2 numbers",
+            "NameLengthError":"number of characters should be between 2:10"
         }
         
         var ar_translations = {
+            "NameLengthError":"عدد الحروف يجب ان يكون بين 2:10 حروف",
+            "LimitLengthError":"حد المدعويين يجب ان يكون من 1:2 ارقام",
+            "LimitReqError":"الحد الأقصي للمدعويين مطلوب",
+            "NumbersOnly":"ارقام فقط",
+            "TextOnly":"حروف فقط",
+            "Limit":"الحد الأقصي للمدعويين",
+            "UpdateUnitLbl":"تعديل الوحدة",
+            "Unit":"الوحده",
             "UnitNameLbl":"اسم الوحده",
             "AddUnitLbl":"اضافة وحده",
             "NoUnitAvailable":"لا يوجد وحدات متاحه",

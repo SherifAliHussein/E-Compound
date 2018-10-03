@@ -12,5 +12,6 @@ namespace E_Compound.BLL.Services.Interfaces
         PagedResultsDto GetAllPagingUnits(long userId, int page, int pageSize);
         void AddUnit(UnitDto unitDto, long userId);
         void UpdateUnit(long userId, UnitDto unitDto);
+        void DeleteUnit(long userId, long unitId);
     }
 }

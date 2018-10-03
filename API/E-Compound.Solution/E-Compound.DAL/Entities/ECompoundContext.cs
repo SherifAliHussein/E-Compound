@@ -135,9 +135,13 @@ namespace E_Compound.DAL.Entities
                 .HasRequired(c => c.Creater)
                 .WithMany()
                 .WillCascadeOnDelete(false);
-
-
+            
             modelBuilder.Entity<Unit>()
+                .HasRequired(c => c.Creater)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<UserCategory>()
                 .HasRequired(c => c.Creater)
                 .WithMany()
                 .WillCascadeOnDelete(false);
