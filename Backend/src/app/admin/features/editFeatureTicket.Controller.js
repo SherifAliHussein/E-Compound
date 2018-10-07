@@ -3,16 +3,33 @@
 	
     angular
         .module('home')
-        .controller('editFeatureInvitationController', ['$scope','$state','$http','$translate','appCONSTANTS', 'FeatureResource','ToastService','featurePrepService',   editFeatureInvitationController])
+        .controller('editFeatureTicketController', ['$scope','$state','$http','$translate','appCONSTANTS', 'FeatureResource','ToastService','featurePrepService','TicketsNamePrepService',  editFeatureTicketController])
 
-	function editFeatureInvitationController($scope, $state ,$http, $translate,appCONSTANTS, FeatureResource,ToastService, featurePrepService, callBackFunction){
+	function editFeatureTicketController($scope, $state ,$http, $translate,appCONSTANTS, FeatureResource,ToastService, featurePrepService,TicketsNamePrepService,callBackFunction){
 		var vm = this;
 		vm.language = appCONSTANTS.supportedLanguage;
 		
-		vm.feature = featurePrepService; 
-        vm.SelectedInvitationId=[];
-        vm.SelectedInvitation = [];
-      
+		vm.feature = featurePrepService;
+        vm.Tickets = TicketsNamePrepService;
+        vm.SelectedTicketId=[];
+        vm.SelectedTicket = [];
+        featurePrepService.Tickets.forEach(function(element) {
+			var kk = vm.Tickets.filter(function(item){
+				return (item.TicketId ===  element.TicketId);
+              })[0];
+              
+			vm.SelectedTicketId.push(element.TicketId)
+			vm.SelectedTicket.push(element)
+        }, this);
+        vm.TicketChange = function(){
+			vm.SelectedTicket = []
+			for(var i=0;i<vm.SelectedTicketId.length;i++){
+				var Ticket = vm.Tickets.filter(function(item){
+					return (item.TicketId ===  vm.SelectedTicketId[i]);
+				})[0]
+				vm.SelectedTicket.push(Ticket)  
+			}
+		}
 		vm.close = function(){
 			$state.go('features');
 		}
@@ -34,10 +51,11 @@
             updateFeature.hasDetails = vm.feature.hasDetails;
 			updateFeature.featureId = vm.feature.featureId;
 			updateFeature.isImageChange = isImageChange;
-            updateFeature.type = "2"; 
-            updateFeature.Invitations = [];
-			vm.SelectedInvitation.forEach(function(element) {
-                updateFeature.Invitations.push(element);
+            updateFeature.type = "1";
+            // updateFeature.Tickets = vm.feature.Tickets;
+            updateFeature.Tickets = [];
+			vm.SelectedTicket.forEach(function(element) {
+                updateFeature.Tickets.push(element);
 			}, this);
 			
 			var model = new FormData();

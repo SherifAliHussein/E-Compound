@@ -3,9 +3,9 @@
 	
     angular
         .module('home')
-        .controller('newFeatureInvitationController', ['$scope','$state','appCONSTANTS','$http','$translate' , 'FeatureResource','ToastService',   newFeatureInvitationController])
+        .controller('newFeatureTicketController', ['$scope','$state','appCONSTANTS','$http','$translate' , 'FeatureResource','ToastService','TicketsNamePrepService',  newFeatureTicketController])
 
-	function newFeatureInvitationController($scope, $state , appCONSTANTS,$http, $translate , FeatureResource,ToastService){
+	function newFeatureTicketController($scope, $state , appCONSTANTS,$http, $translate , FeatureResource,ToastService,TicketsNamePrepService){
 		var vm = this;
         vm.language = appCONSTANTS.supportedLanguage;
         
@@ -13,9 +13,10 @@
             $state.go('features');            
 		}
         vm.isChanged = false;
-        vm.isFree=false; 
+        vm.isFree=false;
+        vm.Tickets = TicketsNamePrepService;
         vm.currentPage = 0;
-        vm.SelectedInvitation = [];
+        vm.SelectedTicket = [];
         vm.changePage = function(page){
             vm.currentPage = page-1;
         }
@@ -30,8 +31,8 @@
             var newFeature = new FeatureResource();
             newFeature.featureNameDictionary = vm.featureNameDictionary;
             newFeature.hasDetails = true;
-            newFeature.type = "2";
-            newFeature.Invitations = vm.SelectedInvitation;
+            newFeature.type = "1";
+            newFeature.Tickets = vm.SelectedTicket;
             var model = new FormData();
 			model.append('data', JSON.stringify(newFeature));
 			model.append('file', featureImage);
@@ -73,7 +74,8 @@
                         var reader = new FileReader();
 
                         reader.onloadend = function () {
-                            vm.featureImage = reader.result; 
+                            vm.featureImage = reader.result;
+                            // $scope.Photo = reader.result;
                             $scope.$apply();
                         };
                         if (logoFile) {

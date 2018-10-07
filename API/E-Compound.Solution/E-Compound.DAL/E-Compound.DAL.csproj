@@ -118,7 +118,6 @@
     <Compile Include="Entities\Model\RestaurantType.cs" />
     <Compile Include="Entities\Model\RestaurantTypeTranslation.cs" />
     <Compile Include="Entities\Model\RestaurantWaiter.cs" />
-    <Compile Include="Entities\Model\Technician.cs" />
     <Compile Include="Entities\Model\Room.cs" />
     <Compile Include="Entities\Model\SideItem.cs" />
     <Compile Include="Entities\Model\SideItemTranslation.cs" />
@@ -127,6 +126,7 @@
     <Compile Include="Entities\Model\Supervisor.cs" />
     <Compile Include="Entities\Model\SupervisorCategory.cs" />
     <Compile Include="Entities\Model\SupervisorFeature.cs" />
+    <Compile Include="Entities\Model\Technician.cs" />
     <Compile Include="Entities\Model\Template.cs" />
     <Compile Include="Entities\Model\Unit.cs" />
     <Compile Include="Entities\Model\UnitType.cs" />
