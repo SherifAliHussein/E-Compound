@@ -356,10 +356,18 @@
             "NumbersOnly":"Numbers Only",
             "LimitReqError":"Invitees' Limit Required",
             "LimitLengthError":"Limit should be from 1:2 numbers",
-            "NameLengthError":"number of characters should be between 2:10"
+            "NameLengthError":"number of characters should be between 2:10",
+            "userCategories":"User Categories",
+            "AddUserCategoryLbl":"Add User Category",
+            "NoUserCategoryAvailable":"No Category Available",
+            "UpdateUserCategoryLbl":"Update User Category",
         }
         
         var ar_translations = {
+            "UpdateUserCategoryLbl":"تعديل اقسام المستخدمين",
+            "NoUserCategoryAvailable":"لا يوجد اقسام المسخدمين",
+            "AddUserCategoryLbl":"اضافة اقسام المسخدمين",
+            "userCategories":"اقسام المسخدمين",
             "NameLengthError":"عدد الحروف يجب ان يكون بين 2:10 حروف",
             "LimitLengthError":"حد المدعويين يجب ان يكون من 1:2 ارقام",
             "LimitReqError":"الحد الأقصي للمدعويين مطلوب",
