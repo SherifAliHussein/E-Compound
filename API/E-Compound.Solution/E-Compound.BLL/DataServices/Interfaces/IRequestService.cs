@@ -14,5 +14,6 @@ namespace E_Compound.BLL.DataServices.Interfaces
         List<Request> GetAllRequestsBySupervisor(long userId, int page, int pageSize, long roomId, long featureId, DateTime fromDateTime, DateTime toDateTime);
         List<Request> GetAllRequestsByReceptionist(long userId, int page, int pageSize, long roomId, long featureId, DateTime fromDateTime, DateTime toDateTime);
         List<Request> GetAllRequestsByWaiter(long restaurantId, int page, int pageSize, long roomId, DateTime fromDateTime, DateTime toDateTime);
+        List<Request> GetAllRequestsByRoom(long roomId, int page, int pageSize, long featureId, DateTime fromDateTime, DateTime toDateTime);
     }
 }

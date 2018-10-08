@@ -87,6 +87,15 @@ namespace E_Compound.BLL.Services
                                                            && x.CreateTime >= fromDateTime && x.CreateTime <= toDateTime).Select().Count();
                 requests = Mapper.Map<List<RequestDto>>(_requestService.GetAllRequestsByAdmin(userId, page, pageSize, roomId,featureId, fromDateTime, toDateTime));
             }
+            else if (role == Enums.RoleType.Room.ToString())
+            {
+                DateTime fromDateTime = !String.IsNullOrEmpty(from) ? DateTime.Parse(from) : DateTime.MinValue;
+                DateTime toDateTime = !String.IsNullOrEmpty(to) ? DateTime.Parse(to) : DateTime.MaxValue;
+                requestsCount = _requestService.Query(x => x.CreationBy == userId 
+                                                           && (featureId <= 0 || x.FeatureId == featureId)
+                                                           && x.CreateTime >= fromDateTime && x.CreateTime <= toDateTime).Select().Count();
+                requests = Mapper.Map<List<RequestDto>>(_requestService.GetAllRequestsByRoom(userId, page, pageSize, featureId, fromDateTime, toDateTime));
+            }
             else if (role == Enums.RoleType.Supervisor.ToString())
             {
                 //var supervisor = _supervisorService.Find(userId);

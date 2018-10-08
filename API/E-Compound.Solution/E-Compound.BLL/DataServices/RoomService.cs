@@ -28,9 +28,9 @@ namespace E_Compound.BLL.DataServices
             return _repository.Queryable().Any(u => u.UserName.ToLower() == userName.ToLower() && !u.IsDeleted && u.UserId != userId && u.AdminId == adminId);
         }
 
-        public int GetRoomCountByPackageId(long packageId)
-        {
-            return _repository.Query(x => !x.IsDeleted && x.PackageId == packageId).Select().Count();
-        }
+        //public int GetRoomCountByPackageId(long packageId)
+        //{
+        //    return _repository.Query(x => !x.IsDeleted && x.PackageId == packageId).Select().Count();
+        //}
     }
 }

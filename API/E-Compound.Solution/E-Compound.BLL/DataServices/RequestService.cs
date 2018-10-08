@@ -34,6 +34,22 @@ namespace E_Compound.BLL.DataServices
             return requests;
         }
 
+        public List<Request> GetAllRequestsByRoom(long roomId, int page, int pageSize, long featureId, DateTime fromDateTime, DateTime toDateTime)
+        {
+            List<Request> requests;
+            if (pageSize > 0)
+                requests = _repository.Query(x => x.CreationBy == roomId  && (featureId <= 0 || x.FeatureId == featureId)
+                                                  && x.CreateTime >= fromDateTime && x.CreateTime <= toDateTime).Select()
+                    .OrderBy(x => x.Status).ThenByDescending(x => x.CreateTime).Skip((page - 1) * pageSize)
+                    .Take(pageSize).ToList();
+            else
+                requests = _repository.Query(x => x.CreationBy == roomId && (featureId <= 0 || x.FeatureId == featureId)
+                                                  && x.CreateTime >= fromDateTime && x.CreateTime <= toDateTime).Select()
+                    .OrderBy(x => x.Status).ThenByDescending(x => x.CreateTime).ToList();
+
+            return requests;
+        }
+
         public List<Request> GetAllRequestsBySupervisor(long userId, int page, int pageSize, long roomId, long featureId, DateTime fromDateTime, DateTime toDateTime)
         {
             List<Request> requests;

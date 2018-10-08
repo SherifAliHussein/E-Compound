@@ -60,8 +60,8 @@ namespace E_Compound.BLL.Services
             if (user.Role == Enums.RoleType.Room)
             {
                 var room = _roomService.Find(user.UserId);
-                if (DateTime.Now.Date > room.Package.End.Date) throw new ValidationException(ErrorCodes.PackageExpired);
-                if (DateTime.Now.Date < room.Package.Start.Date) throw new ValidationException(ErrorCodes.PackageNotActivated);
+                //if (DateTime.Now.Date > room.Package.End.Date) throw new ValidationException(ErrorCodes.PackageExpired);
+                //if (DateTime.Now.Date < room.Package.Start.Date) throw new ValidationException(ErrorCodes.PackageNotActivated);
             }
             return user;
 

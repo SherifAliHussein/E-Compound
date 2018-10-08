@@ -93,32 +93,32 @@ namespace E_Compound.BLL.Services
             room.Role = Enums.RoleType.Room;
             room.IsActive = true;
 
-            Package package;
+            //Package package;
 
-            var packages = _packageService.Query(x => x.AdminId== room.AdminId).Include(x => x.Rooms).Select().ToList();
-            package = packages.OrderBy(x => x.Start).FirstOrDefault();
-            int count = 1;
-            while (true)
-            {
-                if (package.MaxNumberOfRooms > package.Rooms.Count(x => !x.IsDeleted))
-                {
-                    break;
-                }
-                //else
-                //{
-                //    consumedWaiters = consumedWaiters - package.MaxNumberOfWaiters;
-                //}
+            //var packages = _packageService.Query(x => x.AdminId== room.AdminId).Include(x => x.Rooms).Select().ToList();
+            //package = packages.OrderBy(x => x.Start).FirstOrDefault();
+            //int count = 1;
+            //while (true)
+            //{
+            //    if (package.MaxNumberOfRooms > package.Rooms.Count(x => !x.IsDeleted))
+            //    {
+            //        break;
+            //    }
+            //    //else
+            //    //{
+            //    //    consumedWaiters = consumedWaiters - package.MaxNumberOfWaiters;
+            //    //}
 
-                package = packages.OrderBy(x => x.Start).Skip(count).FirstOrDefault();
-                count++;
-            }
-            room.PackageId = package.PackageId;
+            //    package = packages.OrderBy(x => x.Start).Skip(count).FirstOrDefault();
+            //    count++;
+            //}
+            //room.PackageId = package.PackageId;
 
             _roomService.Insert(room);
             SaveChanges();
 
             //UpdateSubscription(adminId, package.PackageGuid, package.Rooms.Count(x => !x.IsDeleted));
-            UpdateSubscription(adminId, package.PackageGuid, _roomService.GetRoomCountByPackageId(package.PackageId));
+            //UpdateSubscription(adminId, package.PackageGuid, _roomService.GetRoomCountByPackageId(package.PackageId));
 
         }
         public void UpdateRoom(RoomDto roomDto, long adminId)
@@ -128,8 +128,11 @@ namespace E_Compound.BLL.Services
 
             ValidateRoom(roomDto, adminId);
             room.UserName = roomDto.RoomName;
-            room.BuildingId = roomDto.BuildingId;
-            room.FloorId = roomDto.FloorId;
+            room.FirstName = roomDto.FirstName;
+            room.LastName = roomDto.LastName;
+            room.Phone = roomDto.Phone;
+            room.Email = roomDto.Email;
+            room.UnitId = roomDto.UnitId;
             room.Password = PasswordHelper.Encrypt(roomDto.Password);
             _roomService.Update(room);
             SaveChanges();
@@ -159,10 +162,10 @@ namespace E_Compound.BLL.Services
             room.IsActive = false;
             _roomService.Update(room);
             SaveChanges();
-            var package = _packageService.Query(x => x.PackageId == room.PackageId).Include(x => x.Rooms)
-                .Select().FirstOrDefault(); 
+            //var package = _packageService.Query(x => x.PackageId == room.PackageId).Include(x => x.Rooms)
+            //    .Select().FirstOrDefault(); 
             //UpdateSubscription(package.AdminId, package.PackageGuid, package.Rooms.Count(x => !x.IsDeleted));
-            UpdateSubscription(package.AdminId, package.PackageGuid, _roomService.GetRoomCountByPackageId(package.PackageId));
+            //UpdateSubscription(package.AdminId, package.PackageGuid, _roomService.GetRoomCountByPackageId(package.PackageId));
 
         }
 
