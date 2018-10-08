@@ -13,5 +13,7 @@ namespace E_Compound.BLL.DataServices.Interfaces
         List<Feature> GetAllFeaturesAdminId(long adminId, int page, int pageSize);
         List<Feature> GetAllActiveFeaturesAdminId(long adminId, int page, int pageSize);
         Feature CheckFeatureAsRestaurant(long adminId);
+        Feature CheckFeatureAsInvitation(long adminId);
+        Feature CheckFeatureAsTicket(long adminId);
     }
 }

@@ -12,5 +12,10 @@ namespace E_Compound.BLL.DTOs
         public long UnitTypeId { get; set; }
         public  UnitTypeDto UnitType { get; set; }
         public string Name { get; set; }
+        public long CreationBy { get; set; }
+        public DateTime CreateTime { get; set; }
+        public long? ModifiedBy { get; set; }
+        public DateTime ModifyTime { get; set; }
+        public bool IsLimit { get; set; }
     }
 }

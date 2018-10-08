@@ -1,0 +1,41 @@
+
+<div>
+        <div style="margin-bottom:10px">
+            <button ng-click="unitCtrl.AddUnit()" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddUnitLbl' | translate}}</button>
+        </div>
+    
+        <div ng-if="unitList.results.length == 0">
+            <span>{{'NoUnitAvailable' | translate}}</span>
+        </div>
+    
+        <div class="pmd-card pmd-z-depth pmd-card-custom-view" ng-if=" unitList.results.length >0">
+    
+           
+            <div class="table-responsive">
+                <table class="table pmd-table table-hover">
+                    <thead>
+                        <tr>
+                            <th>{{'Unit' | translate}}</th>
+                            <th>{{'UnitType' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="unit in unitList.results">
+                            <td  data-title="Name" width="20%">{{unit.name}}</td>
+                            <td  data-title="Name" width="20%">{{unit.unitType.titleDictionary[selectedLanguage]}}</td>
+                            <!-- <td  data-title="Name" width="20%">{{(unitTypeList | filter : {unitTypeId:unit.unitTypeId})[0].titleDictionary[selectedLanguage]}} -->
+                            <td ng-class="{'red-text': user.isActive == false }" width="15%">
+                                <i class="material-icons md-dark pmd-md cursorPointer font25" ng-click="unitCtrl.UpdateUnit(unit)">mode_edit</i>
+                                <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="unitCtrl.DeleteUnit(unit.unitId)">delete</i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    
+        </div>
+        <div style="text-align:center;" paging page="1" page-size="10" total="unitList.totalCount" paging-action="unitCtrl.changePage(page)"
+             flex="nogrow" show-prev-next="true" show-first-last="true" hide-if-empty="true" disabled-class="hide">
+        </div>
+    </div>
+    

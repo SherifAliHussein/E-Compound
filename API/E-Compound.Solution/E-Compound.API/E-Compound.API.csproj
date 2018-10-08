@@ -253,13 +253,16 @@
     <Compile Include="Controllers\FloorsController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\MenusController.cs" />
+    <Compile Include="Controllers\InvetationController.cs" />
     <Compile Include="Controllers\RequestsController.cs" />
     <Compile Include="Controllers\RestaurantsController.cs" />
     <Compile Include="Controllers\RoomsController.cs" />
     <Compile Include="Controllers\SideItemsController.cs" />
     <Compile Include="Controllers\SizesController.cs" />
     <Compile Include="Controllers\TemplatesController.cs" />
+    <Compile Include="Controllers\UnitController.cs" />
     <Compile Include="Controllers\UnitTypeController.cs" />
+    <Compile Include="Controllers\UserCategoriesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WaitersController.cs" />
     <Compile Include="Infrastructure\ActionResult\PagedResponseActionResult.cs" />
@@ -311,6 +314,8 @@
     <Compile Include="Models\UnitModel.cs" />
     <Compile Include="Models\UnitTypeModel.cs" />
     <Compile Include="Models\UnitTypeTranslationModel.cs" />
+    <Compile Include="Models\UserCategoryModel.cs" />
+    <Compile Include="Models\UserCategoryTranslationModel.cs" />
     <Compile Include="Models\UserConsumedModel.cs" />
     <Compile Include="Models\UserHubModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

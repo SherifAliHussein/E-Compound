@@ -232,7 +232,7 @@
             return authorizationService.isLoggedIn();
         }
         $scope.isRestaurantPage = function () {
-            var ff = $state.current.name!='Features' && $state.current.name!='featureDetail';
+            var ff = $state.current.name!='Features' && $state.current.name!='featureDetail' && $state.current.name!='Invetations';
             return ff;
         }
         $scope.changeLanguage = function (language) {

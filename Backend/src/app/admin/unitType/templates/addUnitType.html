@@ -1,0 +1,56 @@
+<div class="modal-content">
+    <div class="modal-header bordered">
+        <button class="close" type="button" ng-click="addUnitTypeCtrl.close()">×</button>
+        <h2 class="pmd-card-title-text">{{'AddUnitTypeLbl' | translate}}</h2>
+    </div>
+
+    <div class="modal-body">
+        <form class="form-horizontal" name="newUnitTypeForm">
+            <div> 
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" ng-class="{'active':$index == 0}" ng-repeat="lang in language">
+                        <a href="javascript:void(0);" data-target="#{{lang.value}}-form" aria-controls="home" role="tab" data-toggle="tab">
+                            {{lang.value | translate}}
+                        </a>
+                    </li> 
+                </ul>
+                <div class="pmd-card">
+                    <div class="pmd-card-body">
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tablist" class="tab-pane" ng-class="{'active':$index == 0}" ng-repeat="lang in language" id="{{lang.value}}-form">
+                                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                    <label for="first-name"> {{ 'Title' | translate}} </label>
+                                    <!-- <label for="first-name">{{'Title' | translate}}</label> -->
+                                    <input type="text" class="mat-input form-control" name="titleDictionary{{lang.value+'Title'}}" ng-pattern="/^(\D)+$/" ng-model="addUnitTypeCtrl.titleDictionary[lang.key]" ng-minlength="2" ng-maxlength="10">
+                                    <div ng-messages="newUnitTypeForm.titleDictionary{{lang.value+'Title'}}.$error" class="error">
+                                            <div ng-show="newUnitTypeForm.titleDictionary{{lang.value+'Title'}}.$error.pattern">{{'TextOnly' | translate}}</div>
+                                            <!-- <div ng-if="newCurrencyForm.title.$error.required && !newCurrencyForm.title.$pristine">{{'requiredErr' | translate}}</div> -->
+                                            <div ng-show="newUnitTypeForm.titleDictionary{{lang.value+'Title'}}.$error.minlength || newUnitTypeForm.titleDictionary{{lang.value+'Title'}}.$error.maxlength">{{'NameLengthError' | translate}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                <label for="first-name">{{'Limit' | translate}}</label>
+                                <input required type="text" class="mat-input form-control" name="limit" ng-pattern="/^[0-9]*$/" ng-model="Limit" ng-minlength="1" ng-maxlength="2">
+                                <div ng-messages="newUnitTypeForm.limit.$error" class="error">
+                                    <div ng-show="newUnitTypeForm.limit.$error.pattern">{{'NumbersOnly' | translate}}</div>
+                                    <div ng-if="newUnitTypeForm.limit.$error.required && !newUnitTypeForm.limit.$pristine">{{'LimitReqError' | translate}}</div>
+                                    <div ng-if="(newUnitTypeForm.limit.$error.minlength || newUnitTypeForm.limit.$error.maxlength)">{{'LimitLengthError' | translate}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </form>
+
+        <div class="pmd-modal-action text-right">
+            <button ng-disabled="newUnitTypeForm.$invalid" class="btn pmd-ripple-effect btn-primary" type="button" ng-click="AddNewUnitType()">{{'saveChangesBtn' | translate}}</button>
+        </div>
+
+    </div>
+</div>

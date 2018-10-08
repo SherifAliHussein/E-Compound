@@ -24,7 +24,6 @@
 			newRestaurant.restaurantNameDictionary = vm.restaurantNameDictionary;
 			newRestaurant.restaurantDescriptionDictionary = vm.restaurantDescriptionDictionary;
 			newRestaurant.restaurantTypeId = vm.selectedType.restaurantTypeId;
-		//	newRestaurant.waitersLimit = vm.restaurantNumOfUsers;
 			var model = new FormData();
 			model.append('data', JSON.stringify(newRestaurant));
 			model.append('file', restaurantLogo);
@@ -43,23 +42,6 @@
 				    ToastService.show("right", "bottom", "fadeInUp", data.data.message, "error");
 				}
 			);
-
-            // var newRestaurant = new RestaurantResource();
-            // newRestaurant.restaurantAdminUserName = vm.restaurantAdmin;
-            // newRestaurant.restaurantAdminPassword = vm.restaurantAdminPassword;
-            // newRestaurant.restaurantName = vm.restaurantName;
-            // newRestaurant.restaurantDescription = vm.restaurantDescription;
-            // newRestaurant.restaurantTypeId = vm.selectedType.restaurantTypeId;
-            // newRestaurant.Image = restaurantLogo;
-            // newRestaurant.$create().then(
-            //     function(data, status) {
-            // 		ToastService.show("right","bottom","fadeInUp","restaurant added successfully.","success");
-            // 		$state.go('restaurants');
-            //     },
-            //     function(data, status) {
-            // 		ToastService.show("right","bottom","fadeInUp",data.data.message,"error");
-            //     }
-            // );
 		}
 		
 
@@ -83,7 +65,6 @@
 
                         reader.onloadend = function () {
                             vm.restaurantLogo = reader.result;
-                            // $scope.Photo = reader.result;
                             $scope.$apply();
                         };
                         if (logoFile) {

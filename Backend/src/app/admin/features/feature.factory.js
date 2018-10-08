@@ -12,6 +12,8 @@
         getAllActivatedFeatures: {url: appCONSTANTS.API_URL + 'Features/Activated', method: 'GET', useToken: true },        
         getAllFeaturesName: {url:appCONSTANTS.API_URL + 'Features/Name', method: 'GET', useToken: true,isArray:true },
         checkFeatureAsRestaurant: {url: appCONSTANTS.API_URL + 'Features/Restaurant', method: 'GET', useToken: true },
+        checkFeatureAsInvitation: {url: appCONSTANTS.API_URL + 'Features/Invitation', method: 'GET', useToken: true },
+        CheckFeatureAsTicket: {url: appCONSTANTS.API_URL + 'Features/Ticket', method: 'GET', useToken: true },
         getFeature: { method: 'GET', useToken: true },
         create: { method: 'POST', useToken: true },
         deleteFeature: { method: 'DELETE', useToken: true },

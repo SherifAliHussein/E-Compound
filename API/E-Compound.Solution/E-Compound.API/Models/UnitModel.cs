@@ -11,5 +11,9 @@ namespace E_Compound.API.Models
         public long UnitTypeId { get; set; }
         public UnitTypeModel UnitType { get; set; }
         public string Name { get; set; }
+        public long CreationBy { get; set; }
+        public DateTime CreateTime { get; set; }
+        public long? ModifiedBy { get; set; }
+        public DateTime ModifyTime { get; set; }
     }
 }

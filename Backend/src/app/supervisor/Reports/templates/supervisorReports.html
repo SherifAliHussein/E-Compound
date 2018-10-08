@@ -112,36 +112,55 @@
                                                     </th>
                                                 </tr>
                                                 <tr>
-                                                    <th ng-if="request.type=='Normal'">{{'DescriptionLbl' | translate}}</th>
-                                                    <th ng-if="request.type=='Restaurant'">{{'itemlbl' | translate}}</th>
-                                                    <th>{{'NumberLbl' | translate}}</th>
-                                                    <th>{{'priceLbl' |translate}}</th>
-                                                    <th>{{'totalpriceLbl'|translate}}</th>
-                                                </tr>
+                                            <th ng-if="request.type=='Normal'">{{'DescriptionLbl' | translate}}</th>
+                                            <th ng-if="request.type=='Restaurant'">{{'itemlbl' | translate}}</th>
+                                            <th ng-if="request.type=='Invetation'">{{'username' | translate}}</th>
+
+                                            <th ng-if="request.type=='Invetation'">{{'idType' | translate}}</th>
+                                            <th ng-if="request.type=='Invetation'">{{'idNumber' | translate}}</th>
+                                            <th ng-if="request.type=='Restaurant'" ng-if="request.type=='Normal'">{{'NumberLbl'
+                                                | translate}}</th>
+
+                                            <th ng-if="request.type=='Restaurant'" ng-if="request.type=='Normal'">{{'priceLbl'
+                                                |translate}}</th>
+                                            <th ng-if="request.type=='Restaurant'" ng-if="request.type=='Normal'">{{'totalpriceLbl'|translate}}</th>
+                                        </tr>
                                             </thead>
                                             <tbody>
-                                            <tr ng-repeat="requestDetail in request.requestDetails">
-                                                <td>{{requestDetail.descriptionDictionary[selectedLanguage]}}
-                                                        <div ng-show="requestDetail.from != null">{{'from'|translate}}: {{requestDetail.from}}</div>
-                                                        
-                                                        <div ng-show="requestDetail.to != null">{{'to'|translate}}:
-                                                            {{requestDetail.to}}                                    
-                                                        </div>  </td>
-                                                <td>{{requestDetail.number}}</td>
-                                                <td>
-                                                    <span ng-if="requestDetail.price <= 0">{{'freelbl' |translate}}</span>
-                                                    <span ng-if="requestDetail.price > 0">{{requestDetail.price}}</span>
-                                                </td>
-                                                <td>
-                                                    <span ng-if="requestDetail.price <= 0">{{'freelbl' |translate}}</span>
-                                                    <span ng-if="requestDetail.price > 0">{{requestDetail.price * requestDetail.number}} </span>
-                                                </td>
-                                            </tr>
+                                                    <tr ng-repeat="requestDetail in request.requestDetails">
+                                            <td>{{requestDetail.descriptionDictionary[selectedLanguage]}}
+                                                {{requestDetail.name}}
+                                                <div ng-show="requestDetail.from != null">{{'from'|translate}}:
+                                                    {{requestDetail.from}}</div>
+
+                                                <div ng-show="requestDetail.to != null">{{'to'|translate}}:
+                                                    {{requestDetail.to}}
+                                                </div>
+                                            </td>
+                                            <td>{{requestDetail.idType}}</td>
+                                            <td>{{requestDetail.idNumber}}</td>
+                                            <td ng-if="request.type!='Invetation'">
+                                                <span ng-if="requestDetail.price <= 0">{{'freelbl' |translate}}</span>
+                                                <span ng-if="requestDetail.price > 0">{{requestDetail.price}}</span>
+                                            </td>
+                                            <td ng-if="request.type!='Invetation'">
+                                                <span ng-if="requestDetail.price <= 0">{{'freelbl' |translate}}</span>
+                                                <span ng-if="requestDetail.price > 0">{{requestDetail.price *
+                                                    requestDetail.number}} </span>
+                                            </td>
+                                        </tr>
                                             
                                         </tbody>
                                     </table>
                                 </div>
-                                
+                                <div style="background: white;padding: 5px;" ng-if="request.count !== null">
+                                <h2>{{'NumberLbl'|translate}}: </h2>
+                                <span>{{request.count}}</span>
+                            </div>
+                            <div style="background: white;padding: 5px;" ng-if="request.invetationType !== null">
+                                <h2>{{'invetationTypeLbl'|translate}}: </h2>
+                                <span>{{request.invetationType}}</span>
+                            </div>
                                 <div style="background: white;padding: 5px;" ng-if="request.comment !== null"> 
                                     <h2>{{'Comment'|translate}}: </h2>
                                     <span>{{request.comment}}</span>

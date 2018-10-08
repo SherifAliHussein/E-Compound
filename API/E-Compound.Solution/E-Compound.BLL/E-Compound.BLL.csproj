@@ -145,6 +145,8 @@
     <Compile Include="DataServices\Interfaces\IUnitService.cs" />
     <Compile Include="DataServices\Interfaces\IUnitTypeService.cs" />
     <Compile Include="DataServices\Interfaces\IUnitTypeTranslationService.cs" />
+    <Compile Include="DataServices\Interfaces\IUserCategoryService.cs" />
+    <Compile Include="DataServices\Interfaces\IUserCategoryTranslationService.cs" />
     <Compile Include="DataServices\Interfaces\IUserService.cs" />
     <Compile Include="DataServices\ItemService.cs" />
     <Compile Include="DataServices\ItemSideItemService.cs" />
@@ -175,6 +177,8 @@
     <Compile Include="DataServices\TemplateService.cs" />
     <Compile Include="DataServices\UnitService.cs" />
     <Compile Include="DataServices\UnitTypeService.cs" />
+    <Compile Include="DataServices\UserCategoryService.cs" />
+    <Compile Include="DataServices\UserCategoryTranslationService.cs" />
     <Compile Include="DataServices\UserService.cs" />
     <Compile Include="DTOs\AdminDto.cs" />
     <Compile Include="DTOs\AvailableDto.cs" />
@@ -221,6 +225,8 @@
     <Compile Include="DTOs\UnitDto.cs" />
     <Compile Include="DTOs\UnitTypeDto.cs" />
     <Compile Include="DTOs\UnitTypeTranslationDto.cs" />
+    <Compile Include="DTOs\UserCategoryDto.cs" />
+    <Compile Include="DTOs\UserCategoryTranslationDto.cs" />
     <Compile Include="DTOs\UserConsumed.cs" />
     <Compile Include="DTOs\UserDto.cs" />
     <Compile Include="ECompoundBLLConfig.cs" />
@@ -245,6 +251,7 @@
     <Compile Include="Services\Interfaces\IMenuFacade.cs" />
     <Compile Include="Services\Interfaces\IFeedBackFacade.cs" />
     <Compile Include="Services\Interfaces\IRefreshTokenFacade.cs" />
+    <Compile Include="Services\Interfaces\InvetationFacade.cs" />
     <Compile Include="Services\Interfaces\IRequestFacade.cs" />
     <Compile Include="Services\Interfaces\IRestaurantFacade.cs" />
     <Compile Include="Services\Interfaces\IRoomFacade.cs" />
@@ -253,12 +260,14 @@
     <Compile Include="Services\Interfaces\ITemplateFacade.cs" />
     <Compile Include="Services\Interfaces\IUnitFacade.cs" />
     <Compile Include="Services\Interfaces\IUnitTypeFacade.cs" />
+    <Compile Include="Services\Interfaces\IUserCategoryFacade.cs" />
     <Compile Include="Services\Interfaces\IUserFacade.cs" />
     <Compile Include="Services\ItemFacade.cs" />
     <Compile Include="Services\ManageStorage\IManageStorage.cs" />
     <Compile Include="Services\ManageStorage\ManageStorage.cs" />
     <Compile Include="Services\MenuFacade.cs" />
     <Compile Include="Services\RefreshTokenFacade.cs" />
+    <Compile Include="Services\InvetationFacade.cs" />
     <Compile Include="Services\RequestFacade.cs" />
     <Compile Include="Services\RestaurantFacade.cs" />
     <Compile Include="Services\RoomFacade.cs" />
@@ -267,6 +276,7 @@
     <Compile Include="Services\TemplateFacade.cs" />
     <Compile Include="Services\UnitFacade.cs" />
     <Compile Include="Services\UnitTypeFacade.cs" />
+    <Compile Include="Services\UserCategoryFacade.cs" />
     <Compile Include="Services\UserFacade.cs" />
   </ItemGroup>
   <ItemGroup />
@@ -279,7 +289,7 @@
       <Name>E-Compound.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\E-Compound.DAL\E-Compound.DAL.csproj">
-      <Project>{6CB1CE2D-95DF-4C24-A371-1B8D979D76A5}</Project>
+      <Project>{6cb1ce2d-95df-4c24-a371-1b8d979d76a5}</Project>
       <Name>E-Compound.DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Frameworks\Repository.Pattern.Ef6\Repository.Pattern.Ef6.csproj">

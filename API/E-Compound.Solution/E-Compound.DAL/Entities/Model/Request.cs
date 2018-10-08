@@ -43,5 +43,12 @@ namespace E_Compound.DAL.Entities.Model
 
         public int Count { get; set; }
         public Enums.InvetationType InvetationType { get; set; }
+
+        public int Title { get; set; }
+        [Column(TypeName = "datetime2")]
+        public DateTime? AssignedTime { get; set; }
+
+        public Technician Technician { get; set; }
+
     }
 }

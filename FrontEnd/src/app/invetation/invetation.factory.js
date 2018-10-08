@@ -1,11 +1,11 @@
 (function() {
     angular
       .module('home')
-      .factory('CartResource', ['$resource', 'appCONSTANTS', CartResource])   
+      .factory('invetationResource', ['$resource', 'appCONSTANTS', invetationResource])   
 
-    function CartResource($resource, appCONSTANTS) {
-      return $resource(appCONSTANTS.API_URL + 'Items/:itemId', {}, {
-        getItemById: { method: 'GET', useToken: true, params:{lang:'@lang'} } 
+    function invetationResource($resource, appCONSTANTS) {
+      return $resource(appCONSTANTS.API_URL + 'Invetation/CheckUnitInvetationLimit', {}, {
+        CheckUnitInvetationLimit: { method: 'GET', useToken: true } 
       })
     }
      

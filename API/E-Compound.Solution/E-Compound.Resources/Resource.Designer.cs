@@ -826,6 +826,24 @@ namespace E_Compound.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unit Has Relation With User.
+        /// </summary>
+        public static string UnitHasRelation {
+            get {
+                return ResourceManager.GetString("UnitHasRelation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unit Type Has Relation With a Unit.
+        /// </summary>
+        public static string UnitTypeHasRelation {
+            get {
+                return ResourceManager.GetString("UnitTypeHasRelation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language is not supported..
         /// </summary>
         public static string UnSupportedLanguage {

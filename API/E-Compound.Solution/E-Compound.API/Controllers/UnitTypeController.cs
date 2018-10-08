@@ -37,6 +37,17 @@ namespace E_Compound.API.Controllers
         }
 
         [AuthorizeRoles(Enums.RoleType.Admin)]
+        [Route("api/UnitTypes", Name = "GetUnitTypes")]
+        [HttpGet]
+        [ResponseType(typeof(List<UnitTypeModel>))]
+        public IHttpActionResult GetUnitTypes()
+        {                                                                                                    //UserId
+            var unitTypes = Mapper.Map<List<UnitTypeModel>>(_unitTypeFacade.GetUnitTypes(UserId));
+
+            return Ok(unitTypes);
+        }
+
+        [AuthorizeRoles(Enums.RoleType.Admin)]
         [Route("api/UnitTypes", Name = "AddUnitType")]
         [HttpPost]
         public IHttpActionResult AddUnitType([FromBody] UnitTypeModel unitTypeModel)
@@ -59,7 +70,7 @@ namespace E_Compound.API.Controllers
         [HttpDelete]
         public IHttpActionResult DeleteUnitType(long unitTypeId)
         {
-            _unitTypeFacade.DeleteUnitType(unitTypeId);
+            _unitTypeFacade.DeleteUnitType(UserId, unitTypeId);
             return Ok();
         }
     }

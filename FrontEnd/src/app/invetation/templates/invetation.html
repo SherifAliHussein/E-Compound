@@ -1,72 +1,71 @@
 
-   <a class="back" href="javascript:void(0);"  ng-click="$state.go('menu',{featureId: $stateParams.featureId,restaurantId:$stateParams.restaurantId})">
-    <img alt="" />
-</a>
-<div class="container">
 
-    <form class="form-horizontal" name="invetationForm">
-        <div class="form-group pmd-textfield pmd-textfield-floating-label"> 
+<div class="main_field_3" style="background-color: #83bde6fa">
+  <div  style="padding: 10px;color: white;margin-top: -80px">
+          <img ng-src="{{feature.imageURL}}?type='thumbnail'" style="border-radius: 100px;"/>
+          <span>{{feature.featureNameDictionary[selectedLanguage]}}</span>
+      </div>
+      
+      
+<div class="container" style="    max-width: 50%;">
 
-            <label for="first-name">{{'countLbl' | translate}}</label>
-            <input required type="text" class="mat-input form-control" name="count" numbers-only ng-model="count" 
-            ng-minlength="1" ng-maxlength="3">
-            
-  <button class="addfields" ng-click="addNewChoice()">Add choice</button>
-   <div ng-messages="invetationForm.count.$error">
-                <div ng-if="invetationForm.count.$error.required && !invetationForm.count.$pristine">{{'countReqError' | translate}}</div>
-                <div ng-if="(invetationForm.count.$error.minlength || invetationForm.count.$error.maxlength)">{{'countLengthError' | translate}}</div>
-            </div>
-        </div>
-     <div class="form-group pmd-textfield pmd-textfield-floating-label"> 
+  <form name="invetationForm">
+    <div>
 
-        <fieldset data-ng-repeat="choice in choicesA">
-            <input type="text" ng-model="choice.name" name="username" placeholder="Enter Name">
-            <input type="text" ng-model="choice.name" name="idtype" placeholder="Enter ID Type">
-            <input type="text" ng-model="choice.name" name="id" placeholder="Enter ID">
-            <button class="remove" ng-click="removeChoice($index)">-</button>  
-          </fieldset>
+      <label for="first-name">{{'countLbl' | translate}} :</label>
+ 
+      <input required type="number" class="mat-input form-control" name="count"
+       numbers-only ng-model="count" onchange="addNewChoice()"style="width: 17%;"  ng-minlength="1" ng-maxlength="3">
 
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-           
-            <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                <label for="regular1" class="control-label">{{'startDateLbl' | translate}}</label>
-                <input type="text" id="startdate" class="form-control" required />
-            </div>
-   
-
+      <button class="btn pmd-ripple-effect btn-primary"  ng-click="addNewChoice()">{{'addcountLbl' | translate}} </button>
+      <div ng-messages="invetationForm.count.$error">
+        <div ng-if="invetationForm.count.$error.required && !invetationForm.count.$pristine">{{'countReqError'
+          | translate}}</div>
+        <div ng-if="(invetationForm.count.$error.minlength || invetationForm.count.$error.maxlength)">{{'countLengthError'
+          | translate}}</div>
+      </div>
     </div>
-        <div class="form-group pmd-textfield pmd-textfield-floating-label"> 
+    <div>
+      <br>
+      <fieldset data-ng-repeat="choice in countList">
+        <input type="text" ng-model="choice.name" name="username"  placeholder="Enter Name" required>
+        <input type="text" ng-model="choice.idtype" name="idtype" placeholder="Enter ID Type" required>
+        <input type="text" ng-model="choice.id" name="id" placeholder="Enter ID" required>
+        <button class="remove" ng-click="removeChoice($index)">-</button>
+      </fieldset>
+      <br>
+    </div> 
+      <div>
+        <label for="first-name">{{'date' | translate}} : </label>
+        <input type="datetime-local" data-ng-model="dateinvetation" style="width: 50%;"  class="mat-input form-control" ng-change="DateChange(dateinvetation)" />
+      </div>
+     <br>
 
-            <label for="first-name">{{'commentLbl' | translate}}</label>
-            <input required type="text" class="mat-input form-control" name="comment" numbers-only ng-model="comment" 
-            ng-minlength="1" ng-maxlength="3">
-            
-  <button class="addfields" ng-click="addNewChoice()">Add choice</button>
-   <div ng-messages="invetationForm.comment.$error">
-                <div ng-if="invetationForm.comment.$error.required && !invetationForm.comment.$pristine">{{'commentReqError' | translate}}</div>
-                <div ng-if="(invetationForm.comment.$error.minlength || invetationForm.comment.$error.maxlength)">{{'commentLengthError' | translate}}</div>
-            </div>
-        </div>
+    <div>
+      <label for="first-name">{{'invetationType' | translate}} : </label>
+      <input type="radio" ng-model="type" value="Single">Single
+      <input type="radio" ng-model="type" value="Family">Family
+    </div> 
+    <div>
+      <br>
+      <label for="first-name">{{'yourComment' | translate}}</label>
+      <textarea   type="text" class="mat-input form-control" name="comment"  ng-model="comment"></textarea>
 
-    </form>
-    <div class="pmd-modal-action text-right">
-        <button ng-disabled="invetationForm.$invalid" class="btn pmd-ripple-effect btn-primary" type="button" ng-click="createInvetation()">{{'NextLbl' | translate}}</button>
+
+      <div ng-messages="invetationForm.comment.$error">
+        <div ng-if="invetationForm.comment.$error.required && !invetationForm.comment.$pristine">{{'commentReqError'
+          | translate}}</div>
+        <div ng-if="(invetationForm.comment.$error.minlength || invetationForm.comment.$error.maxlength)">{{'commentLengthError'
+          | translate}}</div>
+      </div>
     </div>
+
+  </form>
+  <div class="pmd-modal-action text-right">
+    <button ng-disabled="invetationForm.$invalid" class="btn pmd-ripple-effect btn-primary" type="button" ng-click="createInvetation()">{{'requestbtn'
+      | translate}}</button>
+  </div>
 </div>
-
-<script type="text/javascript">
-    // $(function () {
-    //     $('#startdate').datetimepicker();
-    // });
-    $(function () {
-        $('#startdate').datetimepicker(
-            {
-                //   viewMode: 'years',
-                //  format: 'DD/MM/YYYY',
-                minDate: new Date()
-            }
-    );
-    });
-
-</script>
+      
+</div>
+ 

@@ -21,13 +21,16 @@ namespace E_Compound.Common
         {
             Pending,
             Approved,
-            Rejected
+            Rejected,
+            Assigned
         }
 
         public enum FeatureType
         {
             Normal,
-            Restaurant
+            Restaurant,
+            Invetation,
+            Ticket
         }
 
         public enum Control
