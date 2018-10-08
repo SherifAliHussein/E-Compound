@@ -80,6 +80,10 @@ namespace E_Compound.BLL
                 .ForMember(dto => dto.Features, m => m.MapFrom(src => src.SupervisorFeatures.Where(x=>!x.Feature.IsDeleted && x.Feature.IsActive).Select(x=>x.Feature).ToList())); 
             mapperConfiguration.CreateMap<SupervisorDto, Supervisor>();
 
+            mapperConfiguration.CreateMap<Technician, TechnicianDto>()
+                .ForMember(dto => dto.Password, m => m.MapFrom(src => PasswordHelper.Decrypt(src.Password)))
+                .ForMember(dto => dto.UserCategories, m => m.MapFrom(src => src.TechnicianCategories.Where(x => !x.UserCategory.IsDeleted && x.UserCategory.IsActive).Select(x => x.UserCategory).ToList()));
+            mapperConfiguration.CreateMap<TechnicianDto, Technician>();
 
             mapperConfiguration.CreateMap<RoomDto, Room>()
                 .ForMember(dto => dto.UserName, m => m.MapFrom(src => src.RoomName))
@@ -276,10 +280,12 @@ namespace E_Compound.BLL
             container.RegisterType<IUserService, UserService>(new PerResolveLifetimeManager())
                 .RegisterType<IRefreshTokenService, RefreshTokenService>(new PerResolveLifetimeManager())
                 .RegisterType<ISupervisorService, SupervisorService>(new PerResolveLifetimeManager())
+                .RegisterType<ITechnicianService, TechnicianService>(new PerResolveLifetimeManager())
                 .RegisterType<IReceptionistService, ReceptionistService>(new PerResolveLifetimeManager())
                 .RegisterType<IFeatureService, FeatureService>(new PerResolveLifetimeManager())
                 .RegisterType<IFeatureTranslationService, FeatureTranslationService>(new PerResolveLifetimeManager())
                 .RegisterType<ISupervisorFeatureService, SupervisorFeatureService>(new PerResolveLifetimeManager())
+                .RegisterType<ITechnicianCategoryService, TechnicianCategoryService>(new PerResolveLifetimeManager())
                 .RegisterType<IFeatureDetailService, FeatureDetailService>(new PerResolveLifetimeManager())
                 .RegisterType<IFeatureDetailTranslationService, FeatureDetailTranslationService>(new PerResolveLifetimeManager())
                 .RegisterType<IManageStorage, ManageStorage>(new PerResolveLifetimeManager())

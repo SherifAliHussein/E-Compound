@@ -15,7 +15,8 @@ namespace E_Compound.Common
             Receptionist,
             Room,
             RestaurantAdmin,
-            Waiter
+            Waiter,
+            Technician
         }
         public enum RequestStatus
         {

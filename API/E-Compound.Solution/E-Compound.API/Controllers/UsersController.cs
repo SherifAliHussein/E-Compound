@@ -162,6 +162,75 @@ namespace E_Compound.API.Controllers
         }
         #endregion
 
+        #region Technician
+        [AuthorizeRoles(Enums.RoleType.Admin)]
+        [Route("api/Users/Technician", Name = "AddTechnician")]
+        [HttpPost]
+        public IHttpActionResult AddTechnician([FromBody] TechnicianModel technicianModel)
+        {
+            _userFacade.AddTechnician(Mapper.Map<TechnicianDto>(technicianModel), UserId);
+            return Ok();
+        }
+
+
+        [AuthorizeRoles(Enums.RoleType.Admin)]
+        [Route("api/Users/Technician/", Name = "GetAllTechnicians")]
+        [HttpGet]
+        [ResponseType(typeof(List<TechnicianModel>))]
+        public IHttpActionResult GetAllTechnicians(int page = Page, int pagesize = PageSize)
+        {
+            PagedResultsDto users = _userFacade.GetAllUsers(UserId, page, pagesize, Enums.RoleType.Technician);
+            var data = Mapper.Map<List<TechnicianModel>>(users.Data);
+
+            return PagedResponse("GetAllTechnicians", page, pagesize, users.TotalCount, data);
+        }
+
+        [AuthorizeRoles(Enums.RoleType.Admin)]
+        [Route("api/Users/Technician/{technicianId:long}", Name = "GetTechnician")]
+        [HttpGet]
+        [ResponseType(typeof(TechnicianModel))]
+        public IHttpActionResult GetTechnician(long technicianId)
+        {
+            return Ok(Mapper.Map<TechnicianModel>(_userFacade.GetTechnician(technicianId)));
+        }
+
+        [AuthorizeRoles(Enums.RoleType.Admin)]
+        [Route("api/Users/Technician/{technicianId:long}", Name = "DeleteTechnician")]
+        [HttpDelete]
+        public IHttpActionResult DeleteTechnician(long technicianId)
+        {
+            _userFacade.DeleteTechnician(technicianId, UserId);
+            return Ok();
+        }
+
+        [AuthorizeRoles(Enums.RoleType.Admin)]
+        [Route("api/Users/Technician/{technicianId:long}/Activate", Name = "ActivateTechnician")]
+        [HttpGet]
+        public IHttpActionResult ActivateTechnician(long technicianId)
+        {
+            _userFacade.ActivateTechnician(technicianId, UserId);
+            return Ok();
+        }
+
+        [AuthorizeRoles(Enums.RoleType.Admin)]
+        [Route("api/Users/Technician/{technicianId:long}/DeActivate", Name = "DeActivateTechnician")]
+        [HttpGet]
+        public IHttpActionResult DeActivateTechnician(long technicianId)
+        {
+            _userFacade.DeActivateTechnician(technicianId, UserId);
+            return Ok();
+        }
+
+        [AuthorizeRoles(Enums.RoleType.Admin)]
+        [Route("api/Users/Technician", Name = "UpdateTechnician")]
+        [HttpPut]
+        public IHttpActionResult UpdateTechnician([FromBody] TechnicianModel technicianModel)
+        {
+            _userFacade.UpdateTechnician(Mapper.Map<TechnicianDto>(technicianModel), UserId);
+            return Ok();
+        }
+        #endregion
+
         [AuthorizeRoles(Enums.RoleType.Admin)]
         [Route("api/Users/GetMaxAndConUsers", Name = "GetMaxAndConUsers")]
         [HttpGet]

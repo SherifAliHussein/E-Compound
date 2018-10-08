@@ -6,7 +6,8 @@
       .factory('UnitTypeResource', ['$resource', 'appCONSTANTS', UnitTypeResource])
       .factory('AddUnitResource', ['$resource', 'appCONSTANTS', AddUnitResource])
       .factory('DeleteUnitResource', ['$resource', 'appCONSTANTS', DeleteUnitResource])
-      .factory('UpdateUnitResource', ['$resource', 'appCONSTANTS', UpdateUnitResource]);
+      .factory('UpdateUnitResource', ['$resource', 'appCONSTANTS', UpdateUnitResource])
+   ;
   
 
     function UnitTypeResource($resource, appCONSTANTS) {

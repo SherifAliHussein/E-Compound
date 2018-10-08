@@ -9,10 +9,10 @@
     function unitController($rootScope, $http, $scope, $filter, UnitPagingResource, DeleteUnitResource, unitPagingPrepService, unitTypesPagingPrepService, $translate, $uibModal, $state, $localStorage, authorizationService, appCONSTANTS, ToastService) {
         var vm = this;
      
-        $scope.unitList = unitPagingPrepService; 
+        $scope.unitList = unitPagingPrepService;
          
         function refreshUnits(){
-			var k = UnitPagingResource.getAllPagingUnits({page:vm.currentPage}).$promise.then(function(results) { 
+			var k = UnitPagingResource.getAllPagingUnits({page:vm.currentPage}).$promise.then(function(results) {
 				$scope.unitList = results;
 			},
             function(data, status) {
@@ -38,7 +38,7 @@
             });
         }
 
-        vm.UpdateUnit = function (unit) { 
+        vm.UpdateUnit = function (unit) {
             $uibModal.open({
                 templateUrl: './app/admin/unit/templates/editUnit.html',
                 controller: 'editUnitController',

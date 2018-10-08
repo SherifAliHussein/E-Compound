@@ -60,11 +60,9 @@
 					});
 				},
 				function(data, status) {
-					// ToastService.show("right","bottom","fadeInUp",data.message,"error");
 				});
 			},
             function(data, status) {
-				// ToastService.show("right","bottom","fadeInUp",data.message,"error");
 			});
 			
 				
@@ -116,11 +114,9 @@
 					});
 				},
 				function(data, status) {
-					// ToastService.show("right","bottom","fadeInUp",data.message,"error");
 				});
 			},
 			function(data, status) {
-				// ToastService.show("right","bottom","fadeInUp",data.message,"error");
 			});
 		}
 		vm.ActivateRoom = function(room){

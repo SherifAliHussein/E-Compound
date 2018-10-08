@@ -29,8 +29,12 @@ namespace E_Compound.BLL.Services
         private IRestaurantService _restaurantService;
         private IRestaurantWaiterService _restaurantWaiterService;
         private IRoomService _roomService;
+        private IUserCategoryService _userCategoryService;
+        private ITechnicianService _technicianService;
+        private ITechnicianCategoryService _technicianCategoryService;
 
-        public UserFacade(IUnitOfWorkAsync unitOFWork , IUserService userService, ISupervisorService supervisorService,
+
+        public UserFacade(IUnitOfWorkAsync unitOFWork, ITechnicianCategoryService technicianCategoryService, ITechnicianService technicianService, IUserCategoryService userCategoryService, IUserService userService, ISupervisorService supervisorService,
             IReceptionistService receptionistService, ISupervisorFeatureService supervisorFeatureService, IAdminService adminService, IPackageService packageService, IRestaurantService restaurantService, IRestaurantWaiterService restaurantWaiterService, IRoomService roomService) : base(unitOFWork)
         {
             _UserService = userService;
@@ -42,6 +46,9 @@ namespace E_Compound.BLL.Services
             _restaurantService = restaurantService;
             _restaurantWaiterService = restaurantWaiterService;
             _roomService = roomService;
+            _userCategoryService = userCategoryService;
+            _technicianService = technicianService;
+            _technicianCategoryService = technicianCategoryService;
         }
 
         public UserDto ValidateUser(string email, string password)
@@ -198,8 +205,118 @@ namespace E_Compound.BLL.Services
             if (_roomService.CheckUserNameDuplicated(supervisorDto.UserName, supervisorDto.UserId, adminId)) throw new ValidationException(ErrorCodes.UserNameAlreadyExist);
         }
 
+
         #endregion
 
+        #region Manage Technician
+
+        private PagedResultsDto GetAllTechnician(long adminId, int page, int pageSize)
+        {
+            var technicianCount = _technicianService.Query(x => !x.IsDeleted && x.AdminId == adminId).Select().Count();
+            var technicians = Mapper.Map<List<TechnicianDto>>(_technicianService.GetAllTechnicians(adminId, page, pageSize));
+            PagedResultsDto results = new PagedResultsDto
+            {
+                TotalCount = technicianCount,
+                Data = technicians
+            };
+            return results;
+        }
+
+        public TechnicianDto GetTechnician(long technicianId)
+        {
+            var technician = _technicianService.Find(technicianId);
+            if (technician == null) throw new NotFoundException(ErrorCodes.UserNotFound);
+            if (technician.IsDeleted) throw new NotFoundException(ErrorCodes.UserNotFound);
+            return Mapper.Map<TechnicianDto>(technician);
+
+        }
+        public void AddTechnician(TechnicianDto technicianDto, long adminId)
+        {
+            ValidateTechnician(technicianDto, adminId);
+            var user = _UserService.Find(adminId);
+            if (user == null) throw new NotFoundException(ErrorCodes.UserNotFound);
+
+            Technician technician = Mapper.Map<Technician>(technicianDto);
+            technician.AdminId = adminId;
+            technician.Password = PasswordHelper.Encrypt(technicianDto.Password);
+            technician.Role = Enums.RoleType.Technician;
+            technician.IsActive = true;
+
+            foreach (var category in technicianDto.UserCategories)
+            {
+                technician.TechnicianCategories.Add(new TechnicianCategory
+                {
+                    UserCategoryId = category.UserCategoryId
+                });
+            }
+
+            _technicianCategoryService.InsertRange(technician.TechnicianCategories);
+            _technicianService.Insert(technician);
+            SaveChanges();
+        }
+
+        public void UpdateTechnician(TechnicianDto technicianDto, long adminId)
+        {
+            var technician = _technicianService.Find(technicianDto.UserId);
+            if (technician == null) throw new NotFoundException(ErrorCodes.UserNotFound);
+
+            ValidateTechnician(technicianDto, adminId);
+            technician.UserName = technicianDto.UserName;
+            technician.Password = PasswordHelper.Encrypt(technicianDto.Password);
+
+            TechnicianCategory[] categories = new TechnicianCategory[technician.TechnicianCategories.Count];
+            technician.TechnicianCategories.CopyTo(categories, 0);
+            _technicianCategoryService.DeleteRange(categories.ToList());
+
+            foreach (var feature in technicianDto.UserCategories)
+            {
+                technician.TechnicianCategories.Add(new TechnicianCategory
+                {
+                    UserCategoryId = feature.UserCategoryId
+                });
+            }
+            _technicianService.Update(technician);
+            SaveChanges();
+        }
+        public void ActivateTechnician(long technicianId, long adminId)
+        {
+            var technician = _technicianService.Find(technicianId);
+            if (technician == null) throw new NotFoundException(ErrorCodes.UserNotFound);
+            technician.IsActive = true;
+            _technicianService.Update(technician);
+            SaveChanges();
+        }
+
+        public void DeActivateTechnician(long technicianId, long adminId)
+        {
+            var technician = _technicianService.Find(technicianId);
+            if (technician == null) throw new NotFoundException(ErrorCodes.UserNotFound);
+            technician.IsActive = false;
+            _technicianService.Update(technician);
+            SaveChanges();
+        }
+        public void DeleteTechnician(long technicianId, long adminId)
+        {
+            var technician = _technicianService.Find(technicianId);
+            if (technician == null) throw new NotFoundException(ErrorCodes.UserNotFound);
+            technician.IsDeleted = true;
+            technician.IsActive = false;
+            _technicianService.Update(technician);
+            SaveChanges();
+        }
+
+        private void ValidateTechnician(TechnicianDto technicianDto, long adminId)
+        {
+            if (string.IsNullOrEmpty(technicianDto.UserName)) throw new ValidationException(ErrorCodes.EmptyUserName);
+            if (technicianDto.UserName.Length > 100) throw new ValidationException(ErrorCodes.NameExceedLength);
+            if (string.IsNullOrEmpty(technicianDto.Password)) throw new ValidationException(ErrorCodes.EmptyPassword);
+            if (technicianDto.Password.Length < 8 || technicianDto.Password.Length > 25) throw new ValidationException(ErrorCodes.PasswordLengthNotMatched);
+
+            if (_technicianService.CheckUserNameDuplicated(technicianDto.UserName, technicianDto.UserId, adminId)) throw new ValidationException(ErrorCodes.UserNameAlreadyExist);
+            if (_receptionistService.CheckUserNameDuplicated(technicianDto.UserName, technicianDto.UserId, adminId)) throw new ValidationException(ErrorCodes.UserNameAlreadyExist);
+            if (_roomService.CheckUserNameDuplicated(technicianDto.UserName, technicianDto.UserId, adminId)) throw new ValidationException(ErrorCodes.UserNameAlreadyExist);
+        }
+        #endregion
 
         #region Manage receptionist
         private PagedResultsDto GetAllReceptionist(long adminId, int page, int pageSize)

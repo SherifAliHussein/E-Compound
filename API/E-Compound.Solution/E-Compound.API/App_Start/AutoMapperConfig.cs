@@ -28,7 +28,10 @@ namespace E_Compound.API.App_Start
 
             mapperConfiguration.CreateMap<SupervisorModel, SupervisorDto>();
             mapperConfiguration.CreateMap<SupervisorDto, SupervisorModel>();
-            
+
+            mapperConfiguration.CreateMap<TechnicianModel, TechnicianDto>();
+            mapperConfiguration.CreateMap<TechnicianDto, TechnicianModel>();
+
             mapperConfiguration.CreateMap<FeatureDetailModel, FeatureDetailDto>();
             mapperConfiguration.CreateMap<FeatureDetailDto, FeatureDetailModel>();
 

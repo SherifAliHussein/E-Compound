@@ -310,6 +310,7 @@
     <Compile Include="Models\SideItemModel.cs" />
     <Compile Include="Models\SizeModel.cs" />
     <Compile Include="Models\SupervisorModel.cs" />
+    <Compile Include="Models\TechnicianModel.cs" />
     <Compile Include="Models\TemplateModel.cs" />
     <Compile Include="Models\UnitModel.cs" />
     <Compile Include="Models\UnitTypeModel.cs" />

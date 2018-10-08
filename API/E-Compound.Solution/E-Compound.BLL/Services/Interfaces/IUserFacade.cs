@@ -35,5 +35,11 @@ namespace E_Compound.BLL.Services.Interfaces
         PagedResultsDto GetAllRestaurantWaiters(long restaurantAdminId, int page, int pageSize, string language);
         void UpdateRestaurantWaiter(RestaurantWaiterDTO restaurantWaiterDto);
         void DeleteRestaurantWaiter(long restaurantWaiterId);
+        TechnicianDto GetTechnician(long technicianId);
+        void AddTechnician(TechnicianDto technicianDto, long adminId);
+        void UpdateTechnician(TechnicianDto technicianDto, long adminId);
+        void ActivateTechnician(long technicianId, long adminId);
+        void DeActivateTechnician(long technicianId, long adminId);
+        void DeleteTechnician(long technicianId, long adminId);
     }
 }
