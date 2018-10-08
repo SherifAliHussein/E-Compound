@@ -21,10 +21,10 @@ namespace E_Compound.BLL.DataServices
             return _repository.Query(x => x.AdminId == AdminId).Select(x => x.MaxNumberOfRooms).Sum();
         }
 
-        public List<Package> GetAllPackagesByAdminId(long AdminId)
-        {
-            return _repository.Query(x => x.AdminId == AdminId).Include(x => x.Rooms).Select().ToList();
-        }
+        //public List<Package> GetAllPackagesByAdminId(long AdminId)
+        //{
+        //    return _repository.Query(x => x.AdminId == AdminId).Include(x => x.Rooms).Select().ToList();
+        //}
     }
 
 }

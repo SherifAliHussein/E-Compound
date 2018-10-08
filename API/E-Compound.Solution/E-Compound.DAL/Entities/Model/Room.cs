@@ -22,17 +22,17 @@ namespace E_Compound.DAL.Entities.Model
 
         public virtual List<Request> Requests { get; set; }
         public virtual List<FeedBack> FeedBacks { get; set; }
-        [ForeignKey("Package")]
-        public long PackageId { get; set; }
-        public virtual Package Package { get; set; }
+        //[ForeignKey("Package")]
+        //public long PackageId { get; set; }
+        //public virtual Package Package { get; set; }
 
-        [ForeignKey("Building")]
-        public long? BuildingId { get; set; }
-        public virtual Building Building { get; set; }
+        //[ForeignKey("Building")]
+        //public long? BuildingId { get; set; }
+        //public virtual Building Building { get; set; }
 
-        [ForeignKey("Floor")]
-        public long? FloorId { get; set; }
-        public virtual Floor Floor { get; set; }
+        //[ForeignKey("Floor")]
+        //public long? FloorId { get; set; }
+        //public virtual Floor Floor { get; set; }
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
