@@ -108,6 +108,7 @@ namespace E_Compound.BLL
                 .ForMember(dto => dto.ModifyTime, m => m.MapFrom(src => src.ModifyTime))
                 .ForMember(dto => dto.Modifier, m => m.MapFrom(src => src.Modifier.UserName))
                 .ForMember(dto => dto.RequestDetails, m => m.MapFrom(src => src.RequestDetails))
+                .ForMember(dto => dto.Title, m => m.MapFrom(src => src.Title))
                 .ForMember(dto => dto.Type, m => m.MapFrom(src => src.Feature.Type));
 
 

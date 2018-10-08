@@ -47,7 +47,10 @@ namespace E_Compound.BLL.Services
         public UserDto ValidateUser(string email, string password)
         {
             string encryptedPassword = PasswordHelper.Encrypt(password);
-            var user = Mapper.Map<UserDto>(_UserService.ValidateUser(email, encryptedPassword)) ?? Mapper.Map<UserDto>(_UserService.CheckUserIsDeleted(email, encryptedPassword));
+            var dd = _UserService.ValidateUser(email, encryptedPassword);
+            var user = Mapper.Map<UserDto>(_UserService.ValidateUser(email, encryptedPassword));
+            var user1 =   Mapper.Map<UserDto>(_UserService.CheckUserIsDeleted(email, encryptedPassword));
+           // var user = Mapper.Map<UserDto>(_UserService.ValidateUser(email, encryptedPassword)) ?? Mapper.Map<UserDto>(_UserService.CheckUserIsDeleted(email, encryptedPassword));
             //var user = Mapper.Map<UserDto>(_UserService.ValidateUser(email, encryptedPassword));
             if (user == null) throw new ValidationException(ErrorCodes.UserNotFound);
 

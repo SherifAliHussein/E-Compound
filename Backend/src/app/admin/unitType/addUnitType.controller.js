@@ -45,8 +45,7 @@
             newUnitType.$addUnitType().then(
                 function (data, status) {
                     ToastService.show("right", "bottom", "fadeInUp", $translate.instant('AddSuccess'), "success");
-                    callBackFunction();
-                    //close popup after save
+                    callBackFunction(); 
                     $uibModalInstance.dismiss('cancel');
 
                 },

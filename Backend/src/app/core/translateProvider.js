@@ -361,6 +361,7 @@
             "AddUserCategoryLbl":"Add User Category",
             "NoUserCategoryAvailable":"No Category Available",
             "UpdateUserCategoryLbl":"Update User Category",
+            "invetationTypeLbl":"Invetation Type",
         }
         
         var ar_translations = {
@@ -727,7 +728,8 @@
             "applyFilterBtn":"تطبيق التصفية",
             "Reports":"تقارير",
             "ExportCsvBtn":"csv تصدير الى",
-            "downloadBtn":"تحميل"
+            "downloadBtn":"تحميل",
+            "invetationTypeLbl":"نوع الدعوه"
         }
         
         $translateProvider.translations('en-us',en_translations);

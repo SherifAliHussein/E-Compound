@@ -5,9 +5,15 @@
       .factory('AddUserCategoryResource', ['$resource', 'appCONSTANTS', AddUserCategoryResource])
       .factory('DeleteUserCategoryResource', ['$resource', 'appCONSTANTS', DeleteUserCategoryResource])
       .factory('UpdateUserCategoryResource', ['$resource', 'appCONSTANTS', UpdateUserCategoryResource])
+      .factory('UserCategoryListResource', ['$resource', 'appCONSTANTS', UserCategoryListResource])
    ;
   
 
+    function UserCategoryListResource($resource, appCONSTANTS) {
+      return $resource(appCONSTANTS.API_URL + 'UserCategories', {}, {
+        UserCategories: { method: 'GET',isArray:true, useToken: true} 
+      })
+    }
     function UserCategoryPagingResource($resource, appCONSTANTS) {
       return $resource(appCONSTANTS.API_URL + 'UserCategoriesPaging', {}, {
         getAllPagingUserCategories: { method: 'GET', useToken: true} 

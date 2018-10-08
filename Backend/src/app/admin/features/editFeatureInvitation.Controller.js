@@ -83,8 +83,7 @@
                         var reader = new FileReader();
 
                         reader.onloadend = function () {
-							vm.feature.imageURL = reader.result;
-                            // $scope.Photo = reader.result;
+							vm.feature.imageURL = reader.result; 
                             $scope.$apply();
                         };
                         if (logoFile) {

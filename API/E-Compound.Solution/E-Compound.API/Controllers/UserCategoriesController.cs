@@ -23,7 +23,7 @@ namespace E_Compound.API.Controllers
             _userCategoryFacade = userCategoryFacade;
         }
 
-        [AuthorizeRoles(Enums.RoleType.Admin)]
+        [AuthorizeRoles(Enums.RoleType.Admin, Enums.RoleType.Room)]
         [Route("api/UserCategoriesPaging", Name = "GetAllPagingUserCategories")]
         [HttpGet]
         [ResponseType(typeof(IEnumerable<UserCategoryModel>))]
@@ -35,13 +35,13 @@ namespace E_Compound.API.Controllers
             return PagedResponse("GetAllPagingUserCategories", page, pagesize, userCategories.TotalCount, data);
         }
 
-        [AuthorizeRoles(Enums.RoleType.Admin)]
+       // [AuthorizeRoles(Enums.RoleType.Admin,Enums.RoleType.Room)]
         [Route("api/UserCategories", Name = "GetUserCategories")]
         [HttpGet]
-        [ResponseType(typeof(List<UserCategoryModel>))]
+       [ResponseType(typeof(List<UserCategoryModel>))]
         public IHttpActionResult GetUserCategories()
         {                                                                                                    //UserId
-            var userCategories = Mapper.Map<List<UserCategoryModel>>(_userCategoryFacade.GetUserCategories(UserId));
+            var userCategories = Mapper.Map<List<UserCategoryModel>>(_userCategoryFacade.GetUserCategories(UserId,UserRole));
             return Ok(userCategories);
         }
 

@@ -165,11 +165,19 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div style="background: white;padding: 5px;" ng-if="request.count !== null">
-                                <h2>{{'NumberLbl'|translate}}: </h2>
-                                <span>{{request.count}}</span>
+                            <div style="background: white;padding: 5px;" ng-if="request.title !== null">
+                                <h2>{{'Title'|translate}}: </h2>
+                                <span>{{request.title}}</span>
                             </div>
-                            <div style="background: white;padding: 5px;" ng-if="request.invetationType !== null">
+                            <div style="background: white;padding: 5px;" ng-if="request.userCategory !== null">
+                                <h2>{{'CategoriesBtn'|translate}}: </h2> 
+                                <span>{{request.category}}</span>
+                            </div>
+
+                              <div style="background: white;padding: 5px;" ng-if="request.count !== 0">
+                               <h2>{{'NumberLbl'|translate}}: </h2>  <span>{{request.count}}</span>
+                            </div>
+                            <div style="background: white;padding: 5px;" ng-if="request.invetationType !== null && request.type === Invetation">
                                 <h2>{{'invetationTypeLbl'|translate}}: </h2>
                                 <span>{{request.invetationType}}</span>
                             </div>

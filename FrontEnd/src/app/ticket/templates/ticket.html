@@ -1,0 +1,72 @@
+<div class="main_field_3" style="background-color: #83bde6fa">
+  <div style="padding: 10px;color: white;margin-top: -80px">
+    <img ng-src="{{feature.imageURL}}?type='thumbnail'" style="border-radius: 100px;" />
+    <span>{{feature.featureNameDictionary[selectedLanguage]}}</span>
+  </div>
+
+
+  <div class="container" style="    max-width: 50%;">
+
+    <form name="TicketForm">
+      <div>
+
+        <label for="first-name">{{'titleLbl' | translate}} :</label>
+
+        <input required type="text" class="mat-input form-control" name="title" ng-model="title" ng-minlength="1"
+          ng-maxlength="150">
+
+        </button>
+        <div ng-messages="TicketForm.title.$error">
+          <div ng-if="TicketForm.title.$error.required && !TicketForm.title.$pristine">{{'titleReqError'
+            | translate}}</div>
+          <div ng-if="(TicketForm.title.$error.minlength || TicketForm.title.$error.maxlength)">{{'titleLengthError'
+            | translate}}</div>
+        </div>
+      </div>
+      <div class="col-md-4 form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+        <label for="first-name">{{'Ticket' | translate}}</label>
+
+        <select required style="width:50% !important" class="form-control select-with-search pmd-select2-tags"
+            ng-model="selectedCategory" 
+          ng-options="a as a.titleDictionary[selectedLanguage] for a in userCategoryList"></select>
+      </div>
+      <div>
+        <label for="first-name">{{'yourComment' | translate}}</label>
+        <textarea type="text" class="mat-input form-control" name="comment" ng-model="comment"></textarea>
+
+
+        <div ng-messages="TicketForm.comment.$error">
+          <div ng-if="TicketForm.comment.$error.required && !TicketForm.comment.$pristine">{{'commentReqError'
+            | translate}}</div>
+          <div ng-if="(TicketForm.comment.$error.minlength || TicketForm.comment.$error.maxlength)">{{'commentLengthError'
+            | translate}}</div>
+        </div>
+      </div>
+      <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+        <input id="file" name="file" style="display: none;" onchange="angular.element(this).scope().AddFile(this.files)" type="file">
+        <button ng-click="TicketCtrl.LoadUploadImages()" class="btn pmd-ripple-effect btn-primary">{{'AddImageBtn' |translate}}</button> 
+        <br>
+        <div>
+            <table>
+                <tbody>
+                    <tr ng-repeat="file in TicketCtrl.files">
+                        <td>
+                            {{file.name}}
+                        </td>
+                        <td>
+                            <i class="material-icons pmd-md deleteButton cursorPointer font25" style="font-size: 20px;color: grey;cursor: pointer;" ng-click="TicketCtrl.removeFile($index)">delete</i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    </form>
+    <div class="pmd-modal-action text-right">
+      <button ng-disabled="TicketForm.$invalid || selectedTicket <=0 " class="btn pmd-ripple-effect btn-primary" type="button" ng-click="createTicket()">{{'requestbtn'
+        | translate}}</button>
+    </div>
+  </div>
+
+</div>

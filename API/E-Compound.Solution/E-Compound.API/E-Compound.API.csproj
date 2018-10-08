@@ -352,6 +352,10 @@
       <Project>{4fec86ee-17fc-4117-8629-80500cf6e514}</Project>
       <Name>E-Compound.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\E-Compound.DAL\E-Compound.DAL.csproj">
+      <Project>{6CB1CE2D-95DF-4C24-A371-1B8D979D76A5}</Project>
+      <Name>E-Compound.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\E-Compound.Resources\E-Compound.Resources.csproj">
       <Project>{f3de3892-6cf5-4fd1-9ff2-4cb873352dcd}</Project>
       <Name>E-Compound.Resources</Name>
@@ -359,6 +363,10 @@
     <ProjectReference Include="..\Frameworks\Repository.Pattern\Repository.Pattern.csproj">
       <Project>{6E682A14-C872-4813-B620-76E108DEA683}</Project>
       <Name>Repository.Pattern</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Frameworks\Service.Pattern\Service.Pattern.csproj">
+      <Project>{3FA0C7B6-3A40-40A7-BDD7-DD72426F6F19}</Project>
+      <Name>Service.Pattern</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
