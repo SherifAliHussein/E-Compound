@@ -52,7 +52,6 @@
 			updateFeature.featureId = vm.feature.featureId;
 			updateFeature.isImageChange = isImageChange;
             updateFeature.type = "1";
-            // updateFeature.Tickets = vm.feature.Tickets;
             updateFeature.Tickets = [];
 			vm.SelectedTicket.forEach(function(element) {
                 updateFeature.Tickets.push(element);
@@ -102,7 +101,6 @@
 
                         reader.onloadend = function () {
 							vm.feature.imageURL = reader.result;
-                            // $scope.Photo = reader.result;
                             $scope.$apply();
                         };
                         if (logoFile) {

@@ -8,7 +8,7 @@
 
     function editUnitTypeController($rootScope, $scope, $uibModalInstance,callBackFunction, $filter, $translate, $uibModal, $state, UpdateUnitTypeResource, $localStorage, authorizationService, appCONSTANTS,ToastService, UnitType) {
         var vm = this;
-        $scope.language = appCONSTANTS.supportedLanguage; 
+        $scope.language = appCONSTANTS.supportedLanguage;
 
         vm.unitTypeObj = UnitType;
 

@@ -10,14 +10,14 @@
         var vm = this;
         $scope.unitList;
         $scope.selectedLanguage = selectedLanguage;
-        $scope.unitTypeList = unitTypesPagingPrepService; 
+        $scope.unitTypeList = unitTypesPagingPrepService;
 
         $scope.changeId=function (val){
             $scope.getId=val;
         }
         
         function refreshUnits(){
-			var k = UnitPagingResource.getAllPagingUnits({page:vm.currentPage}).$promise.then(function(results) { 
+			var k = UnitPagingResource.getAllPagingUnits({page:vm.currentPage}).$promise.then(function(results) {
 				$scope.unitList = results;
 			},
             function(data, status) {
@@ -44,7 +44,7 @@
             newUnit.$addUnit().then(
                 function (data, status) {
                     ToastService.show("right", "bottom", "fadeInUp", $translate.instant('AddSuccess'), "success");
-                    callBackFunction(); 
+                    callBackFunction();
                     $uibModalInstance.dismiss('cancel');
 
                 },

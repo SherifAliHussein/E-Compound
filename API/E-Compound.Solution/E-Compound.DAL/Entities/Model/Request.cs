@@ -48,7 +48,7 @@ namespace E_Compound.DAL.Entities.Model
         [Column(TypeName = "datetime2")]
         public DateTime? AssignedTime { get; set; }
 
-        public Technician Technician { get; set; }
+       // public Technician Technician { get; set; }
 
     }
 }

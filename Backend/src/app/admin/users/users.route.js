@@ -33,4 +33,9 @@
         function SupervisorsPrepService(SupervisorResource) {
             return SupervisorResource.getAllSupervisors().$promise;
         }
+
+        TechniciansPrepService.$inject = ['TechnicianResource']
+        function TechniciansPrepService(TechnicianResource) {
+            return TechnicianResource.getAllTechnicians().$promise;
+        }
 }());

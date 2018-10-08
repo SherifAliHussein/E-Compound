@@ -13,7 +13,6 @@
          
         function refreshUnitTypes(){
 			var k = UnitTypePagingResource.getAllPagingUnitTypes({page:vm.currentPage}).$promise.then(function(results) {
-				//vm.Now = $scope.getCurrentTime();	
 				$scope.unitTypeList = results;
 			},
             function(data, status) {
@@ -40,7 +39,6 @@
         }
 
         vm.UpdateUnitType = function (unitType) {
-            // var currencyId = currency.currencyId;
             $uibModal.open({
                 templateUrl: './app/admin/unitType/templates/editUnitType.html',
                 controller: 'editUnitTypeController',

@@ -127,6 +127,7 @@
     <Compile Include="Entities\Model\SupervisorCategory.cs" />
     <Compile Include="Entities\Model\SupervisorFeature.cs" />
     <Compile Include="Entities\Model\Technician.cs" />
+    <Compile Include="Entities\Model\TechnicianCategory.cs" />
     <Compile Include="Entities\Model\Template.cs" />
     <Compile Include="Entities\Model\Unit.cs" />
     <Compile Include="Entities\Model\UnitType.cs" />

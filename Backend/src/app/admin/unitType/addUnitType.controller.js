@@ -11,14 +11,13 @@
         $scope.unitTypeList;
         vm.titleDictionary;
         $scope.getId="0";
-        $scope.language = appCONSTANTS.supportedLanguage; 
+        $scope.language = appCONSTANTS.supportedLanguage;
         $scope.changeId=function (val){
             $scope.getId=val;
         }
         
         function refreshUnitTypes(){
 			var k = UnitTypePagingResource.getAllPagingUnitTypes({page:vm.currentPage}).$promise.then(function(results) {
-			 
 				$scope.unitTypeList = results;
 			},
             function(data, status) {
@@ -46,7 +45,6 @@
                 function (data, status) {
                     ToastService.show("right", "bottom", "fadeInUp", $translate.instant('AddSuccess'), "success");
                     callBackFunction();
-                    //close popup after save
                     $uibModalInstance.dismiss('cancel');
 
                 },

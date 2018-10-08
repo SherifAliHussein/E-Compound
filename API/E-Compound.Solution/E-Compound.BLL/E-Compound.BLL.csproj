@@ -141,6 +141,8 @@
     <Compile Include="DataServices\Interfaces\ISizeTranslationService.cs" />
     <Compile Include="DataServices\Interfaces\ISupervisorFeatureService.cs" />
     <Compile Include="DataServices\Interfaces\ISupervisorService.cs" />
+    <Compile Include="DataServices\Interfaces\ITechnicianCategoryService.cs" />
+    <Compile Include="DataServices\Interfaces\ITechnicianService.cs" />
     <Compile Include="DataServices\Interfaces\ITemplateService.cs" />
     <Compile Include="DataServices\Interfaces\IUnitService.cs" />
     <Compile Include="DataServices\Interfaces\IUnitTypeService.cs" />
@@ -152,6 +154,8 @@
     <Compile Include="DataServices\ItemSideItemService.cs" />
     <Compile Include="DataServices\ItemSizeService.cs" />
     <Compile Include="DataServices\ItemTranslationService.cs" />
+    <Compile Include="DataServices\TechnicianCategoryService.cs" />
+    <Compile Include="DataServices\TechnicianService.cs" />
     <Compile Include="DataServices\UnitTypeTranslationService.cs" />
     <Compile Include="DataServices\MenuService.cs" />
     <Compile Include="DataServices\MenuTranslationService.cs" />
@@ -221,6 +225,7 @@
     <Compile Include="DTOs\SideItemDTO.cs" />
     <Compile Include="DTOs\SizeDto.cs" />
     <Compile Include="DTOs\SupervisorDto.cs" />
+    <Compile Include="DTOs\TechnicianDto.cs" />
     <Compile Include="DTOs\TemplateDTO.cs" />
     <Compile Include="DTOs\UnitDto.cs" />
     <Compile Include="DTOs\UnitTypeDto.cs" />

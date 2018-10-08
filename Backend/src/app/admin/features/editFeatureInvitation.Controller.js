@@ -34,7 +34,8 @@
             updateFeature.hasDetails = vm.feature.hasDetails;
 			updateFeature.featureId = vm.feature.featureId;
 			updateFeature.isImageChange = isImageChange;
-            updateFeature.type = "2"; 
+            updateFeature.type = "1";
+          
             updateFeature.Invitations = [];
 			vm.SelectedInvitation.forEach(function(element) {
                 updateFeature.Invitations.push(element);
@@ -84,7 +85,6 @@
 
                         reader.onloadend = function () {
 							vm.feature.imageURL = reader.result;
-                            // $scope.Photo = reader.result;
                             $scope.$apply();
                         };
                         if (logoFile) {
