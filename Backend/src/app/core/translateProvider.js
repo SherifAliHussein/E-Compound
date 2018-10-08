@@ -361,9 +361,17 @@
             "AddUserCategoryLbl":"Add User Category",
             "NoUserCategoryAvailable":"No Category Available",
             "UpdateUserCategoryLbl":"Update User Category",
+            "TechnicianLbl":"Technician",
+            "Categorieslbl":"Categories",
+            "AddTechnicianBtn":"Add Technician",
+            "NoTechnicianLbl":"No technician available"
         }
         
         var ar_translations = {
+            "NoTechnicianLbl":"لا يوجد فني متاح",
+            "AddTechnicianBtn":"اضافة فني",
+            "TechnicianLbl":"فني",
+            "Categorieslbl":"الاقسام",
             "UpdateUserCategoryLbl":"تعديل اقسام المستخدمين",
             "NoUserCategoryAvailable":"لا يوجد اقسام المسخدمين",
             "AddUserCategoryLbl":"اضافة اقسام المسخدمين",

@@ -73,7 +73,7 @@
                         var reader = new FileReader();
 
                         reader.onloadend = function () {
-                            vm.featureImage = reader.result; 
+                            vm.featureImage = reader.result;
                             $scope.$apply();
                         };
                         if (logoFile) {
