@@ -40,6 +40,8 @@ namespace E_Compound.DAL
                     new PerResolveLifetimeManager())
                 .RegisterType<IRepositoryAsync<TechnicianCategory>, Repository<TechnicianCategory>>(
                     new PerResolveLifetimeManager())
+                .RegisterType<IRepositoryAsync<SupervisorCategory>, Repository<SupervisorCategory>>(
+                    new PerResolveLifetimeManager())
                 .RegisterType<IRepositoryAsync<FeatureDetail>, Repository<FeatureDetail>>(
                     new PerResolveLifetimeManager())
                 .RegisterType<IRepositoryAsync<FeatureDetailTranslation>, Repository<FeatureDetailTranslation>>(

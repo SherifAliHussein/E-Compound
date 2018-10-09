@@ -47,7 +47,7 @@ namespace E_Compound.BLL
 
 
             mapperConfiguration.CreateMap<UserCategoryDto, UserCategory>()
-                .ForMember(dto => dto.UserCategoryTranslations, m => m.MapFrom(src => src.TitleDictionary.Select(x => new UserCategoryTranslation() { Name = x.Value, Language = x.Key }).ToList()));
+                .ForMember(dto => dto.UserCategoryTranslations, m => m.MapFrom(src => src.TitleDictionary.Select(x => new UserCategoryTranslation { Name = x.Value, Language = x.Key }).ToList()));
 
             mapperConfiguration.CreateMap<UserCategory, UserCategoryDto>()
                 .ForMember(dto => dto.TitleDictionary,
@@ -77,6 +77,7 @@ namespace E_Compound.BLL
 
             mapperConfiguration.CreateMap<Supervisor, SupervisorDto>()
                 .ForMember(dto => dto.Password, m => m.MapFrom(src => PasswordHelper.Decrypt(src.Password)))
+                .ForMember(dto => dto.UserCategories, m => m.MapFrom(src => src.SupervisorCategories.Where(x => !x.UserCategory.IsDeleted && x.UserCategory.IsActive).Select(x => x.UserCategory).ToList()))
                 .ForMember(dto => dto.Features, m => m.MapFrom(src => src.SupervisorFeatures.Where(x=>!x.Feature.IsDeleted && x.Feature.IsActive).Select(x=>x.Feature).ToList())); 
             mapperConfiguration.CreateMap<SupervisorDto, Supervisor>();
 
@@ -285,6 +286,7 @@ namespace E_Compound.BLL
                 .RegisterType<IFeatureTranslationService, FeatureTranslationService>(new PerResolveLifetimeManager())
                 .RegisterType<ISupervisorFeatureService, SupervisorFeatureService>(new PerResolveLifetimeManager())
                 .RegisterType<ITechnicianCategoryService, TechnicianCategoryService>(new PerResolveLifetimeManager())
+                .RegisterType<ISupervisorCategoryService, SupervisorCategoryService>(new PerResolveLifetimeManager())
                 .RegisterType<IFeatureDetailService, FeatureDetailService>(new PerResolveLifetimeManager())
                 .RegisterType<IFeatureDetailTranslationService, FeatureDetailTranslationService>(new PerResolveLifetimeManager())
                 .RegisterType<IManageStorage, ManageStorage>(new PerResolveLifetimeManager())

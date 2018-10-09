@@ -1,0 +1,57 @@
+<script type="text/javascript">
+	$(document).ready(function() {
+		// <!-- Select Multiple Tags -->
+		$(".select-tags").select2({
+			tags: false,
+			theme: "bootstrap",
+		})
+	});
+</script>
+<div class="modal-content">
+        <div class="modal-header bordered">
+            <button class="close" type="button" ng-click="technicianDlCtrl.close()">×</button>
+            <h2 class="pmd-card-title-text">{{'NewTechnicianLbl' | translate}}</h2>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" name="newTechnicianForm">
+                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                    <label for="first-name">{{'UserName' | translate}}</label>
+                    <input required type="text" class="mat-input form-control" name="userName" ng-model="technicianDlCtrl.userName" ng-minlength="3" ng-maxlength="100">
+                    <div ng-messages="newTechnicianForm.userName.$error" >
+                        <div ng-if="newTechnicianForm.userName.$error.required && !newTechnicianForm.userName.$pristine">{{'requiredErr' | translate}}</div>
+                        <div ng-if="(newTechnicianForm.userName.$error.minlength || newTechnicianForm.userName.$error.maxlength) && !newTechnicianForm.userName.$error.required">{{'NameLengthError' | translate}}</div>
+                    </div>
+                </div>
+                <div class="form-group pmd-textfield pmd-textfield-floating-label" >
+                        <label for="first-name">{{'TechnicianUserPasswordLbl' | translate}}</label>
+                        <input required type="password" class="mat-input form-control" name="password" ng-model="technicianDlCtrl.password" ng-minlength="8" ng-maxlength="25">
+                        <div ng-messages="newTechnicianForm.password.$error" >
+                            <div ng-if="newTechnicianForm.password.$error.required && !newTechnicianForm.password.$pristine">{{'requiredErr' | translate}}</div>
+                            <div ng-if="(newTechnicianForm.password.$error.minlength || newTechnicianForm.password.$error.maxlength) && !newTechnicianForm.password.newPassword.$error.required">Password length must be 8-25 char.</div>
+                        </div>
+                    </div>
+                <div class="form-group pmd-textfield pmd-textfield-floating-label" >
+                    <label for="first-name">{{'ConfirmPasswordLbl' | translate}}</label>
+                    <input required type="password" class="mat-input form-control" name="confirmPassword"  ng-model="technicianDlCtrl.confirmPassword" equalto="newTechnicianForm.password" >
+                    <div ng-messages="newTechnicianForm.confirmPassword.$error" >
+                        <div ng-if="newTechnicianForm.confirmPassword.$error.required && !newTechnicianForm.confirmPassword.$pristine">{{'requiredErr' | translate}}</div>
+                        <div ng-if="newTechnicianForm.confirmPassword.$error.equalto && !newTechnicianForm.confirmPassword.$error.required">Passwords don't match.</div>
+                    </div>
+                </div>
+                <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed"  >
+                    <label>{{'selectCategoryLbl' | translate}}</label>
+                    <select  class="form-control select-tags pmd-select2-tags" multiple ng-model="technicianDlCtrl.SelectedCategory" name="SelectedCategory">
+                        <option ng-repeat="category in technicianDlCtrl.categories"  ng-value="{{category}}">{{category.titleDictionary[technicianDlCtrl.selectedLanguage]}}</option>                    
+                    </select>
+                    <div ng-if="newTechnicianForm.SelectedCategory.$error.required && !newTechnicianForm.SelectedCategory.$pristine">{{'requiredErr' | translate}}</div>
+                </div>
+            </form>
+        </div>
+        <div class="pmd-modal-action text-right">
+            <button ng-disabled="newTechnicianForm.$invalid || (technicianDlCtrl.SelectedCategory.length<=0 )" class="btn pmd-ripple-effect btn-primary" type="button" ng-click="technicianDlCtrl.AddNewTechnician()">{{'saveChangesBtn' | translate}}</button>
+            <button class="btn pmd-ripple-effect btn-default" type="button" ng-click="technicianDlCtrl.close()">{{'DiscardBtn' | translate}}</button>
+        </div>
+    </div>
+    
+        
+    

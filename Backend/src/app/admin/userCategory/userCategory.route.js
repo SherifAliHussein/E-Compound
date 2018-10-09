@@ -29,6 +29,12 @@
             return UserCategoryPagingResource.getAllPagingUserCategories().$promise;
         }
 
+        categoriesPrepService.$inject = ['CategoryResource']
+        
+        function categoriesPrepService(CategoryResource) {
+            return CategoryResource.getAllActivatedCategories().$promise;
+        }
+
         userCategoryPrepService.$inject = ['UserCategoryResource']
         
         function userCategoryPrepService(UserCategoryResource) {

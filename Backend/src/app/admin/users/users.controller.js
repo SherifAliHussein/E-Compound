@@ -5,15 +5,16 @@
         .module('home')
         .controller('usersController', ['$scope','$stateParams','$translate', 'appCONSTANTS','$uibModal', 'ReceptionistResource'
         ,'ActivateReceptionistResource','DeactivateReceptionistResource','SupervisorResource','ActivateSupervisorResource','DeactivateSupervisorResource',
-        'ReceptionistsPrepService','SupervisorsPrepService','ToastService','FeatureResource',  usersController])
+        'ReceptionistsPrepService', 'TechniciansPrepService', 'SupervisorsPrepService','ToastService','FeatureResource', 'CategoryResource', 'TechnicianResource',  usersController])
 
     function usersController($scope,$stateParams ,$translate , appCONSTANTS,$uibModal, ReceptionistResource,
         ActivateReceptionistResource,DeactivateReceptionistResource,SupervisorResource,ActivateSupervisorResource,DeactivateSupervisorResource,
-        ReceptionistsPrepService,SupervisorsPrepService,ToastService,FeatureResource){
+        ReceptionistsPrepService, TechniciansPrepService, SupervisorsPrepService,ToastService,FeatureResource, CategoryResource, TechnicianResource){
 
         var vm = this;
 		vm.receptionists = ReceptionistsPrepService;
 		vm.supervisors = SupervisorsPrepService;
+		vm.technicians = TechniciansPrepService;
 		
 		$('.pmd-sidebar-nav>li>a').removeClass("active")
 		$($('.pmd-sidebar-nav').children()[1].children[0]).addClass("active")
@@ -121,17 +122,23 @@
 		}
 		vm.openSupervisorDialog = function(){
             FeatureResource.getAllActivatedFeatures({ pageSize : 0 }).$promise.then(function(results) {
-                var modalContent = $uibModal.open({
-					templateUrl: './app/admin/users/templates/newSupervisor.html',
-					controller: 'supervisorDialogController',
-					controllerAs: 'supervisorDlCtrl',
-					resolve:{
-                        features:function(){ return results},
-                        callBackFunction:function(){return refreshSupervisors;},
-                        selectedLanguage:function(){return $scope.selectedLanguage;}
-					}
-					
-                });			
+				CategoryResource.getAllActivatedCategories({ pageSize : 0 }).$promise.then(function(resultsCat) {
+					var modalContent = $uibModal.open({
+						templateUrl: './app/admin/users/templates/newSupervisor.html',
+						controller: 'supervisorDialogController',
+						controllerAs: 'supervisorDlCtrl',
+						resolve:{
+							features:function(){ return results},
+							categories:function(){ return resultsCat},
+							callBackFunction:function(){return refreshSupervisors;},
+							selectedLanguage:function(){return $scope.selectedLanguage;}
+						}
+						
+					});	
+				},
+				function(data, status) {
+					ToastService.show("right","bottom","fadeInUp",data.message,"error");
+				});	
             },
             function(data, status) {
 				ToastService.show("right","bottom","fadeInUp",data.message,"error");
@@ -201,7 +208,105 @@
 			function(data, status) {
 				ToastService.show("right","bottom","fadeInUp",data.data.message,"error");
 			})
-		}		
+		}
+		
+		function refreshTechnicians(){
+			var k = TechnicianResource.getAllTechnicians({ page:vm.currentPageTechnicians }).$promise.then(function(results) {
+				
+				vm.technicians = results;
+			},
+			function(data, status) {
+				ToastService.show("right","bottom","fadeInUp",data.message,"error");
+			});
+		}
+		vm.currentPageTechnicians = 1;
+		vm.changePageTechnicians = function (page) {
+			vm.currentPageTechnicians = page;
+			refreshTechnicians();
+		}
+		vm.openTechnicianDialog = function(){
+			CategoryResource.getAllActivatedCategories({ pageSize : 0 }).$promise.then(function(results) {
+				var modalContent = $uibModal.open({
+					templateUrl: './app/admin/users/templates/newTechnician.html',
+					controller: 'technicianDialogController',
+					controllerAs: 'technicianDlCtrl',
+					resolve:{
+						categories:function(){ return results},
+						callBackFunction:function(){return refreshTechnicians;},
+						selectedLanguage:function(){return $scope.selectedLanguage;}
+					}
+					
+				});			
+			},
+			function(data, status) {
+				ToastService.show("right","bottom","fadeInUp",data.message,"error");
+			});
+				
+		}
+		function confirmationDeleteTechnician(itemId){
+			TechnicianResource.deleteTechnician({technicianId:itemId}).$promise.then(function(results) {
+				ToastService.show("right","bottom","fadeInUp",$translate.instant('TechnicianDeleteSuccess'),"success");
+				if(vm.technicians.results.length ==1 && vm.currentPageTechnicians > 1)
+					vm.currentPageTechnicians = vm.currentPageTechnicians -1;
+				refreshTechnicians();
+			},
+			function(data, status) {
+				ToastService.show("right","bottom","fadeInUp",data.message,"error");
+			});
+		}
+		vm.openDeleteTechnicianDialog = function(name,id){			
+			var modalContent = $uibModal.open({
+				templateUrl: './app/core/Delete/templates/ConfirmDeleteDialog.html',
+				controller: 'confirmDeleteDialogController',
+				controllerAs: 'deleteDlCtrl',
+				resolve: {
+					itemName: function () { return name },
+					itemId: function() { return id },
+					message:function() { return null},
+					callBackFunction:function() { return confirmationDeleteTechnician }
+				}
+				
+			});
+		}
+		
+		vm.openEditTechnicianDialog = function(index){
+			CategoryResource.getAllActivatedCategories({ pageSize : 0 }).$promise.then(function(results) {
+				var modalContent = $uibModal.open({
+					templateUrl: './app/admin/users/templates/editTechnician.html',
+					controller: 'editTechnicianDialogController',
+					controllerAs: 'editTechnicianDlCtrl',
+					resolve:{
+						Technician:function(){ return angular.copy(vm.technicians.results[index])},
+						categories:function(){ return results},                        
+						callBackFunction:function(){return refreshTechnicians;},
+						selectedLanguage:function(){return $scope.selectedLanguage;}
+					}
+					
+				});
+			},
+			function(data, status) {
+				ToastService.show("right","bottom","fadeInUp",data.message,"error");
+			});
+		}
+		vm.ActivateTechnician = function(technician){
+			ActivateTechnicianResource.Activate({technicianId:technician.technicianId})
+			.$promise.then(function(result){
+				technician.isActive = true;
+			},
+			function(data, status) {
+				ToastService.show("right","bottom","fadeInUp",data.data.message,"error");
+			})
+		}
+		
+		vm.DeactivateTechnician = function(receptionist){
+			DeactivateTechnicianResource.Deactivate({technicianId:technician.technicianId})
+			.$promise.then(function(result){
+				technician.isActive = false;
+			},
+			function(data, status) {
+				ToastService.show("right","bottom","fadeInUp",data.data.message,"error");
+			})
+		}
 	}
 	
 }());

@@ -25,6 +25,6 @@ namespace E_Compound.DAL.Entities.Model
         //public virtual List<UserCategory> UserCategories { get; set; }
         public virtual List<Request> Requests { get; set; }
         //public virtual List<FeatureDetail> FeatureDetail { get; set; }
-        public virtual ICollection<TechnicianCategory> TechnicianCategories { get; set; }
+        public virtual List<TechnicianCategory> TechnicianCategories { get; set; }
     }
 }

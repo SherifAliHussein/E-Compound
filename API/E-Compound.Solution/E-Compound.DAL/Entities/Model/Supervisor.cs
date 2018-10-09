@@ -26,6 +26,6 @@ namespace E_Compound.DAL.Entities.Model
         public virtual List<SupervisorFeature> SupervisorFeatures { get; set; }
         public virtual List<Request> Requests { get; set; }
         public virtual List<FeatureDetail> FeatureDetail { get; set; }
-        public virtual ICollection<SupervisorCategory> SupervisorCategories { get; set; }
+        public virtual List<SupervisorCategory> SupervisorCategories { get; set; }
     }
 }

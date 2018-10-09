@@ -128,7 +128,7 @@
                     </div>
                 </div>
                 <div class="pmd-card-body">
-                    <div class="total-sales" ng-if="userCtrl.supervisors.results.length > 0">
+                    <div class="total-sales" ng-if="userCtrl.technicians.results.length > 0">
                         <div class="table-responsive">
                             <table class="table pmd-table table-hover">
                                 <thead>
@@ -139,35 +139,35 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="supervisor in userCtrl.supervisors.results">
-                                        <td data-title="Name">{{supervisor.userName}}</td>
+                                    <tr ng-repeat="technician in userCtrl.technicians.results">
+                                        <td data-title="Name">{{technician.userName}}</td>
                                         <td>
-                                            <div ng-init="featureLimit=2">
-                                                <span ng-repeat="feature in supervisor.features|limitTo:featureLimit">
-                                                        {{feature.featureNameDictionary[selectedLanguage]}}<span ng-if="!$last">,</span>
+                                            <div ng-init="categoryLimit=2">
+                                                <span ng-repeat="category in technician.userCategories|limitTo:categoryLimit">
+                                                        {{category.titleDictionary[selectedLanguage]}}<span ng-if="!$last">,</span>
                                                 </span>
-                                                <div class="cursorPointer font12" ng-show="supervisor.features.length > 2">
-                                                    <span  ng-show="featureLimit == 2" ng-click="featureLimit=supervisor.features.length">{{supervisor.features.length -2}} more features</span>
-                                                    <span  ng-show="featureLimit != 2" ng-click="featureLimit=2">Collapse</span>
+                                                <div class="cursorPointer font12" ng-show="technician.userCategories.length > 2">
+                                                    <span  ng-show="categoryLimit == 2" ng-click="categoryLimit=technician.userCategories.length">{{technician.userCategories.length -2}} more categories</span>
+                                                    <span  ng-show="categoryLimit != 2" ng-click="categoryLimit=2">Collapse</span>
                                                 </div>
-                                                <span ng-if="supervisor.features.length <= 0" style="    font-size: 14px;color: red;">
-                                                    {{'supervisorhasnofeature' | translate}} 
+                                                <span ng-if="technician.userCategories.length <= 0" style="    font-size: 14px;color: red;">
+                                                    {{'technicianhasnofeature' | translate}} 
                                                 </span>
                                             </div>
                                         </td>
                                         <td width="30%">
                                             <i class="material-icons md-dark pmd-md cursorPointer font25" ng-click="userCtrl.openEditTechnicianDialog($index);">mode_edit</i>
-                                            <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="userCtrl.openDeleteTechnicianDialog(supervisor.userName,supervisor.userId)">delete</i>
+                                            <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="userCtrl.openDeleteTechnicianDialog(technician.userName,technician.userId)">delete</i>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div style="text-align:center;" paging page="1" page-size="10" total="userCtrl.supervisors.totalCount" paging-action="userCtrl.changePageTechnicians( page)"
+                        <div style="text-align:center;" paging page="1" page-size="10" total="userCtrl.technicians.totalCount" paging-action="userCtrl.changePageTechnicians( page)"
                              flex="nogrow" show-prev-next="true" show-first-last="true" hide-if-empty="true" disabled-class="hide">
                         </div>
                     </div>
-                    <div  class="total-sales" ng-if="userCtrl.supervisors.results.length <= 0">
+                    <div  class="total-sales" ng-if="userCtrl.technicians.results.length <= 0">
                             {{'NoTechnicianLbl'|translate}}                        
                     </div>
                 </div>
