@@ -139,6 +139,7 @@
     <Compile Include="DataServices\Interfaces\ISideItemTranslationService.cs" />
     <Compile Include="DataServices\Interfaces\ISizeService.cs" />
     <Compile Include="DataServices\Interfaces\ISizeTranslationService.cs" />
+    <Compile Include="DataServices\Interfaces\ISupervisorCategoryService.cs" />
     <Compile Include="DataServices\Interfaces\ISupervisorFeatureService.cs" />
     <Compile Include="DataServices\Interfaces\ISupervisorService.cs" />
     <Compile Include="DataServices\Interfaces\ISupervisorCategoryService.cs" />

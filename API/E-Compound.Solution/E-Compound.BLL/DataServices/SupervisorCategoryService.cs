@@ -16,7 +16,7 @@ namespace E_Compound.BLL.DataServices
         {
             _repository = repository;
         }
-     
+
         public void DeleteRange(List<SupervisorCategory> categories)
         {
             foreach (var supervisorCategory in categories)

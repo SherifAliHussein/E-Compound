@@ -32,9 +32,10 @@ namespace E_Compound.BLL.Services
         private IUserCategoryService _userCategoryService;
         private ITechnicianService _technicianService;
         private ITechnicianCategoryService _technicianCategoryService;
+        private ISupervisorCategoryService _supervisorCategoryService;
 
 
-        public UserFacade(IUnitOfWorkAsync unitOFWork, ITechnicianCategoryService technicianCategoryService, ITechnicianService technicianService, IUserCategoryService userCategoryService, IUserService userService, ISupervisorService supervisorService,
+        public UserFacade(IUnitOfWorkAsync unitOFWork, ISupervisorCategoryService supervisorCategoryService, ITechnicianCategoryService technicianCategoryService, ITechnicianService technicianService, IUserCategoryService userCategoryService, IUserService userService, ISupervisorService supervisorService,
             IReceptionistService receptionistService, ISupervisorFeatureService supervisorFeatureService, IAdminService adminService, IPackageService packageService, IRestaurantService restaurantService, IRestaurantWaiterService restaurantWaiterService, IRoomService roomService) : base(unitOFWork)
         {
             _UserService = userService;
@@ -49,6 +50,7 @@ namespace E_Compound.BLL.Services
             _userCategoryService = userCategoryService;
             _technicianService = technicianService;
             _technicianCategoryService = technicianCategoryService;
+            _supervisorCategoryService = supervisorCategoryService;
         }
 
         public UserDto ValidateUser(string email, string password)
@@ -91,6 +93,8 @@ namespace E_Compound.BLL.Services
                     return GetAllSupervisor(adminId, page, pageSize);
                 case Enums.RoleType.Receptionist:
                     return GetAllReceptionist(adminId, page, pageSize);
+                case Enums.RoleType.Technician:
+                    return GetAllTechnician(adminId, page, pageSize);
             }
             return null;
         }
@@ -136,6 +140,17 @@ namespace E_Compound.BLL.Services
                     FeatureId = feature.FeatureId
                 });
             }
+
+            foreach (var category in supervisorDto.UserCategories)
+            {
+                supervisor.SupervisorCategories.Add(new SupervisorCategory()
+                {
+                    UserCategoryId = category.UserCategoryId
+                });
+            }
+
+            if(supervisorDto.UserCategories.Count != 0)
+                _supervisorCategoryService.InsertRange(supervisor.SupervisorCategories);
 
             _supervisorFeatureService.InsertRange(supervisor.SupervisorFeatures);
             _supervisorService.Insert(supervisor);

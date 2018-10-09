@@ -365,10 +365,22 @@
             "TechnicianLbl":"Technician",
             "Categorieslbl":"Categories",
             "AddTechnicianBtn":"Add Technician",
-            "NoTechnicianLbl":"No technician available"
+            "NoTechnicianLbl":"No technician available",
+            "TechnicianAddSuccess":"Technician Added Successfully",
+            "selectCategoryLbl":"Select Category",
+            "TechnicianUserPasswordLbl":"Technician Password",
+            "technicianhasnofeature":"Technician has no feature",
+            "TechnicianDeleteSuccess":"Technician Deleted Successfully",
+            "TechnicianUpdateSuccess":"Technician Updated Successfully"
         }
         
         var ar_translations = {
+            "TechnicianUpdateSuccess":"تم تعديل الفني بنجاح",
+            "TechnicianDeleteSuccess" : "تم حذف الفني بنجاح",
+            "technicianhasnofeature":"لا يوجد قسم للفني",
+            "TechnicianUserPasswordLbl":"كلمة مرور الفني",
+            "selectCategoryLbl":"اختار القسم",
+            "TechnicianAddSuccess":"تم اضافة الفني بنجاح",
             "NoTechnicianLbl":"لا يوجد فني متاح",
             "AddTechnicianBtn":"اضافة فني",
             "TechnicianLbl":"فني",

@@ -67,6 +67,7 @@ namespace E_Compound.BLL.Services
             userCategory.CreateTime = DateTime.Now;
             userCategory.CreationBy = userId;
             userCategory.IsDeleted = false;
+            userCategory.IsActive = true;
 
             _userCategoryTranslationService.InsertRange(userCategory.UserCategoryTranslations);
             _userCategoryService.Insert(userCategory);

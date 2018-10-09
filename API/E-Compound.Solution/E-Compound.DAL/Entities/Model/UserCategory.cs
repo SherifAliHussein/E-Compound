@@ -13,11 +13,11 @@ namespace E_Compound.DAL.Entities.Model
         public UserCategory()
         {
             UserCategoryTranslations = new List<UserCategoryTranslation>();
-            SupervisorCategories = new List<SupervisorCategory>();
+           // SupervisorCategories = new List<SupervisorCategory>();
         }
         public long UserCategoryId { get; set; }
         public virtual ICollection<UserCategoryTranslation> UserCategoryTranslations { get; set; }
-        public virtual ICollection<SupervisorCategory> SupervisorCategories { get; set; }
+       // public virtual ICollection<SupervisorCategory> SupervisorCategories { get; set; }
 
         [ForeignKey("Creater")]
         public long CreationBy { get; set; }

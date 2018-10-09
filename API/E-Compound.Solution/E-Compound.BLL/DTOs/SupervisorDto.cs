@@ -12,5 +12,6 @@ namespace E_Compound.BLL.DTOs
         public string UserName { get; set; }
         public string Password { get; set; }
         public List<FeatureDto> Features { get; set; }
+        public List<UserCategoryDto> UserCategories { get; set; }
     }
 }

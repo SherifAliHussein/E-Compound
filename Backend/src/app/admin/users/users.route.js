@@ -19,7 +19,8 @@
                     },
                     resolve: {
                         ReceptionistsPrepService: ReceptionistsPrepService,
-                        SupervisorsPrepService: SupervisorsPrepService
+                        SupervisorsPrepService: SupervisorsPrepService,
+                        TechniciansPrepService:TechniciansPrepService
                     }
                  
                 })
