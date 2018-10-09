@@ -221,7 +221,25 @@ namespace E_Compound.BLL.Services
             };
             return results;
         }
+        public PagedResultsDto TechnicianByCategoryId(long categoryId, int page, int pageSize)
+        {
+            var technicians = new List<TechnicianDto>();
+           // var technicianCount = _technicianCategoryService.Query(x =>  x.UserCategoryId == categoryId).Select().Count();
+            var technicanCategory = _technicianCategoryService.Query(x => x.UserCategoryId == categoryId).Select().ToList();
 
+            foreach (var technicianCategory in technicanCategory)
+            {
+                technicians.Add(GetTechnician(technicianCategory.TechnicianId));
+            }
+
+           // var technicians = Mapper.Map<List<TechnicianDto>>(_technicianService.GetAllTechnicians(adminId, page, pageSize));
+            PagedResultsDto results = new PagedResultsDto
+            {
+               // TotalCount = technicianCount,
+                Data = technicians
+            };
+            return results;
+        }
         public TechnicianDto GetTechnician(long technicianId)
         {
             var technician = _technicianService.Find(technicianId);

@@ -54,8 +54,7 @@ angular.module('home').directive('availableControlForm', function(){
                     }
                 }, this);
                 var model = new FormData();
-                model.append('data', JSON.stringify(newFeatureDetail));
-                // model.append('file', featureImage);
+                model.append('data', JSON.stringify(newFeatureDetail)); 
                 $http({
                     method: 'POST',
                     url: appCONSTANTS.API_URL + 'Features/Detail',

@@ -9,7 +9,7 @@ using Repository.Pattern.Ef6;
 
 namespace E_Compound.DAL.Entities.Model
 {
-    public class Request:Entity
+    public class Request : Entity
     {
         public Request()
         {
@@ -44,11 +44,20 @@ namespace E_Compound.DAL.Entities.Model
         public int Count { get; set; }
         public Enums.InvetationType InvetationType { get; set; }
 
-        public int Title { get; set; }
+        public string Title { get; set; }
         [Column(TypeName = "datetime2")]
         public DateTime? AssignedTime { get; set; }
 
-       // public Technician Technician { get; set; }
+        public string SupervisorComment { get; set; }
+          
+
+        [ForeignKey("Technician")]
+        public long? TechnicianId { get; set; }
+        public virtual Technician Technician { get; set; }
+
+        public string TechnicianComment { get; set; }
+
+        public int UserCategory { get; set; }
 
     }
 }

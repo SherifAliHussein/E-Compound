@@ -83,10 +83,29 @@
                         <td data-title="Name">{{request.roomName}}</td>
                         <td data-title="Name">{{request.featureNameDictionary[selectedLanguage]}}</td>
                         <td data-title="Name">{{request.createTime}}</td>
-                        <td data-title="Name">{{request.status|translate}}
+                        <td data-title="Name">
+               
+                            {{request.status|translate}}
+                            <span ng-if="request.status!='Pending' &&  request.type !='Ticket'">
+                                {{request.modifier}} "{{request.modifyTime}}"
+                            </span>
                             <span ng-if="request.status!='Pending'">
-                                {{request.modifier}} {{request.modifyTime}}</span>
+                                {{request.technician.userName}} {{request.assignedTime}}
+                            </span>
+
                         </td>
+
+                        <td ng-if="user.role === 'Technician' && request.status =='Assigned' && request.type=='Ticket' && request.technician.userId ==user.id ">
+                                <a ng-click="adminRequestCtrl.Approve(request.featureId,request.requestId)" class="cursorPointer">{{'ApproveBtn'
+                                        | translate}}</a>
+                                    <a ng-click="adminRequestCtrl.Reject(request.requestId)" class="cursorPointer">{{'RejectBtn'
+                                        | translate}}</a>
+                        </td>
+                        <td ng-if="user.role === 'Supervisor' && request.status =='Pending' && request.type=='Ticket'">
+                                <a ng-click="adminRequestCtrl.openDialog(request.userCategory,request.requestId)" 
+                                class="cursorPointer">{{'Assinglbl'
+                                    | translate}}</a>
+                            </td>
 
                         <td ng-if="user.role === 'Supervisor' && request.status =='Pending' && request.type=='Invetation'">
                             <a ng-click="adminRequestCtrl.Approve(request.featureId,request.requestId)" class="cursorPointer">{{'ApproveBtn'
@@ -169,13 +188,13 @@
                                 <h2>{{'Title'|translate}}: </h2>
                                 <span>{{request.title}}</span>
                             </div>
-                            <div style="background: white;padding: 5px;" ng-if="request.userCategory !== null">
-                                <h2>{{'CategoriesBtn'|translate}}: </h2> 
+                            <div style="background: white;padding: 5px;" ng-if="request.userCategory !== 0">
+                                <h2>{{'CategoriesBtn'|translate}}: </h2>
                                 <span>{{request.category}}</span>
                             </div>
 
-                              <div style="background: white;padding: 5px;" ng-if="request.count !== 0">
-                               <h2>{{'NumberLbl'|translate}}: </h2>  <span>{{request.count}}</span>
+                            <div style="background: white;padding: 5px;" ng-if="request.count !== 0">
+                                <h2>{{'NumberLbl'|translate}}: </h2> <span>{{request.count}}</span>
                             </div>
                             <div style="background: white;padding: 5px;" ng-if="request.invetationType !== null && request.type === Invetation">
                                 <h2>{{'invetationTypeLbl'|translate}}: </h2>
@@ -189,6 +208,16 @@
                                 <!-- <h2 style="float: left;">{{'Time'|translate}}: </h2> -->
                                 <h2>{{'Time'|translate}}: </h2>
                                 <span> {{request.requestTime}}</span>
+                            </div>
+                            <div style="background: white;padding: 5px;">
+
+                                <h2>{{'Imagelbl'|translate}}: </h2>
+                                <ul>
+                                    <i ng-repeat="file in request.imagesURL">
+                                        <img ng-src="{{file}}" style="max-height: 286px;max-width: 477px;">
+                                    </i>
+
+                                </ul>
                             </div>
                         </td>
                     </tr>

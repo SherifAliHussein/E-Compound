@@ -141,6 +141,7 @@
     <Compile Include="DataServices\Interfaces\ISizeTranslationService.cs" />
     <Compile Include="DataServices\Interfaces\ISupervisorFeatureService.cs" />
     <Compile Include="DataServices\Interfaces\ISupervisorService.cs" />
+    <Compile Include="DataServices\Interfaces\ISupervisorCategoryService.cs" />
     <Compile Include="DataServices\Interfaces\ITechnicianCategoryService.cs" />
     <Compile Include="DataServices\Interfaces\ITechnicianService.cs" />
     <Compile Include="DataServices\Interfaces\ITemplateService.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="DataServices\ItemSideItemService.cs" />
     <Compile Include="DataServices\ItemSizeService.cs" />
     <Compile Include="DataServices\ItemTranslationService.cs" />
+    <Compile Include="DataServices\SupervisorCategoryService.cs" />
     <Compile Include="DataServices\TechnicianCategoryService.cs" />
     <Compile Include="DataServices\TechnicianService.cs" />
     <Compile Include="DataServices\UnitTypeTranslationService.cs" />

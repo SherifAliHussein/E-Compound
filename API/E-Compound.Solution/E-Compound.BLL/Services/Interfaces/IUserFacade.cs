@@ -13,7 +13,7 @@ namespace E_Compound.BLL.Services.Interfaces
         UserDto ValidateUser(string email, string password);
 
         UserDto GetUser(long UserId);
-        PagedResultsDto GetAllUsers(long adminId, int page, int pageSize,Enums.RoleType role);
+        PagedResultsDto GetAllUsers(long adminId, int page, int pageSize, Enums.RoleType role);
         void AddReceptionist(ReceptionistDto receptionistDto, long adminId);
         void UpdateReceptionist(ReceptionistDto receptionistDto, long adminId);
         void ActivateReceptionist(long receptionistId, long adminId);
@@ -25,7 +25,7 @@ namespace E_Compound.BLL.Services.Interfaces
         void UpdateSupervisor(SupervisorDto supervisorDto, long adminId);
         void ActivateSupervisor(long supervisorId, long adminId);
         void DeActivateSupervisor(long supervisorId, long adminId);
-        void DeleteSupervisor(long supervisorId,  long adminId);
+        void DeleteSupervisor(long supervisorId, long adminId);
         UserConsumed GetMaxAndConsumedUsers(long userId);
         void AddNewGlobalUser(AdminDto adminDto);
         void UpdateGlobalUser(AdminDto adminDto);
@@ -36,6 +36,7 @@ namespace E_Compound.BLL.Services.Interfaces
         void UpdateRestaurantWaiter(RestaurantWaiterDTO restaurantWaiterDto);
         void DeleteRestaurantWaiter(long restaurantWaiterId);
         TechnicianDto GetTechnician(long technicianId);
+        PagedResultsDto TechnicianByCategoryId(long categoryId, int page, int pageSize);
         void AddTechnician(TechnicianDto technicianDto, long adminId);
         void UpdateTechnician(TechnicianDto technicianDto, long adminId);
         void ActivateTechnician(long technicianId, long adminId);

@@ -25,9 +25,10 @@ namespace E_Compound.BLL.Services
         private IAdminService _adminService;
         private IPackageService _packageService;
         private ISupervisorService _supervisorService;
+        private ITechnicianService _technicianService;
         private IReceptionistService _receptionistService;
         private IRestaurantWaiterService _restaurantWaiterService;
-        public RoomFacade(IUnitOfWorkAsync unitOFWork, IRoomService roomService, IUserService userService, IAdminService adminService, IPackageService packageService, ISupervisorService supervisorService, IReceptionistService receptionistService, IRestaurantWaiterService restaurantWaiterService) : base(unitOFWork)
+        public RoomFacade(IUnitOfWorkAsync unitOFWork, IRoomService roomService, IUserService userService, IAdminService adminService, IPackageService packageService, ISupervisorService supervisorService, IReceptionistService receptionistService, IRestaurantWaiterService restaurantWaiterService, ITechnicianService technicianService) : base(unitOFWork)
         {
             _roomService = roomService;
             _userService = userService;
@@ -36,6 +37,7 @@ namespace E_Compound.BLL.Services
             _supervisorService = supervisorService;
             _receptionistService = receptionistService;
             _restaurantWaiterService = restaurantWaiterService;
+            _technicianService = technicianService;
         }
 
         public PagedResultsDto GetAllRoom(long adminId, int page, int pageSize)
@@ -59,6 +61,11 @@ namespace E_Compound.BLL.Services
             else if (role == Enums.RoleType.Supervisor.ToString())
             {
                 var adminId = _supervisorService.Find(userId).AdminId;
+                rooms = Mapper.Map<List<RoomNameDto>>(_roomService.Query(x => !x.IsDeleted && x.AdminId == adminId).Select().ToList());
+            }
+            else if (role == Enums.RoleType.Technician.ToString())
+            {
+                var adminId = _technicianService.Find(userId).AdminId;
                 rooms = Mapper.Map<List<RoomNameDto>>(_roomService.Query(x => !x.IsDeleted && x.AdminId == adminId).Select().ToList());
             }
             else if (role == Enums.RoleType.Receptionist.ToString())

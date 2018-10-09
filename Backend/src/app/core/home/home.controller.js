@@ -91,6 +91,10 @@
                 $state.go('adminRequests');
 
             } 
+            else if ($scope.user.role == "Technician") {
+                $state.go('adminRequests');
+
+            } 
             else if ($scope.user.role == "Receptionist") {
                 $state.go('adminRequests');
 

@@ -31,5 +31,13 @@ namespace E_Compound.BLL.DTOs
         public Enums.InvetationType InvetationType { get; set; }
         public String Title { get; set; }
         public int UserCategory { get; set; }
+
+        public DateTime? AssignedTime { get; set; }
+
+        public string SupervisorComment { get; set; }
+
+        public TechnicianDto Technician { get; set; }
+        public string TechnicianComment { get; set; }
+
     }
 }
