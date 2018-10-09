@@ -50,28 +50,14 @@
                     </div>
     
                     
-                
-                <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed"  >
-                        <label>{{'selectTicketLbl' | translate}}</label>
-                        <!-- <select  class="form-control select-tags pmd-select2-tags" multiple ng-model="editFeatureDlCtrl.feature.Tickets" name="SelectedFeature">
-                            <option ng-repeat="Ticket in editFeatureDlCtrl.Tickets"  ng-value="{{Ticket}}">{{Ticket.TicketNameDictionary[selectedLanguage]}}</option>                    
-                        </select> -->
-                        <select required class="form-control select-tags pmd-select2-tags" multiple
-                        ng-change="editFeatureDlCtrl.TicketChange()" ng-model="editFeatureDlCtrl.SelectedTicketId" name="SelectedFeature">
-                            <option ng-repeat="Ticket in editFeatureDlCtrl.Tickets" 
-                            ng-value="{{Ticket.TicketId}}">
-                                {{Ticket.TicketNameDictionary[selectedLanguage]}}
-                            </option>                    
-                        </select>
-                        <div ng-if="newFeatureForm.SelectedTicket.$error.required && !newFeatureForm.SelectedTicket.$pristine">{{'requiredErr' | translate}}</div>
-                    </div>
+                 
                 </div>
             </form>
     
         </div>
     <!-- </div> -->
     <div class="pmd-modal-action text-right">
-        <button ng-disabled="editFeatureDlCtrl.feature.Tickets.length <= 0 || editFeatureForm.$invalid " class="btn pmd-ripple-effect btn-primary" type="button" ng-click="editFeatureDlCtrl.updateFeature()">{{'saveChangesBtn' | translate}}</button>
+        <button ng-disabled=" editFeatureForm.$invalid " class="btn pmd-ripple-effect btn-primary" type="button" ng-click="editFeatureDlCtrl.updateFeature()">{{'saveChangesBtn' | translate}}</button>
         <button class="btn pmd-ripple-effect btn-default" type="button" ng-click="editFeatureDlCtrl.close()">{{'DiscardBtn' | translate}}</button>
     </div>
     </div>

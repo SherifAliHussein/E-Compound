@@ -50,22 +50,13 @@
                                 <div ng-if="newFeatureForm.logoImage.$error.required">{{'requiredErr' | translate}}</div>
                             </div>
                     </div>
-    
-                   
-                    <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed"  >
-                            <label>{{'selectTicketLbl' | translate}}</label>
-                            <select  class="form-control select-tags pmd-select2-tags" multiple ng-model="newFeatureCtrl.SelectedTicket" name="SelectedFeature">
-                                <option ng-repeat="Ticket in newFeatureCtrl.Tickets"  ng-value="{{Ticket}}">{{Ticket.TicketNameDictionary[selectedLanguage]}}</option>                    
-                            </select>
-                            <div ng-if="newFeatureForm.SelectedTicket.$error.required && !newFeatureForm.SelectedTicket.$pristine">{{'requiredErr' | translate}}</div>
-                        </div>
-    
+     
                 </div>
             </form>
            
         </div>
         <div class="pmd-modal-action text-right">
-            <button ng-disabled="newFeatureCtrl.SelectedTicket.length <=0 || newFeatureForm.$invalid || newFeatureCtrl.featureImage == null || newFeatureCtrl.isChanged" class="btn pmd-ripple-effect btn-primary" type="button" ng-click="newFeatureCtrl.AddNewFeature()">{{'saveChangesBtn' | translate}}</button>
+            <button ng-disabled=" newFeatureForm.$invalid || newFeatureCtrl.featureImage == null || newFeatureCtrl.isChanged" class="btn pmd-ripple-effect btn-primary" type="button" ng-click="newFeatureCtrl.AddNewFeature()">{{'saveChangesBtn' | translate}}</button>
             <button class="btn pmd-ripple-effect btn-default" type="button" ng-click="newFeatureCtrl.close()">{{'DiscardBtn' | translate}}</button>
         </div>
     </div>

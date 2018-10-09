@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using AutoMapper;
 using E_Compound.BLL.DataServices.Interfaces;
 using E_Compound.BLL.DTOs;
 using E_Compound.BLL.Services.Interfaces;
+using E_Compound.BLL.Services.ManageStorage;
 using E_Compound.Common;
 using E_Compound.DAL.Entities.Model;
 using Repository.Pattern.UnitOfWork;
@@ -23,7 +25,8 @@ namespace E_Compound.BLL.Services
         private IUserService _userService;
         private IFeatureDetailService _featureDetailService;
         private IRestaurantWaiterService _restaurantWaiterService;
-        public RequestFacade(IUnitOfWorkAsync unitOfWork, IRequestService requestService, IReceptionistService receptionistService, ISupervisorService supervisorService, IRequestDetailService requestDetailService, IUserService userService, IFeatureDetailService featureDetailService, IRestaurantWaiterService restaurantWaiterService) : base(unitOfWork)
+        private readonly IManageStorage _manageStorage;
+        public RequestFacade(IUnitOfWorkAsync unitOfWork, IRequestService requestService, IReceptionistService receptionistService, ISupervisorService supervisorService, IRequestDetailService requestDetailService, IUserService userService, IFeatureDetailService featureDetailService, IRestaurantWaiterService restaurantWaiterService, IManageStorage manageStorage) : base(unitOfWork)
         {
             _requestService = requestService;
             _receptionistService = receptionistService;
@@ -32,6 +35,7 @@ namespace E_Compound.BLL.Services
             _userService = userService;
             _featureDetailService = featureDetailService;
             _restaurantWaiterService = restaurantWaiterService;
+            _manageStorage = manageStorage;
         }
 
         public void CreateRequest(RequestDto requestDto)
@@ -65,8 +69,23 @@ namespace E_Compound.BLL.Services
             _requestService.Insert(request);
             SaveChanges();
         }
+        public void CreateTicket(RequestDto requestDto, long userId, List<MemoryStream> files, string path)
+        {
+            var ticket = Mapper.Map<Request>(requestDto);
+            ticket.CreationBy = userId;
+            ticket.CreateTime = DateTime.Now;
+            ticket.Status = Enums.RequestStatus.Pending;
+            _requestService.Insert(ticket);
+            SaveChanges();
+            var imageId = 1;
+            foreach (var memoryStream in files)
+            {
+                _manageStorage.UploadImage(path + "\\" + "Ticket-" + ticket.RequestId, memoryStream, imageId.ToString());
+                imageId++;
+            }
+        }
 
-        public PagedResultsDto GetAllRequests(long userId, int page, int pageSize, string role, long roomId, long featureId, string from , string to)
+        public PagedResultsDto GetAllRequests(long userId, int page, int pageSize, string role, long roomId, long featureId, string from, string to)
         {
             var user = _userService.Find(userId);
             if (user == null)
@@ -85,7 +104,16 @@ namespace E_Compound.BLL.Services
                                                            (roomId <= 0 || x.CreationBy == roomId)
                                                            && (featureId <= 0 || x.FeatureId == featureId)
                                                            && x.CreateTime >= fromDateTime && x.CreateTime <= toDateTime).Select().Count();
-                requests = Mapper.Map<List<RequestDto>>(_requestService.GetAllRequestsByAdmin(userId, page, pageSize, roomId,featureId, fromDateTime, toDateTime));
+                requests = Mapper.Map<List<RequestDto>>(_requestService.GetAllRequestsByAdmin(userId, page, pageSize, roomId, featureId, fromDateTime, toDateTime));
+            }
+            else if (role == Enums.RoleType.Room.ToString())
+            {
+                DateTime fromDateTime = !String.IsNullOrEmpty(from) ? DateTime.Parse(from) : DateTime.MinValue;
+                DateTime toDateTime = !String.IsNullOrEmpty(to) ? DateTime.Parse(to) : DateTime.MaxValue;
+                requestsCount = _requestService.Query(x => x.CreationBy == userId 
+                                                           && (featureId <= 0 || x.FeatureId == featureId)
+                                                           && x.CreateTime >= fromDateTime && x.CreateTime <= toDateTime).Select().Count();
+                requests = Mapper.Map<List<RequestDto>>(_requestService.GetAllRequestsByRoom(userId, page, pageSize, featureId, fromDateTime, toDateTime));
             }
             else if (role == Enums.RoleType.Supervisor.ToString())
             {
@@ -143,7 +171,7 @@ namespace E_Compound.BLL.Services
         {
             Request request = _requestService.Find(requestId);
             var user = _userService.Find(userId);
-            if(user == null)
+            if (user == null)
                 throw new ValidationException(ErrorCodes.UserNotFound);
             if (user.IsDeleted)
                 throw new ValidationException(ErrorCodes.UserDeleted);
@@ -199,9 +227,9 @@ namespace E_Compound.BLL.Services
                 throw new ValidationException(ErrorCodes.RequestStatusChanged);
         }
 
-        public RequestStatusDto GetLastRequestByFeaturedId(long featureId ,long roomId)
+        public RequestStatusDto GetLastRequestByFeaturedId(long featureId, long roomId)
         {
-            return  Mapper.Map<RequestStatusDto>(_requestService.Query(x => x.FeatureId == featureId && x.CreationBy == roomId).Select().OrderByDescending(x => x.CreateTime).FirstOrDefault());
+            return Mapper.Map<RequestStatusDto>(_requestService.Query(x => x.FeatureId == featureId && x.CreationBy == roomId).Select().OrderByDescending(x => x.CreateTime).FirstOrDefault());
         }
     }
 }

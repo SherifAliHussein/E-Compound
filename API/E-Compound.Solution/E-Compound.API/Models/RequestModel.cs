@@ -26,6 +26,10 @@ namespace E_Compound.API.Models
         public DateTime? RequestTime { get; set; }
         public int Count { get; set; }
         public string InvetationType { get; set; }
+        public List<string> ImagesURL { get; set; }
+        public String Title { get; set; }
+        public int UserCategory { get; set; }
+
 
     }
 }

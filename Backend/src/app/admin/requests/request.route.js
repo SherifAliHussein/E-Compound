@@ -20,7 +20,8 @@
                     resolve: {
                         requestsPrepService: requestsPrepService,
                         roomsNamePrepService: roomsNamePrepService,
-                        featuresNamePrepService: featuresNamePrepService
+                        featuresNamePrepService: featuresNamePrepService,
+                        UserCategoryPrepService: UserCategoryPrepService
                     }
                     
                 })
@@ -39,5 +40,9 @@
         featuresNamePrepService.$inject = ['FeatureResource']
         function featuresNamePrepService(FeatureResource) {
             return FeatureResource.getAllFeaturesName().$promise;
+        }
+        UserCategoryPrepService.$inject = ['UserCategoryListResource']
+        function UserCategoryPrepService(UserCategoryListResource) {
+            return UserCategoryListResource.UserCategories().$promise;
         }
 }());

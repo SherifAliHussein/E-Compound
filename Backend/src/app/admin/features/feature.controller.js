@@ -14,6 +14,7 @@
 		vm.featureAsRestaurant = featureAsRestaurantPrepService;
 		vm.featureAsInvitation = featureAsInvitationPrepService;
 		vm.featureAsTicket = featureAsTicketPrepService;
+		console.log(vm.featureAsTicket)
 		console.log(vm.features)
 		$('.pmd-sidebar-nav>li>a').removeClass("active")
 		

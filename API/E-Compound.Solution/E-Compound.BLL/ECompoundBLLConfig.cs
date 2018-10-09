@@ -93,8 +93,7 @@ namespace E_Compound.BLL
                 .ForMember(dto => dto.Password, m => m.MapFrom(src => PasswordHelper.Decrypt(src.Password)))
                 .ForMember(dto => dto.RoomName, m => m.MapFrom(src => src.UserName))
                 .ForMember(dto => dto.RoomId, m => m.MapFrom(src => src.UserId))
-                .ForMember(dto => dto.BuildingName, m => m.MapFrom(src => src.Building.BuildingName))
-                .ForMember(dto => dto.FloorName, m => m.MapFrom(src => src.Floor.FloorName));
+                .ForMember(dto => dto.UnitName, m => m.MapFrom(src => src.Unit.Name));
 
             mapperConfiguration.CreateMap<RequestDto, Request>()
                 .ForMember(dto => dto.CreationBy, m => m.MapFrom(src => src.RoomId))
@@ -113,6 +112,7 @@ namespace E_Compound.BLL
                 .ForMember(dto => dto.ModifyTime, m => m.MapFrom(src => src.ModifyTime))
                 .ForMember(dto => dto.Modifier, m => m.MapFrom(src => src.Modifier.UserName))
                 .ForMember(dto => dto.RequestDetails, m => m.MapFrom(src => src.RequestDetails))
+                .ForMember(dto => dto.Title, m => m.MapFrom(src => src.Title))
                 .ForMember(dto => dto.Type, m => m.MapFrom(src => src.Feature.Type));
 
 

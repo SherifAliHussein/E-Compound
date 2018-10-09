@@ -12,7 +12,7 @@ namespace E_Compound.BLL.DataServices.Interfaces
     {
         List<Room> GetAllRooms(long adminId, int page, int pageSize);
         bool CheckUserNameDuplicated(string userName, long userId, long adminId);
-        int GetRoomCountByPackageId(long packageId);
+        //int GetRoomCountByPackageId(long packageId);
         Room RelationValidation(long userId, long unitId);
     }
 }

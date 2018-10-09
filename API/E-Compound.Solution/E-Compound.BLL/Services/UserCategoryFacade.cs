@@ -7,6 +7,7 @@ using AutoMapper;
 using E_Compound.BLL.DataServices.Interfaces;
 using E_Compound.BLL.DTOs;
 using E_Compound.BLL.Services.Interfaces;
+using E_Compound.Common;
 using E_Compound.Common.CustomException;
 using E_Compound.DAL.Entities.Model;
 using Repository.Pattern.UnitOfWork;
@@ -18,12 +19,15 @@ namespace E_Compound.BLL.Services
         private IUserCategoryService _userCategoryService;
         //private IUnitService _unitService;
         private IUserCategoryTranslationService _userCategoryTranslationService;
+        private readonly IRoomService _roomService;
+        private readonly ISupervisorService _supervisorService;
 
-
-        public UserCategoryFacade(IUserCategoryService userCategoryService, IUserCategoryTranslationService userCategoryTranslationService, IUnitOfWorkAsync unitOfWork) : base(unitOfWork)
+        public UserCategoryFacade(IUserCategoryService userCategoryService, IUserCategoryTranslationService userCategoryTranslationService, IUnitOfWorkAsync unitOfWork, IRoomFacade roomFacade, IRoomService roomService, IUserService userService, ISupervisorService supervisorService) : base(unitOfWork)
         {
             _userCategoryService = userCategoryService;
             _userCategoryTranslationService = userCategoryTranslationService;
+            _roomService = roomService;
+            _supervisorService = supervisorService; 
         }
 
         public PagedResultsDto GetAllPagingUserCategories(long userId, int page, int pageSize)
@@ -33,8 +37,14 @@ namespace E_Compound.BLL.Services
             return userCategories;
         }
 
-        public List<UserCategoryDto> GetUserCategories(long userId)
+        public List<UserCategoryDto> GetUserCategories(long userId, string roleType)
         {
+            if (roleType == Enums.RoleType.Room.ToString())
+                userId = _roomService.Find(userId).AdminId;
+
+            if (roleType == Enums.RoleType.Supervisor.ToString()) 
+                userId = _supervisorService.Find(userId).AdminId; 
+
             var userCategorys = _userCategoryService.GetUserCategories(userId);
 
             return Mapper.Map<List<UserCategoryDto>>(userCategorys);
@@ -44,7 +54,7 @@ namespace E_Compound.BLL.Services
         {
             var userCategory = _userCategoryService.Find(userCategoryId);
             if (userCategory == null) throw new NotFoundException(ErrorCodes.UserCategoryNotFound);
-            
+
             userCategory.IsDeleted = true;
             _userCategoryService.Update(userCategory);
             SaveChanges();

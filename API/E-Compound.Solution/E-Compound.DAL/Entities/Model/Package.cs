@@ -13,7 +13,7 @@ namespace E_Compound.DAL.Entities.Model
 
         public Package()
         {
-            Rooms = new List<Room>();
+            //Rooms = new List<Room>();
         }
         public long PackageId { get; set; }
         public Guid PackageGuid { get; set; }
@@ -27,6 +27,6 @@ namespace E_Compound.DAL.Entities.Model
         public virtual Admin Admin { get; set; }
         public int MaxNumberOfRooms { get; set; }
 
-        public virtual ICollection<Room> Rooms { get; set; }
+        //public virtual ICollection<Room> Rooms { get; set; }
     }
 }
