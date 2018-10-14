@@ -173,18 +173,24 @@
 		
 		vm.openEditSupervisorDialog = function(index){
             FeatureResource.getAllActivatedFeatures({ pageSize : 0 }).$promise.then(function(results) {
-                var modalContent = $uibModal.open({
-                    templateUrl: './app/admin/users/templates/editSupervisor.html',
-                    controller: 'editSupervisorDialogController',
-                    controllerAs: 'editSupervisorDlCtrl',
-                    resolve:{
-                        Supervisor:function(){ return angular.copy(vm.supervisors.results[index])},
-                        features:function(){ return results},                        
-                        callBackFunction:function(){return refreshSupervisors;},
-                        selectedLanguage:function(){return $scope.selectedLanguage;}
-                    }
-                    
-                });
+				CategoryResource.getAllActivatedCategories({ pageSize : 0 }).$promise.then(function(resultsCat) {
+					var modalContent = $uibModal.open({
+						templateUrl: './app/admin/users/templates/editSupervisor.html',
+						controller: 'editSupervisorDialogController',
+						controllerAs: 'editSupervisorDlCtrl',
+						resolve:{
+							Supervisor:function(){ return angular.copy(vm.supervisors.results[index])},
+							features:function(){ return results},              
+							categories:function(){ return resultsCat},          
+							callBackFunction:function(){return refreshSupervisors;},
+							selectedLanguage:function(){return $scope.selectedLanguage;}
+						}
+							
+					});	
+				},
+				function(data, status) {
+					ToastService.show("right","bottom","fadeInUp",data.message,"error");
+				});	
 			},
             function(data, status) {
 				ToastService.show("right","bottom","fadeInUp",data.message,"error");

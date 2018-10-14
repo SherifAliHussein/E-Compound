@@ -71,6 +71,7 @@
                                     <tr>
                                         <th>{{'Name' | translate}}</th>
                                         <th>{{'Featureslbl' |translate}} </th>
+                                        <th>{{'Categorieslbl' |translate}} </th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -88,6 +89,20 @@
                                                 </div>
                                                 <span ng-if="supervisor.features.length <= 0" style="    font-size: 14px;color: red;">
                                                     {{'supervisorhasnofeature' | translate}} 
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div ng-init="categoryLimit=2">
+                                                <span ng-repeat="category in supervisor.userCategories|limitTo:categoryLimit">
+                                                        {{category.titleDictionary[selectedLanguage]}}<span ng-if="!$last">,</span>
+                                                </span>
+                                                <div class="cursorPointer font12" ng-show="supervisor.userCategories.length > 2">
+                                                    <span  ng-show="categoryLimit == 2" ng-click="categoryLimit=supervisor.userCategories.length">{{supervisor.userCategories.length -2}} more categories</span>
+                                                    <span  ng-show="categoryLimit != 2" ng-click="categoryLimit=2">Collapse</span>
+                                                </div>
+                                                <span ng-if="supervisor.userCategories.length <= 0" style="    font-size: 14px;color: red;">
+                                                    {{'supervisorhasnocategory' | translate}} 
                                                 </span>
                                             </div>
                                         </td>

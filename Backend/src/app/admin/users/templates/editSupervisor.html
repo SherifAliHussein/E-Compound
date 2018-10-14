@@ -49,6 +49,17 @@
                         </select>
                         <div ng-if="updateSupervisorForm.SelectedFeatureId.$error.required && !updateSupervisorForm.SelectedFeatureId.$pristine">{{'requiredErr' | translate}}</div>
                     </div>
+                    <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed" >
+                        <label>{{'selectCategoryLbl' | translate}}</label>
+                        <select required class="form-control select-tags pmd-select2-tags" multiple
+                        ng-change="editSupervisorDlCtrl.categoryChange()" ng-model="editSupervisorDlCtrl.SelectedCategoryId" name="SelectedCategory">
+                            <option ng-repeat="category in editSupervisorDlCtrl.categories" 
+                            ng-value="{{category.userCategoryId}}">
+                                {{category.titleDictionary[editSupervisorDlCtrl.selectedLanguage]}}
+                            </option>                    
+                        </select>
+                        <div ng-if="updateTechnicianForm.SelectedCategoryId.$error.required && !updateTechnicianForm.SelectedCategoryId.$pristine">{{'requiredErr' | translate}}</div>
+                    </div>
             </form>
         </div>
         <div class="pmd-modal-action text-right">
