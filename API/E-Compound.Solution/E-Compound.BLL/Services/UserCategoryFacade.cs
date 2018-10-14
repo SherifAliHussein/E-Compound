@@ -21,13 +21,15 @@ namespace E_Compound.BLL.Services
         private IUserCategoryTranslationService _userCategoryTranslationService;
         private readonly IRoomService _roomService;
         private readonly ISupervisorService _supervisorService;
+        private readonly ITechnicianService _technicianService;
 
-        public UserCategoryFacade(IUserCategoryService userCategoryService, IUserCategoryTranslationService userCategoryTranslationService, IUnitOfWorkAsync unitOfWork, IRoomFacade roomFacade, IRoomService roomService, IUserService userService, ISupervisorService supervisorService) : base(unitOfWork)
+        public UserCategoryFacade(IUserCategoryService userCategoryService, IUserCategoryTranslationService userCategoryTranslationService, IUnitOfWorkAsync unitOfWork, IRoomFacade roomFacade, IRoomService roomService, IUserService userService, ISupervisorService supervisorService, ITechnicianService technicianService) : base(unitOfWork)
         {
             _userCategoryService = userCategoryService;
             _userCategoryTranslationService = userCategoryTranslationService;
             _roomService = roomService;
-            _supervisorService = supervisorService; 
+            _supervisorService = supervisorService;
+            _technicianService = technicianService;
         }
 
         public PagedResultsDto GetAllPagingUserCategories(long userId, int page, int pageSize)
@@ -46,7 +48,7 @@ namespace E_Compound.BLL.Services
                 userId = _supervisorService.Find(userId).AdminId;
 
             if (roleType == Enums.RoleType.Technician.ToString())
-                userId = _supervisorService.Find(userId).AdminId;
+                userId = _technicianService.Find(userId).AdminId;
 
             var userCategorys = _userCategoryService.GetUserCategories(userId);
 

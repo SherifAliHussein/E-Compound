@@ -89,6 +89,7 @@ namespace E_Compound.BLL.Services
             request.AssignedTime = DateTime.UtcNow; 
             request.Status = Enums.RequestStatus.Assigned;
             request.TechnicianId = requestDto.Technician.UserId;
+            request.SupervisorComment = requestDto.SupervisorComment;
 
             //   _requestDetailService.InsertRange(request.RequestDetails);
             _requestService.Update(request);

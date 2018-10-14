@@ -154,12 +154,12 @@
             "lastrequestStatus":"last request create on",
             "countLbl":" Entrance Count",
             "addcountLbl":"Add",
-            "date":"Date"
-            
-            
-        }
+            "date":"Date",
+            "titleLbl":"Title"
+         }
         
         var ar_translations = {
+            "titleLbl" : " العنوان",
             "restaurantType" : "أنواع المطاعم",
             "restaurant" : "مطاعم",
             "Name" : " الاسم",

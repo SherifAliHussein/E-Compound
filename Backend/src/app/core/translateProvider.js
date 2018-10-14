@@ -371,11 +371,17 @@
             "TechnicianUserPasswordLbl":"Technician Password",
             "technicianhasnofeature":"Technician has no feature",
             "TechnicianDeleteSuccess":"Technician Deleted Successfully",
-            "TechnicianUpdateSuccess":"Technician Updated Successfully"
+            "TechnicianUpdateSuccess":"Technician Updated Successfully",
+            "Action":"Action",
+            "technicianComment":"Technician Comment",
+            "supervisorComment":"Supervisor Comment",
         }
         
         var ar_translations = {
-            "TechnicianUpdateSuccess":"تم تعديل الفني بنجاح",
+           
+            "technicianComment":"تعليق الفني",
+            "supervisorComment":"تعليق المراقب",
+             "TechnicianUpdateSuccess":"تم تعديل الفني بنجاح",
             "TechnicianDeleteSuccess" : "تم حذف الفني بنجاح",
             "technicianhasnofeature":"لا يوجد قسم للفني",
             "TechnicianUserPasswordLbl":"كلمة مرور الفني",
@@ -750,6 +756,7 @@
             "ExportCsvBtn":"csv تصدير الى",
             "downloadBtn":"تحميل",
             "Assinglbl" : "تخصيص",
+            "Action" : "فعل",
         }
         
         $translateProvider.translations('en-us',en_translations);

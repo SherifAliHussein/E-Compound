@@ -6,6 +6,47 @@
         .controller('adminRequestController', ['$scope', 'UserCategoryPrepService', 'TechnicanResource', 'appCONSTANTS', '$uibModal', 'RequestResource'
             , 'requestsPrepService', '$filter', 'ToastService', 'authorizationService', 'FeatureResource', 'roomsNamePrepService', 'featuresNamePrepService', adminRequestController])
 
+        .directive('modal', function () {
+            return {
+                template: '<div class="modal fade">' +
+                    '<div class="modal-dialog">' +
+                    '<div class="modal-content">' +
+                    '<div class="modal-header">' +
+                    '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
+                    '<h4 class="modal-title">{{ title }}</h4>' +
+                    '</div>' +
+                    '<div class="modal-body" ng-transclude></div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>',
+                restrict: 'E',
+                transclude: true,
+                replace: true,
+                scope: true,
+                link: function postLink(scope, element, attrs) {
+                    scope.title = attrs.title;
+
+                    scope.$watch(attrs.visible, function (value) {
+                        if (value == true)
+                            $(element).modal('show');
+                        else
+                            $(element).modal('hide');
+                    });
+
+                    $(element).on('shown.bs.modal', function () {
+                        scope.$apply(function () {
+                            scope.$parent[attrs.visible] = true;
+                        });
+                    });
+
+                    $(element).on('hidden.bs.modal', function () {
+                        scope.$apply(function () {
+                            scope.$parent[attrs.visible] = false;
+                        });
+                    });
+                }
+            };
+        });
     function adminRequestController($scope, UserCategoryPrepService, TechnicanResource, appCONSTANTS, $uibModal, RequestResource
         , requestsPrepService, $filter, ToastService, authorizationService, FeatureResource, roomsNamePrepService, featuresNamePrepService) {
 
@@ -15,21 +56,41 @@
         vm.selectedRoom = vm.rooms[0];
         vm.rooms = vm.rooms.concat(roomsNamePrepService);
         console.log(vm.requests)
+      debugger;
         $scope.userCategoryList = UserCategoryPrepService;
         console.log($scope.userCategoryList)
         vm.features = [{ featureId: 0, featureNameDictionary: { 'en-us': "All features", 'ar-eg': "كل الميزات" } }];
         vm.selectedFeature = vm.features[0];
         vm.features = vm.features.concat(featuresNamePrepService);
-
-
-
+      
+        $scope.showModal = false;
+        $scope.objInModel = "";
+        $scope.toggleModal = function (obj) {
+            $scope.showModal = !$scope.showModal;
+            $scope.status = obj.message;
+            $scope.objInModel =obj;
+         };
+        $scope.ClickApprove = function () {
+        vm.Approve($scope.objInModel ,$scope.objInModel.requestId);
+            $scope.showModal = !$scope.showModal; 
+        };
+        $scope.ClickReject = function () {
+ 
+        vm.Reject($scope.objInModel .requestId);
+            $scope.showModal = !$scope.showModal; 
+        };
         _.forEach(vm.requests.results, function (request) {
+            debugger;
             var indexCategory = $scope.userCategoryList.indexOf($filter('filter')($scope.userCategoryList, { 'userCategoryId': request.userCategory }, true)[0]);
             vm.selectedCategory = $scope.userCategoryList[indexCategory];
             if (indexCategory > -1) { request.category = vm.selectedCategory.titleDictionary['en-us']; }
 
             request.createTime = request.createTime + "Z";
             request.createTime = $filter('date')(new Date(request.createTime), "dd/MM/yyyy hh:mm a");
+            
+            request.assignedTime = request.assignedTime + "Z";
+            request.assignedTime = $filter('date')(new Date(request.assignedTime), "dd/MM/yyyy hh:mm a");
+
             request.modifyTime = request.modifyTime + "Z";
             request.modifyTime = $filter('date')(new Date(request.modifyTime), "dd/MM/yyyy hh:mm a");
             if (request.requestTime != null) {
@@ -131,22 +192,21 @@
             ApproveRequest(requestId);
         }
         vm.Reject = function (requestId) {
-           // rejectRequest(requestId); 
+            rejectRequest(requestId);
         }
-        // function rejectRequest(requestId, requestDetail) {
-        //     var requestreject = new RequestResource();
-        //     requestreject.technicianComment = "hamdad";
-        //     requestreject.status = "Rejectd";
+        function rejectRequest(requestId) {
+            var requestreject = new RequestResource(); 
+            requestreject.technicianComment= $scope.objInModel.TechnicianComment;
 
-        //     requestreject.$reject({ requestId: requestId }).then(
-        //         function (data, status) {
-        //             refreshRequests()
-        //         },
-        //         function (data, status) {
-        //             ToastService.show("right", "bottom", "fadeInUp", data.data.message, "error");
-        //         }
-        //     );
-        // }
+            requestreject.$Reject({ requestId: requestId }).then(
+                function (data, status) {
+                    refreshRequests()
+                },
+                function (data, status) {
+                    ToastService.show("right", "bottom", "fadeInUp", data.data.message, "error");
+                }
+            );
+        }
 
         vm.openDialog = function (categoryId, requestId) {
             TechnicanResource.GetTechnicans({ categoryId: categoryId }).$promise.then(function (results) {

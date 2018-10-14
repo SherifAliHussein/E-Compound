@@ -142,7 +142,6 @@
     <Compile Include="DataServices\Interfaces\ISupervisorCategoryService.cs" />
     <Compile Include="DataServices\Interfaces\ISupervisorFeatureService.cs" />
     <Compile Include="DataServices\Interfaces\ISupervisorService.cs" />
-    <Compile Include="DataServices\Interfaces\ISupervisorCategoryService.cs" />
     <Compile Include="DataServices\Interfaces\ITechnicianCategoryService.cs" />
     <Compile Include="DataServices\Interfaces\ITechnicianService.cs" />
     <Compile Include="DataServices\Interfaces\ITemplateService.cs" />
