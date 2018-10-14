@@ -43,7 +43,10 @@ namespace E_Compound.BLL.Services
                 userId = _roomService.Find(userId).AdminId;
 
             if (roleType == Enums.RoleType.Supervisor.ToString()) 
-                userId = _supervisorService.Find(userId).AdminId; 
+                userId = _supervisorService.Find(userId).AdminId;
+
+            if (roleType == Enums.RoleType.Technician.ToString())
+                userId = _supervisorService.Find(userId).AdminId;
 
             var userCategorys = _userCategoryService.GetUserCategories(userId);
 
