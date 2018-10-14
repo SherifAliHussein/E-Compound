@@ -177,6 +177,18 @@ namespace E_Compound.BLL.Services
                     FeatureId = feature.FeatureId
                 });
             }
+
+            SupervisorCategory[] categories = new SupervisorCategory[supervisor.SupervisorCategories.Count];
+            supervisor.SupervisorCategories.CopyTo(categories, 0);
+            _supervisorCategoryService.DeleteRange(categories.ToList());
+
+            foreach (var category in supervisorDto.UserCategories)
+            {
+                supervisor.SupervisorCategories.Add(new SupervisorCategory
+                {
+                    UserCategoryId = category.UserCategoryId
+                });
+            }
             _supervisorService.Update(supervisor);
             SaveChanges();
         }
