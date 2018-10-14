@@ -19,30 +19,30 @@ namespace E_Compound.DAL.Migrations
         protected override void Seed(E_Compound.DAL.Entities.ECompoundContext context)
         {
 
-            var invetationFeature = context.Features.Add(new Feature
-            {
-                IsDeleted = false,
-                IsActive = true,
-                CreateTime = DateTime.Now,
-                Type = Enums.FeatureType.Invetation,
-                Creater = new Admin()
+            //var invetationFeature = context.Features.Add(new Feature
+            //{
+            //    IsDeleted = false,
+            //    IsActive = true,
+            //    CreateTime = DateTime.Now,
+            //    Type = Enums.FeatureType.Invetation,
+            //    Creater = new Admin()
 
-            });
-            context.FeatureTranslations.Add(new FeatureTranslation
-            {
-                Feature = invetationFeature,
-                FeatureName = "Invetation",
-                Language = "en"
+            //});
+            //context.FeatureTranslations.Add(new FeatureTranslation
+            //{
+            //    Feature = invetationFeature,
+            //    FeatureName = "Invetation",
+            //    Language = "en"
 
-            });
+            //});
 
-            context.FeatureTranslations.Add(new FeatureTranslation
-            {
-                Feature = invetationFeature,
-                FeatureName = "الدعوات",
-                Language = "ar"
+            //context.FeatureTranslations.Add(new FeatureTranslation
+            //{
+            //    Feature = invetationFeature,
+            //    FeatureName = "الدعوات",
+            //    Language = "ar"
 
-            });
+            //});
             //});//context.Users.Add(new Admin
             //{
             //    IsDeleted = false,

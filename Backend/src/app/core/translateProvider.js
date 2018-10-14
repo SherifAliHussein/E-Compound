@@ -5,6 +5,7 @@
   .module('core').config(["$translateProvider","appCONSTANTS",function($translateProvider,appCONSTANTS){
         
         var en_translations = {
+            "Assinglbl" : "Assing",
             "Featureslbl" : "Features",
             "Name" : "Name",
             "englishName" : "English Name",
@@ -747,7 +748,8 @@
             "applyFilterBtn":"تطبيق التصفية",
             "Reports":"تقارير",
             "ExportCsvBtn":"csv تصدير الى",
-            "downloadBtn":"تحميل"
+            "downloadBtn":"تحميل",
+            "Assinglbl" : "تخصيص",
         }
         
         $translateProvider.translations('en-us',en_translations);

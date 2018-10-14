@@ -69,7 +69,7 @@ namespace E_Compound.API.Controllers
         }
 
 
-        [AuthorizeRoles(Enums.RoleType.Admin,Enums.RoleType.Supervisor)]
+        [AuthorizeRoles(Enums.RoleType.Admin,Enums.RoleType.Supervisor, Enums.RoleType.Technician)]
         [Route("api/Features/", Name = "GetAllFeatures")]
         [HttpGet]
         [ResponseType(typeof(List<FeatureModel>))]
@@ -91,7 +91,7 @@ namespace E_Compound.API.Controllers
                 return Ok(feature);
             }
         }
-        [AuthorizeRoles(Enums.RoleType.Admin, Enums.RoleType.Supervisor, Enums.RoleType.Receptionist,Enums.RoleType.Waiter)]
+        [AuthorizeRoles(Enums.RoleType.Admin, Enums.RoleType.Supervisor, Enums.RoleType.Receptionist,Enums.RoleType.Waiter, Enums.RoleType.Technician)]
         [Route("api/Features/Name", Name = "GetAllFeatureName")]
         [HttpGet]
         [ResponseType(typeof(List<FeatureNameModel>))]

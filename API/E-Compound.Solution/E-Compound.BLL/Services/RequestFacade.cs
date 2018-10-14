@@ -19,6 +19,8 @@ namespace E_Compound.BLL.Services
     public class RequestFacade : BaseFacade, IRequestFacade
     {
         private IRequestService _requestService;
+        private ISupervisorCategoryService _supervisorCategoryService;
+        private ITechnicianCategoryService _technicianCategoryService;
         private ISupervisorService _supervisorService;
         private IReceptionistService _receptionistService;
         private IRequestDetailService _requestDetailService;
@@ -26,7 +28,7 @@ namespace E_Compound.BLL.Services
         private IFeatureDetailService _featureDetailService;
         private IRestaurantWaiterService _restaurantWaiterService;
         private readonly IManageStorage _manageStorage;
-        public RequestFacade(IUnitOfWorkAsync unitOfWork, IRequestService requestService, IReceptionistService receptionistService, ISupervisorService supervisorService, IRequestDetailService requestDetailService, IUserService userService, IFeatureDetailService featureDetailService, IRestaurantWaiterService restaurantWaiterService, IManageStorage manageStorage) : base(unitOfWork)
+        public RequestFacade(IUnitOfWorkAsync unitOfWork, IRequestService requestService, IReceptionistService receptionistService, ISupervisorService supervisorService, IRequestDetailService requestDetailService, IUserService userService, IFeatureDetailService featureDetailService, IRestaurantWaiterService restaurantWaiterService, IManageStorage manageStorage, ISupervisorCategoryService supervisorCategoryService, ITechnicianCategoryService technicianCategoryService) : base(unitOfWork)
         {
             _requestService = requestService;
             _receptionistService = receptionistService;
@@ -36,6 +38,8 @@ namespace E_Compound.BLL.Services
             _featureDetailService = featureDetailService;
             _restaurantWaiterService = restaurantWaiterService;
             _manageStorage = manageStorage;
+            _supervisorCategoryService = supervisorCategoryService;
+            _technicianCategoryService = technicianCategoryService;
         }
 
         public void CreateRequest(RequestDto requestDto)
@@ -69,11 +73,34 @@ namespace E_Compound.BLL.Services
             _requestService.Insert(request);
             SaveChanges();
         }
+
+        public void AssignRequest(RequestDto requestDto)
+        {
+            Request request = _requestService.Find(requestDto.RequestId);
+
+            var user = _userService.Find(requestDto.RoomId);
+            if (user == null)
+                throw new ValidationException(ErrorCodes.UserNotFound);
+            if (user.IsDeleted)
+                throw new ValidationException(ErrorCodes.UserDeleted);
+            if (!user.IsActive)
+                throw new ValidationException(ErrorCodes.UserDeactivated);
+            request.CreateTime = DateTime.UtcNow;
+            request.AssignedTime = DateTime.UtcNow; 
+            request.Status = Enums.RequestStatus.Assigned;
+            request.TechnicianId = requestDto.Technician.UserId;
+
+            //   _requestDetailService.InsertRange(request.RequestDetails);
+            _requestService.Update(request);
+            SaveChanges();
+        }
+
         public void CreateTicket(RequestDto requestDto, long userId, List<MemoryStream> files, string path)
         {
             var ticket = Mapper.Map<Request>(requestDto);
             ticket.CreationBy = userId;
             ticket.CreateTime = DateTime.Now;
+            ticket.CreateTime = DateTime.UtcNow;
             ticket.Status = Enums.RequestStatus.Pending;
             _requestService.Insert(ticket);
             SaveChanges();
@@ -110,7 +137,7 @@ namespace E_Compound.BLL.Services
             {
                 DateTime fromDateTime = !String.IsNullOrEmpty(from) ? DateTime.Parse(from) : DateTime.MinValue;
                 DateTime toDateTime = !String.IsNullOrEmpty(to) ? DateTime.Parse(to) : DateTime.MaxValue;
-                requestsCount = _requestService.Query(x => x.CreationBy == userId 
+                requestsCount = _requestService.Query(x => x.CreationBy == userId
                                                            && (featureId <= 0 || x.FeatureId == featureId)
                                                            && x.CreateTime >= fromDateTime && x.CreateTime <= toDateTime).Select().Count();
                 requests = Mapper.Map<List<RequestDto>>(_requestService.GetAllRequestsByRoom(userId, page, pageSize, featureId, fromDateTime, toDateTime));
@@ -127,7 +154,64 @@ namespace E_Compound.BLL.Services
                                 (roomId <= 0 || x.CreationBy == roomId) && (featureId <= 0 || x.FeatureId == featureId)
                                 && x.CreateTime >= fromDateTime && x.CreateTime <= toDateTime)
                     .Select().Count();
-                requests = Mapper.Map<List<RequestDto>>(_requestService.GetAllRequestsBySupervisor(userId, page, pageSize, roomId, featureId, fromDateTime, toDateTime));
+                var allRequests = Mapper.Map<List<RequestDto>>(_requestService.GetAllRequestsBySupervisor(userId, page, pageSize, roomId, featureId, fromDateTime, toDateTime));
+                var supervisorCategory = _supervisorCategoryService.Query(x => x.SupervisorId == userId).Select();
+                requests = new List<RequestDto>();
+
+                foreach (var category in supervisorCategory)
+                {
+                    foreach (var allRequest in allRequests)
+                    {
+                        if (allRequest.Type != Enums.FeatureType.Ticket)
+                        {
+                            var checkifExist = requests.Any(x => x.RequestId == allRequest.RequestId);
+                            if (!checkifExist)
+                            {
+                                requests.Add(allRequest);
+                                continue;
+                            }
+                        }
+                        if (allRequest.UserCategory != Convert.ToInt32(category.UserCategoryId)) continue;
+                        {
+                            if (requests.Count == 0) requests.Add(allRequest);
+
+                            if (requests.Any(x => x.RequestId != allRequest.RequestId))  requests.Add(allRequest);
+                        }
+                    }
+
+                }
+            }
+            else if (role == Enums.RoleType.Technician.ToString())
+            { 
+                DateTime fromDateTime = !String.IsNullOrEmpty(from) ? DateTime.Parse(from) : DateTime.MinValue;
+                DateTime toDateTime = !String.IsNullOrEmpty(to) ? DateTime.Parse(to) : DateTime.MaxValue;
+                var allRequests = Mapper.Map<List<RequestDto>>(_requestService.GetAllRequestsByTechnican(userId, page, pageSize, roomId, featureId, fromDateTime, toDateTime));
+                var supervisorCategory = _technicianCategoryService.Query(x => x.TechnicianId == userId).Select();
+                requests = new List<RequestDto>();
+                requestsCount = requests.Count;
+
+                foreach (var category in supervisorCategory)
+                {
+                    foreach (var allRequest in allRequests)
+                    {
+                        if (allRequest.Type != Enums.FeatureType.Ticket)
+                        {
+                            var checkifExist = requests.Any(x => x.RequestId == allRequest.RequestId);
+                            if (!checkifExist)
+                            {
+                                requests.Add(allRequest);
+                                continue;
+                            }
+                        }
+                        if (allRequest.UserCategory != Convert.ToInt32(category.UserCategoryId)) continue;
+                        {
+                            if (requests.Count == 0) requests.Add(allRequest);
+
+                            if (requests.Any(x => x.RequestId != allRequest.RequestId)) requests.Add(allRequest);
+                        }
+                    }
+
+                }
             }
             else if (role == Enums.RoleType.Receptionist.ToString())
             {
@@ -178,8 +262,7 @@ namespace E_Compound.BLL.Services
             if (!user.IsActive)
                 throw new ValidationException(ErrorCodes.UserDeactivated);
             if (request.Status == Enums.RequestStatus.Pending)
-            {
-
+            { 
                 request.ModifyTime = DateTime.UtcNow;
                 request.ModifiedBy = userId;
                 request.Status = Enums.RequestStatus.Approved;
@@ -198,14 +281,21 @@ namespace E_Compound.BLL.Services
                 //    }
                 //    _requestDetailService.InsertRange(request.RequestDetails);
                 //}
-                _requestService.Update(request);
-                SaveChanges();
+          
+            }
+            else if(request.Status == Enums.RequestStatus.Assigned)
+            {
+                request.Status = Enums.RequestStatus.Approved;
             }
             else
+            {
                 throw new ValidationException(ErrorCodes.RequestStatusChanged);
+            }
+            _requestService.Update(request);
+            SaveChanges();
         }
 
-        public void RejectRequest(long requestId, long userId)
+        public void RejectRequest(long requestId, long userId, RequestDto requestDto)
         {
             Request request = _requestService.Find(requestId);
             var user = _userService.Find(userId);
@@ -215,10 +305,11 @@ namespace E_Compound.BLL.Services
                 throw new ValidationException(ErrorCodes.UserDeleted);
             if (!user.IsActive)
                 throw new ValidationException(ErrorCodes.UserDeactivated);
-            if (request.Status == Enums.RequestStatus.Pending)
+            if (request.Status == Enums.RequestStatus.Pending || request.Status == Enums.RequestStatus.Assigned)
             {
                 request.ModifyTime = DateTime.UtcNow;
                 request.ModifiedBy = userId;
+                request.TechnicianComment = requestDto.TechnicianComment;
                 request.Status = Enums.RequestStatus.Rejected;
                 _requestService.Update(request);
                 SaveChanges();

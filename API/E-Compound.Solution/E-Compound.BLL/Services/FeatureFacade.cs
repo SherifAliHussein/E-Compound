@@ -32,8 +32,9 @@ namespace E_Compound.BLL.Services
         private IAvailableService _availableService;
 
         private ISupervisorFeatureService _supervisorFeatureService;
+        private ITechnicianService _technicianService;
         private IReceptionistService _receptionistService;
-        public FeatureFacade(IUnitOfWorkAsync unitOFWork, IFeatureService featureService, IFeatureTranslationService featureTranslationService, IUserService userService, IFeatureDetailService featureDetailService, IFeatureDetailTranslationService featureDetailTranslationService, IManageStorage manageStorage, IRoomService roomService, IRestaurantService restaurantService, IFeatureControlService featureControlService, ISupervisorFeatureService supervisorFeatureService, IAvailableService availableService, IReceptionistService receptionistService) : base(unitOFWork)
+        public FeatureFacade(IUnitOfWorkAsync unitOFWork, IFeatureService featureService, IFeatureTranslationService featureTranslationService, IUserService userService, IFeatureDetailService featureDetailService, IFeatureDetailTranslationService featureDetailTranslationService, IManageStorage manageStorage, IRoomService roomService, IRestaurantService restaurantService, IFeatureControlService featureControlService, ISupervisorFeatureService supervisorFeatureService, IAvailableService availableService, IReceptionistService receptionistService, ITechnicianService technicianService) : base(unitOFWork)
         {
             _featureService = featureService;
             _featureTranslationService = featureTranslationService;
@@ -48,6 +49,7 @@ namespace E_Compound.BLL.Services
             _supervisorFeatureService = supervisorFeatureService;
             _availableService = availableService;
             _receptionistService = receptionistService;
+            _technicianService = technicianService;
         }
 
         public PagedResultsDto GetAllFeatures(long adminId, int page, int pageSize)
@@ -416,7 +418,7 @@ namespace E_Compound.BLL.Services
             else if (userRole == Enums.RoleType.Supervisor.ToString())
             {
                 features = Mapper.Map<List<FeatureNameDto>>(_supervisorFeatureService.Query(x => x.SupervisorId == userId && !x.Feature.IsDeleted && x.Feature.IsActive).Select(x => x.Feature).ToList());
-            }
+            } 
             else if (userRole == Enums.RoleType.Receptionist.ToString())
             {
                 var adminId = _receptionistService.Find(userId).AdminId;

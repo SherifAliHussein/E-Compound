@@ -172,6 +172,17 @@ namespace E_Compound.API.Controllers
             return Ok();
         }
 
+        [AuthorizeRoles(Enums.RoleType.Supervisor)]
+        [Route("api/Users/TechnicianByCategoryId/{categoryId:long}", Name = "TechnicianByCategoryId")]
+        [HttpGet]
+        [ResponseType(typeof(List<TechnicianModel>))]
+        public IHttpActionResult TechnicianByCategoryId(long categoryId,int page = Page, int pagesize = PageSize)
+        {
+            PagedResultsDto users = _userFacade.TechnicianByCategoryId(categoryId, page, pagesize);
+            var data = Mapper.Map<List<TechnicianModel>>(users.Data);
+
+            return PagedResponse("TechnicianByCategoryId", page, pagesize, users.TotalCount, data);
+        }
 
         [AuthorizeRoles(Enums.RoleType.Admin)]
         [Route("api/Users/Technician/", Name = "GetAllTechnicians")]

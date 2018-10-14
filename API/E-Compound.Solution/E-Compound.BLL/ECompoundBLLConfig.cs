@@ -330,7 +330,10 @@ namespace E_Compound.BLL
                 .RegisterType<IFeaturesBackgroundService, FeaturesBackgroundService>(new PerResolveLifetimeManager())
                 //.RegisterType<IControlService, ControlService>(new PerResolveLifetimeManager())
                 .RegisterType<IFeatureControlService, FeatureControlService>(new PerResolveLifetimeManager())
-                .RegisterType<IAvailableService, AvailableService>(new PerResolveLifetimeManager());
+                .RegisterType<IAvailableService, AvailableService>(new PerResolveLifetimeManager())
+                
+                .RegisterType<ISupervisorCategoryService, SupervisorCategoryService>(new PerResolveLifetimeManager())
+                ;
         }
     }
 }

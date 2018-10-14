@@ -45,7 +45,7 @@ namespace E_Compound.API.Controllers
             return PagedResponse("GetAllRoom", page, pagesize, rooms.TotalCount, data);
         }
 
-        [AuthorizeRoles(Enums.RoleType.Admin, Enums.RoleType.Supervisor, Enums.RoleType.Receptionist, Enums.RoleType.Waiter)]
+        [AuthorizeRoles(Enums.RoleType.Admin, Enums.RoleType.Supervisor, Enums.RoleType.Receptionist, Enums.RoleType.Waiter, Enums.RoleType.Technician)]
         [Route("api/Rooms/Name", Name = "GetAllRoomNames")]
         [HttpGet]
         [ResponseType(typeof(List<RoomNameModel>))]

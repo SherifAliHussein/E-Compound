@@ -32,6 +32,7 @@ namespace E_Compound.DAL
                 .RegisterType<IRepositoryAsync<RefreshToken>, Repository<RefreshToken>>(new PerResolveLifetimeManager())
                 .RegisterType<IRepositoryAsync<Supervisor>, Repository<Supervisor>>(new PerResolveLifetimeManager())
                 .RegisterType<IRepositoryAsync<Technician>, Repository<Technician>>(new PerResolveLifetimeManager())
+                .RegisterType<IRepositoryAsync<SupervisorCategory>, Repository<SupervisorCategory>>(new PerResolveLifetimeManager())
                 .RegisterType<IRepositoryAsync<Receptionist>, Repository<Receptionist>>(new PerResolveLifetimeManager())
                 .RegisterType<IRepositoryAsync<Feature>, Repository<Feature>>(new PerResolveLifetimeManager())
                 .RegisterType<IRepositoryAsync<FeatureTranslation>, Repository<FeatureTranslation>>(

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Http;
@@ -27,13 +28,16 @@ namespace E_Compound.API.Controllers
             _requestFacade = requestFacade;
         }
 
-        [AuthorizeRoles(Enums.RoleType.Room)]
+        [AuthorizeRoles(Enums.RoleType.Room, Enums.RoleType.Supervisor)]
         [Route("api/Requests", Name = "CreateRequest")]
         [HttpPost]
         public IHttpActionResult CreateRequest([FromBody] RequestModel requestModel)
         {
             requestModel.RoomId = UserId;
-            _requestFacade.CreateRequest(Mapper.Map<RequestDto>(requestModel));
+            if (requestModel.Technician != null) 
+            _requestFacade.AssignRequest(Mapper.Map<RequestDto>(requestModel));
+                 
+           else _requestFacade.CreateRequest(Mapper.Map<RequestDto>(requestModel));
             return Ok();
         }
 
@@ -65,7 +69,7 @@ namespace E_Compound.API.Controllers
         }
 
 
-        [AuthorizeRoles(Enums.RoleType.Admin, Enums.RoleType.Receptionist, Enums.RoleType.Supervisor, Enums.RoleType.Waiter)]
+        [AuthorizeRoles(Enums.RoleType.Admin, Enums.RoleType.Receptionist, Enums.RoleType.Supervisor, Enums.RoleType.Waiter, Enums.RoleType.Technician)]
         [Route("api/Requests/", Name = "GetAllRequests")]
         [HttpGet]
         [ResponseType(typeof(List<RequestModel>))]
@@ -73,13 +77,55 @@ namespace E_Compound.API.Controllers
         {
             PagedResultsDto requests = _requestFacade.GetAllRequests(UserId, page, pagesize, UserRole, roomId, featureId, from, to);
             var data = Mapper.Map<List<RequestModel>>(requests.Data);
+            if (data != null)
+                foreach (var item in data)
+                {
+                    item.ImagesURL = new List<string>();
+                    string path = HostingEnvironment.MapPath("~/Images/") + "\\" + "Ticket-" + item.RequestId;
+                    var imageCounter = Directory.Exists(path) ? Directory
+                        .GetFiles(path)
+                        .Count(x => !Path.GetFileName(x).Contains("thumb")) : -1;
+                    int id = 1;
+                    while (id < imageCounter + 1)
+                    {
+                        item.ImagesURL.Add(Url.Link("RequestImage", new { RequestId = item.RequestId, imageId = id }));
+                        id++;
+                    }
 
+                }
             return PagedResponse("GetAllRequests", page, pagesize, requests.TotalCount, data);
         }
 
+        [Route("api/Requests/{RequestId:long}/Image/{imageId:int}", Name = "RequestImage")]
+        public HttpResponseMessage GetRequestImage(long RequestId, int imageId, string type = "orignal")
+        {
+            try
+            {
+                string filePath = type == "orignal"
+                    ? Directory.GetFiles(HostingEnvironment.MapPath("~/Images/") + "\\" + "Ticket-" + RequestId)
+                        .FirstOrDefault(x => Path.GetFileName(x).Split('.')[0] == imageId.ToString() &&
+                                             !Path.GetFileName(x).Contains("thumb"))
+                    : Directory.GetFiles(HostingEnvironment.MapPath("~/Images/") + "\\" + "Ticket-" + RequestId)
+                        .FirstOrDefault(x => Path.GetFileName(x).Split('.')[0] == imageId.ToString() &&
+                                             Path.GetFileName(x).Contains("thumb"));
 
 
-        [AuthorizeRoles(Enums.RoleType.Supervisor, Enums.RoleType.Waiter)]
+                HttpResponseMessage Response = new HttpResponseMessage(HttpStatusCode.OK);
+
+                byte[] fileData = File.ReadAllBytes(filePath);
+
+                Response.Content = new ByteArrayContent(fileData);
+                Response.Content.Headers.ContentType = new MediaTypeHeaderValue("image/png");
+
+                return Response;
+            }
+            catch (Exception e)
+            {
+                return new HttpResponseMessage();
+            }
+        }
+
+        [AuthorizeRoles(Enums.RoleType.Supervisor, Enums.RoleType.Waiter, Enums.RoleType.Technician)]
         [Route("api/Requests/{requestId:long}/Approve", Name = "ApproveRequest")]
         [HttpPost]
         public IHttpActionResult ApproveRequest(long requestId, [FromBody] RequestModel requestModel)
@@ -88,12 +134,12 @@ namespace E_Compound.API.Controllers
             return Ok();
         }
 
-        [AuthorizeRoles(Enums.RoleType.Supervisor, Enums.RoleType.Waiter)]
+        [AuthorizeRoles(Enums.RoleType.Supervisor, Enums.RoleType.Waiter, Enums.RoleType.Technician)]
         [Route("api/Requests/{requestId:long}/Reject", Name = "RejectRequest")]
-        [HttpGet]
-        public IHttpActionResult RejectRequest(long requestId)
+        [HttpPost]
+        public IHttpActionResult RejectRequest(long requestId, [FromBody] RequestModel requestModel)
         {
-            _requestFacade.RejectRequest(requestId, UserId);
+            _requestFacade.RejectRequest(requestId, UserId,Mapper.Map<RequestDto>(requestModel));
             return Ok();
         }
     }

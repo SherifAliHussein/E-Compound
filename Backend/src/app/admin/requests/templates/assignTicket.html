@@ -1,0 +1,49 @@
+<div class="modal-content">
+    <div class="modal-header bordered">
+        <button class="close" type="button" ng-click="assignDlCtrl.close()">×</button>
+        <h2 class="pmd-card-title-text">{{'Assinglbl' | translate}}</h2>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" name="newassignForm">
+           
+
+            <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+                <label>{{'TechnicianLbl' | translate}}</label>
+                <select class="form-control select-tags pmd-select2-tags"  ng-model="assignDlCtrl.SelectedTechnican"
+                    name="SelectedTechnican">
+                    <option ng-repeat="Technican in assignDlCtrl.Technicans" ng-value="{{Technican}}">{{Technican.userName}}</option>
+                </select>
+                <div ng-if="newassignForm.SelectedTechnican.$error.required && !newassignForm.SelectedTechnican.$pristine">{{'requiredErr'
+                    | translate}}</div>
+            </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                <label for="first-name">{{'Comment' | translate}}</label>
+                <textarea required type="text" class="mat-input form-control" name="Comment" 
+                ng-model="assignDlCtrl.SupervisorComment" ></textarea>
+
+                <div ng-messages="newassignForm.Comment.$error">
+                    <div ng-if="newassignForm.Comment.$error.required && !newassignForm.Comment.$pristine">{{'requiredErr'
+                        | translate}}</div>
+                    <div ng-if="(newassignForm.Comment.$error.minlength || newassignForm.Comment.$error.maxlength) && !newassignForm.Comment.$error.required">{{'NameLengthError'
+                        | translate}}</div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="pmd-modal-action text-right">
+        <button ng-disabled="newassignForm.$invalid || (assignDlCtrl.SelectedTechnican.length<=0 )" class="btn pmd-ripple-effect btn-primary"
+            type="button" ng-click="assignDlCtrl.AddNewassign()">{{'saveChangesBtn' | translate}}</button>
+        <button class="btn pmd-ripple-effect btn-default" type="button" ng-click="assignDlCtrl.close()">{{'DiscardBtn'
+            | translate}}</button>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // <!-- Select Multiple Tags -->
+        $(".select-tags").select2({
+            tags: false,
+            theme: "bootstrap",
+        })
+    });
+</script>

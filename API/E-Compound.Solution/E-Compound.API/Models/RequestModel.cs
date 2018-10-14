@@ -28,8 +28,14 @@ namespace E_Compound.API.Models
         public string InvetationType { get; set; }
         public List<string> ImagesURL { get; set; }
         public String Title { get; set; }
+
+
+        public DateTime? AssignedTime { get; set; }
+
+        public string SupervisorComment { get; set; }
+
+        public TechnicianModel Technician { get; set; }
+        public string TechnicianComment { get; set; }
         public int UserCategory { get; set; }
-
-
     }
 }

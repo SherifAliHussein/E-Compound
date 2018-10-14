@@ -19,8 +19,7 @@
             newFeatureDetail.link = vm.featureDetail.link;
             newFeatureDetail.featureControlId = featureControlId;
             var model = new FormData();
-			model.append('data', JSON.stringify(newFeatureDetail));
-			// model.append('file', featureImage);
+			model.append('data', JSON.stringify(newFeatureDetail)); 
 			$http({
 				method: 'POST',
 				url: appCONSTANTS.API_URL + 'Features/Detail',
@@ -46,20 +45,9 @@
 			var newFeatureDetail = new ManageFeatureResource();
             newFeatureDetail.link = vm.featureDetail.link;
             newFeatureDetail.featureDetailId = vm.featureDetail.featureDetailId;
-            newFeatureDetail.featureControlId = featureControlId;
-            // newFeatureDetail.$updateFeatureDetail().then(
-            //     function(data, status) {
-			// 		ToastService.show("right","bottom","fadeInUp",$translate.instant('RoomAddSuccess'),"success");
-			// 		$uibModalInstance.dismiss('cancel');
-			// 		callBackFunction();
-            //     },
-            //     function(data, status) {
-			// 		ToastService.show("right","bottom","fadeInUp",data.data.message,"error");
-            //     }
-            // );
+            newFeatureDetail.featureControlId = featureControlId; 
             var model = new FormData();
-			model.append('data', JSON.stringify(newFeatureDetail));
-			// model.append('file', featureImage);
+			model.append('data', JSON.stringify(newFeatureDetail)); 
 			$http({
 				method: 'PUT',
 				url: appCONSTANTS.API_URL + 'Features/Detail',

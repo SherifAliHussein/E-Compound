@@ -3,31 +3,30 @@
 
     angular
         .module('home')
-        .controller('adminRequestController', ['$scope', 'UserCategoryPrepService', '$translate', 'appCONSTANTS', '$uibModal', 'RequestResource'
+        .controller('adminRequestController', ['$scope', 'UserCategoryPrepService', 'TechnicanResource', 'appCONSTANTS', '$uibModal', 'RequestResource'
             , 'requestsPrepService', '$filter', 'ToastService', 'authorizationService', 'FeatureResource', 'roomsNamePrepService', 'featuresNamePrepService', adminRequestController])
 
-    function adminRequestController($scope, UserCategoryPrepService, $translate, appCONSTANTS, $uibModal, RequestResource
+    function adminRequestController($scope, UserCategoryPrepService, TechnicanResource, appCONSTANTS, $uibModal, RequestResource
         , requestsPrepService, $filter, ToastService, authorizationService, FeatureResource, roomsNamePrepService, featuresNamePrepService) {
- 
-            var vm = this;
+
+        var vm = this;
         vm.requests = requestsPrepService;
         vm.rooms = [{ roomId: 0, roomName: "All rooms" }];
         vm.selectedRoom = vm.rooms[0];
         vm.rooms = vm.rooms.concat(roomsNamePrepService);
         console.log(vm.requests)
-        $scope.userCategoryList=UserCategoryPrepService;
+        $scope.userCategoryList = UserCategoryPrepService;
         console.log($scope.userCategoryList)
         vm.features = [{ featureId: 0, featureNameDictionary: { 'en-us': "All features", 'ar-eg': "كل الميزات" } }];
         vm.selectedFeature = vm.features[0];
         vm.features = vm.features.concat(featuresNamePrepService);
-      
-      
+
+
 
         _.forEach(vm.requests.results, function (request) {
             var indexCategory = $scope.userCategoryList.indexOf($filter('filter')($scope.userCategoryList, { 'userCategoryId': request.userCategory }, true)[0]);
-        vm.selectedCategory=$scope.userCategoryList[indexCategory];
-        if(indexCategory >-1)
-       { request.category = vm.selectedCategory.titleDictionary['en-us'];}
+            vm.selectedCategory = $scope.userCategoryList[indexCategory];
+            if (indexCategory > -1) { request.category = vm.selectedCategory.titleDictionary['en-us']; }
 
             request.createTime = request.createTime + "Z";
             request.createTime = $filter('date')(new Date(request.createTime), "dd/MM/yyyy hh:mm a");
@@ -54,6 +53,8 @@
         if (user.role === 'Admin')
             $($('.pmd-sidebar-nav').children()[3].children[0]).addClass("active")
         else if (user.role === 'Supervisor')
+            $($('.pmd-sidebar-nav').children()[0].children[0]).addClass("active")
+        else if (user.role === 'Technician')
             $($('.pmd-sidebar-nav').children()[0].children[0]).addClass("active")
         else
             $($('.pmd-sidebar-nav').children()[1].children[0]).addClass("active")
@@ -113,7 +114,8 @@
         }
         function ApproveRequest(requestId, requestDetail) {
             var requestApproval = new RequestResource();
-            requestApproval.requestDetails = requestDetail
+            requestApproval.requestDetails = requestDetail;
+            requestApproval.status = "Approved";
 
             requestApproval.$Approve({ requestId: requestId }).then(
                 function (data, status) {
@@ -129,13 +131,41 @@
             ApproveRequest(requestId);
         }
         vm.Reject = function (requestId) {
-            RequestResource.Reject({ requestId: requestId })
-                .$promise.then(function (result) {
-                    refreshRequests()
-                },
-                    function (data, status) {
-                        ToastService.show("right", "bottom", "fadeInUp", data.data.message, "error");
-                    })
+           // rejectRequest(requestId); 
+        }
+        // function rejectRequest(requestId, requestDetail) {
+        //     var requestreject = new RequestResource();
+        //     requestreject.technicianComment = "hamdad";
+        //     requestreject.status = "Rejectd";
+
+        //     requestreject.$reject({ requestId: requestId }).then(
+        //         function (data, status) {
+        //             refreshRequests()
+        //         },
+        //         function (data, status) {
+        //             ToastService.show("right", "bottom", "fadeInUp", data.data.message, "error");
+        //         }
+        //     );
+        // }
+
+        vm.openDialog = function (categoryId, requestId) {
+            TechnicanResource.GetTechnicans({ categoryId: categoryId }).$promise.then(function (results) {
+                var modalContent = $uibModal.open({
+                    templateUrl: './app/admin/requests/templates/assignTicket.html',
+                    controller: 'assignDialogController',
+                    controllerAs: 'assignDlCtrl',
+                    resolve: {
+                        Technicans: function () { return results },
+                        selectedLanguage: function () { return $scope.selectedLanguage; },
+                        requestId: function () { return requestId; }
+                    }
+
+                });
+            },
+                function (data, status) {
+                    ToastService.show("right", "bottom", "fadeInUp", data.message, "error");
+                });
+
         }
     }
 

@@ -65,6 +65,20 @@ namespace E_Compound.BLL.DataServices
 
             return requests;
         }
+        public List<Request> GetAllRequestsByTechnican(long userId, int page, int pageSize, long roomId, long featureId, DateTime fromDateTime, DateTime toDateTime)
+        {
+            List<Request> requests;
+            if (pageSize > 0)
+                requests = _repository.Query(x => x.TechnicianId== userId && x.CreateTime >= fromDateTime && x.CreateTime <= toDateTime).Select()
+                    .OrderBy(x => x.Status).ThenByDescending(x => x.CreateTime).Skip((page - 1) * pageSize)
+                    .Take(pageSize).ToList();
+            else
+                requests = _repository.Query(x => x.TechnicianId == userId && x.CreateTime >= fromDateTime && x.CreateTime <= toDateTime).Select()
+                    .OrderBy(x => x.Status).ThenByDescending(x => x.CreateTime).ToList();
+
+            return requests;
+        }
+
         public List<Request> GetAllRequestsByReceptionist(long userId, int page, int pageSize, long roomId, long featureId, DateTime fromDateTime, DateTime toDateTime)
         {
             List<Request> requests;
