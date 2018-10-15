@@ -84,7 +84,7 @@
                         <td data-title="Name">{{request.featureNameDictionary[selectedLanguage]}}</td>
                         <td data-title="Name">{{request.createTime}}</td>
                         <td data-title="Name">
-               
+
                             {{request.status|translate}}
                             <span ng-if="request.status!='Pending' &&  request.type !='Ticket'">
                                 {{request.modifier}} "{{request.modifyTime}}"
@@ -96,16 +96,15 @@
                         </td>
 
                         <td ng-if="user.role === 'Technician' && request.status =='Assigned' && request.type=='Ticket' && request.technician.userId ==user.id ">
-                                <a ng-click="adminRequestCtrl.Approve(request.featureId,request.requestId)" class="cursorPointer">{{'ApproveBtn'
-                                        | translate}}</a>
-                                    <a ng-click="adminRequestCtrl.Reject(request.requestId)" class="cursorPointer">{{'RejectBtn'
-                                        | translate}}</a>
+                            <button ng-click="toggleModal(request)" class="btn btn-default">
+                                {{'Action'| translate}}
+                            </button>
+
                         </td>
-                        <td ng-if="user.role === 'Supervisor' && request.status =='Pending' && request.type=='Ticket'">
-                                <a ng-click="adminRequestCtrl.openDialog(request.userCategory,request.requestId)" 
-                                class="cursorPointer">{{'Assinglbl'
-                                    | translate}}</a>
-                            </td>
+                        <td ng-if="user.role === 'Supervisor' &&  request.type=='Ticket'">
+                            <a ng-show="request.status =='Pending' || request.status =='Rejected'" ng-click="adminRequestCtrl.openDialog(request.userCategory,request.requestId)"
+                                class="cursorPointer">{{'Assinglbl'| translate}}</a>
+                        </td>
 
                         <td ng-if="user.role === 'Supervisor' && request.status =='Pending' && request.type=='Invetation'">
                             <a ng-click="adminRequestCtrl.Approve(request.featureId,request.requestId)" class="cursorPointer">{{'ApproveBtn'
@@ -204,12 +203,22 @@
                                 <h2>{{'Comment'|translate}}: </h2>
                                 <span>{{request.comment}}</span>
                             </div>
+                            <div style="background: white;padding: 5px;" ng-if="request.technicianComment !== null">
+                                <h2>{{'technicianComment'|translate}}: </h2>
+                                <span>{{request.technicianComment}}</span>
+                            </div>
+
+                            <div style="background: white;padding: 5px;" ng-if="request.supervisorComment !== null">
+                                <h2>{{'supervisorComment'|translate}}: </h2>
+                                <span>{{request.supervisorComment}}</span>
+                            </div>
+
                             <div style="background: white;padding: 5px;" ng-if="request.requestTime !== null">
                                 <!-- <h2 style="float: left;">{{'Time'|translate}}: </h2> -->
                                 <h2>{{'Time'|translate}}: </h2>
                                 <span> {{request.requestTime}}</span>
                             </div>
-                            <div style="background: white;padding: 5px;">
+                            <div style="background: white;padding: 5px;" ng-if="request.imagesURL !== []">
 
                                 <h2>{{'Imagelbl'|translate}}: </h2>
                                 <ul>
@@ -231,3 +240,17 @@
     </div>
 
 </div>
+
+
+<modal title="{{'StatusLbl' | translate}}" visible="showModal">
+    <div class="form-group pmd-textfield pmd-textfield-floating-label">
+        <label for="first-name">{{'Comment' | translate}}</label>
+        <textarea required type="text" class="mat-input form-control" name="Comment" ng-model="objInModel.TechnicianComment"></textarea>
+    </div>
+
+    <a ng-click="ClickApprove()" class="cursorPointer">{{'ApproveBtn'| translate}}</a>
+    <a ng-click="ClickReject()" class="cursorPointer">{{'RejectBtn'
+        | translate}}</a>
+
+
+</modal>

@@ -43,13 +43,14 @@ namespace E_Compound.DAL.Migrations
             //    Language = "ar"
 
             //});
-            //});//context.Users.Add(new Admin
-            //{
-            //    IsDeleted = false,
-            //    Password = "wArilz/QIT55GuLgpRQlCHX0lir/WTXM8yc33MPiN3Bl26dnvS752gHPadYZoL20",
-            //    UserName = "admin",
-            //    Role = Enums.RoleType.Admin
             //});
+            context.Users.Add(new Admin
+            {
+                IsDeleted = false,
+                Password = "wArilz/QIT55GuLgpRQlCHX0lir/WTXM8yc33MPiN3Bl26dnvS752gHPadYZoL200",
+                UserName = "admin",
+                Role = Enums.RoleType.Admin
+            });
             //  This method will be called after migrating to the latest version.
 
             //context.FeaturesBackgrounds.Add(new FeaturesBackground
