@@ -1,55 +1,90 @@
 <div class="modal-content">
-        <div class="modal-header bordered">
-            <button class="close" type="button" ng-click="roomDlCtrl.close()">×</button>
-            <h2 class="pmd-card-title-text">{{'NewRoomLbl' | translate}}</h2>
-        </div>
-        <div class="modal-body">
-            <form class="form-horizontal" name="newRoomForm">
-                <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                    <label for="first-name">{{'roomName' | translate}}</label>
-                    <input required type="text" class="mat-input form-control" name="roomName" ng-model="roomDlCtrl.roomName" ng-minlength="3" ng-maxlength="100">
-                    <div ng-messages="newRoomForm.roomName.$error" >
-                        <div ng-if="newRoomForm.roomName.$error.required && !newRoomForm.roomName.$pristine">{{'requiredErr' | translate}}</div>
-                        <div ng-if="(newRoomForm.roomName.$error.minlength || newRoomForm.roomName.$error.maxlength) && !newRoomForm.roomName.$error.required">{{'NameLengthError' | translate}}</div>
-                    </div>
-                </div>
-                <div class="form-group pmd-textfield pmd-textfield-floating-label" >
-                        <label for="first-name">{{'RoomPasswordLbl' | translate}}</label>
-                        <input required type="password" class="mat-input form-control" name="password" ng-model="roomDlCtrl.password" ng-minlength="8" ng-maxlength="25">
-                        <div ng-messages="newRoomForm.password.$error" >
-                            <div ng-if="newRoomForm.password.$error.required && !newRoomForm.password.$pristine">{{'requiredErr' | translate}}</div>
-                            <div ng-if="(newRoomForm.password.$error.minlength || newRoomForm.password.$error.maxlength) && !newRoomForm.password.newPassword.$error.required">Password length must be 8-25 char.</div>
-                        </div>
-                    </div>
-                    <div class="form-group pmd-textfield pmd-textfield-floating-label" >
-                        <label for="first-name">{{'ConfirmPasswordLbl' | translate}}</label>
-                        <input required type="password" class="mat-input form-control" name="confirmPassword"  ng-model="roomDlCtrl.confirmPassword" equalto="newRoomForm.password" >
-                        <div ng-messages="newRoomForm.confirmPassword.$error" >
-                            <div ng-if="newRoomForm.confirmPassword.$error.required && !newRoomForm.confirmPassword.$pristine">{{'requiredErr' | translate}}</div>
-                            <div ng-if="newRoomForm.confirmPassword.$error.equalto && !newRoomForm.confirmPassword.$error.required">Passwords don't match.</div>
-                        </div>
-                    </div>
-                    <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed" >
-                        <label>{{'BuildingLbl' | translate}}</label>
-                        <select class="select-simple form-control pmd-select2" 
-                            ng-options="building.buildingName for building in roomDlCtrl.Buildings"  
-                            ng-model="roomDlCtrl.selectedBuilding">
-                        </select>
-                    </div>
-                    <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed" >
-                        <label>{{'FloorLbl' | translate}}</label>
-                        <select class="select-simple form-control pmd-select2" 
-                            ng-options="floor.floorName for floor in roomDlCtrl.Floors"  
-                            ng-model="roomDlCtrl.selectedFloor">
-                        </select>
-                    </div>
-            </form>
-        </div>
-        <div class="pmd-modal-action text-right">
-            <button ng-disabled="newRoomForm.$invalid || roomDlCtrl.selectedBuilding == NULL || roomDlCtrl.selectedFloor == NULL" class="btn pmd-ripple-effect btn-primary" type="button" ng-click="roomDlCtrl.AddNewRoom()">{{'saveChangesBtn' | translate}}</button>
-            <button class="btn pmd-ripple-effect btn-default" type="button" ng-click="roomDlCtrl.close()">{{'DiscardBtn' | translate}}</button>
-        </div>
+    <div class="modal-header bordered">
+        <button class="close" type="button" ng-click="roomDlCtrl.close()">×</button>
+        <h2 class="pmd-card-title-text">{{'NewRoomLbl' | translate}}</h2>
     </div>
-    
-        
-    
+    <div class="modal-body">
+        <form class="form-horizontal" name="newRoomForm">
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                <label for="first-name">{{'firstName' | translate}}</label>
+                <input required type="text" class="mat-input form-control" name="firstName" ng-model="roomDlCtrl.firstName"
+                    ng-minlength="3" ng-maxlength="100">
+                <div ng-messages="newRoomForm.firstName.$error">
+                    <div ng-if="newRoomForm.firstName.$error.required && !newRoomForm.firstName.$pristine">{{'requiredErr'
+                        | translate}}</div>
+                    <div ng-if="(newRoomForm.firstName.$error.minlength || newRoomForm.firstName.$error.maxlength) && !newRoomForm.firstName.$error.required">{{'NameLengthError'
+                        | translate}}</div>
+                </div>
+            </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                <label for="first-name">{{'lastName' | translate}}</label>
+                <input required type="text" class="mat-input form-control" name="lastName" ng-model="roomDlCtrl.lastName"
+                    ng-minlength="3" ng-maxlength="100">
+                <div ng-messages="newRoomForm.lastName.$error">
+                    <div ng-if="newRoomForm.lastName.$error.required && !newRoomForm.lastName.$pristine">{{'requiredErr'
+                        | translate}}</div>
+                    <div ng-if="(newRoomForm.lastName.$error.minlength || newRoomForm.lastName.$error.maxlength) && !newRoomForm.lastName.$error.required">{{'NameLengthError'
+                        | translate}}</div>
+                </div>
+            </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+
+                <label for="first-name">{{'phoneLbl' | translate}}</label>
+                <input required type="text" class="mat-input form-control" name="phone" numbers-only ng-model="roomDlCtrl.Phone"
+                    ng-minlength="10" ng-maxlength="50">
+                <div ng-messages="newRoomForm.phone.$error">
+                    <div ng-if="newRoomForm.phone.$error.required && !newRoomForm.phone.$pristine">{{'PhoneReqError'
+                        | translate}}</div>
+                    <div ng-if="(newRoomForm.phone.$error.minlength || newRoomForm.phone.$error.maxlength)">{{'PhoneLengthError'
+                        | translate}}</div>
+                </div>
+            </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                <label for="first-name">{{'roomName' | translate}}</label>
+                <input required type="text" class="mat-input form-control" name="roomName" ng-model="roomDlCtrl.roomName"
+                    ng-minlength="3" ng-maxlength="100">
+                <div ng-messages="newRoomForm.roomName.$error">
+                    <div ng-if="newRoomForm.roomName.$error.required && !newRoomForm.roomName.$pristine">{{'requiredErr'
+                        | translate}}</div>
+                    <div ng-if="(newRoomForm.roomName.$error.minlength || newRoomForm.roomName.$error.maxlength) && !newRoomForm.roomName.$error.required">{{'NameLengthError'
+                        | translate}}</div>
+                </div>
+            </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                <label for="first-name">{{'RoomPasswordLbl' | translate}}</label>
+                <input required type="password" class="mat-input form-control" name="password" ng-model="roomDlCtrl.password"
+                    ng-minlength="8" ng-maxlength="25">
+                <div ng-messages="newRoomForm.password.$error">
+                    <div ng-if="newRoomForm.password.$error.required && !newRoomForm.password.$pristine">{{'requiredErr'
+                        | translate}}</div>
+                    <div ng-if="(newRoomForm.password.$error.minlength || newRoomForm.password.$error.maxlength) && !newRoomForm.password.newPassword.$error.required">Password
+                        length must be 8-25 char.</div>
+                </div>
+            </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                <label for="first-name">{{'ConfirmPasswordLbl' | translate}}</label>
+                <input required type="password" class="mat-input form-control" name="confirmPassword" ng-model="roomDlCtrl.confirmPassword"
+                    equalto="newRoomForm.password">
+                <div ng-messages="newRoomForm.confirmPassword.$error">
+                    <div ng-if="newRoomForm.confirmPassword.$error.required && !newRoomForm.confirmPassword.$pristine">{{'requiredErr'
+                        | translate}}</div>
+                    <div ng-if="newRoomForm.confirmPassword.$error.equalto && !newRoomForm.confirmPassword.$error.required">Passwords
+                        don't match.</div>
+                </div>
+            </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+                <label>{{'UnitNameLbl' | translate}}</label>
+                <select class="select-simple form-control pmd-select2" ng-options="Unit.name for Unit in roomDlCtrl.Units"
+                    ng-model="roomDlCtrl.selectedUnit">
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="pmd-modal-action text-right">
+        <button ng-disabled="newRoomForm.$invalid || roomDlCtrl.selectedUnit == NULL"
+            class="btn pmd-ripple-effect btn-primary" type="button" ng-click="roomDlCtrl.AddNewRoom()">{{'saveChangesBtn'
+            | translate}}</button>
+        <button class="btn pmd-ripple-effect btn-default" type="button" ng-click="roomDlCtrl.close()">{{'DiscardBtn' |
+            translate}}</button>
+    </div>
+</div>
