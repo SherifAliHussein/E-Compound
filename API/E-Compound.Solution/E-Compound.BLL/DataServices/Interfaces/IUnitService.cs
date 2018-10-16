@@ -13,5 +13,7 @@ namespace E_Compound.BLL.DataServices.Interfaces
     {
         PagedResultsDto GetAllPagingUnits(long userId, int page, int pageSize);
         Unit RelationValidation(long userId, long unitTypeId);
+        int GetUnitCountByPackageId(long packageId);
+        int GetConsumedUnits(long userId);
     }
 }

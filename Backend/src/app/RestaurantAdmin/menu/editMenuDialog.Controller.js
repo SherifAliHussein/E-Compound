@@ -62,7 +62,6 @@
 
 						reader.onloadend = function() {
 							vm.menu.imageURL= reader.result;
-							// $scope.Photo = reader.result;
 							$scope.$apply();
 						};
 						if (imageFile) {

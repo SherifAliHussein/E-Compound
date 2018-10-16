@@ -19,9 +19,13 @@ namespace E_Compound.DAL.Entities.Model
         public virtual ICollection<UnitTypeTranslation> UnitTypeTranslations { get; set; }
         public virtual ICollection<Unit> Units{ get; set; }
         public int Limit { get; set; }
-        [ForeignKey("Creater")]
-        public long CreationBy { get; set; }
-        public virtual Admin Creater { get; set; }
+        //[ForeignKey("Creater")]
+        //public long CreationBy { get; set; }
+
+        [ForeignKey("Admin")]
+        public long AdminId { get; set; }
+        public virtual Admin Admin { get; set; }
+
         [Column(TypeName = "datetime2")]
         public DateTime CreateTime { get; set; }
 

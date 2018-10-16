@@ -30,7 +30,6 @@
                 vm.selectedCategory = vm.categories[0];
                 vm.selectedTemplateId= 0;
                 vm.remainingItems = vm.selectedCategory.itemCount;
-                // vm.isCategoryTemplateReady = false;
                 if(vm.selectedCategory.itemCount <= totalItemsCount){
                     vm.isCategoryTemplateReady = true;
                 }
@@ -50,7 +49,6 @@
             vm.page=1;
             totalItemsCount = 0;
             vm.selectedTemplateId= 0;        
-            // vm.selectedCategory = vm.categories[0];
             vm.remainingItems = vm.selectedCategory.itemCount;
             vm.isCategoryTemplateReady = false;
             

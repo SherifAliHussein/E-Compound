@@ -128,12 +128,12 @@ namespace E_Compound.DAL.Entities
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UnitType>()
-                .HasRequired(c => c.Creater)
+                .HasRequired(c => c.Admin)
                 .WithMany()
                 .WillCascadeOnDelete(false);
             
             modelBuilder.Entity<Unit>()
-                .HasRequired(c => c.Creater)
+                .HasRequired(c => c.Admin)
                 .WithMany()
                 .WillCascadeOnDelete(false);
 

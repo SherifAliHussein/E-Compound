@@ -30,7 +30,6 @@
 			}).then(
 				function(data, status) {
 					ToastService.show("right","bottom","fadeInUp",$translate.instant('menuAddSuccess'),"success");
-					 // $state.go('Category',{MenuId:menuId});
 					 $state.go('Menu');
 					 vm.isChanged = false;
 				},

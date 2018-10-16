@@ -141,11 +141,9 @@
                 price:$translate.instant('priceLbl'),
                 totalPrice:$translate.instant('totalpriceLbl')
             })
-           // var deferme = $q.defer();
             
              var k = RequestResource.getAllRequest({ pageSize:0,roomId: vm.selectedRoom.roomId
                 ,featureId:vm.selectedFeature.featureId,from:from , to:to }).$promise.then(function(results) {
-                    // requests = results;
                 _.forEach(results.results, function (request) {
                     request.createTime= request.createTime+"Z";
                    request.createTime = $filter('date')(new Date(request.createTime), "dd/MM/yyyy hh:mm a");
@@ -205,15 +203,13 @@
                 vm.reportData = requests
                 vm.charEncode = $scope.selectedLanguage == "ar-eg"?"utf8":"utf-8"
                 vm.canDownload = true;
-               // deferme.resolve(requests); 
-                // return requests.results;
+              
 			},
             function(data, status) {
                 ToastService.show("right","bottom","fadeInUp",data.message,"error");
                 vm.isLoading = false;
             });
-          //  return deferme.promise;
-            // return k.promise;
+         
         }
         vm.download = function(){
             vm.canDownload = false;

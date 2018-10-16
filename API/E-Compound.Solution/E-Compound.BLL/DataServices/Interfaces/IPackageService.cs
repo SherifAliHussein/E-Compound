@@ -10,7 +10,7 @@ namespace E_Compound.BLL.DataServices.Interfaces
 {
     public interface IPackageService : IService<Package>
     {
-        int GetRoomsCountByAdminId(long AdminId);
+        int GetUnitsCountByAdminId(long AdminId);
         //List<Package> GetAllPackagesByAdminId(long AdminId);
     }
 }

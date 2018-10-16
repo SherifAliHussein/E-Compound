@@ -8,8 +8,7 @@
         var featureName;
         var FeatureControlId;
         return {
-            // featureName,
-            // featureDetail,
+           
             setFeatureDetail: function(param) {
                 featureDetail = param;
             },
@@ -39,15 +38,11 @@ angular.module('home').directive('datetimepicker', function(){
 		restrict: 'A',
 		link: function(scope, element, attrs, ngModel){
 
-			if(!ngModel) return; // do nothing if no ng-model
+			if(!ngModel) return; 
 
 			ngModel.$render = function(){
 				element.val( ngModel.$viewValue || '' );
 			}
-
-			// element.datetimepicker({
-            //     format: 'LT'
-            // });
 
 			element.on('dp.change', function(e){
                 if(element[0].id.includes('start')){

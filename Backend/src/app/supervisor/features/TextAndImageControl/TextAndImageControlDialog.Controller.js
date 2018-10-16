@@ -53,16 +53,7 @@
             newFeatureDetail.price = vm.featureDetail.isFree?0:vm.featureDetail.price;
             newFeatureDetail.isImageChange= isImageChange;            
             newFeatureDetail.featureControlId = featureControlId;
-            // newFeatureDetail.$updateFeatureDetail().then(
-            //     function(data, status) {
-			// 		ToastService.show("right","bottom","fadeInUp",$translate.instant('RoomAddSuccess'),"success");
-			// 		$uibModalInstance.dismiss('cancel');
-			// 		callBackFunction();
-            //     },
-            //     function(data, status) {
-			// 		ToastService.show("right","bottom","fadeInUp",data.data.message,"error");
-            //     }
-            // );
+           
             var model = new FormData();
 			model.append('data', JSON.stringify(newFeatureDetail));
 			model.append('file', image);
@@ -108,7 +99,6 @@
 
                         reader.onloadend = function () {
                             vm.featureDetail.imageURL = reader.result;
-                            // $scope.Photo = reader.result;
                             $scope.$apply();
                         };
                         if (logoFile) {

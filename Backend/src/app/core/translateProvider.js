@@ -118,11 +118,10 @@
             "Rejected":"Rejected by",
             "supervisorhasnofeature":"feature deleted or deactivated",
             "requestConfirmationLbl":"Are you sure you want request ",
-            "roomsLimitConsumedLbl":"consumed / limit Appartments",
+            "roomsLimitConsumedLbl":"consumed / limit of units",
             "unitTypes":"Unit Types",
             "UnitType":"Unit Type",
 
-/////////////////////////Restaurants en
             "restaurantType" : "Restaurant types",
             "restaurant" : "Restaurants",
             "Name" : "Name",
@@ -534,7 +533,6 @@
             "requestConfirmationLbl":"هل انت متأكد انك تريد طلب ",
             "roomsLimitConsumedLbl":"المجموع العقارات / المستخدم",
 
-            ////////////////Restaurant ar
             "restaurantType" : "أنواع المطاعم",
             "restaurant" : "مطاعم",
             "Name" : " الاسم",

@@ -3,13 +3,14 @@
 
     angular
         .module('home')
-        .controller('unitController', ['$rootScope', '$http', '$scope', '$filter', 'UnitPagingResource', 'DeleteUnitResource', 'unitPagingPrepService', 'unitTypesPagingPrepService', '$translate', '$uibModal', '$state', '$localStorage', 'authorizationService', 'appCONSTANTS', 'ToastService', unitController]);
+        .controller('unitController', ['$rootScope', '$http', '$scope', '$filter', 'UnitPagingResource', 'DeleteUnitResource', 'unitPagingPrepService', 'unitTypesPagingPrepService', '$translate', '$uibModal', '$state', '$localStorage', 'authorizationService', 'appCONSTANTS', 'ToastService', 'unitLimitPrepService', 'AdminUnitsLimitResource', unitController]);
 
 
-    function unitController($rootScope, $http, $scope, $filter, UnitPagingResource, DeleteUnitResource, unitPagingPrepService, unitTypesPagingPrepService, $translate, $uibModal, $state, $localStorage, authorizationService, appCONSTANTS, ToastService) {
+    function unitController($rootScope, $http, $scope, $filter, UnitPagingResource, DeleteUnitResource, unitPagingPrepService, unitTypesPagingPrepService, $translate, $uibModal, $state, $localStorage, authorizationService, appCONSTANTS, ToastService, unitLimitPrepService, AdminUnitsLimitResource) {
         var vm = this;
      
         $scope.unitList = unitPagingPrepService;
+        vm.unitsLimit = unitLimitPrepService;
          
         function refreshUnits(){
 			var k = UnitPagingResource.getAllPagingUnits({page:vm.currentPage}).$promise.then(function(results) {
@@ -18,6 +19,13 @@
             function(data, status) {
 				ToastService.show("right","bottom","fadeInUp",data.message,"error");
             });
+
+            AdminUnitsLimitResource.getUnitsLimitAndConsumed().$promise.then(function (results) {
+				vm.unitsLimit = results;
+			},
+				function (data, status) {
+					ToastService.show("right", "bottom", "fadeInUp", data.message, "error");
+				});
         }
 
         vm.currentPage = 1;

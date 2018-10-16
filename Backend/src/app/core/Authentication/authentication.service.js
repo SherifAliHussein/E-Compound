@@ -26,7 +26,6 @@
       request.then(authenticated,authenticaionFailed);
       return request;
         
-        //.error(authenticaionFailed);
 
     }
 

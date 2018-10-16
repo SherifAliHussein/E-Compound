@@ -19,10 +19,16 @@
                     },
                     resolve: {
                         unitPagingPrepService: unitPagingPrepService,
+                        unitLimitPrepService: unitLimitPrepService,
                         unitTypesPagingPrepService: unitTypesPagingPrepService
                     }
                 })
         });
+
+        unitLimitPrepService.$inject = ['AdminUnitsLimitResource']
+        function unitLimitPrepService(AdminUnitsLimitResource) {
+            return AdminUnitsLimitResource.getUnitsLimitAndConsumed().$promise;
+        }
 
         unitPagingPrepService.$inject = ['UnitPagingResource']
         

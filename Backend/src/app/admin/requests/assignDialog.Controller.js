@@ -26,7 +26,6 @@
                     ToastService.show("right", "bottom", "fadeInUp", $translate.instant('assignAddSuccess'), "success");
                     refreshRequests();
                     $uibModalInstance.dismiss('cancel');
-                    //callBackFunction();
                 },
                 function (data, status) {
                     ToastService.show("right", "bottom", "fadeInUp", data.data.message, "error");

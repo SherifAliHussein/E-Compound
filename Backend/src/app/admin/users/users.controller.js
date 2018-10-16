@@ -21,7 +21,7 @@
 		
 		function refreshReceptionists(){
 			var k = ReceptionistResource.getAllReceptionists({ page:vm.currentPageReceptionists }).$promise.then(function(results) {
-				
+
 				vm.receptionists = results;
 			},
             function(data, status) {

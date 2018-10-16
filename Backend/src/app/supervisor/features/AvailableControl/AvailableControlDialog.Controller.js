@@ -21,7 +21,6 @@ angular.module('home').directive('availableControlForm', function(){
                         format: 'LT'
                     });
                 
-                    // End date date and time picker 
                     $('#datepicker-end'+element.id).datetimepicker({
                         format: 'LT'
                     });
@@ -67,8 +66,7 @@ angular.module('home').directive('availableControlForm', function(){
                          vm.isChanged = false;                     
                          $scope.isAvailable = false;
                          $rootScope.$broadcast('availableChange');
-                         //  $uibModalInstance.dismiss('cancel');
-                        //  callBackFunction();                    
+                                      
                     },
                     function(data, status) {
                         vm.isChanged = false;                     
@@ -95,19 +93,9 @@ angular.module('home').directive('availableControlForm', function(){
                             max:element.max,day:element.id,availableId:element.availableId});
                     }
                 }, this);
-                // newFeatureDetail.$updateFeatureDetail().then(
-                //     function(data, status) {
-                // 		ToastService.show("right","bottom","fadeInUp",$translate.instant('RoomAddSuccess'),"success");
-                // 		$uibModalInstance.dismiss('cancel');
-                // 		callBackFunction();
-                //     },
-                //     function(data, status) {
-                // 		ToastService.show("right","bottom","fadeInUp",data.data.message,"error");
-                //     }
-                // );
+               
                 var model = new FormData();
                 model.append('data', JSON.stringify(newFeatureDetail));
-                // model.append('file', featureImage);
                 $http({
                     method: 'PUT',
                     url: appCONSTANTS.API_URL + 'Features/Detail',
@@ -120,8 +108,7 @@ angular.module('home').directive('availableControlForm', function(){
                          vm.isChanged = false;
                          $scope.isAvailable = false;
                          $rootScope.$broadcast('availableChange');
-                         //  $uibModalInstance.dismiss('cancel');
-                        //  callBackFunction();  
+                        
                     },
                     function(data, status) {
                         vm.isChanged = false;                     
@@ -144,43 +131,24 @@ angular.module('home').directive('availableControlForm', function(){
                     var day = $filter('filter')(featureDetail.availables, {day:element.id});
                     if(day.length >0){
                         $timeout(function(){
-                            // vm.days.forEach(function(it) {
                                 $('#datepicker-start'+element.id).datetimepicker({
                                     format: 'LT'
                                 });
                             
-                                // End date date and time picker 
                                 $('#datepicker-end'+element.id).datetimepicker({
                                     format: 'LT'
                                 });
                                 
                         element.isSelected = true;
-                        // day[0].from= day[0].from+"Z";
                         element.startTime = day[0].from;
-                        // day[0].to= day[0].to+"Z";
                         element.endTime = day[0].to;
                         element.max = day[0].max;
                         element.availableId = day[0].availableId
-                            // }, this);
+                           
                          }, 100);
-                        // element.endTime = day.endTime
-                        // newFeatureDetail.availables.push({from:element.startTime,to:element.endTime,max:element.max,day:element.id});
                     }
                 }, this);
-                // $timeout(function(){
-                //     vm.days.forEach(function(element) {
-                //         vm.days;
-                //         $('#datepicker-start'+element.id).datetimepicker({
-                //             format: 'LT'
-                //         });
-                    
-                //         // End date date and time picker 
-                //         $('#datepicker-end'+element.id).datetimepicker({
-                //             format: 'LT'
-                //         });
-                        
-                //     }, this);
-                //  }, 100);
+               
             }
             
                  

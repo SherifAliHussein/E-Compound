@@ -4,7 +4,7 @@
       .factory('RoomResource', ['$resource', 'appCONSTANTS', RoomResource])
       .factory('ActivateRoomResource', ['$resource', 'appCONSTANTS', ActivateRoomResource])
       .factory('DeactivateRoomResource', ['$resource', 'appCONSTANTS', DeactivateRoomResource])
-      .factory('AdminRoomsLimitResource', ['$resource', 'appCONSTANTS', AdminRoomsLimitResource]);
+      ;
 
       function RoomResource($resource, appCONSTANTS) {
         return $resource(appCONSTANTS.API_URL + 'Rooms/:roomId', {}, {
@@ -27,12 +27,5 @@
             Deactivate: { method: 'GET', useToken: true }
           })
       }
-
-      function AdminRoomsLimitResource($resource, appCONSTANTS) {
-        return $resource(appCONSTANTS.API_URL + 'Users/GetMaxAndConUsers', {}, {
-          getRoomsLimitAndConsumed: { method: 'GET', useToken: true }
-        })
-      }
-
 }());
     

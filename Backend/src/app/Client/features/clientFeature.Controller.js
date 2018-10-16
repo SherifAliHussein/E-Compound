@@ -37,16 +37,7 @@
 				}
 				
 			});
-            // var newRequest = new RequestResource();
-            // newRequest.featureId = featureId;
-            // newRequest.$create().then(
-            //     function(data, status) {
-			// 		ToastService.show("right","bottom","fadeInUp",$translate.instant('RequestSuccess'),"success");
-            //     },
-            //     function(data, status) {
-			// 		ToastService.show("right","bottom","fadeInUp",data.data.message,"error");
-            //     }
-            // );
+        
         }
         function confirmRequest(featureId){
             var newRequest = new RequestResource();

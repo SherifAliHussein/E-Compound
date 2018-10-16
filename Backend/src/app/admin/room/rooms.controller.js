@@ -4,15 +4,15 @@
 	angular
 		.module('home')
 		.controller('roomsController', ['$scope', '$stateParams', '$translate', 'appCONSTANTS', '$uibModal', 'RoomResource'
-			, 'ActivateRoomResource', 'DeactivateRoomResource', 'RoomsPrepService', 'UnitPrepService', 'roomLimitPrepService', 'ToastService', 'AdminRoomsLimitResource'
+			, 'ActivateRoomResource', 'DeactivateRoomResource', 'RoomsPrepService', 'UnitPrepService', 'ToastService'
 			, roomsController])
 
 	function roomsController($scope, $stateParams, $translate, appCONSTANTS, $uibModal, RoomResource,
-		ActivateRoomResource, DeactivateRoomResource, RoomsPrepService, UnitPrepService, roomLimitPrepService, ToastService, AdminRoomsLimitResource) {
+		ActivateRoomResource, DeactivateRoomResource, RoomsPrepService, UnitPrepService, ToastService) {
 
 		var vm = this;
 		vm.rooms = RoomsPrepService;
-		vm.roomsLimit = roomLimitPrepService;
+		
 		vm.unit = UnitPrepService;
 		console.log(UnitPrepService);
 		$('.pmd-sidebar-nav>li>a').removeClass("active")
@@ -26,12 +26,7 @@
 				function (data, status) {
 					ToastService.show("right", "bottom", "fadeInUp", data.message, "error");
 				});
-			AdminRoomsLimitResource.getRoomsLimitAndConsumed().$promise.then(function (results) {
-				vm.roomsLimit = results;
-			},
-				function (data, status) {
-					ToastService.show("right", "bottom", "fadeInUp", data.message, "error");
-				});
+		
 		}
 		vm.currentPage = 1;
 		vm.changePageRooms = function (page) {
