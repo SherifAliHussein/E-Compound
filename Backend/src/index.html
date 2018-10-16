@@ -2,7 +2,7 @@
 <html lang="en" ng-app="home" ng-cloak ng-controller="homeCtrl">
 
 <head>
-    <title>E-Guest Admin</title>
+    <title>E-Compound Admin</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
@@ -306,6 +306,19 @@
 				<span class="media-body "  ng-cloak>{{'feedBacksBtn' | translate}}</span>
 			</a> 
 		</li>
+		<li ng-if="user.role === 'Admin'"> 
+			<a class="pmd-ripple-effect " ng-click="$state.go('notifications');" >	
+				<i class="media-left media-middle"><svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18"
+					 xml:space="preserve">
+				<g>
+					<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
+						 M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
+				</g>
+				</svg></i>
+				<span class="media-body" ng-cloak>{{'notifications' | translate}}</span>
+			</a> 
+		</li>
+
 		<li><a ng-click="logout()"  ng-cloak>{{'logoutBtn' | translate}}</a></li>
 	</ul>
 </aside><!-- End Left sidebar -->
