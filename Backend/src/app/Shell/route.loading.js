@@ -16,9 +16,7 @@
   
     function runBlock($transitions, ngProgressLite ) {
   
-      // $transitions.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-      //     startProgress();
-      // });
+     
       $transitions.onStart({}, function(transition) {
         startProgress();
       });
@@ -30,11 +28,7 @@
       });
       var routingDoneEvents = ['$stateChangeSuccess', '$stateChangeError', '$stateNotFound'];
   
-      // angular.forEach(routingDoneEvents, function(event) {
-      //   $transitions.$on(event, function(event, toState, toParams, fromState, fromParams) {
-      //     endProgress();
-      //   });
-      // });
+    
   
       function startProgress() {
         ngProgressLite.start();

@@ -22,22 +22,7 @@
                     }
                     
                 })
-                // .state('featureDetail', {
-                //     url: '/feature/:featureId/Info',
-                //     templateUrl: './app/Client/features/templates/featureDetail.html',
-                //     controller: 'featureDetailController',
-                //     'controllerAs': 'featureDetailCtrl',
-                //     data: {
-                //         permissions: {
-                //             only: ['Room'],
-                //             redirectTo: 'root'
-                //         }
-                //     },
-                //     resolve: {
-                //         featureDetailPrepService: featureDetailPrepService
-                //     }
-                    
-                // })
+               
         });
         
         featuresPrepService.$inject = ['FeatureResource']

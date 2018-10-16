@@ -48,36 +48,14 @@ angular.module('home').directive('availableControl', function(){
                 $scope.isAvailable = true;
                 AvailableControlService.setFeatureName($scope.featureName)
                 AvailableControlService.setFeatureControlId(vm.featureControl.featureControlId)
-                // var modalContent = $uibModal.open({
-                //     templateUrl: "./app/supervisor/features/AvailableControl/templates/AvailableControlPopup.html",
-                //     controller: 'AvailableControlDialogController',
-                //     controllerAs: 'availableControlDlCtrl',
-                //     resolve:{
-                //         callBackFunction:function(){return loadDetails;},
-                //         featureDetail:function(){return null;},
-                //         language:function(){return vm.language;},
-                //         featureControlId:function(){return vm.featureControl.featureControlId;}
-                //     }
-                    
-                // });
+              
             }
             vm.openEditDialog=function(index){
                 $scope.isAvailable = true;
                 AvailableControlService.setFeatureName($scope.featureName)
                 AvailableControlService.setFeatureControlId(vm.featureControl.featureControlId)
                 AvailableControlService.setFeatureDetail(angular.copy(vm.featureDetails.results[index]));
-                // var modalContent = $uibModal.open({
-                //     templateUrl: "./app/supervisor/features/AvailableControl/templates/AvailableControlPopup.html",
-                //     controller: 'AvailableControlDialogController',
-                //     controllerAs: 'availableControlDlCtrl',
-                //     resolve:{
-                //         callBackFunction:function(){return loadDetails;},
-                //         featureDetail:function(){return angular.copy(vm.featureDetails.results[index]);},
-                //         language:function(){return vm.language;},
-                //         featureControlId:function(){return vm.featureControl.featureControlId;}
-                //     }
-                    
-                // });
+              
             }
             function confirmationDelete(itemId){
                 ManageFeatureResource.deleteFeatureDetail({featureDetailId:itemId}).$promise.then(function(results) {

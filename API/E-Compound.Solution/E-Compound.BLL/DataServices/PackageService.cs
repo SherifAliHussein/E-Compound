@@ -16,9 +16,9 @@ namespace E_Compound.BLL.DataServices
         {
             
         }
-        public int GetRoomsCountByAdminId(long AdminId)
+        public int GetUnitsCountByAdminId(long AdminId)
         {
-            return _repository.Query(x => x.AdminId == AdminId).Select(x => x.MaxNumberOfRooms).Sum();
+            return _repository.Query(x => x.AdminId == AdminId).Select(x => x.Limit).Sum();
         }
 
         //public List<Package> GetAllPackagesByAdminId(long AdminId)

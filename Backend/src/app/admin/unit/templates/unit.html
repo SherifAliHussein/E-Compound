@@ -1,7 +1,12 @@
 
 <div>
         <div style="margin-bottom:10px">
-            <button ng-click="unitCtrl.AddUnit()" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddUnitLbl' | translate}}</button>
+            <button ng-disabled="unitCtrl.unitsLimit.consumedUsers == unitCtrl.unitsLimit.maxNumUsers" ng-click="unitCtrl.AddUnit()" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddUnitLbl' | translate}}</button>
+            <br>
+            <span>
+                    {{unitCtrl.unitsLimit.consumedUsers}} / {{unitCtrl.unitsLimit.maxNumUsers}}
+                    ({{'roomsLimitConsumedLbl'|translate}})
+            </span>
         </div>
     
         <div ng-if="unitList.results.length == 0">
@@ -26,7 +31,7 @@
                             <!-- <td  data-title="Name" width="20%">{{(unitTypeList | filter : {unitTypeId:unit.unitTypeId})[0].titleDictionary[selectedLanguage]}} -->
                             <td ng-class="{'red-text': user.isActive == false }" width="15%">
                                 <i class="material-icons md-dark pmd-md cursorPointer font25" ng-click="unitCtrl.UpdateUnit(unit)">mode_edit</i>
-                                <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="unitCtrl.DeleteUnit(unit.unitId)">delete</i>
+                                <!-- <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="unitCtrl.DeleteUnit(unit.unitId)">delete</i> -->
                             </td>
                         </tr>
                     </tbody>

@@ -16,10 +16,8 @@
 		function add(){
             vm.isChanged = true;
 			var newFeatureDetail = new ManageFeatureResource();
-            // newFeatureDetail.descriptionDictionary = vm.featureDetail.descriptionDictionary;
-            // newFeatureDetail.isFree= vm.featureDetail.isFree;
+           
             newFeatureDetail.isImageChange= isImageChange;
-            // newFeatureDetail.price = vm.featureDetail.isFree?0:vm.featureDetail.price;
             newFeatureDetail.featureControlId = featureControlId;
             var model = new FormData();
 			model.append('data', JSON.stringify(newFeatureDetail));
@@ -47,22 +45,11 @@
         function update(){
             vm.isChanged = true;
 			var newFeatureDetail = new ManageFeatureResource();
-            // newFeatureDetail.descriptionDictionary = vm.featureDetail.descriptionDictionary;
             newFeatureDetail.featureDetailId = vm.featureDetail.featureDetailId;
-            // newFeatureDetail.isFree= vm.featureDetail.isFree;
-            // newFeatureDetail.price = vm.featureDetail.isFree?0:vm.featureDetail.price;
+           
             newFeatureDetail.isImageChange= isImageChange;            
             newFeatureDetail.featureControlId = featureControlId;
-            // newFeatureDetail.$updateFeatureDetail().then(
-            //     function(data, status) {
-			// 		ToastService.show("right","bottom","fadeInUp",$translate.instant('RoomAddSuccess'),"success");
-			// 		$uibModalInstance.dismiss('cancel');
-			// 		callBackFunction();
-            //     },
-            //     function(data, status) {
-			// 		ToastService.show("right","bottom","fadeInUp",data.data.message,"error");
-            //     }
-            // );
+           
             var model = new FormData();
 			model.append('data', JSON.stringify(newFeatureDetail));
 			model.append('file', image);
@@ -108,7 +95,6 @@
 
                         reader.onloadend = function () {
                             vm.featureDetail.imageURL = reader.result;
-                            // $scope.Photo = reader.result;
                             $scope.$apply();
                         };
                         if (logoFile) {

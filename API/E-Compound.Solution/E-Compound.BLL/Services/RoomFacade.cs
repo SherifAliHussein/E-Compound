@@ -99,7 +99,7 @@ namespace E_Compound.BLL.Services
             room.Password = PasswordHelper.Encrypt(roomDto.Password);
             room.Role = Enums.RoleType.Room;
             room.IsActive = true;
-
+            
             //Package package;
 
             //var packages = _packageService.Query(x => x.AdminId== room.AdminId).Include(x => x.Rooms).Select().ToList();

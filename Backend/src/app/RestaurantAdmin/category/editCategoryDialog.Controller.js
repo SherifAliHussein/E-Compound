@@ -34,7 +34,6 @@
 			}).then(
 				function(data, status) {
 					ToastService.show("right","bottom","fadeInUp",$translate.instant('CategoryupdateSuccess'),"success");
-                    // $state.go('Category',{MenuId:menuId});
                     $state.go('Category', {menuId: $stateParams.menuId});
 				},
 				function(data, status) {
@@ -65,7 +64,6 @@
 
 						reader.onloadend = function() {
 							vm.category.imageURL= reader.result;
-							// $scope.Photo = reader.result;
 							$scope.$apply();
 						};
 						if (imageFile) {

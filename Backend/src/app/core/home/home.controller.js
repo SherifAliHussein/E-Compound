@@ -37,7 +37,6 @@
            
             authorizationService.isPasswordchanged=false;
             $('#passwordChanged').hide();
-          //  $('#userInActivated').hide();
             if (!username)
                 $scope.emailEmpty = true;
             if (!password)
@@ -45,8 +44,7 @@
             if (username && password) {
                 $scope.afterSubmit = false;
                 $scope.emailEmpty = $scope.passwordEmpty = false;
-                authenticationService.authenticate(username, password).then(loginSuccess,loginFailed)
-                    //.error(loginFailed);;
+                authenticationService.authenticate(username, password).then(loginSuccess,loginFailed);
             } else {
                 $scope.afterSubmit = false;
             }
@@ -70,7 +68,6 @@
 			 console.log('login'); 
 					$scope.user = authorizationService.getUser();
 					loginSuccess()
-			// authorizationService.isLoggedIn() && !location.href.contains('connect')
 		  }
 		})
         function loginSuccess(response) {
@@ -83,10 +80,7 @@
                 $state.go('features');
 
             } 
-            // else if ($scope.user.role == "Room") {
-            //     $state.go('clientFeatures');
-
-            // }
+         
             else if ($scope.user.role == "Supervisor") {
                 $state.go('adminRequests');
 
@@ -104,11 +98,7 @@
 
             }  else if ($scope.user.role  == "RestaurantAdmin") {
                 $state.go('Menu');
-                // RestaurantInfoResource.getRestaurantInfo().$promise.then(function(results) {
-                //    $scope.restaurantName = results.restaurantName;
-                // },
-                // function(data, status) {
-                // });
+               
 
             }
             else  {
@@ -121,7 +111,6 @@
         function loginFailed(response) {
             $scope.afterSubmit = true;
             
-            // $scope.invalidLoginInfo = true;
             if (response) {
                 if (response.data.error == "invalid grant") {
                     $scope.invalidLoginInfo = true;
@@ -163,7 +152,6 @@
 		$scope.changeLanguage = function(language){
 			$scope.selectedLanguage = language;
 			$localStorage.language = $scope.selectedLanguage;
-            // $state.reload();
             $translate.use(language); 
 		}
 		$scope.getCurrentTime = function(){

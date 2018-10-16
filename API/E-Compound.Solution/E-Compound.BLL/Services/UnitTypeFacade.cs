@@ -58,7 +58,7 @@ namespace E_Compound.BLL.Services
             var unitType = Mapper.Map<UnitType>(unitTypeDto);
         
             unitType.CreateTime = DateTime.Now;
-            unitType.CreationBy = userId;
+            unitType.AdminId = userId;
             unitType.IsDeleted = false;
             unitType.Limit = unitTypeDto.Limit;
 

@@ -22,7 +22,6 @@
             newFeatureDetail.featureControlId = featureControlId;
             var model = new FormData();
 			model.append('data', JSON.stringify(newFeatureDetail));
-			// model.append('file', featureImage);
 			$http({
 				method: 'POST',
 				url: appCONSTANTS.API_URL + 'Features/Detail',
@@ -51,20 +50,11 @@
             newFeatureDetail.isFree= vm.featureDetail.isFree;
             newFeatureDetail.price = vm.featureDetail.isFree?0:vm.featureDetail.price;
             newFeatureDetail.featureControlId = featureControlId;
-            // newFeatureDetail.$updateFeatureDetail().then(
-            //     function(data, status) {
-			// 		ToastService.show("right","bottom","fadeInUp",$translate.instant('RoomAddSuccess'),"success");
-			// 		$uibModalInstance.dismiss('cancel');
-			// 		callBackFunction();
-            //     },
-            //     function(data, status) {
-			// 		ToastService.show("right","bottom","fadeInUp",data.data.message,"error");
-            //     }
-            // );
+         
             var model = new FormData();
 			model.append('data', JSON.stringify(newFeatureDetail));
-			// model.append('file', featureImage);
-			$http({
+
+            $http({
 				method: 'PUT',
 				url: appCONSTANTS.API_URL + 'Features/Detail',
 				useToken: true,

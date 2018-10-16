@@ -7,6 +7,7 @@
     .factory('AddUnitResource', ['$resource', 'appCONSTANTS', AddUnitResource])
     .factory('DeleteUnitResource', ['$resource', 'appCONSTANTS', DeleteUnitResource])
     .factory('UpdateUnitResource', ['$resource', 'appCONSTANTS', UpdateUnitResource])
+    .factory('AdminUnitsLimitResource', ['$resource', 'appCONSTANTS', AdminUnitsLimitResource])
     ;
 
 
@@ -43,6 +44,12 @@
   function UpdateUnitResource($resource, appCONSTANTS) {
     return $resource(appCONSTANTS.API_URL + 'Units', {}, {
       updateUnit: { method: 'PUT', useToken: true }
+    })
+  }
+
+  function AdminUnitsLimitResource($resource, appCONSTANTS) {
+    return $resource(appCONSTANTS.API_URL + 'Users/GetMaxAndConUsers', {}, {
+      getUnitsLimitAndConsumed: { method: 'GET', useToken: true }
     })
   }
 

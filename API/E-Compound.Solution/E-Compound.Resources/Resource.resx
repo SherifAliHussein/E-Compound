@@ -393,4 +393,7 @@
   <data name="UserNotFound" xml:space="preserve">
     <value>User is not found</value>
   </data>
+  <data name="ApartmentDeactivated" xml:space="preserve">
+    <value>Apartment Deactivated</value>
+  </data>
 </root>

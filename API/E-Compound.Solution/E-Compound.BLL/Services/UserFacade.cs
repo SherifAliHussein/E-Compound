@@ -33,9 +33,10 @@ namespace E_Compound.BLL.Services
         private ITechnicianService _technicianService;
         private ITechnicianCategoryService _technicianCategoryService;
         private ISupervisorCategoryService _supervisorCategoryService;
+        private IUnitService _unitService;
 
 
-        public UserFacade(IUnitOfWorkAsync unitOFWork, ISupervisorCategoryService supervisorCategoryService, ITechnicianCategoryService technicianCategoryService, ITechnicianService technicianService, IUserCategoryService userCategoryService, IUserService userService, ISupervisorService supervisorService,
+        public UserFacade(IUnitOfWorkAsync unitOFWork, IUnitService unitService, ISupervisorCategoryService supervisorCategoryService, ITechnicianCategoryService technicianCategoryService, ITechnicianService technicianService, IUserCategoryService userCategoryService, IUserService userService, ISupervisorService supervisorService,
             IReceptionistService receptionistService, ISupervisorFeatureService supervisorFeatureService, IAdminService adminService, IPackageService packageService, IRestaurantService restaurantService, IRestaurantWaiterService restaurantWaiterService, IRoomService roomService) : base(unitOFWork)
         {
             _UserService = userService;
@@ -51,6 +52,7 @@ namespace E_Compound.BLL.Services
             _technicianService = technicianService;
             _technicianCategoryService = technicianCategoryService;
             _supervisorCategoryService = supervisorCategoryService;
+            _unitService = unitService;
         }
 
         public UserDto ValidateUser(string email, string password)
@@ -58,9 +60,19 @@ namespace E_Compound.BLL.Services
             string encryptedPassword = PasswordHelper.Encrypt(password);
             var dd = _UserService.ValidateUser(email, encryptedPassword);
             var user = Mapper.Map<UserDto>(_UserService.ValidateUser(email, encryptedPassword));
-            var user1 =   Mapper.Map<UserDto>(_UserService.CheckUserIsDeleted(email, encryptedPassword));
-           // var user = Mapper.Map<UserDto>(_UserService.ValidateUser(email, encryptedPassword)) ?? Mapper.Map<UserDto>(_UserService.CheckUserIsDeleted(email, encryptedPassword));
+           // var user1 =   Mapper.Map<UserDto>(_UserService.CheckUserIsDeleted(email, encryptedPassword));
+            // var user = Mapper.Map<UserDto>(_UserService.ValidateUser(email, encryptedPassword)) ?? Mapper.Map<UserDto>(_UserService.CheckUserIsDeleted(email, encryptedPassword));
             //var user = Mapper.Map<UserDto>(_UserService.ValidateUser(email, encryptedPassword));
+
+            if (user.Role == Enums.RoleType.Room)
+            {
+                var room = _roomService.Find(user.UserId);
+                var unit = _unitService.Find(room.UnitId);
+                var package = _packageService.Find(unit.PackageId);
+
+                if (package.End < DateTime.Now) throw new ValidationException(ErrorCodes.UserDeactivated);
+            }
+
             if (user == null) throw new ValidationException(ErrorCodes.UserNotFound);
 
             if (user == null)
@@ -487,7 +499,7 @@ namespace E_Compound.BLL.Services
                 {
                     End = adminDto.End,
                     Start = adminDto.Start,
-                    MaxNumberOfRooms = adminDto.Limit,
+                    Limit = adminDto.Limit,
                     PackageGuid = adminDto.PackageGuid,
                     AdminId = admin.UserId
                 });
@@ -525,7 +537,7 @@ namespace E_Compound.BLL.Services
                 {
                     End = adminDto.End,
                     Start = adminDto.Start,
-                    MaxNumberOfRooms= adminDto.Limit,
+                    Limit= adminDto.Limit,
                     PackageGuid = adminDto.PackageGuid,
                     AdminId = admin.UserId
                 });
@@ -546,9 +558,9 @@ namespace E_Compound.BLL.Services
 
         public UserConsumed GetMaxAndConsumedUsers(long userId)
         {
-            var maxNum = _packageService.GetRoomsCountByAdminId(userId);
+            var maxNum = _packageService.GetUnitsCountByAdminId(userId);
 
-            var consumedUsers = _adminService.Find(userId).Rooms.Count(x=>!x.IsDeleted);
+            var consumedUsers = _unitService.GetConsumedUnits(userId);
 
             UserConsumed MaxCon = new UserConsumed();
             MaxCon.MaxNumUsers = maxNum;

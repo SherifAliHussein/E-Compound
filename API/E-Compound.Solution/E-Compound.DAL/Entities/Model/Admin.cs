@@ -19,6 +19,8 @@ namespace E_Compound.DAL.Entities.Model
             Packages = new List<Package>();
             Buildings = new List<Building>();
             Floors = new List<Floor>();
+            Units = new List<Unit>();
+            UnitTypes = new List<UnitType>();
         }
         public Guid UserAccountId { get; set; }
         public long ProductId { get; set; }
@@ -26,6 +28,7 @@ namespace E_Compound.DAL.Entities.Model
         public virtual List<Receptionist> Receptionists { get; set; }
         public virtual List<Feature> Features { get; set; }
         public virtual List<Room> Rooms { get; set; }
+        public virtual List<Unit> Units { get; set; }
         public virtual ICollection<Package> Packages { get; set; }
         public virtual ICollection<Restaurant> Restaurants { get; set; }
         public virtual ICollection<RestaurantType> RestaurantTypes { get; set; }

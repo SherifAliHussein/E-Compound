@@ -17,9 +17,17 @@ namespace E_Compound.DAL.Entities.Model
         public virtual UnitType UnitType { get; set; }
         public string Name { get; set; }
 
-        [ForeignKey("Creater")]
-        public long? CreationBy { get; set; }
-        public virtual Admin Creater { get; set; }
+        //[ForeignKey("Creater")]
+        //public long? CreationBy { get; set; }
+
+        [ForeignKey("Admin")]
+        public long AdminId { get; set; }
+        public virtual Admin Admin { get; set; }
+
+        [ForeignKey("Package")]
+        public long PackageId { get; set; }
+        public virtual Package Package { get; set; }
+
         [Column(TypeName = "datetime2")]
         public DateTime CreateTime { get; set; }
 

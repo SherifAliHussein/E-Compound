@@ -61,6 +61,15 @@ namespace E_Compound.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apartment Deactivated.
+        /// </summary>
+        public static string ApartmentDeactivated {
+            get {
+                return ResourceManager.GetString("ApartmentDeactivated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Approved.
         /// </summary>
         public static string Approved {

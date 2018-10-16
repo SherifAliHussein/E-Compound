@@ -2,7 +2,6 @@
     angular
       .module('home')
       .factory('UnitTypePagingResource', ['$resource', 'appCONSTANTS', UnitTypePagingResource])
-      // .factory('UnitTypeResource', ['$resource', 'appCONSTANTS', UnitTypeResource])
       .factory('AddUnitTypeResource', ['$resource', 'appCONSTANTS', AddUnitTypeResource])
       .factory('DeleteUnitTypeResource', ['$resource', 'appCONSTANTS', DeleteUnitTypeResource])
       .factory('UpdateUnitTypeResource', ['$resource', 'appCONSTANTS', UpdateUnitTypeResource])
@@ -15,11 +14,7 @@
       })
     }
 
-    // function UnitTypeResource($resource, appCONSTANTS) {
-    //     return $resource(appCONSTANTS.API_URL + 'UnitTypes', {}, {
-    //       getAllUnitTypes: { method: 'GET', useToken: true,  isArray:true} 
-    //     })
-    // }
+   
       
     function DeleteUnitTypeResource($resource, appCONSTANTS) {
         return $resource(appCONSTANTS.API_URL + 'UnitTypes/:unitTypeId', {}, {

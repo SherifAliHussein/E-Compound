@@ -29,6 +29,7 @@ namespace E_Compound.Common.CustomException
         UserDeactivated,
         UnitTypeNotFound,
         UnitNotFound,
+        ApartmentDeactivated,
 
 
         UnSupportedLanguage,

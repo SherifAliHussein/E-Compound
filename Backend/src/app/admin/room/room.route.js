@@ -19,7 +19,6 @@
                     },
                     resolve: {
                         RoomsPrepService: RoomsPrepService,
-                        roomLimitPrepService: roomLimitPrepService,
                         UnitPrepService: UnitPrepService
                     }
 
@@ -29,11 +28,6 @@
     RoomsPrepService.$inject = ['RoomResource']
     function RoomsPrepService(RoomResource) {
         return RoomResource.getAllRooms().$promise;
-    }
-
-    roomLimitPrepService.$inject = ['AdminRoomsLimitResource']
-    function roomLimitPrepService(AdminRoomsLimitResource) {
-        return AdminRoomsLimitResource.getRoomsLimitAndConsumed().$promise;
     }
 
     UnitPrepService.$inject = ['UnitPagingResource']

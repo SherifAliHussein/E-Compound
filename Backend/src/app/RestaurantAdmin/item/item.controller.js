@@ -9,14 +9,12 @@
 		
         var vm = this;
 		vm.items = itemsPrepService;
-		//vm.totalCount = restaurantsPrepService.totalCount;
-		//$('.pmd-sidebar-nav>li>a').removeClass("active")
-		//$($('.pmd-sidebar-nav').children()[2].children[0]).addClass("active")
+	
 		
         vm.Now = $scope.getCurrentTime();		
 		function refreshItems(){
 			var k = GetItemsResource.getAllItems({ CategoryId: $stateParams.categoryId, page:vm.currentPage}).$promise.then(function(results) {
-				vm.items = results//.results;
+				vm.items = results;
 			},
             function(data, status) {
 				ToastService.show("right","bottom","fadeInUp",data.data.message,"error");

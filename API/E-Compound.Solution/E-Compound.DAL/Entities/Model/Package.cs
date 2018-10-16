@@ -14,6 +14,7 @@ namespace E_Compound.DAL.Entities.Model
         public Package()
         {
             //Rooms = new List<Room>();
+            Units = new List<Unit>();
         }
         public long PackageId { get; set; }
         public Guid PackageGuid { get; set; }
@@ -25,8 +26,10 @@ namespace E_Compound.DAL.Entities.Model
         [ForeignKey("Admin")]
         public long AdminId { get; set; }
         public virtual Admin Admin { get; set; }
-        public int MaxNumberOfRooms { get; set; }
+        public int Limit { get; set; }
+        public virtual ICollection<Unit> Units { get; set; }
 
+        //public int MaxNumberOfRooms { get; set; }
         //public virtual ICollection<Room> Rooms { get; set; }
     }
 }
