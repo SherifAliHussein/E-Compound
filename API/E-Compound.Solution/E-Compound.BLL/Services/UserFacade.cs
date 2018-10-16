@@ -60,9 +60,19 @@ namespace E_Compound.BLL.Services
             string encryptedPassword = PasswordHelper.Encrypt(password);
             var dd = _UserService.ValidateUser(email, encryptedPassword);
             var user = Mapper.Map<UserDto>(_UserService.ValidateUser(email, encryptedPassword));
-            var user1 =   Mapper.Map<UserDto>(_UserService.CheckUserIsDeleted(email, encryptedPassword));
-           // var user = Mapper.Map<UserDto>(_UserService.ValidateUser(email, encryptedPassword)) ?? Mapper.Map<UserDto>(_UserService.CheckUserIsDeleted(email, encryptedPassword));
+           // var user1 =   Mapper.Map<UserDto>(_UserService.CheckUserIsDeleted(email, encryptedPassword));
+            // var user = Mapper.Map<UserDto>(_UserService.ValidateUser(email, encryptedPassword)) ?? Mapper.Map<UserDto>(_UserService.CheckUserIsDeleted(email, encryptedPassword));
             //var user = Mapper.Map<UserDto>(_UserService.ValidateUser(email, encryptedPassword));
+
+            if (user.Role == Enums.RoleType.Room)
+            {
+                var room = _roomService.Find(user.UserId);
+                var unit = _unitService.Find(room.UnitId);
+                var package = _packageService.Find(unit.PackageId);
+
+                if (package.End < DateTime.Now) throw new ValidationException(ErrorCodes.UserDeactivated);
+            }
+
             if (user == null) throw new ValidationException(ErrorCodes.UserNotFound);
 
             if (user == null)
