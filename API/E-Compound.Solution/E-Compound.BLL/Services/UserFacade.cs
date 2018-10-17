@@ -495,7 +495,7 @@ namespace E_Compound.BLL.Services
             var package = admin.Packages.FirstOrDefault(x => x.PackageGuid == adminDto.PackageGuid);
             if (package == null)
             {
-                admin.Packages.Add(new Package
+                var Package = (new Package
                 {
                     End = adminDto.End,
                     Start = adminDto.Start,
@@ -503,7 +503,17 @@ namespace E_Compound.BLL.Services
                     PackageGuid = adminDto.PackageGuid,
                     AdminId = admin.UserId
                 });
-                _packageService.InsertRange(admin.Packages);
+
+
+                //admin.Packages.Add(new Package
+                //{
+                //    End = adminDto.End,
+                //    Start = adminDto.Start,
+                //    Limit = adminDto.Limit,
+                //    PackageGuid = adminDto.PackageGuid,
+                //    AdminId = admin.UserId
+                //});
+                _packageService.Insert(Package);
             }
             else
             {

@@ -87,7 +87,7 @@ namespace E_Compound.BLL.Services
             unit.Name = unitDto.Name;
             unit.UnitTypeId = unitDto.UnitTypeId;
             _unitService.Update(unit);
-            
+
             SaveChanges();
         }
 
@@ -103,7 +103,7 @@ namespace E_Compound.BLL.Services
             SaveChanges();
         }
 
-        private void UpdateSubscription(long adminId, Guid packageGuid, int consumed)
+        public void UpdateSubscription(long adminId, Guid packageGuid, int consumed)
         {
             var admin = _adminService.Find(adminId);
             string url = ConfigurationManager.AppSettings["subscriptionURL"];

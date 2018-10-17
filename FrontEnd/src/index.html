@@ -3,7 +3,7 @@
 
 <head>
     <!-- <base href="/"> -->
-    <title>E-Guest</title>
+    <title>E-Compound</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
@@ -11,7 +11,24 @@
     <!-- <link rel="stylesheet" href="{{selectedLanguage == 'ar'? 'bundle-ar.css?v=#{VERSION_REPlACE}#': 'bundle-en.css?v=#{VERSION_REPlACE}#'}}" />  -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+    <!-- <link rel="manifest" href="https://ecompoundfrontend-testing.azurewebsites.net/oneSignal/manifest.json" /> -->
+    <!-- <script src="https://ecompoundfrontend-testing.azurewebsites.net/oneSignal/OneSignalSDKWorker.js" />
+    <script src="https://ecompoundfrontend-testing.azurewebsites.net/oneSignal/OneSignalSDKUpdaterWorker.js" /> -->
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function () {
+            OneSignal.init({
+                appId: "e3f4dc1a-d77d-4b84-b098-4d43140d9e16",
+                autoRegister: false,
+                notifyButton: {
+                    enable: true,
+                },
+            });
+        });
+    </script>
+ 
+    
 
     <link rel="stylesheet" ng-href="bundle-{{selectedLanguage}}.css?v=#{VERSION_REPlACE}#" />
     <!-- <link rel="stylesheet" href="bundle-en.css?v=#{VERSION_REPlACE}#" />  -->
@@ -61,7 +78,8 @@
         <!-- <img class="logo" src="assets/img/logo.png" alt="logo" /> -->
         <img class="logo" ng-show="globalInfo.logoUrl !=null" ng-src="{{globalInfo.logoUrl}}" alt="logo" />
         <div ng-if="cartIcon">
-            <a ng-click="$state.go('cart',{featureId: $stateParams.featureId,restaurantId:$stateParams.restaurantId});" ng-show="homeTotalNo > 0">
+            <a ng-click="$state.go('cart',{featureId: $stateParams.featureId,restaurantId:$stateParams.restaurantId});"
+                ng-show="homeTotalNo > 0">
                 <!-- <a ng-click="$state.go('cart');" ng-show="disabled"> -->
 
                 <div class="main_cart_bg">
@@ -78,14 +96,16 @@
             <a ng-if="selectedLanguage == 'en-us'" href="javascript:void(0)" ng-click="changeLanguage('ar-eg')">
                 <p class="lang">AR</p>
             </a>
-            <a ng-show="isRestaurantPage()" href="javascript:void(0);" ng-click="getAllComments()" data-lity-target="#comments" data-lity>
+            <a ng-show="isRestaurantPage()" href="javascript:void(0);" ng-click="getAllComments()" data-lity-target="#comments"
+                data-lity>
                 <!-- <i class="material-icons" style="font-size: 30px;margin-top: 5px;cursor: pointer;">feedback</i> -->
                 <p class="logout">{{'feedbackbtn' | translate}}</p>
             </a>
             <!-- <a   href="javascript:void(0)" ng-click="logout()" ng-show="globalInfo.logoUrl !=null">
                             <p class="logout">{{'Logout' | translate}}</p>
                         </a> -->
-            <a href="javascript:void(0)" ng-click="globalInfo.featureMode = !globalInfo.featureMode ;$state.go('Features');" ng-show="globalInfo.logoUrl !=null || !globalInfo.featureMode ">
+            <a href="javascript:void(0)" ng-click="globalInfo.featureMode = !globalInfo.featureMode ;$state.go('Features');"
+                ng-show="globalInfo.logoUrl !=null || !globalInfo.featureMode ">
                 <p class="logout">{{'BackToFeatures' | translate}}</p>
             </a>
         </div>
@@ -100,17 +120,20 @@
             <jk-rating-stars rating="rate" class="my-custom-stars hideMinus"></jk-rating-stars>
             <!-- <div> -->
             <div>
-                <input type="text" ng-model="createBy" placeholder="{{'Name' |translate}}" style="border-radius: 25px;padding: 5px;"> </div>
+                <input type="text" ng-model="createBy" placeholder="{{'Name' |translate}}" style="border-radius: 25px;padding: 5px;">
+            </div>
             <div>
                 <textarea rows="4" style="resize: none;padding: 5px;     width: 100%;
                     margin-bottom: 5px;
                     margin-top: 5px;
-                    border-radius: 25px;" ng-max="200" ng-model="comment" placeholder="{{'yourComment' |translate}}"></textarea>
+                    border-radius: 25px;"
+                    ng-max="200" ng-model="comment" placeholder="{{'yourComment' |translate}}"></textarea>
 
                 <div>
                     <span class="col-md-11">
-                        <button style="border-radius: 10px;" ng-click="applyComment(rate,createBy,comment)" data-lity-close ng-disabled="(comment == '' || comment.length>200) && rate <=0">
-                        {{'SumbitReviewBtn'|translate}}</button>
+                        <button style="border-radius: 10px;" ng-click="applyComment(rate,createBy,comment)"
+                            data-lity-close ng-disabled="(comment == '' || comment.length>200) && rate <=0">
+                            {{'SumbitReviewBtn'|translate}}</button>
                     </span>
                     <div> {{200- comment.length}}</div>
                 </div>
@@ -127,7 +150,8 @@
                 <hr>
             </div>
             <div style="text-align: center" ng-if="feedbacks.nextPageURL != null">
-                <a href="javascript:void(0)" ng-click="getMoreComments()" style="cursor: pointer;">{{'morereviewsbtn' | translate}}</a>
+                <a href="javascript:void(0)" ng-click="getMoreComments()" style="cursor: pointer;">{{'morereviewsbtn' |
+                    translate}}</a>
             </div>
         </div>
 
@@ -160,11 +184,11 @@
     <script src="templates.js?v=#{VERSION_REPlACE}#"></script>
     <script ng-src="turn.min-en.js" ng-if="selectedLanguage == 'en-us'"></script>
     <script ng-src="turn.min-ar.js" ng-if="selectedLanguage == 'ar-eg'"></script>
-  
-  
+
+
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/signalr.js/2.3.0/jquery.signalR.min.js"></script>
     <script src="http://localhost:36402/signalr/hubs"></script> -->
-    
+
     <!-- <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('serviceWorker.js').then(function(registration) {

@@ -376,9 +376,13 @@
             "supervisorComment":"Supervisor Comment",
             "Appartment":"Appartment",
             "phoneLbl":"Phone",
+            "AddnotificationLbl":"Add notification",
+            "notifications":"Notification",
         }
         
         var ar_translations = {
+            "AddnotificationLbl":"اضافه اشعارات",
+            "notifications":"اشعارات",
            
             "phoneLbl":"التليفون",
             "Appartment":"عقار",
