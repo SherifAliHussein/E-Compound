@@ -9,7 +9,7 @@
 
             <div class="form-group pmd-textfield pmd-textfield-floating-label">
                 <label for="first-name">{{'UnitNameLbl' | translate}}</label>
-                <input required type="text" class="mat-input form-control" name="unitName"  ng-model="Name" ng-minlength="3" ng-maxlength="50">
+                <input required type="text" class="mat-input form-control" name="unitName"  ng-model="Name" ng-minlength="2" ng-maxlength="50">
                 <div ng-messages="newUnitForm.unitName.$error" class="error">
                         <!-- <div ng-show="newUnitForm.unitName.$error.pattern">{{'TextOnly' | translate}}</div> -->
                         <div ng-if="newUnitForm.unitName.$error.required && !newUnitForm.unitName.$pristine">{{'requiredErr' | translate}}</div>
@@ -19,9 +19,12 @@
 
             <div class="form-group pmd-textfield pmd-textfield-floating-label">
                 <label for="first-name">{{'UnitType' | translate}}</label>
-                <select class="form-control" style="width:50% !important" ng-model="unitType" 
+                <select required class="form-control" style="width:50% !important" name="unType" ng-model="unitType" 
                     ng-options="unitType as unitType.titleDictionary[selectedLanguage] for unitType in unitTypeList">
                 </select>
+                <div ng-messages="newUnitForm.unType.$error" class="error">
+                    <div ng-if="newUnitForm.unType.$error.required && !newUnitForm.unType.$pristine">{{'requiredErr' | translate}}</div>
+          ````  </div>
             </div>
 
         </form>

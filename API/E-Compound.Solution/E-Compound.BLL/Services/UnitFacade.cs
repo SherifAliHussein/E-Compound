@@ -42,6 +42,9 @@ namespace E_Compound.BLL.Services
         {
             var unit = Mapper.Map<Unit>(unitDto);
 
+            var checkValidation = _unitService.NameValidation(unit);
+            if(checkValidation != null) throw new NotFoundException(ErrorCodes.UnitNameAlreadyExist);
+
             unit.CreateTime = DateTime.Now;
             unit.AdminId = userId;
             unit.Name = unitDto.Name;
@@ -81,6 +84,9 @@ namespace E_Compound.BLL.Services
         {
             var unit = _unitService.Find(unitDto.UnitId);
             if (unit == null) throw new NotFoundException(ErrorCodes.UnitNotFound);
+
+            var checkValidation = _unitService.NameValidation(unit);
+            if (checkValidation != null) throw new NotFoundException(ErrorCodes.UnitNameAlreadyExist);
 
             unit.ModifyTime = DateTime.Now;
             unit.ModifiedBy = userId;

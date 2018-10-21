@@ -844,6 +844,15 @@ namespace E_Compound.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unit Name Already Exist.
+        /// </summary>
+        public static string UnitNameAlreadyExist {
+            get {
+                return ResourceManager.GetString("UnitNameAlreadyExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unit Type Has Relation With a Unit.
         /// </summary>
         public static string UnitTypeHasRelation {

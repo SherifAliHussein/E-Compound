@@ -49,7 +49,7 @@
                         </select>
                         <div ng-if="updateSupervisorForm.SelectedFeatureId.$error.required && !updateSupervisorForm.SelectedFeatureId.$pristine">{{'requiredErr' | translate}}</div>
                     </div>
-                    <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed" >
+                    <div ng-show="editSupervisorDlCtrl.showCategories" class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed" >
                         <label>{{'selectCategoryLbl' | translate}}</label>
                         <select required class="form-control select-tags pmd-select2-tags" multiple
                         ng-change="editSupervisorDlCtrl.categoryChange()" ng-model="editSupervisorDlCtrl.SelectedCategoryId" name="SelectedCategory">

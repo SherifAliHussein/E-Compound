@@ -8,6 +8,7 @@ namespace E_Compound.Common.CustomException
 {
     public enum ErrorCodes
     {
+        UnitNameAlreadyExist,
         UserNotFound,
         UserCategoryNotFound,
         UnitHasRelation,

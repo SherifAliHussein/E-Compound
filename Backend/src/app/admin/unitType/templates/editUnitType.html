@@ -22,9 +22,9 @@
                                 <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
                                     <label for="first-name"> {{ 'Title' | translate}} </label>
                                     <!-- <label for="first-name">{{'Title' | translate}}</label> -->
-                                    <input type="text" class="mat-input form-control" name="titleDictionary{{lang.value+'Title'}}" ng-pattern="/^(\D)+$/" ng-model="editUnitTypeCtrl.unitTypeObj.titleDictionary[lang.key]" ng-minlength="3" ng-maxlength="50">
+                                    <input type="text" class="mat-input form-control" name="titleDictionary{{lang.value+'Title'}}" ng-model="editUnitTypeCtrl.unitTypeObj.titleDictionary[lang.key]" ng-minlength="3" ng-maxlength="50">
                                     <div ng-messages="newUnitTypeForm.titleDictionary{{lang.value+'Title'}}.$error" class="error">
-                                            <div ng-show="newUnitTypeForm.titleDictionary{{lang.value+'Title'}}.$error.pattern">{{'TextOnly' | translate}}</div>
+                                            <!-- <div ng-show="newUnitTypeForm.titleDictionary{{lang.value+'Title'}}.$error.pattern">{{'TextOnly' | translate}}</div> -->
                                             <!-- <div ng-if="newCurrencyForm.title.$error.required && !newCurrencyForm.title.$pristine">{{'requiredErr' | translate}}</div> -->
                                             <div ng-show="newUnitTypeForm.titleDictionary{{lang.value+'Title'}}.$error.minlength || newUnitTypeForm.titleDictionary{{lang.value+'Title'}}.$error.maxlength">{{'NameLengthError' | translate}}</div>
                                     </div>
