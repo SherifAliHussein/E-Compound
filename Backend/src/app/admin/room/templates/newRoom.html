@@ -30,11 +30,11 @@
             <div class="form-group pmd-textfield pmd-textfield-floating-label">
 
                 <label for="first-name">{{'phoneLbl' | translate}}</label>
-                <input required type="text" class="mat-input form-control" name="phone" numbers-only ng-model="roomDlCtrl.Phone"
-                    ng-minlength="10" ng-maxlength="50">
+                <input required type="text" class="mat-input form-control" name="phone" 
+                ng-pattern="/^[0-9]*$/"  ng-model="roomDlCtrl.Phone" ng-minlength="10" ng-maxlength="50">
                 <div ng-messages="newRoomForm.phone.$error">
-                    <div ng-if="newRoomForm.phone.$error.required && !newRoomForm.phone.$pristine">{{'PhoneReqError'
-                        | translate}}</div>
+                 
+                    <div ng-show="newRoomForm.phone.$error.pattern">{{'PhoneReqError' | translate}}</div> 
                     <div ng-if="(newRoomForm.phone.$error.minlength || newRoomForm.phone.$error.maxlength)">{{'PhoneLengthError'
                         | translate}}</div>
                 </div>
@@ -46,7 +46,8 @@
                 <div ng-messages="newRoomForm.roomName.$error">
                     <div ng-if="newRoomForm.roomName.$error.required && !newRoomForm.roomName.$pristine">{{'requiredErr'
                         | translate}}</div>
-                    <div ng-if="(newRoomForm.roomName.$error.minlength || newRoomForm.roomName.$error.maxlength) && !newRoomForm.roomName.$error.required">{{'NameLengthError'
+                    <div ng-if="(newRoomForm.roomName.$error.minlength || newRoomForm.roomName.$error.maxlength)
+                     && !newRoomForm.roomName.$error.required">{{'NameLengthError'
                         | translate}}</div>
                 </div>
             </div>

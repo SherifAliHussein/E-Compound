@@ -28,10 +28,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/26/2018 14:43:09</publishTime>
     </File>
     <File Include="bin/E-Compound.API.dll">
-      <publishTime>10/16/2018 14:36:42</publishTime>
+      <publishTime>10/17/2018 14:59:41</publishTime>
     </File>
     <File Include="bin/E-Compound.BLL.dll">
-      <publishTime>10/16/2018 14:36:38</publishTime>
+      <publishTime>10/17/2018 14:59:37</publishTime>
     </File>
     <File Include="bin/E-Compound.Common.dll">
       <publishTime>10/16/2018 14:36:36</publishTime>
@@ -319,7 +319,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/16/2018 08:49:54</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/16/2018 14:36:43</publishTime>
+      <publishTime>10/17/2018 14:59:42</publishTime>
     </File>
   </ItemGroup>
 </Project>

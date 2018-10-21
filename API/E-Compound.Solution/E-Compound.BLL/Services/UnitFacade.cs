@@ -105,7 +105,7 @@ namespace E_Compound.BLL.Services
 
         public void UpdateSubscription(long adminId, Guid packageGuid, int consumed)
         {
-            var admin = _adminService.Find(adminId);
+          //  var admin = _adminService.Find(adminId);
             string url = ConfigurationManager.AppSettings["subscriptionURL"];
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url + "/Users/EditUserConsumer");
             //request.Headers.Add("X-Auth-Token:" + token);
@@ -114,7 +114,7 @@ namespace E_Compound.BLL.Services
             var serializer = JsonConvert.SerializeObject(new
             {
                 userConsumer = consumed,
-                userAccountId = admin.UserAccountId,
+                userAccountId = "",
                 backageGuid = packageGuid,
                 //productId = admin.ProductId
             });

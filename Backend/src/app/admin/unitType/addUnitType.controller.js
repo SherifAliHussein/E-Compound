@@ -11,7 +11,7 @@
         $scope.unitTypeList;
         vm.titleDictionary;
         $scope.getId="0";
-        $scope.language = appCONSTANTS.supportedLanguage;
+        vm.language = appCONSTANTS.supportedLanguage;
         $scope.changeId=function (val){
             $scope.getId=val;
         }
