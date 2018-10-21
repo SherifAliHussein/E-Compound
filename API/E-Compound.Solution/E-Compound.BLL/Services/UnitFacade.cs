@@ -74,7 +74,7 @@ namespace E_Compound.BLL.Services
             var pack = _unitService.GetConsumedUnits(userId);
 
             //UpdateSubscription(userId, package.PackageGuid, package.Units.Count(x => !x.IsDeleted));
-            UpdateSubscription(userId, package.PackageGuid, _unitService.GetConsumedUnits(userId));
+        //    UpdateSubscription(userId, package.PackageGuid, _unitService.GetConsumedUnits(userId));
         }
 
         public void UpdateUnit(long userId, UnitDto unitDto)
