@@ -43,5 +43,10 @@ namespace E_Compound.BLL.DataServices
         {
             return _repository.Query(x => !x.IsDeleted && x.AdminId == userId).Select().Count();
         }
+
+        public Unit NameValidation(Unit unit)
+        {
+            return _repository.Query(x => !x.IsDeleted && x.Name == unit.Name).Select().FirstOrDefault();
+        }
     }
 }

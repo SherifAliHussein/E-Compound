@@ -396,4 +396,7 @@
   <data name="ApartmentDeactivated" xml:space="preserve">
     <value>Apartment Deactivated</value>
   </data>
+  <data name="UnitNameAlreadyExist" xml:space="preserve">
+    <value>Unit Name Already Exist</value>
+  </data>
 </root>

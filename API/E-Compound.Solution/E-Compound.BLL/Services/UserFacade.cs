@@ -70,7 +70,7 @@ namespace E_Compound.BLL.Services
                 var unit = _unitService.Find(room.UnitId);
                 var package = _packageService.Find(unit.PackageId);
 
-                if (package.End < DateTime.Now) throw new ValidationException(ErrorCodes.UserDeactivated);
+                if (package.End < DateTime.Now || package.Start > DateTime.Now) throw new ValidationException(ErrorCodes.UserDeactivated);
             }
 
             if (user == null) throw new ValidationException(ErrorCodes.UserNotFound);

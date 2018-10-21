@@ -15,5 +15,6 @@ namespace E_Compound.BLL.DataServices.Interfaces
         Unit RelationValidation(long userId, long unitTypeId);
         int GetUnitCountByPackageId(long packageId);
         int GetConsumedUnits(long userId);
+        Unit NameValidation(Unit unit);
     }
 }

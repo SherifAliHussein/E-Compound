@@ -16,6 +16,7 @@
 		vm.categories = categories        
         vm.SelectedCategoryId=[];
 		vm.SelectedCategory = [];
+		vm.showCategories = false;
 		
         Supervisor.userCategories.forEach(function(element) {
 			var kk = vm.categories.filter(function(item){
@@ -40,13 +41,22 @@
         }
 
 		vm.featureChange = function(){
-			vm.SelectedFeature = []
+			vm.SelectedFeature = [];
 			for(var i=0;i<vm.SelectedFeatureId.length;i++){
 				var feature = vm.features.filter(function(item){
 					return (item.featureId ===  vm.SelectedFeatureId[i]);
 				})[0]
-				vm.SelectedFeature.push(feature)  
+				vm.SelectedFeature.push(feature);  
 			}
+
+			for(var i=0; i<vm.SelectedFeature.length; i++){
+                if(vm.SelectedFeature[i].type == "Ticket"){
+                    vm.showCategories = true;
+                }
+            }
+            if(vm.SelectedFeature.length == 0){
+                vm.showCategories = false;
+            }
 		}
 
 		vm.categoryChange = function(){
