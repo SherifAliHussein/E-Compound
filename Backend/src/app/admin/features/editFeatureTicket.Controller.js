@@ -3,14 +3,14 @@
 	
     angular
         .module('home')
-        .controller('editFeatureTicketController', ['$scope','$state','$http','$translate','appCONSTANTS', 'FeatureResource','ToastService','featurePrepService','TicketsNamePrepService',  editFeatureTicketController])
+        .controller('editFeatureTicketController', ['$scope','$state','$http','$translate','appCONSTANTS', 'FeatureResource','ToastService','featurePrepService',  editFeatureTicketController])
 
-	function editFeatureTicketController($scope, $state ,$http, $translate,appCONSTANTS, FeatureResource,ToastService, featurePrepService,TicketsNamePrepService,callBackFunction){
+	function editFeatureTicketController($scope, $state ,$http, $translate,appCONSTANTS, FeatureResource,ToastService, featurePrepService,callBackFunction){
 		var vm = this;
 		vm.language = appCONSTANTS.supportedLanguage;
 		
 		vm.feature = featurePrepService;
-        vm.Tickets = TicketsNamePrepService;
+   // vm.Tickets = TicketsNamePrepService;
         vm.SelectedTicketId=[];
         vm.SelectedTicket = [];
         featurePrepService.Tickets.forEach(function(element) {
@@ -51,7 +51,7 @@
             updateFeature.hasDetails = vm.feature.hasDetails;
 			updateFeature.featureId = vm.feature.featureId;
 			updateFeature.isImageChange = isImageChange;
-            updateFeature.type = "1";
+            updateFeature.type = "3";
             updateFeature.Tickets = [];
 			vm.SelectedTicket.forEach(function(element) {
                 updateFeature.Tickets.push(element);

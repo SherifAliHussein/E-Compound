@@ -86,7 +86,7 @@ namespace E_Compound.BLL.Services
             if (!user.IsActive)
                 throw new ValidationException(ErrorCodes.UserDeactivated);
             request.CreateTime = DateTime.UtcNow;
-            request.AssignedTime = DateTime.UtcNow; 
+            request.AssignedTime = DateTime.UtcNow;
             request.Status = Enums.RequestStatus.Assigned;
             request.TechnicianId = requestDto.Technician.UserId;
             request.SupervisorComment = requestDto.SupervisorComment;
@@ -158,32 +158,39 @@ namespace E_Compound.BLL.Services
                 var allRequests = Mapper.Map<List<RequestDto>>(_requestService.GetAllRequestsBySupervisor(userId, page, pageSize, roomId, featureId, fromDateTime, toDateTime));
                 var supervisorCategory = _supervisorCategoryService.Query(x => x.SupervisorId == userId).Select();
                 requests = new List<RequestDto>();
-
-                foreach (var category in supervisorCategory)
+                if (supervisorCategory.Any())
                 {
-                    foreach (var allRequest in allRequests)
+                    foreach (var category in supervisorCategory)
                     {
-                        if (allRequest.Type != Enums.FeatureType.Ticket)
+                        foreach (var allRequest in allRequests)
                         {
-                            var checkifExist = requests.Any(x => x.RequestId == allRequest.RequestId);
-                            if (!checkifExist)
+                            if (allRequest.Type != Enums.FeatureType.Ticket)
                             {
-                                requests.Add(allRequest);
-                                continue;
+                                var checkifExist = requests.Any(x => x.RequestId == allRequest.RequestId);
+                                if (!checkifExist)
+                                {
+                                    requests.Add(allRequest);
+                                    continue;
+                                }
+                            }
+                            if (allRequest.UserCategory != Convert.ToInt32(category.UserCategoryId)) continue;
+                            {
+                                if (requests.Count == 0) requests.Add(allRequest);
+
+                                if (requests.Any(x => x.RequestId != allRequest.RequestId)) requests.Add(allRequest);
                             }
                         }
-                        if (allRequest.UserCategory != Convert.ToInt32(category.UserCategoryId)) continue;
-                        {
-                            if (requests.Count == 0) requests.Add(allRequest);
 
-                            if (requests.Any(x => x.RequestId != allRequest.RequestId))  requests.Add(allRequest);
-                        }
                     }
 
                 }
+                else
+                {
+                    requests = allRequests;
+                }
             }
             else if (role == Enums.RoleType.Technician.ToString())
-            { 
+            {
                 DateTime fromDateTime = !String.IsNullOrEmpty(from) ? DateTime.Parse(from) : DateTime.MinValue;
                 DateTime toDateTime = !String.IsNullOrEmpty(to) ? DateTime.Parse(to) : DateTime.MaxValue;
                 var allRequests = Mapper.Map<List<RequestDto>>(_requestService.GetAllRequestsByTechnican(userId, page, pageSize, roomId, featureId, fromDateTime, toDateTime));
@@ -263,7 +270,7 @@ namespace E_Compound.BLL.Services
             if (!user.IsActive)
                 throw new ValidationException(ErrorCodes.UserDeactivated);
             if (request.Status == Enums.RequestStatus.Pending)
-            { 
+            {
                 request.ModifyTime = DateTime.UtcNow;
                 request.ModifiedBy = userId;
                 request.Status = Enums.RequestStatus.Approved;
@@ -282,9 +289,9 @@ namespace E_Compound.BLL.Services
                 //    }
                 //    _requestDetailService.InsertRange(request.RequestDetails);
                 //}
-          
+
             }
-            else if(request.Status == Enums.RequestStatus.Assigned)
+            else if (request.Status == Enums.RequestStatus.Assigned)
             {
                 request.Status = Enums.RequestStatus.Approved;
             }

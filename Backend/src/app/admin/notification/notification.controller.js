@@ -39,8 +39,8 @@
             newnotification.$send().then(
                 function (data, status) {
                     ToastService.show("right", "bottom", "fadeInUp", $translate.instant('AddSuccess'), "success");
-                    $scope.title="";
-                    $scope.message="";
+                    $scope.title = '';
+                    $scope.message = '';
                 },
                 function (data, status) {
                     ToastService.show("right", "bottom", "fadeInUp", data.data.message, "error");

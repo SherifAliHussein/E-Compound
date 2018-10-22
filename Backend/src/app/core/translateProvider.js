@@ -384,12 +384,16 @@
             "notifications":"Notification",
             "firstName":"first Name",
             "lastName":"last Name",
+            "AddInvitionFeatureBtn":"Add Invition Feature",
+            "AddTicketFeatureBtn":"Add Ticket Feature",
         }
         
         var ar_translations = {
+            "AddInvitionFeatureBtn":"اضافه خدمه الدعوات",
+            "AddTicketFeatureBtn":"اضافه خدمه شكوي",
             "AddnotificationLbl":"اضافه اشعارات",
             "firstName":"الاسم الاول",
-            "firstName":"الاسم الاخير",
+            "lastName":"الاسم الاخير",
            
             "notifications":"اشعارات",
             "PhoneReqError":"رقم التليفون مطلوب",

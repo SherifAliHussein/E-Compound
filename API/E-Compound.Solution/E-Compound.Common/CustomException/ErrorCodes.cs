@@ -116,6 +116,7 @@ namespace E_Compound.Common.CustomException
         PackageNotActivated,
         GlobalAdminInactive,
         BuildingNameRepeated,
-        FloorNameRepeated
+        FloorNameRepeated,
+        UnitHaveApatrment
     }
 }

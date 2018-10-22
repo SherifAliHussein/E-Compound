@@ -14,5 +14,6 @@ namespace E_Compound.BLL.DataServices.Interfaces
         bool CheckUserNameDuplicated(string userName, long userId, long adminId);
         //int GetRoomCountByPackageId(long packageId);
         Room RelationValidation(long userId, long unitId);
+        bool RoomDublicatedValidation(long userId, long unitId);
     }
 }

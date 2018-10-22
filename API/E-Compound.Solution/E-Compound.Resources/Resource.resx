@@ -399,4 +399,7 @@
   <data name="UnitNameAlreadyExist" xml:space="preserve">
     <value>Unit Name Already Exist</value>
   </data>
+  <data name="UnitHaveApatrment" xml:space="preserve">
+    <value>Unit Have Apatrment</value>
+  </data>
 </root>

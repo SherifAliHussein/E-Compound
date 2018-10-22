@@ -43,7 +43,7 @@
                         </td>
                         <td width="30%">
                             <i ng-if="feature.type=='Normal'" class="material-icons md-dark pmd-md cursorPointer font25" ng-click="$state.go('editFeature',{featureId: feature.featureId});">mode_edit</i> 
-                            <i ng-if="feature.type=='Restaurant'" class="material-icons md-dark pmd-md cursorPointer font25" ng-click="$state.go('editFeatureRestaurant',{featureId: feature.featureId});">mode_edit</i> 
+                            <!-- <i ng-if="feature.type=='Restaurant'" class="material-icons md-dark pmd-md cursorPointer font25" ng-click="$state.go('editFeatureRestaurant',{featureId: feature.featureId});">mode_edit</i>  -->
                             <i ng-if="feature.type=='Invetation'" class="material-icons md-dark pmd-md cursorPointer font25" ng-click="$state.go('editFeatureInvetition',{featureId: feature.featureId});">mode_edit</i> 
                             <i ng-if="feature.type=='Ticket'" class="material-icons md-dark pmd-md cursorPointer font25" ng-click="$state.go('editFeatureTicket',{featureId: feature.featureId});">mode_edit</i> 
                             <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="featureCtrl.openDeleteFeatureDialog(feature.featureNameDictionary[selectedLanguage],feature.featureId)">delete</i>
