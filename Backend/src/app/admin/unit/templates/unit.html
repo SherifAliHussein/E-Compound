@@ -1,46 +1,55 @@
 
-<div>
-        <div style="margin-bottom:10px">
-            <button ng-disabled="unitCtrl.unitsLimit.consumedUsers == unitCtrl.unitsLimit.maxNumUsers" ng-click="unitCtrl.AddUnit()" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddUnitLbl' | translate}}</button>
-            <br>
-            <span>
-                    {{unitCtrl.unitsLimit.consumedUsers}} / {{unitCtrl.unitsLimit.maxNumUsers}}
-                    ({{'roomsLimitConsumedLbl'|translate}})
-            </span>
-        </div>
-    
-        <div ng-if="unitList.results.length == 0">
-            <span>{{'NoUnitAvailable' | translate}}</span>
-        </div>
-    
-        <div class="pmd-card pmd-z-depth pmd-card-custom-view" ng-if=" unitList.results.length >0">
-    
-           
-            <div class="table-responsive">
-                <table class="table pmd-table table-hover">
-                    <thead>
-                        <tr>
-                            <th>{{'Unit' | translate}}</th>
-                            <th>{{'UnitType' | translate}}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="unit in unitList.results">
-                            <td  data-title="Name" width="20%">{{unit.name}}</td>
-                            <td  data-title="Name" width="20%">{{unit.unitType.titleDictionary[selectedLanguage]}}</td>
-                            <!-- <td  data-title="Name" width="20%">{{(unitTypeList | filter : {unitTypeId:unit.unitTypeId})[0].titleDictionary[selectedLanguage]}} -->
-                            <td ng-class="{'red-text': user.isActive == false }" width="15%">
-                                <i class="material-icons md-dark pmd-md cursorPointer font25" ng-click="unitCtrl.UpdateUnit(unit)">mode_edit</i>
-                                <!-- <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="unitCtrl.DeleteUnit(unit.unitId)">delete</i> -->
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+<div class="container-fluid">
+    <div class="row" id="card-masonry">
+        <!-- Today's Site Activity -->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="pmd-card pmd-z-depth">      
+                <div class="pmd-card-title">
+                    <div class="media-left"> 
+                        <button ng-disabled="unitCtrl.unitsLimit.consumedUsers == unitCtrl.unitsLimit.maxNumUsers" ng-click="unitCtrl.AddUnit()" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddUnitLbl' | translate}}</button>
+                        <br>
+                        <h4>
+                            {{unitCtrl.unitsLimit.consumedUsers}} / {{unitCtrl.unitsLimit.maxNumUsers}}
+                            <br>
+                            ({{'roomsLimitConsumedLbl'|translate}})
+                        </h4>
+                    </div>
+                    
+                    <div class="total-sales" ng-if="unitList.results.length == 0">
+                        <br>
+                        <span>{{'NoUnitAvailable' | translate}}</span>
+                    </div> 
+
+                <div class="pmd-card-body" ng-if=" unitList.results.length >0">
+            
+                    <div class="table-responsive">
+                        <table class="table pmd-table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{{'Unit' | translate}}</th>
+                                    <th>{{'UnitType' | translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="unit in unitList.results">
+                                    <td  data-title="Name" width="20%">{{unit.name}}</td>
+                                    <td  data-title="Name" width="20%">{{unit.unitType.titleDictionary[selectedLanguage]}}</td>
+                                    <!-- <td  data-title="Name" width="20%">{{(unitTypeList | filter : {unitTypeId:unit.unitTypeId})[0].titleDictionary[selectedLanguage]}} -->
+                                    <td ng-class="{'red-text': user.isActive == false }" width="15%">
+                                        <i class="material-icons md-dark pmd-md cursorPointer font25" ng-click="unitCtrl.UpdateUnit(unit)">mode_edit</i>
+                                        <!-- <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="unitCtrl.DeleteUnit(unit.unitId)">delete</i> -->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="text-align:center;" paging page="1" page-size="10" total="unitList.totalCount" paging-action="unitCtrl.changePage(page)"
+                        flex="nogrow" show-prev-next="true" show-first-last="true" hide-if-empty="true" disabled-class="hide">
+                    </div>
+                </div>
+        
             </div>
-    
-        </div>
-        <div style="text-align:center;" paging page="1" page-size="10" total="unitList.totalCount" paging-action="unitCtrl.changePage(page)"
-             flex="nogrow" show-prev-next="true" show-first-last="true" hide-if-empty="true" disabled-class="hide">
         </div>
     </div>
+</div>
     

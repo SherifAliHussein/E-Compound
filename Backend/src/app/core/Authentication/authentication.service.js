@@ -78,7 +78,6 @@
 
     function requestToken(credentials, grantType) {
       angular.extend(credentials, {
-          //'client_id': vlCONSTANTS.API_Client_Id,
         'grant_type': grantType
       });
 

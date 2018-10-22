@@ -14,7 +14,6 @@
 		}
         vm.isChanged = false;
         vm.isFree=false;
-       // vm.Tickets = TicketsNamePrepService;
         vm.currentPage = 0;
         vm.SelectedTicket = [];
         vm.changePage = function(page){

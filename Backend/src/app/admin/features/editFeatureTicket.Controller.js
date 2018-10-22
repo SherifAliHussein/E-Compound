@@ -10,7 +10,6 @@
 		vm.language = appCONSTANTS.supportedLanguage;
 		
 		vm.feature = featurePrepService;
-   // vm.Tickets = TicketsNamePrepService;
         vm.SelectedTicketId=[];
         vm.SelectedTicket = [];
         featurePrepService.Tickets.forEach(function(element) {

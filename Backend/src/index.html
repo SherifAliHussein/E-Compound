@@ -17,7 +17,7 @@
 </head>
 
 <body ng-class="{ clientViewBody: user.role === 'Room'}">
-   <nav class="navbar navbar-inverse navbar-fixed-top pmd-navbar pmd-z-depth" ng-if="isLoggedIn() && user.role !== 'Room'"  >
+   <nav class="navbar navbar-inverse navbar-fixed-top pmd-navbar pmd-z-depth" ng-show="isLoggedIn() && user.role !== 'Room'"  >
 
 	<div class="container-fluid">
 		<div class="pmd-navbar-right-icon pull-right navigation">
@@ -69,8 +69,8 @@
 <div class="pmd-sidebar-overlay"></div>
 
 <!-- Left sidebar -->
-<aside  class="pmd-sidebar sidebar-default pmd-sidebar-slide-push pmd-sidebar-left pmd-sidebar-open bg-fill-darkblue sidebar-with-icons" role="navigation">
-	<div ng-if="isLoggedIn() && user.role !== 'Room'"  ng-init="logoutFlag=false">
+<aside ng-show="isLoggedIn() && user.role !== 'Room'"  ng-init="logoutFlag=false" class="pmd-sidebar sidebar-default pmd-sidebar-slide-push pmd-sidebar-left pmd-sidebar-open bg-fill-darkblue sidebar-with-icons" role="navigation">
+	<!-- <div ng-show="isLoggedIn() && user.role !== 'Room'"  ng-init="logoutFlag=false"> -->
 		<ul class="nav pmd-sidebar-nav">
 			
 			<!-- User info -->
@@ -353,7 +353,7 @@
 					</a> 
 				</li>
 		</ul>
-	</div>
+	<!-- </div> -->
 	</aside><!-- End Left sidebar -->
 	<!-- Sidebar Ends -->  
 		
