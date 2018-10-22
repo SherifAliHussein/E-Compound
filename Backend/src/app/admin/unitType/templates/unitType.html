@@ -1,40 +1,54 @@
 
-<div>
-    <div style="margin-bottom:10px">
-        <button ng-click="unitTypeCtrl.AddUnitType()" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddUnitTypeLbl' | translate}}</button>
-    </div>
+<div class="container-fluid">
+    <div class="row" id="card-masonry">
+        <!-- Today's Site Activity -->
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+            <div class="pmd-card pmd-z-depth">      
+                <div class="pmd-card-title">
+                    <div class="media-left"> 
+                        <button ng-click="unitTypeCtrl.AddUnitType()" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddUnitTypeLbl' | translate}}</button>
+                    </div>
 
-    <div ng-if="unitTypeList.results.length == 0">
-        <span>{{'NoUnitTypeAvailable' | translate}}</span>
-    </div>
+                    <div class="media-body media-middle">
+                    </div>
 
-    <div class="pmd-card pmd-z-depth pmd-card-custom-view" ng-if=" unitTypeList.results.length >0">
+                    <div ng-if="unitTypeList.results.length == 0">
+                        <span>{{'NoUnitTypeAvailable' | translate}}</span>
+                    </div>
 
-        <div class="table-responsive">
-            <table class="table pmd-table table-hover">
-                <thead>
-                    <tr>
-                        <th>{{'UnitType' | translate}}</th>
-                        <th>{{'Limit' | translate}}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="unitType in unitTypeList.results">
-                        <td  data-title="Name" width="20%">{{unitType.titleDictionary[selectedLanguage]}}</td>
-                        <td  data-title="Name" width="20%">{{unitType.limit}}</td>
-                        <td ng-class="{'red-text': user.isActive == false }" width="15%">
-                            <i class="material-icons md-dark pmd-md cursorPointer font25" ng-click="unitTypeCtrl.UpdateUnitType(unitType)">mode_edit</i>
-                            <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="unitTypeCtrl.DeleteUnitType(unitType.unitTypeId)">delete</i>
-                            <!-- <i class="cursorPointer" ng-click="unitTypeCtrl.UpdateUnitType(unitType)">{{'EditBtn' | translate}} </i>
-                            <i class="cursorPointer" ng-click="unitTypeCtrl.DeleteUnitType(unitType.unitTypeId)">{{'deleteBtn' | translate}} </i> -->
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                    <div class="pmd-card-body" ng-if=" unitTypeList.results.length >0">
 
+                        <div class="table-responsive">
+                            <table class="table pmd-table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>{{'UnitType' | translate}}</th>
+                                        <th>{{'Limit' | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="unitType in unitTypeList.results">
+                                        <td  data-title="Name" width="20%">{{unitType.titleDictionary[selectedLanguage]}}</td>
+                                        <td  data-title="Name" width="20%">{{unitType.limit}}</td>
+                                        <td ng-class="{'red-text': user.isActive == false }" width="15%">
+                                            <i class="material-icons md-dark pmd-md cursorPointer font25" ng-click="unitTypeCtrl.UpdateUnitType(unitType)">mode_edit</i>
+                                            <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="unitTypeCtrl.DeleteUnitType(unitType.unitTypeId)">delete</i>
+                                            <!-- <i class="cursorPointer" ng-click="unitTypeCtrl.UpdateUnitType(unitType)">{{'EditBtn' | translate}} </i>
+                                            <i class="cursorPointer" ng-click="unitTypeCtrl.DeleteUnitType(unitType.unitTypeId)">{{'deleteBtn' | translate}} </i> -->
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="text-align:center;" paging page="1" page-size="10" total="unitTypeList.totalCount" paging-action="unitTypeCtrl.changePage(page)"
+                        flex="nogrow" show-prev-next="true" show-first-last="true" hide-if-empty="true" disabled-class="hide">
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div> 
     </div>
-    <div style="text-align:center;" paging page="1" page-size="10" total="unitTypeList.totalCount" paging-action="unitTypeCtrl.changePage(page)"
-         flex="nogrow" show-prev-next="true" show-first-last="true" hide-if-empty="true" disabled-class="hide">
-    </div>
+        
 </div>
+

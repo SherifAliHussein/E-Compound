@@ -39,10 +39,13 @@
 		
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
-			<!-- <a href="javascript:void(0);" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect pull-left margin-r8 pmd-sidebar-toggle"><i class="material-icons">menu</i></a>	 -->
-		  <a class="navbar-brand">
+			<a href="javascript:void(0);" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect pull-left margin-r8 pmd-sidebar-toggle">
+				<!-- <i class="material-icons">menu</i> -->
+				<i class="material-icons md-light">menu</i>
+			</a>	
+		  <!-- <a class="navbar-brand">
 			  {{user.name}}
-			  </a>
+			  </a> -->
 			  
 		</div>
 	</div>
@@ -66,267 +69,300 @@
 <div class="pmd-sidebar-overlay"></div>
 
 <!-- Left sidebar -->
-<aside ng-if="isLoggedIn() && user.role !== 'Room'"   ng-init="logoutFlag=false" class="pmd-sidebar sidebar-default pmd-sidebar-slide-push pmd-sidebar-left pmd-sidebar-open bg-fill-darkblue sidebar-with-icons" role="navigation">
-	<ul class="nav pmd-sidebar-nav">
-		
-		<!-- User info -->
-		<!-- <li class="dropdown pmd-dropdown pmd-user-info visible-xs visible-md visible-sm visible-lg">
-			<a ng-click="logoutFlag=!logoutFlag"  data-toggle="dropdown" class="btn-user dropdown-toggle media" data-sidebar="true" aria-expandedhref="javascript:void(0);">
-				<div class="media-left">
-					<img src="/assets/img/user-icon.png" alt="New User">
-					<!-- <span>{{logoutFlag}}</span> --
-				</div>
-				<div class="media-body media-middle"  ng-cloak >{{user.name}}</div>
-				<div class="media-right media-middle"><i class="dic-more-vert dic"></i></div>
-			</a>
-			<ul class="dropdown-menu" style="opacity: 1;">
-				<li><a ng-click="logout()"  ng-cloak>{{'logoutBtn' | translate}}</a></li>
-			</ul>
-		</li> -->
-		<!-- End user info -->
-		
-		<li ng-if="user.role === 'Admin'"> 
-			<a class="pmd-ripple-effect " ng-click="$state.go('features');" >	
-				<i class="media-left media-middle"><svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18"
-					 xml:space="preserve">
-				<g>
-					<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
-						 M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
-				</g>
-				</svg></i>
-				<span class="media-body" ng-cloak>{{'Featureslbl' | translate}}</span>
-			</a> 
-		</li>
-		<li ng-if="user.role === 'Admin'"> 
-			<a class="pmd-ripple-effect " ng-click="$state.go('users');" >	
-				<i class="media-left media-middle"><svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18"
-					 xml:space="preserve">
-				<g>
-					<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
-						 M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
-				</g>
-				</svg></i>
-				<span class="media-body" ng-cloak>{{'Users' | translate}}</span>
-			</a> 
-		</li>
-		<li ng-if="user.role === 'Admin'"> 
-				<a class="pmd-ripple-effect " ng-click="$state.go('rooms');" >	
-					<i class="media-left media-middle"><svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18"
-						 xml:space="preserve">
-					<g>
-						<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
-							 M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
-					</g>
-					</svg></i>
-					<span class="media-body" ng-cloak>{{'Appartment' | translate}}</span>
+<aside  class="pmd-sidebar sidebar-default pmd-sidebar-slide-push pmd-sidebar-left pmd-sidebar-open bg-fill-darkblue sidebar-with-icons" role="navigation">
+	<div ng-if="isLoggedIn() && user.role !== 'Room'"  ng-init="logoutFlag=false">
+		<ul class="nav pmd-sidebar-nav">
+			
+			<!-- User info -->
+			<li class="dropdown pmd-dropdown pmd-user-info visible-xs visible-md visible-sm visible-lg">
+				<a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media" data-sidebar="true" aria-expandedhref="javascript:void(0);">
+					<div class="media-left">
+						<!-- <img src="themes/images/user-icon.png" alt="New User"> -->
+					</div>
+					<div class="media-body media-middle">{{user.name}}</div>
+					<div class="media-right media-middle"><i class="dic-more-vert dic"></i></div>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a ng-click="logout()">{{'logoutBtn' | translate}}</a></li>
+				</ul>
+			</li><!-- End user info -->
+			
+			<li ng-if="user.role === 'Admin'"> 
+				<a class="pmd-ripple-effect" ng-click="$state.go('features');">	
+					<i class="media-left media-middle">
+						<svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18" xml:space="preserve">
+							<g>
+								<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
+			 M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
+							</g>
+						</svg>
+					</i>
+					<span class="media-body">{{'Featureslbl' | translate}}</span>
 				</a> 
 			</li>
-		
-		<li ng-if="user.role === 'Admin' || user.role === 'Supervisor' || user.role === 'Receptionist' || user.role === 'Waiter'"> 
-				<a class="pmd-ripple-effect " ng-click="$state.go('adminRequests');" >	
-					<i class="media-left media-middle"><svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18"
-						 xml:space="preserve">
-					<g>
-						<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
-							 M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
-					</g>
-					</svg></i>
-					<span class="media-body" ng-cloak>{{'Requests' | translate}}</span>
+
+			<li ng-if="user.role === 'Admin'"> 
+				<a class="pmd-ripple-effect" ng-click="$state.go('users');">	
+					<i class="media-left media-middle">
+						<svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18" xml:space="preserve">
+							<g>
+								<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
+				M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
+							</g>
+						</svg>
+					</i>
+					<span class="media-body">{{'Users' | translate}}</span>
 				</a> 
 			</li>
 			
+			<li ng-if="user.role === 'Admin'"> 
+				<a class="pmd-ripple-effect" ng-click="$state.go('rooms');">	
+					<i class="media-left media-middle">
+						<svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18" xml:space="preserve">
+							<g>
+								<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
+				M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
+							</g>
+						</svg>
+					</i>
+					<span class="media-body">{{'Appartment' | translate}}</span>
+				</a> 
+			</li>	
+			
+			<li ng-if="user.role === 'Admin' || user.role === 'Supervisor' || user.role === 'Receptionist' || user.role === 'Waiter'"> 
+				<a class="pmd-ripple-effect" ng-click="$state.go('adminRequests');">	
+					<i class="media-left media-middle">
+						<svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18" xml:space="preserve">
+							<g>
+								<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
+				M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
+							</g>
+						</svg>
+					</i>
+					<span class="media-body">{{'Requests' | translate}}</span>
+				</a> 
+			</li>
+
 			<li ng-if="user.role === 'Supervisor'"> 
-					<a class="pmd-ripple-effect " ng-click="$state.go('manageFeatures');" >	
-						<i class="media-left media-middle"><svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18"
-							 xml:space="preserve">
-						<g>
-							<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
-								 M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
-						</g>
-						</svg></i>
-						<span class="media-body" ng-cloak>{{'ManageFeatureLbl' | translate}}</span>
+				<a class="pmd-ripple-effect" ng-click="$state.go('manageFeatures');">	
+					<i class="media-left media-middle">
+						<svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18" xml:space="preserve">
+							<g>
+								<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
+				M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
+							</g>
+						</svg>
+					</i>
+					<span class="media-body">{{'ManageFeatureLbl' | translate}}</span>
+				</a> 
+			</li>
+
+			<li ng-if="user.role === 'Supervisor'"> 
+				<a class="pmd-ripple-effect" ng-click="$state.go('supervisorReports');">	
+					<i class="media-left media-middle">
+						<svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18" xml:space="preserve">
+							<g>
+								<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
+				M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
+							</g>
+						</svg>
+					</i>
+					<span class="media-body">{{'Reports' | translate}}</span>
+				</a> 
+			</li>
+
+			<li ng-if="user.role === 'Admin'"> 
+				<a class="pmd-ripple-effect" ng-click="$state.go('featuresBackgrounds');">	
+					<i class="media-left media-middle">
+						<svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18" xml:space="preserve">
+							<g>
+								<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
+				M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
+							</g>
+						</svg>
+					</i>
+					<span class="media-body">{{'background' | translate}}</span>
+				</a> 
+			</li>
+
+			<li ng-if="user.role === 'Admin'"> 
+				<a class="pmd-ripple-effect" ng-click="$state.go('unitTypes');">	
+					<i class="media-left media-middle">
+						<svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18" xml:space="preserve">
+							<g>
+								<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
+				M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
+							</g>
+						</svg>
+					</i>
+					<span class="media-body">{{'unitTypes' | translate}}</span>
+				</a> 
+			</li>
+
+			<li ng-if="user.role === 'Admin'"> 
+				<a class="pmd-ripple-effect" ng-click="$state.go('units');">	
+					<i class="media-left media-middle">
+						<svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18" xml:space="preserve">
+							<g>
+								<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
+				M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
+							</g>
+						</svg>
+					</i>
+					<span class="media-body">{{'units' | translate}}</span>
+				</a> 
+			</li>
+
+			<li ng-if="user.role === 'Admin'"> 
+				<a class="pmd-ripple-effect" ng-click="$state.go('userCategories');" >	
+					<i class="media-left media-middle">
+						<svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18" xml:space="preserve">
+							<g>
+								<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
+				M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
+							</g>
+						</svg>
+					</i>
+					<span class="media-body">{{'userCategories' | translate}}</span>
+				</a> 
+			</li>
+
+			<li ng-if="user.role === 'RestaurantAdmin'"> 
+				<a class="pmd-ripple-effect" ng-click="$state.go('Menu');" >	
+					<i class="media-left media-middle">
+						<svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18" xml:space="preserve">
+							<g>
+								<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
+				M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
+							</g>
+						</svg>
+					</i>
+					<span class="media-body">{{'Menu' | translate}}</span>
+				</a> 
+			</li>
+			
+			<li ng-if="user.role === 'RestaurantAdmin'"> 
+				<a class="pmd-ripple-effect" ng-click="$state.go('size');" >	
+					<i class="media-left media-middle">
+						<svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18" xml:space="preserve">
+							<g>
+								<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
+				M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
+							</g>
+						</svg>
+					</i>
+					<span class="media-body">{{'size' | translate}}</span>
+				</a> 
+			</li>
+
+			<li ng-if="user.role === 'RestaurantAdmin'"> 
+				<a class="pmd-ripple-effect" ng-click="$state.go('Waiters');" >	
+					<i class="media-left media-middle">
+						<svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18" xml:space="preserve">
+							<g>
+								<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
+				M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
+							</g>
+						</svg>
+					</i>
+					<span class="media-body">{{'waiter' | translate}}</span>
+				</a> 
+			</li>
+
+			<li ng-if="user.role === 'RestaurantAdmin'"> 
+				<a class="pmd-ripple-effect" ng-click="$state.go('Backgrounds');" >	
+					<i class="media-left media-middle">
+						<svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18" xml:space="preserve">
+							<g>
+								<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
+				M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
+							</g>
+						</svg>
+					</i>
+					<span class="media-body">{{'background' | translate}}</span>
+				</a> 
+			</li>
+
+			<li ng-if="user.role === 'RestaurantAdmin'"> 
+				<a class="pmd-ripple-effect" ng-click="$state.go('Template');" >	
+					<i class="media-left media-middle">
+						<svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18" xml:space="preserve">
+							<g>
+								<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
+				M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
+							</g>
+						</svg>
+					</i>
+					<span class="media-body">{{'Template' | translate}}</span>
+				</a> 
+			</li>
+
+			<li ng-if="user.role === 'RestaurantAdmin'"> 
+				<a class="pmd-ripple-effect" ng-click="$state.go('branch');" >	
+					<i class="media-left media-middle">
+						<svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18" xml:space="preserve">
+							<g>
+								<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
+				M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
+							</g>
+						</svg>
+					</i>
+					<span class="media-body">{{'Branch' | translate}}</span>
+				</a> 
+			</li>
+
+			<li ng-if="user.role === 'RestaurantAdmin'"> 
+				<a class="pmd-ripple-effect" ng-click="$state.go('itemOrder');" >	
+					<i class="media-left media-middle">
+						<svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18" xml:space="preserve">
+							<g>
+								<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
+				M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
+							</g>
+						</svg>
+					</i>
+					<span class="media-body">{{'orderItem' | translate}}</span>
+				</a> 
+			</li>
+
+			<li ng-if="user.role === 'RestaurantAdmin'"> 
+					<a class="pmd-ripple-effect" ng-click="$state.go('feedBacks');" >	
+						<i class="media-left media-middle">
+							<svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18" xml:space="preserve">
+								<g>
+									<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
+					M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
+								</g>
+							</svg>
+						</i>
+						<span class="media-body">{{'feedBacksBtn' | translate}}</span>
 					</a> 
 				</li>
-		
-			<li ng-if="user.role === 'Supervisor'"> 
-				<a class="pmd-ripple-effect " ng-click="$state.go('supervisorReports');" >	
-					<i class="media-left media-middle"><svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18"
-							xml:space="preserve">
-					<g>
-						<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
-								M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
-					</g>
-					</svg></i>
-					<span class="media-body" ng-cloak>{{'Reports' | translate}}</span>
-				</a> 
-			</li>
-			
-		 	
-		<li ng-if="user.role === 'Admin'"> 
-			<a class="pmd-ripple-effect" ng-click="$state.go('featuresBackgrounds');" >	
-				<i class="media-left media-middle"><svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18"
-					 xml:space="preserve">
-				<g>
-					<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
-						 M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
-				</g>
-				</svg></i>
-				<span class="media-body "  ng-cloak>{{'background' | translate}}</span>
-			</a> 
-		</li>
-		<li ng-if="user.role === 'Admin'"> 
-			<a class="pmd-ripple-effect" ng-click="$state.go('unitTypes');" >	
-				<i class="media-left media-middle"><svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18"
-					 xml:space="preserve">
-				<g>
-					<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
-						 M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
-				</g>
-				</svg></i>
-				<span class="media-body "  ng-cloak>{{'unitTypes' | translate}}</span>
-			</a> 
-		</li>
-		<li ng-if="user.role === 'Admin'"> 
-			<a class="pmd-ripple-effect" ng-click="$state.go('units');" >	
-				<i class="media-left media-middle"><svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18"
-						xml:space="preserve">
-				<g>
-					<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
-							M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
-				</g>
-				</svg></i>
-				<span class="media-body "  ng-cloak>{{'units' | translate}}</span>
-			</a> 
-		</li>
-		<li ng-if="user.role === 'Admin'"> 
-			<a class="pmd-ripple-effect" ng-click="$state.go('userCategories');" >	
-				<i class="media-left media-middle"><svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18"
-						xml:space="preserve">
-				<g>
-					<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
-							M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
-				</g>
-				</svg></i>
-				<span class="media-body "  ng-cloak>{{'userCategories' | translate}}</span>
-			</a> 
-		</li>
-		<li ng-if="user.role === 'RestaurantAdmin'"> 
-			<a class="pmd-ripple-effect" ng-click="$state.go('Menu');" >	
-				<i class="media-left media-middle"><svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18"
-					 xml:space="preserve">
-				<g>
-					<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
-						 M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
-				</g>
-				</svg></i>
-				<span class="media-body "  ng-cloak>{{'Menu' | translate}}</span>
-			</a> 
-		</li>
-		<li ng-if="user.role === 'RestaurantAdmin'"> 
-			<a class="pmd-ripple-effect" ng-click="$state.go('size');" >	
-				<i class="media-left media-middle"><svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18"
-					 xml:space="preserve">
-				<g>
-					<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
-						 M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
-				</g>
-				</svg></i>
-				<span class="media-body "  ng-cloak>{{'size' | translate}}</span>
-			</a> 
-		</li>	
-		<li ng-if="user.role === 'RestaurantAdmin'"> 
-			<a class="pmd-ripple-effect" ng-click="$state.go('Waiters');" >	
-				<i class="media-left media-middle"><svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18"
-						xml:space="preserve">
-				<g>
-					<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
-							M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
-				</g>
-				</svg></i>
-				<span class="media-body "  ng-cloak>{{'waiter' | translate}}</span>
-			</a> 
-		</li>
-		<li ng-if="user.role === 'RestaurantAdmin'"> 
-			<a class="pmd-ripple-effect" ng-click="$state.go('Backgrounds');" >	
-				<i class="media-left media-middle"><svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18"
-						xml:space="preserve">
-				<g>
-					<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
-							M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
-				</g>
-				</svg></i>
-				<span class="media-body "  ng-cloak>{{'background' | translate}}</span>
-			</a> 
-		</li>
-		<li ng-if="user.role === 'RestaurantAdmin'"> 
-			<a class="pmd-ripple-effect" ng-click="$state.go('Template');" >	
-				<i class="media-left media-middle"><svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18"
-						xml:space="preserve">
-				<g>
-					<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
-							M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
-				</g>
-				</svg></i>
-				<span class="media-body "  ng-cloak>{{'Template' | translate}}</span>
-			</a> 
-		</li>
-		<li ng-if="user.role === 'RestaurantAdmin'"> 
-			<a class="pmd-ripple-effect" ng-click="$state.go('branch');" >	
-				<i class="media-left media-middle"><svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18"
-						xml:space="preserve">
-				<g>
-					<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
-							M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
-				</g>
-				</svg></i>
-				<span class="media-body "  ng-cloak>{{'Branch' | translate}}</span>
-			</a> 
-		</li>
-		<li ng-if="user.role === 'RestaurantAdmin'"> 
-			<a class="pmd-ripple-effect" ng-click="$state.go('itemOrder');" >	
-				<i class="media-left media-middle"><svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18"
-						xml:space="preserve">
-				<g>
-					<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
-							M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
-				</g>
-				</svg></i>
-				<span class="media-body "  ng-cloak>{{'orderItem' | translate}}</span>
-			</a> 
-		</li>
-		<li ng-if="user.role === 'RestaurantAdmin'"> 
-			<a class="pmd-ripple-effect" ng-click="$state.go('feedBacks');" >	
-				<i class="media-left media-middle"><svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18"
-					 xml:space="preserve">
-				<g>
-					<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
-						 M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
-				</g>
-				</svg></i>
-				<span class="media-body "  ng-cloak>{{'feedBacksBtn' | translate}}</span>
-			</a> 
-		</li>
-		<li ng-if="user.role === 'Admin'"> 
-			<a class="pmd-ripple-effect " ng-click="$state.go('notifications');" >	
-				<i class="media-left media-middle"><svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18"
-					 xml:space="preserve">
-				<g>
-					<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
-						 M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
-				</g>
-				</svg></i>
-				<span class="media-body" ng-cloak>{{'notifications' | translate}}</span>
-			</a> 
-		</li>
-
-		<li><a ng-click="logout()"  ng-cloak>{{'logoutBtn' | translate}}</a></li>
-	</ul>
-</aside><!-- End Left sidebar -->
-<!-- Sidebar Ends -->  
-
-	<div ui-view layout="column" ng-class="{ ClientViewcontent: user.role === 'Room'}" class="pmd-content content-area dashboard" flex ng-class="{clientView: user.role === 'Room'}"	></div>
 	
-    <!-- scripts area -->
+				<li ng-if="user.role === 'Admin'"> 
+					<a class="pmd-ripple-effect" ng-click="$state.go('notifications');" >	
+						<i class="media-left media-middle">
+							<svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18" xml:space="preserve">
+								<g>
+									<path fill="#C9C8C8" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
+					M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z"/>
+								</g>
+							</svg>
+						</i>
+						<span class="media-body">{{'notifications' | translate}}</span>
+					</a> 
+				</li>
+		</ul>
+	</div>
+	</aside><!-- End Left sidebar -->
+	<!-- Sidebar Ends -->  
+		
+
+<!--content area start-->
+	<div ui-view layout="column" ng-class="{ ClientViewcontent: user.role === 'Room'}" class="pmd-content content-area dashboard" flex ng-class="{clientView: user.role === 'Room'}"	></div>
+<!--end content area-->
+
+	<!-- scripts area -->
  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script> -->
 
 
