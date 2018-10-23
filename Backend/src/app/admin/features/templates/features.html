@@ -1,61 +1,69 @@
-<div >
-    <div style="margin-bottom:10px">
-        <button  ng-click="$state.go('newFeature');" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddFeatureBtn' | translate}}</button>
-        <!-- <button ng-disabled="featureCtrl.featureAsRestaurant.featureId != null"  ng-click="$state.go('newFeatureRestaurant');" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddRestaurantFeatureBtn' | translate}}</button> -->
-        <button ng-disabled="featureCtrl.featureAsInvitation.featureId != null"  ng-click="$state.go('newFeatureInvetition');" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddInvitionFeatureBtn' | translate}}</button>
-        <button ng-disabled="featureCtrl.featureAsTicket.featureId != null"  ng-click="$state.go('newFeatureTicket');" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddTicketFeatureBtn' | translate}}</button>
-   
-    </div>
-    
-    <div ng-if="featureCtrl.features.results.length == 0">
-            <span>{{'NoFeaturesAvailable' | translate}}</span>
-    </div>
-    <div class="pmd-card pmd-z-depth pmd-card-custom-view" ng-if="featureCtrl.features.results.length > 0">
-        <div class="table-responsive">
-            <table class="table pmd-table table-hover">
-                <thead>
-                    <tr>
-                        <th >{{'Name' | translate}}</th>
-                        <th >{{'Imagelbl' | translate}}</th>                        
-                        <th>{{'detailLbl' | translate}}</th>
-                        <th >{{'status' | translate}}</th>
-                        <th ></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="feature in featureCtrl.features.results">
-                        <td data-title="Name" >{{feature.featureNameDictionary[selectedLanguage]}}</td>
-                        <td data-title="logo" ><img ng-src="{{feature.imageURL}}?type='thumbnail'&date={{featureCtrl.Now}}"  ng-alt="{{restaurant.restaurantName}}" style="max-height: 200px;max-width: 200px;"/></td>                        
-                        <td data-title="Name" >
-                            <span ng-if="feature.type=='Normal'" ng-repeat="control in feature.featureControl">
-                                <span ng-repeat="controlEnum in featureCtrl.control|filter: {id: control.control}"> {{controlEnum.text | translate}} </span>
-                                <span ng-if="!$last">,</span> 
-                            </span>
-                            <span ng-if="feature.type=='Restaurant'" ng-repeat="restaurant in feature.restaurants">{{restaurant.restaurantNameDictionary[selectedLanguage]}}
-                                    <span ng-if="!$last">,</span>                                     
-                            </span>
-                        </td>
-                
-                        <!-- <td></td> -->
-                        <td>
-                            <a ng-show="!feature.isActive" ng-click="featureCtrl.Activate(feature)" class="cursorPointer">{{'ActivateBtn' | translate}}</a>
-                            <a ng-show="feature.isActive" ng-click="featureCtrl.Deactivate(feature)" class="cursorPointer">{{'DeActivateBtn' | translate}}</a>
-                        </td>
-                        <td width="30%">
-                            <i ng-if="feature.type=='Normal'" class="material-icons md-dark pmd-md cursorPointer font25" ng-click="$state.go('editFeature',{featureId: feature.featureId});">mode_edit</i> 
-                            <!-- <i ng-if="feature.type=='Restaurant'" class="material-icons md-dark pmd-md cursorPointer font25" ng-click="$state.go('editFeatureRestaurant',{featureId: feature.featureId});">mode_edit</i>  -->
-                            <i ng-if="feature.type=='Invetation'" class="material-icons md-dark pmd-md cursorPointer font25" ng-click="$state.go('editFeatureInvetition',{featureId: feature.featureId});">mode_edit</i> 
-                            <i ng-if="feature.type=='Ticket'" class="material-icons md-dark pmd-md cursorPointer font25" ng-click="$state.go('editFeatureTicket',{featureId: feature.featureId});">mode_edit</i> 
-                            <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="featureCtrl.openDeleteFeatureDialog(feature.featureNameDictionary[selectedLanguage],feature.featureId)">delete</i>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+<div class="container-fluid">
+    <div class="row" id="card-masonry">
+        <!-- Today's Site Activity -->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="pmd-card pmd-z-depth">      
+                <div class="pmd-card-title">
+                    <div class="media-left"> 
+                        <button  ng-click="$state.go('newFeature');" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddFeatureBtn' | translate}}</button>
+                        <!-- <button ng-disabled="featureCtrl.featureAsRestaurant.featureId != null"  ng-click="$state.go('newFeatureRestaurant');" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddRestaurantFeatureBtn' | translate}}</button> -->
+                        <button ng-disabled="featureCtrl.featureAsInvitation.featureId != null"  ng-click="$state.go('newFeatureInvetition');" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddInvitionFeatureBtn' | translate}}</button>
+                        <button ng-disabled="featureCtrl.featureAsTicket.featureId != null"  ng-click="$state.go('newFeatureTicket');" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddTicketFeatureBtn' | translate}}</button>
+                    </div>
+
+                    <div class="total-sales" ng-if="featureCtrl.features.results.length == 0">
+                        <br>
+                        <span>{{'NoFeaturesAvailable' | translate}}</span>
+                    </div>
+
+                    <div class="pmd-card-body" ng-if="featureCtrl.features.results.length > 0">
+                        <div class="table-responsive">
+                            <table class="table pmd-table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th >{{'Name' | translate}}</th>
+                                        <th >{{'Imagelbl' | translate}}</th>                        
+                                        <th>{{'detailLbl' | translate}}</th>
+                                        <th >{{'status' | translate}}</th>
+                                        <th ></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="feature in featureCtrl.features.results">
+                                        <td data-title="Name" >{{feature.featureNameDictionary[selectedLanguage]}}</td>
+                                        <td data-title="logo" ><img ng-src="{{feature.imageURL}}?type='thumbnail'&date={{featureCtrl.Now}}"  ng-alt="{{restaurant.restaurantName}}" style="max-height: 200px;max-width: 200px;"/></td>                        
+                                        <td data-title="Name" >
+                                            <span ng-if="feature.type=='Normal'" ng-repeat="control in feature.featureControl">
+                                                <span ng-repeat="controlEnum in featureCtrl.control|filter: {id: control.control}"> {{controlEnum.text | translate}} </span>
+                                                <span ng-if="!$last">,</span> 
+                                            </span>
+                                            <span ng-if="feature.type=='Restaurant'" ng-repeat="restaurant in feature.restaurants">{{restaurant.restaurantNameDictionary[selectedLanguage]}}
+                                                    <span ng-if="!$last">,</span>                                     
+                                            </span>
+                                        </td>
+                                
+                                        <!-- <td></td> -->
+                                        <td>
+                                            <a ng-show="!feature.isActive" ng-click="featureCtrl.Activate(feature)" class="cursorPointer">{{'ActivateBtn' | translate}}</a>
+                                            <a ng-show="feature.isActive" ng-click="featureCtrl.Deactivate(feature)" class="cursorPointer">{{'DeActivateBtn' | translate}}</a>
+                                        </td>
+                                        <td width="30%">
+                                            <i ng-if="feature.type=='Normal'" class="material-icons md-dark pmd-md cursorPointer font25" ng-click="$state.go('editFeature',{featureId: feature.featureId});">mode_edit</i> 
+                                            <!-- <i ng-if="feature.type=='Restaurant'" class="material-icons md-dark pmd-md cursorPointer font25" ng-click="$state.go('editFeatureRestaurant',{featureId: feature.featureId});">mode_edit</i>  -->
+                                            <i ng-if="feature.type=='Invetation'" class="material-icons md-dark pmd-md cursorPointer font25" ng-click="$state.go('editFeatureInvetition',{featureId: feature.featureId});">mode_edit</i> 
+                                            <i ng-if="feature.type=='Ticket'" class="material-icons md-dark pmd-md cursorPointer font25" ng-click="$state.go('editFeatureTicket',{featureId: feature.featureId});">mode_edit</i> 
+                                            <i class="material-icons pmd-md deleteButton cursorPointer font25" ng-click="featureCtrl.openDeleteFeatureDialog(feature.featureNameDictionary[selectedLanguage],feature.featureId)">delete</i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="text-align:center;" paging page="1" page-size="10" total="featureCtrl.features.totalCount" paging-action="featureCtrl.changePage( page)"
+                        flex="nogrow" show-prev-next="true" show-first-last="true" hide-if-empty="true" disabled-class="hide">
+                        </div>
+                    </div>
+                </div>		
+            </div>
         </div>
-        <div style="text-align:center;" paging page="1" page-size="10" total="featureCtrl.features.totalCount" paging-action="featureCtrl.changePage( page)"
-        flex="nogrow" show-prev-next="true" show-first-last="true" hide-if-empty="true" disabled-class="hide">
-           </div>
-    </div> 
-
-
-</div>					
+    </div>
+</div>			
