@@ -14,6 +14,7 @@
         $scope.$parent.globalInfo.featureMode = true;
         $scope.$parent.globalInfo.featureMode = false;
         vm.lastRequest = lastRequestPrepService;
+        console.log( vm.feature )
         if(vm.lastRequest.requestId !=undefined){
             vm.lastRequest.createTime = vm.lastRequest.createTime+"Z";
             vm.lastRequest.createTime = $filter('date')(new Date(vm.lastRequest.createTime), "dd/MM/yyyy hh:mm a");
@@ -71,6 +72,7 @@
         }
 
         vm.checkAvailableFrom = function($view, $dates, $leftDate, $upDate, $rightDate,featureControl){
+            debugger;
             vm.now = new Date();            
             if($view=="year"){
                 $dates.forEach(function(element) {

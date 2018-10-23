@@ -42,8 +42,8 @@ namespace E_Compound.BLL.DataServices
 
         public bool RoomDublicatedValidation(long userId, long unitId)
         {
-            bool returnVale = false;
-            var room = _repository.Query(x => x.UnitId == unitId).Select().FirstOrDefault();
+            var returnVale = false;
+            var room = _repository.Query(x => x.UnitId == unitId && x.AdminId!= userId).Select().FirstOrDefault();
             if (room != null)
             {
                 returnVale = true;

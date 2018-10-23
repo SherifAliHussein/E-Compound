@@ -844,7 +844,7 @@ namespace E_Compound.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unit Have Apatrment.
+        ///   Looks up a localized string similar to Unit Already Used.
         /// </summary>
         public static string UnitHaveApatrment {
             get {

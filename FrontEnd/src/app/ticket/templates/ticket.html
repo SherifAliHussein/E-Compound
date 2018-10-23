@@ -18,10 +18,11 @@
         </button>
         <div ng-messages="TicketForm.title.$error">
           <div ng-if="TicketForm.title.$error.required && !TicketForm.title.$pristine">{{'titleReqError'| translate}}</div>
-          <div ng-if="(TicketForm.title.$error.minlength || TicketForm.title.$error.maxlength)">{{'titleLengthError'| translate}}</div>
+          <div ng-if="(TicketForm.title.$error.minlength || TicketForm.title.$error.maxlength)">{{'titleLengthError'|
+            translate}}</div>
         </div>
       </div>
-      <div >
+      <div>
         <label for="first-name">{{'CategoriesBtn' | translate}}</label>
 
         <select required style="width:50% !important" class="form-control select-with-search pmd-select2-tags" ng-model="selectedCategory"
