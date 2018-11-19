@@ -400,6 +400,6 @@
     <value>Unit Name Already Exist</value>
   </data>
   <data name="UnitHaveApatrment" xml:space="preserve">
-    <value>Unit Have Apatrment</value>
+    <value>Unit Already Used</value>
   </data>
 </root>

@@ -206,6 +206,7 @@ namespace E_Compound.BLL.Services
             if (_supervisorService.CheckUserNameDuplicated(roomDto.RoomName, roomDto.RoomId, adminId)) throw new ValidationException(ErrorCodes.UserNameAlreadyExist);
             if (_receptionistService.CheckUserNameDuplicated(roomDto.RoomName, roomDto.RoomId, adminId)) throw new ValidationException(ErrorCodes.UserNameAlreadyExist);
             if (_roomService.CheckUserNameDuplicated(roomDto.RoomName, roomDto.RoomId, adminId)) throw new ValidationException(ErrorCodes.UserNameAlreadyExist);
+            if (_roomService.RoomDublicatedValidation(adminId, roomDto.UnitId)) throw new ValidationException(ErrorCodes.UnitHaveApatrment);
         }
 
         private void UpdateSubscription(long adminId, Guid packageGuid, int consumed)

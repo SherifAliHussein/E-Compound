@@ -14,6 +14,7 @@
         //$scope.userCategoryList = CategoryResource; 
         $scope.selectedCategory = "";
         $scope.feature = featureDetailPrepService;
+        console.log($scope.feature)
         refreshFeatures()
         function refreshFeatures() {
             var k = CategoryResource.UserCategories().$promise.then(function (results) {

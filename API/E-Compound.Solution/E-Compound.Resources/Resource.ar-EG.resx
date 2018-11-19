@@ -280,7 +280,7 @@
     <value>هناك تترابط بين الممستخدم و الوحده</value>
   </data>
   <data name="UnitHaveApatrment" xml:space="preserve">
-    <value>العقار له مستخدم</value>
+    <value>العقار مستخدم بالفعل</value>
   </data>
   <data name="UnitNameAlreadyExist" xml:space="preserve">
     <value>اسم الوحدة مكرر</value>

@@ -56,28 +56,28 @@
         vm.selectedRoom = vm.rooms[0];
         vm.rooms = vm.rooms.concat(roomsNamePrepService);
         console.log(vm.requests)
-      debugger;
+        debugger;
         $scope.userCategoryList = UserCategoryPrepService;
         console.log($scope.userCategoryList)
         vm.features = [{ featureId: 0, featureNameDictionary: { 'en-us': "All features", 'ar-eg': "كل الميزات" } }];
         vm.selectedFeature = vm.features[0];
         vm.features = vm.features.concat(featuresNamePrepService);
-      
+
         $scope.showModal = false;
         $scope.objInModel = "";
         $scope.toggleModal = function (obj) {
             $scope.showModal = !$scope.showModal;
             $scope.status = obj.message;
-            $scope.objInModel =obj;
-         };
+            $scope.objInModel = obj;
+        };
         $scope.ClickApprove = function () {
-        vm.Approve($scope.objInModel ,$scope.objInModel.requestId);
-            $scope.showModal = !$scope.showModal; 
+            vm.Approve($scope.objInModel, $scope.objInModel.requestId);
+            $scope.showModal = !$scope.showModal;
         };
         $scope.ClickReject = function () {
- 
-        vm.Reject($scope.objInModel .requestId);
-            $scope.showModal = !$scope.showModal; 
+
+            vm.Reject($scope.objInModel.requestId);
+            $scope.showModal = !$scope.showModal;
         };
         _.forEach(vm.requests.results, function (request) {
             debugger;
@@ -87,7 +87,7 @@
 
             request.createTime = request.createTime + "Z";
             request.createTime = $filter('date')(new Date(request.createTime), "dd/MM/yyyy hh:mm a");
-            
+
             request.assignedTime = request.assignedTime + "Z";
             request.assignedTime = $filter('date')(new Date(request.assignedTime), "dd/MM/yyyy hh:mm a");
 
@@ -195,8 +195,8 @@
             rejectRequest(requestId);
         }
         function rejectRequest(requestId) {
-            var requestreject = new RequestResource(); 
-            requestreject.technicianComment= $scope.objInModel.TechnicianComment;
+            var requestreject = new RequestResource();
+            requestreject.technicianComment = $scope.objInModel.TechnicianComment;
 
             requestreject.$Reject({ requestId: requestId }).then(
                 function (data, status) {
