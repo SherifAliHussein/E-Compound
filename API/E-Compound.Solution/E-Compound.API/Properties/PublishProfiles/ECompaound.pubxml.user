@@ -19,7 +19,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/26/2018 14:04:11</publishTime>
     </File>
     <File Include="bin/ar-EG/E-Compound.Resources.resources.dll">
-      <publishTime>10/16/2018 14:36:36</publishTime>
+      <publishTime>10/23/2018 09:09:27</publishTime>
     </File>
     <File Include="bin/AutoMapper.dll">
       <publishTime>09/26/2018 14:43:07</publishTime>
@@ -28,19 +28,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/26/2018 14:43:09</publishTime>
     </File>
     <File Include="bin/E-Compound.API.dll">
-      <publishTime>10/17/2018 14:59:41</publishTime>
+      <publishTime>10/23/2018 09:09:35</publishTime>
     </File>
     <File Include="bin/E-Compound.BLL.dll">
-      <publishTime>10/17/2018 14:59:37</publishTime>
+      <publishTime>10/23/2018 09:09:29</publishTime>
     </File>
     <File Include="bin/E-Compound.Common.dll">
-      <publishTime>10/16/2018 14:36:36</publishTime>
+      <publishTime>10/23/2018 09:09:27</publishTime>
     </File>
     <File Include="bin/E-Compound.DAL.dll">
-      <publishTime>10/16/2018 14:36:37</publishTime>
+      <publishTime>10/23/2018 09:09:28</publishTime>
     </File>
     <File Include="bin/E-Compound.Resources.dll">
-      <publishTime>10/16/2018 14:36:36</publishTime>
+      <publishTime>10/23/2018 09:09:27</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>09/26/2018 14:43:07</publishTime>
@@ -115,10 +115,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/26/2018 14:43:09</publishTime>
     </File>
     <File Include="bin/Repository.Pattern.dll">
-      <publishTime>10/15/2018 12:00:46</publishTime>
+      <publishTime>10/23/2018 09:09:27</publishTime>
     </File>
     <File Include="bin/Repository.Pattern.Ef6.dll">
-      <publishTime>10/15/2018 12:00:47</publishTime>
+      <publishTime>10/23/2018 09:09:27</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>09/26/2018 14:04:12</publishTime>
@@ -157,7 +157,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/26/2018 14:04:12</publishTime>
     </File>
     <File Include="bin/Service.Pattern.dll">
-      <publishTime>10/15/2018 12:00:47</publishTime>
+      <publishTime>10/23/2018 09:09:27</publishTime>
     </File>
     <File Include="bin/Swashbuckle.Core.dll">
       <publishTime>09/26/2018 14:43:09</publishTime>
@@ -319,7 +319,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/16/2018 08:49:54</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/17/2018 14:59:42</publishTime>
+      <publishTime>10/23/2018 09:09:36</publishTime>
     </File>
   </ItemGroup>
 </Project>
