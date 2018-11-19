@@ -1,3 +1,10 @@
+
+<style>
+    .logincard{
+        top:25% !important;
+        left: 10% !important;
+    }
+</style>
 <div class="logincard" ng-if="!isLoggedIn()">
   	<div class="pmd-card card-default pmd-z-depth">
 		<div class="login-card">
@@ -31,12 +38,11 @@
                 <div ng-if="AccountDeActivated" class="loginFailed"  style="margin-left: auto;color:red">
                     <span>Your Account is deactivated, please contact your admin.</span>
                 </div>
+                
 				<div class="pmd-card-footer card-footer-no-border card-footer-p16 text-center">
 					<button ng-disabled="loginForm.$invalid" type="submit" class="btn pmd-ripple-effect btn-primary btn-block">Login</button>
 				</div>
 			</form>
 		</div>
-		
-		
 	</div>
 </div>

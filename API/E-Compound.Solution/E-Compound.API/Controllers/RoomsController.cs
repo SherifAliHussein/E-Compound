@@ -56,6 +56,16 @@ namespace E_Compound.API.Controllers
         }
 
         [AuthorizeRoles(Enums.RoleType.Admin)]
+        [Route("api/Rooms/UsedUnits", Name = "GetUsedUnits")]
+        [HttpGet]
+        [ResponseType(typeof(List<RoomNameModel>))]
+        public IHttpActionResult GetUsedUnits()
+        {
+            List<UnitModel> usedUnits = Mapper.Map<List<UnitModel>>(_roomFacade.GetUsedUnits(UserId));
+            return Ok(usedUnits);
+        }
+
+        [AuthorizeRoles(Enums.RoleType.Admin)]
         [Route("api/Rooms/{roomId:long}", Name = "GetRoom")]
         [HttpGet]
         [ResponseType(typeof(RoomModel))]

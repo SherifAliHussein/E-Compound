@@ -4,11 +4,11 @@
 	angular
 		.module('home')
 		.controller('roomsController', ['$scope', '$stateParams', '$translate', 'appCONSTANTS', '$uibModal', 'RoomResource'
-			, 'ActivateRoomResource', 'DeactivateRoomResource', 'RoomsPrepService', 'UnitPrepService', 'ToastService'
+			, 'ActivateRoomResource', 'DeactivateRoomResource', 'RoomsPrepService', 'UnitPrepService', 'ToastService', 'UsedUnitsResource'
 			, roomsController])
 
 	function roomsController($scope, $stateParams, $translate, appCONSTANTS, $uibModal, RoomResource,
-		ActivateRoomResource, DeactivateRoomResource, RoomsPrepService, UnitPrepService, ToastService) {
+		ActivateRoomResource, DeactivateRoomResource, RoomsPrepService, UnitPrepService, ToastService, UsedUnitsResource) {
 
 		var vm = this;
 		vm.rooms = RoomsPrepService;
@@ -34,19 +34,23 @@
 			refreshRooms();
 		}
 		vm.openRoomDialog = function () {
-			var modalContent = $uibModal.open({
-				templateUrl: './app/admin/room/templates/newRoom.html',
-				controller: 'roomDialogController',
-				controllerAs: 'roomDlCtrl',
-				resolve: {
-					callBackFunction: function () { return refreshRooms; },
-					Units: function () { return vm.unit; }
-				}
-
-			});
-
-
+			UsedUnitsResource.getAllUsedUnits().$promise.then(function (results) {
+				var ss=results;
+				var modalContent = $uibModal.open({
+					templateUrl: './app/admin/room/templates/newRoom.html',
+					controller: 'roomDialogController',
+					controllerAs: 'roomDlCtrl',
+					resolve: {
+						callBackFunction: function () { return refreshRooms; },
+						Units: function () { return results; }
+					}
+				});
+			},
+				function (data, status) {
+					ToastService.show("right", "bottom", "fadeInUp", data.message, "error");
+				});
 		}
+
 		function confirmationDelete(itemId) {
 			RoomResource.deleteRoom({ roomId: itemId }).$promise.then(function (results) {
 				ToastService.show("right", "bottom", "fadeInUp", $translate.instant('RoomDeleteSuccess'), "success");

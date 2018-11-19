@@ -77,6 +77,7 @@
             $scope.user = authorizationService.getUser();
             $scope.restaurantName = "";
             if ($scope.user.role == "Admin") {
+                // $('.pmd-sidebar-nav').find('.dropdown-menu').css("display", "none");
                 $state.go('features');
 
             } 

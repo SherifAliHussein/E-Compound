@@ -217,7 +217,8 @@
                     resolve: {
                         Technicans: function () { return results },
                         selectedLanguage: function () { return $scope.selectedLanguage; },
-                        requestId: function () { return requestId; }
+                        requestId: function () { return requestId; },
+                        callBackFunction:function(){return refreshRequests;},
                     }
 
                 });

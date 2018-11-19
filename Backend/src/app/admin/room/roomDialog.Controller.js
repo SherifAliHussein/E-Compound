@@ -9,7 +9,7 @@
 	function roomDialogController($scope, $uibModalInstance, $translate, RoomResource, ToastService,
 		callBackFunction, Units) {
 		var vm = this;
-		vm.Units = Units.results;
+		vm.Units = Units;
 
 		vm.selectedUnit = vm.Units.length > 0 ? vm.Units[0] : null;
 		vm.close = function () {

@@ -28,7 +28,9 @@ namespace E_Compound.BLL.Services
         private ITechnicianService _technicianService;
         private IReceptionistService _receptionistService;
         private IRestaurantWaiterService _restaurantWaiterService;
-        public RoomFacade(IUnitOfWorkAsync unitOFWork, IRoomService roomService, IUserService userService, IAdminService adminService, IPackageService packageService, ISupervisorService supervisorService, IReceptionistService receptionistService, IRestaurantWaiterService restaurantWaiterService, ITechnicianService technicianService) : base(unitOFWork)
+        private IUnitService _unitService;
+
+        public RoomFacade(IUnitOfWorkAsync unitOFWork, IUnitService unitService, IRoomService roomService, IUserService userService, IAdminService adminService, IPackageService packageService, ISupervisorService supervisorService, IReceptionistService receptionistService, IRestaurantWaiterService restaurantWaiterService, ITechnicianService technicianService) : base(unitOFWork)
         {
             _roomService = roomService;
             _userService = userService;
@@ -38,6 +40,7 @@ namespace E_Compound.BLL.Services
             _receptionistService = receptionistService;
             _restaurantWaiterService = restaurantWaiterService;
             _technicianService = technicianService;
+            _unitService = unitService;
         }
 
         public PagedResultsDto GetAllRoom(long adminId, int page, int pageSize)
@@ -51,6 +54,22 @@ namespace E_Compound.BLL.Services
             };
             return results;
         }
+
+        public List<UnitDto> GetUsedUnits(long userId)
+        {
+            var usedUnits = Mapper.Map<List<UnitDto>>(_roomService.Query(x=>x.AdminId == userId).Select(x => x.Unit).ToList());
+            var units = Mapper.Map<List<UnitDto>>(_unitService.Query(x => x.AdminId == userId).Select().ToList());
+            
+            for (int i = 0; i< usedUnits.Count; i++)
+            {
+                var itemToRemove = units.SingleOrDefault(r => r.UnitId == usedUnits[i].UnitId);
+                if (itemToRemove != null)
+                    units.Remove(itemToRemove);
+            }
+            
+            return units;
+        }
+
         public List<RoomNameDto> GetAllRoomNames(long userId, string role)
         {
             List<RoomNameDto> rooms = null;

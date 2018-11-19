@@ -4,6 +4,7 @@
       .factory('RoomResource', ['$resource', 'appCONSTANTS', RoomResource])
       .factory('ActivateRoomResource', ['$resource', 'appCONSTANTS', ActivateRoomResource])
       .factory('DeactivateRoomResource', ['$resource', 'appCONSTANTS', DeactivateRoomResource])
+      .factory('UsedUnitsResource', ['$resource', 'appCONSTANTS', UsedUnitsResource])
       ;
 
       function RoomResource($resource, appCONSTANTS) {
@@ -16,6 +17,12 @@
           update: { method: 'PUT', useToken: true }
         })
       }
+
+      function UsedUnitsResource($resource, appCONSTANTS) {
+        return $resource(appCONSTANTS.API_URL + 'Rooms/UsedUnits', {}, {
+          getAllUsedUnits: { method: 'GET', useToken: true, isArray:true}
+        })
+    }
   
       function ActivateRoomResource($resource, appCONSTANTS) {
           return $resource(appCONSTANTS.API_URL + 'Rooms/:roomId/Activate', {}, {

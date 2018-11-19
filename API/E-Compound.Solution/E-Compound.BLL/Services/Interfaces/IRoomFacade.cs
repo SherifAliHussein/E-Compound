@@ -17,5 +17,6 @@ namespace E_Compound.BLL.Services.Interfaces
         void DeActivateRoom(long roomId, long adminId);
         void DeleteRoom(long roomId, long adminId);
         List<RoomNameDto> GetAllRoomNames(long userId, string role);
+        List<UnitDto> GetUsedUnits(long userId);
     }
 }

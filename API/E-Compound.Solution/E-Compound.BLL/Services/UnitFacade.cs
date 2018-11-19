@@ -74,10 +74,12 @@ namespace E_Compound.BLL.Services
 
             _unitService.Insert(unit);
             SaveChanges();
-            var pack = _unitService.GetConsumedUnits(userId);
+            //var pack = _unitService.GetConsumedUnits(userId);
+
+            var consumed = package.Units.Count(x => !x.IsDeleted);
 
             //UpdateSubscription(userId, package.PackageGuid, package.Units.Count(x => !x.IsDeleted));
-            UpdateSubscription(userId, package.PackageGuid, _unitService.GetConsumedUnits(userId));
+            UpdateSubscription(userId, package.PackageGuid, consumed);
         }
 
         public void UpdateUnit(long userId, UnitDto unitDto)
@@ -85,7 +87,7 @@ namespace E_Compound.BLL.Services
             var unit = _unitService.Find(unitDto.UnitId);
             if (unit == null) throw new NotFoundException(ErrorCodes.UnitNotFound);
 
-            var checkValidation = _unitService.NameValidation(unit);
+            var checkValidation = _unitService.NameValidation(Mapper.Map<Unit>(unitDto));
             if (checkValidation != null) throw new NotFoundException(ErrorCodes.UnitNameAlreadyExist);
 
             unit.ModifyTime = DateTime.Now;

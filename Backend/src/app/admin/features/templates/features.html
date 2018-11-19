@@ -6,7 +6,7 @@
                 <div class="pmd-card-title">
                     <div class="media-left"> 
                         <button  ng-click="$state.go('newFeature');" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddFeatureBtn' | translate}}</button>
-                        <!-- <button ng-disabled="featureCtrl.featureAsRestaurant.featureId != null"  ng-click="$state.go('newFeatureRestaurant');" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddRestaurantFeatureBtn' | translate}}</button> -->
+                        <button ng-disabled="featureCtrl.featureAsRestaurant.featureId != null"  ng-click="$state.go('newFeatureRestaurant');" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddRestaurantFeatureBtn' | translate}}</button>
                         <button ng-disabled="featureCtrl.featureAsInvitation.featureId != null"  ng-click="$state.go('newFeatureInvetition');" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddInvitionFeatureBtn' | translate}}</button>
                         <button ng-disabled="featureCtrl.featureAsTicket.featureId != null"  ng-click="$state.go('newFeatureTicket');" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">{{'AddTicketFeatureBtn' | translate}}</button>
                     </div>
