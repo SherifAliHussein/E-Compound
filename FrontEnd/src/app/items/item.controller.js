@@ -19,12 +19,12 @@
         vm.restaurantId = $stateParams.restaurantId;
         console.log($scope.selectedLanguage)
        /* 
-     //   console.log(vm.catgoryTemplates);
-       //  vm.itemDetails;
-        // vm.viewItemDetails=function(item){
-        //     console.log(item)
-        // vm.itemDetails = categoryItemsTemplatePrepService.templates[0].itemModels[0];
-        // } */
+        console.log(vm.catgoryTemplates);
+         vm.itemDetails;
+         vm.viewItemDetails=function(item){
+             console.log(item)
+         vm.itemDetails = categoryItemsTemplatePrepService.templates[0].itemModels[0];
+         } */
        vm.currentItem=0; 
        vm.selectedSize = 10;
         vm.selectedSide = 10; 

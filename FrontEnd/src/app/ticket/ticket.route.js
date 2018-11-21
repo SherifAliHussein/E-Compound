@@ -20,7 +20,7 @@
                     ,
                     resolve: {
                         featureDetailPrepService: featureDetailPrepService ,
-                       // userCategoryPagingPrepService: userCategoryPagingPrepService
+                       /* userCategoryPagingPrepService: userCategoryPagingPrepService*/
                     }
                 }) 
         });

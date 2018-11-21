@@ -323,7 +323,7 @@
         $translateProvider.translations('ar-eg',ar_translations);
         $translateProvider.preferredLanguage(appCONSTANTS.defaultLanguage);
         
-        // $translateProvider.useSanitizeValueStrategy('sanitize');
+        /* $translateProvider.useSanitizeValueStrategy('sanitize');*/
         }]);
 
 }());

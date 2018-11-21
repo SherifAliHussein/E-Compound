@@ -20,7 +20,8 @@
               .then(function(data){
                 config.headers['Authorization'] = data['token_type'] + " " + data['access_token'];
 				if(config.params== null || config.params.lang ==null)
-					config.headers['Accept-Language'] = $localStorage.language;//"en";
+          config.headers['Accept-Language'] = $localStorage.language;
+          /*"en";*/
 				else
 					config.headers['Accept-Language'] = config.params.lang;
                 if (!config.headers.hasOwnProperty('Content-Type')) 
@@ -40,7 +41,7 @@
 
 
 
-  //inject interceptor to $http
+  /*inject interceptor to $http*/
   (function() {
     angular
       .module("core")

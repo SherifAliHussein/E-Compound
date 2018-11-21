@@ -47,7 +47,7 @@
       if (!isLoggedIn()) {
         return false;
       }
-      // return JSON.parse(getAuthInfo().Roles).indexOf(role) > -1;
+      /* return JSON.parse(getAuthInfo().Roles).indexOf(role) > -1;*/
       return getAuthInfo().Role == role;
     }
 	

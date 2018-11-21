@@ -7,14 +7,14 @@
 
     function menuController($rootScope, $translate, $scope, appCONSTANTS, $stateParams, MenuResource, menuPrepService, ResturantPrepService, CategoriesResource, $state, _, authenticationService, authorizationService, $localStorage, userRolesEnum, ToastService, ResturantResource, MenuOfflineResource, OfflineDataResource,CartIconService) {
         var vm = this;
-        // ResturantResource.getResturantGlobalInfo().$promise.then(function (results) {
+        /* ResturantResource.getResturantGlobalInfo().$promise.then(function (results) {
 
-        //     $scope.$parent.globalInfo = results
+             $scope.$parent.globalInfo = results
 
-        // },
-        //   function (data, status) {
-        //       ToastService.show("right", "bottom", "fadeInUp", data.message, "error");
-        //   });
+         },
+           function (data, status) {
+               ToastService.show("right", "bottom", "fadeInUp", data.message, "error");
+           });*/
         $scope.cartIcon = true;        
         CartIconService.cartIcon = true;
 
@@ -55,43 +55,43 @@
         }
         
 
-        // if (navigator.onLine) {
-        //     MenuOfflineResource.getAllMenus({lang:'en'}).$promise.then(function (results) {
-        //         console.log(results)
-        //         if ('serviceWorker' in navigator) {
-        //               navigator.serviceWorker.ready.then(function (reg) {
-        //                 results.forEach(function(menu) {
-        //                     navigator.serviceWorker.controller.postMessage(menu.imageURL);
-        //                     menu.categoryModels.forEach(function(category) {
-        //                         navigator.serviceWorker.controller.postMessage(category.imageURL);
-        //                         category.categoryPageTemplateModel.templates.forEach(function(template) {
-        //                             template.itemModels.forEach(function(item) {
-        //                                 navigator.serviceWorker.controller.postMessage(item.imageURL);
-        //                                 navigator.serviceWorker.controller.postMessage(item.imageURL+"?type=orignal2");
-        //                             }, this);
-        //                         }, this);
-        //                     }, this);
-        //                   }, this);
+        /* if (navigator.onLine) {
+             MenuOfflineResource.getAllMenus({lang:'en'}).$promise.then(function (results) {
+                 console.log(results)
+                 if ('serviceWorker' in navigator) {
+                       navigator.serviceWorker.ready.then(function (reg) {
+                         results.forEach(function(menu) {
+                             navigator.serviceWorker.controller.postMessage(menu.imageURL);
+                             menu.categoryModels.forEach(function(category) {
+                                 navigator.serviceWorker.controller.postMessage(category.imageURL);
+                                 category.categoryPageTemplateModel.templates.forEach(function(template) {
+                                     template.itemModels.forEach(function(item) {
+                                         navigator.serviceWorker.controller.postMessage(item.imageURL);
+                                         navigator.serviceWorker.controller.postMessage(item.imageURL+"?type=orignal2");
+                                     }, this);
+                                 }, this);
+                             }, this);
+                           }, this);
                         
                     
-        //               })
-        //             }
-        //         OfflineDataResource.setAllData('en',results);
+                       })
+                     }
+                 OfflineDataResource.setAllData('en',results);
                 
-        //     },
-        //     function (data, status) {
-        //         ToastService.show("right", "bottom", "fadeInUp", data.message, "error");
-        //     });
-        //     MenuOfflineResource.getAllMenus({lang:'ar'}).$promise.then(function (results) {
+             },
+             function (data, status) {
+                 ToastService.show("right", "bottom", "fadeInUp", data.message, "error");
+             });
+             MenuOfflineResource.getAllMenus({lang:'ar'}).$promise.then(function (results) {
               
-        //         OfflineDataResource.setAllData('ar',results);
+                 OfflineDataResource.setAllData('ar',results);
                 
-        //     },
-        //     function (data, status) {
-        //         ToastService.show("right", "bottom", "fadeInUp", data.message, "error");
-        //     });
+             },
+             function (data, status) {
+                 ToastService.show("right", "bottom", "fadeInUp", data.message, "error");
+             });
 
-        // }
+         }*/
     }
 
 

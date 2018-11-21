@@ -5,7 +5,7 @@
     .module('core', [
     		'ngResource',
         'ui.router',
-        //'ngMaterial',
+        /*'ngMaterial',*/
         'ngStorage',
       'permission',
       'bw.paging',
@@ -17,7 +17,7 @@
     'checklist-model',
     'jkAngularRatingStars',
     'ui.carousel',
-    // 'ui.bootstrap.datetimepicker',
+    'ui.bootstrap.datetimepicker',
     'ngScrollbars',
     'ngSanitize',
     'ui.select',

@@ -41,7 +41,7 @@
 
 
 
-  //inject interceptor to $http
+  /*inject interceptor to $http*/
   (function() {
     angular
       .module("core")

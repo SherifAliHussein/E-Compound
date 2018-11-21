@@ -9,7 +9,7 @@
 
         var vm = this;
         vm.features = featuresPrepService;
-        //vm.Now = $scope.getCurrentTime();
+        /*vm.Now = $scope.getCurrentTime();*/
         $scope.$parent.featureBackground = featureBackgroundPrepService;
         localStorage.removeItem('checkOut');
         totalCartService.homeTotalNo = 0;
@@ -33,17 +33,17 @@
         vm.selectedFeatureId;
         vm.selectedFeatureIndex;
         vm.request = function(featureId,featureName){
-            // var modalContent = $uibModal.open({
-			// 	templateUrl: './app/features/templates/ConfirmRequestDialog.html',
-			// 	controller: 'confirmRequestDialogController',
-			// 	controllerAs: 'requestDlCtrl',
-			// 	resolve: {
-			// 		itemName: function () { return featureName },
-			// 		itemId: function() { return featureId },
-			// 		callBackFunction:function() { return confirmRequest }
-			// 	}
+            /* var modalContent = $uibModal.open({
+			 	templateUrl: './app/features/templates/ConfirmRequestDialog.html',
+			 	controller: 'confirmRequestDialogController',
+			 	controllerAs: 'requestDlCtrl',
+			 	resolve: {
+			 		itemName: function () { return featureName },
+			 		itemId: function() { return featureId },
+			 		callBackFunction:function() { return confirmRequest }
+				}
 				
-            // });
+             });*/
             
 vm.selectedFeatureName = featureName
 vm.selectedFeatureId = featureId
@@ -54,10 +54,10 @@ vm.selectedFeatureId = featureId
             newRequest.featureId = featureId;
             newRequest.$create().then(
                 function(data, status) {
-					//ToastService.show("right","bottom","fadeInUp",$translate.instant('RequestSuccess'),"success");
+					/*ToastService.show("right","bottom","fadeInUp",$translate.instant('RequestSuccess'),"success");*/
                 },
                 function(data, status) {
-                    //ToastService.show("right","bottom","fadeInUp",data.data.message,"error");
+                    /*ToastService.show("right","bottom","fadeInUp",data.data.message,"error");*/
                 }
             );
         }

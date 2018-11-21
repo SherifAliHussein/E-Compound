@@ -85,7 +85,7 @@
                     }
                 }, this);
                 
-                // requestDetails.push({itemSizeId:element.itemobj.itemID,number:element.itemobj.count,price:element.size.price})
+                /* requestDetails.push({itemSizeId:element.itemobj.itemID,number:element.itemobj.count,price:element.size.price})*/
             }, this);
             var newRequest = new RequestResource();
             newRequest.featureId = $stateParams.featureId;

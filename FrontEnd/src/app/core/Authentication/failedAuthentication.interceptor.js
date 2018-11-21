@@ -27,9 +27,9 @@
           else if (rejection.status == 406) {
               $rootScope.$broadcast(AUTH_EVENTS.invalidRefreshToken);
           }
-          //  else if (rejection.status == 400) {
-          //     $rootScope.$broadcast(AUTH_EVENTS.refresh-token-failure);
-          // }
+          /*  else if (rejection.status == 400) {
+               $rootScope.$broadcast(AUTH_EVENTS.refresh-token-failure);
+           }*/
           
           return $q.reject(rejection);
         }
@@ -40,7 +40,7 @@
 
 
 
-  //inject interceptor to $http
+  /*inject interceptor to $http*/
   (function() {
     angular
       .module("core")

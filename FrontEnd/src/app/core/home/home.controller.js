@@ -3,14 +3,14 @@
 
     angular
         .module('home')
-        .controller('homeCtrl', ['$rootScope', '$translate', '$scope', 'HomeResource', 'ResturantResource', 'appCONSTANTS', '$state', '_', 'authenticationService', 'authorizationService', '$localStorage', 'userRolesEnum', 'ToastService', 'CartIconService', 'totalCartService','$location', '$window' , '$timeout','FeedBackResource','$stateParams', '$filter', homeCtrl])
+        .controller('homeCtrl', ['$rootScope', '$translate', '$scope', 'HomeResource', 'ResturantResource', 'appCONSTANTS', '$state', '_', 'authenticationService', 'authorizationService', '$localStorage', 'userRolesEnum', 'ToastService', 'CartIconService', 'totalCartService', '$location', '$window', '$timeout', 'FeedBackResource', '$stateParams', '$filter', homeCtrl])
 
 
-    function homeCtrl($rootScope, $translate, $scope, HomeResource, ResturantResource, appCONSTANTS, $state, _, authenticationService, authorizationService, $localStorage, userRolesEnum, ToastService,CartIconService,  totalCartService,$location,$window ,$timeout,FeedBackResource,$stateParams,$filter) {
-        // Event listener for state change.
-        // if ($location.protocol() !== 'https') {
-        //     $window.location.href = $location.absUrl().replace('http', 'https');
-        // }
+    function homeCtrl($rootScope, $translate, $scope, HomeResource, ResturantResource, appCONSTANTS, $state, _, authenticationService, authorizationService, $localStorage, userRolesEnum, ToastService, CartIconService, totalCartService, $location, $window, $timeout, FeedBackResource, $stateParams, $filter) {
+        /* Event listener for state change.
+         if ($location.protocol() !== 'https') {
+             $window.location.href = $location.absUrl().replace('http', 'https');
+         }*/
 
         var vm = this;
         vm.total = 0;
@@ -21,7 +21,7 @@
         $scope.$watch(function () { return totalCartService.homeTotalNo }, function (newValue) {
             $scope.homeTotalNo = newValue;
         });
-   
+
 
         var storedNames = JSON.parse(localStorage.getItem("checkOut"));
         vm.cart = storedNames;
@@ -31,32 +31,32 @@
                 vm.total += (product.size.price * product.itemobj.count);
             }
             if (vm.total != 0) {
-                $scope.homeTotalNo = vm.total; 
-            }  
+                $scope.homeTotalNo = vm.total;
+            }
         }
-        totalCartService.homeTotalNo =  vm.total;
-        // $scope.$watch(function () { return Data.getFirstName(); }, function (newValue, oldValue) {
-        //     if (newValue !== oldValue)
-        //     {
-        //          $scope.homeTotalNo = newValue;
-        //           $scope.disabled = true;
-        //     }
-        // });
+        totalCartService.homeTotalNo = vm.total;
+        /* $scope.$watch(function () { return Data.getFirstName(); }, function (newValue, oldValue) {
+             if (newValue !== oldValue)
+             {
+                  $scope.homeTotalNo = newValue;
+                   $scope.disabled = true;
+             }
+         });*/
 
-       // if (navigator.onLine) {
-        //    if(authorizationService.isLoggedIn()){
-        //     var k = ResturantResource.getResturantGlobalInfo().$promise.then(function (results) {
+        /* if (navigator.onLine) {
+            if(authorizationService.isLoggedIn()){
+             var k = ResturantResource.getResturantGlobalInfo().$promise.then(function (results) {
 
-        //         $scope.globalInfo = results
+                 $scope.globalInfo = results
 
 
-        //     },
-        //         function (data, status) {
-        //             ToastService.show("right", "bottom", "fadeInUp", data.message, "error");
-        //         });
+             },
+                 function (data, status) {
+                     ToastService.show("right", "bottom", "fadeInUp", data.message, "error");
+                 });
 
-        //    }
-       // }
+            }
+         }*/
         var vm = this;
         $scope.emailEmpty = false;
         $scope.passwordEmpty = false;
@@ -70,12 +70,12 @@
         }];
         if ($localStorage.language == null) {
             $scope.selectedLanguage = $scope.languages[0].id;
-            // $scope.displayLanguage = $scope.languages[0].display;
+            /* $scope.displayLanguage = $scope.languages[0].display;*/
             $localStorage.language = $scope.selectedLanguage;
         }
         else {
             $scope.selectedLanguage = $localStorage.language;
-            // $scope.displayLanguage = $localStorage.language.display;
+            /* $scope.displayLanguage = $localStorage.language.display;*/
         }
 
         $translate.use($scope.selectedLanguage);
@@ -89,7 +89,7 @@
 
             authorizationService.isPasswordchanged = false;
             $('#passwordChanged').hide();
-            //  $('#userInActivated').hide();
+            /*  $('#userInActivated').hide();*/
             if (!username)
                 $scope.emailEmpty = true;
             if (!password)
@@ -98,7 +98,7 @@
                 $scope.afterSubmit = false;
                 $scope.emailEmpty = $scope.passwordEmpty = false;
                 authenticationService.authenticate(username, password).then(loginSuccess, loginFailed)
-                //.error(loginFailed);;
+                /*.error(loginFailed);*/
             } else {
                 $scope.afterSubmit = false;
             }
@@ -122,7 +122,7 @@
                 console.log('login');
                 $scope.user = authorizationService.getUser();
                 loginSuccess()
-                // authorizationService.isLoggedIn() && !location.href.contains('connect')
+                /* authorizationService.isLoggedIn() && !location.href.contains('connect')*/
             }
         })
         function loginSuccess(response) {
@@ -135,7 +135,7 @@
                 authorizationService.logout();
                 $state.go('login');
 
-                // $state.go('menu');
+                /* $state.go('menu');*/
 
             } else {
                 $state.go('Features');
@@ -147,7 +147,7 @@
         function loginFailed(response) {
             $scope.afterSubmit = true;
 
-            // $scope.invalidLoginInfo = true;
+            /* $scope.invalidLoginInfo = true;*/
             if (response) {
                 if (response.data.error == "invalid grant") {
                     $scope.invalidLoginInfo = true;
@@ -156,16 +156,16 @@
                     $scope.PackageExpired = false;
                     $scope.PackageNotActivated = false;
                     $scope.AccountDeActivated = false;
-                    
+
                 }
-                if (response.data.error == "inactive user" || response.data.error =="Account deleted") {
+                if (response.data.error == "inactive user" || response.data.error == "Account deleted") {
                     $scope.invalidLoginInfo = false;
                     $scope.inActiveUser = true;
                     $scope.restaurantInActiveUser = false;
                     $scope.PackageExpired = false;
                     $scope.PackageNotActivated = false;
                     $scope.AccountDeActivated = false;
-                    
+
                 }
                 if (response.data.error == "restaurant deactivated") {
                     $scope.invalidLoginInfo = false;
@@ -174,15 +174,15 @@
                     $scope.PackageExpired = false;
                     $scope.PackageNotActivated = false;
                     $scope.AccountDeActivated = false;
-                    
+
                 }
                 if (response.data.error == "Package Expired") {
                     $scope.invalidLoginInfo = false;
                     $scope.inActiveUser = false;
                     $scope.restaurantInActiveUser = false;
                     $scope.PackageExpired = true;
-                    $scope.PackageNotActivated = false;   
-                    $scope.AccountDeActivated = false;                 
+                    $scope.PackageNotActivated = false;
+                    $scope.AccountDeActivated = false;
                 }
                 if (response.data.error == "Package Not Activated") {
                     $scope.invalidLoginInfo = false;
@@ -209,18 +209,18 @@
         }
 
         $scope.logout = function () {
-           
-               $translate.use(appCONSTANTS.defaultLanguage); 
-               $localStorage.language = appCONSTANTS.defaultLanguage;
+
+            $translate.use(appCONSTANTS.defaultLanguage);
+            $localStorage.language = appCONSTANTS.defaultLanguage;
             $scope.selectedLanguage = appCONSTANTS.defaultLanguage;
-            
-            $scope.homeTotalNo = 0; 
-                        $scope.$watch("homeTotalNo", function (newValue) {
-                            totalCartService.homeTotalNo = newValue;
-                        });
-                         localStorage.removeItem('checkOut');
-            $scope.globalInfo='';
-               authorizationService.logout();
+
+            $scope.homeTotalNo = 0;
+            $scope.$watch("homeTotalNo", function (newValue) {
+                totalCartService.homeTotalNo = newValue;
+            });
+            localStorage.removeItem('checkOut');
+            $scope.globalInfo = '';
+            authorizationService.logout();
             $state.go('login');
         }
         $scope.reset = function () {
@@ -232,88 +232,86 @@
             return authorizationService.isLoggedIn();
         }
         $scope.isRestaurantPage = function () {
-          debugger;
-            var ff = $state.current.name!='Features' && $state.current.name!='featureDetail' && $state.current.name!='Invetations' && $state.current.name!='Tickets';
+            var ff = $state.current.name != 'Features' && $state.current.name != 'featureDetail' && $state.current.name != 'Invetations' && $state.current.name != 'Tickets';
             return ff;
         }
         $scope.changeLanguage = function (language) {
             $scope.selectedLanguage = language;
             $localStorage.language = $scope.selectedLanguage;
-          //  $state.reload();
+            /*  $state.reload();*/
             $translate.use(language);
-            // $timeout(function(){
-            //     $(document.getElementById('flipbook')).turn({
-                    
-            //          pages: 8
-            //        })
-            //  }, 100);
-            // $scope.$broadcast('updateFlipBookDesign');
-            if($state.current.name == "Items")
+            /* $timeout(function(){
+                 $(document.getElementById('flipbook')).turn({
+
+                      pages: 8
+                    })
+              }, 100);
+             $scope.$broadcast('updateFlipBookDesign');*/
+            if ($state.current.name == "Items")
                 $state.reload();
         }
         $scope.rate = 0;
         $scope.createBy = "";
         $scope.comment = "";
-        $scope.feedbacks= [] ;
+        $scope.feedbacks = [];
         $scope.page = 1;
-        $scope.getAllComments = function(){
+        $scope.getAllComments = function () {
             $scope.rate = 0;
             $scope.createBy = "";
             $scope.comment = "";
-            $scope.page = 1;               
-            ResturantResource.getResturantGlobalInfo({ restaurantId: $stateParams.restaurantId}).$promise.then(function (results) {
+            $scope.page = 1;
+            ResturantResource.getResturantGlobalInfo({ restaurantId: $stateParams.restaurantId }).$promise.then(function (results) {
                 $scope.globalInfo = results
             });
 
-           
-            FeedBackResource.getAllFeedBack({ restaurantId: $stateParams.restaurantId,pagesize:4}).$promise.then(function (results) {
+
+            FeedBackResource.getAllFeedBack({ restaurantId: $stateParams.restaurantId, pagesize: 4 }).$promise.then(function (results) {
                 $scope.feedbacks = results;
-                
-                $scope.feedbacks.results.forEach(function(element) {
-                    element.createTime = element.createTime+"z"
+
+                $scope.feedbacks.results.forEach(function (element) {
+                    element.createTime = element.createTime + "z"
                     element.createTime = $filter('date')(new Date(element.createTime), "dd/MM/yyyy hh:mm a");
-                    
+
                 }, this);
             },
-            function (data, status) {
+                function (data, status) {
 
-             });
-                
+                });
+
         }
-        $scope.getMoreComments = function(){
-            $scope.page ++;
-            FeedBackResource.getAllFeedBack({ restaurantId: $stateParams.restaurantId,page:$scope.page,pagesize:4}).$promise.then(function (results) {
-                
-                results.results.forEach(function(element) {
-                    element.createTime = element.createTime+"z"
+        $scope.getMoreComments = function () {
+            $scope.page++;
+            FeedBackResource.getAllFeedBack({ restaurantId: $stateParams.restaurantId, page: $scope.page, pagesize: 4 }).$promise.then(function (results) {
+
+                results.results.forEach(function (element) {
+                    element.createTime = element.createTime + "z"
                     element.createTime = $filter('date')(new Date(element.createTime), "dd/MM/yyyy hh:mm a");
-                    
+
                 }, this);
                 $scope.feedbacks.results = $scope.feedbacks.results.concat(results.results);
                 $scope.feedbacks.nextPageURL = results.nextPageURL;
             },
-            function (data, status) {
-                // $scope.feedbacks.results = $scope.feedbacks.results.concat(results.results);
-                // $scope.feedbacks.nextPageURL = results.nextPageURL;
+                function (data, status) {
+                    /* $scope.feedbacks.results = $scope.feedbacks.results.concat(results.results);
+                     $scope.feedbacks.nextPageURL = results.nextPageURL;*/
                 });
-            
+
         }
-        $scope.applyComment = function(rate,createBy,comment)
-        {
+        $scope.applyComment = function (rate, createBy, comment) {
             var newComment = new FeedBackResource();
             newComment.rate = rate;
             newComment.createBy = createBy;
             newComment.comment = comment;
-            newComment.restaurantId= $stateParams.restaurantId;
+            newComment.restaurantId = $stateParams.restaurantId;
             newComment.createTime = (new Date()).toISOString();
             newComment.$createFeedBack();
-           
-        }
-        
 
-      
+        }
+
+
+
     }
 }
 
 
-());
+    ());

@@ -14,17 +14,17 @@
         getFeature: {url: appCONSTANTS.API_URL + 'Features/:featureId/Info', method: 'GET', useToken: true },
         getRequestByFeatureId: {url: appCONSTANTS.API_URL + 'Features/:featureId/Requests', method: 'GET', useToken: true,isArray:true },
         geLasttRequestByFeatureId: {url: appCONSTANTS.API_URL + 'Features/:featureId/LastRequest', method: 'GET', useToken: true },
-       // create: { method: 'POST', useToken: true },
-       // deleteFeature: { method: 'DELETE', useToken: true },
-       // update: { method: 'PUT', useToken: true }
+       /* create: { method: 'POST', useToken: true },
+        deleteFeature: { method: 'DELETE', useToken: true },
+        update: { method: 'PUT', useToken: true }*/
       })
     }
 
     function RequestResource($resource, appCONSTANTS) {
       return $resource(appCONSTANTS.API_URL + 'Requests/', {}, {
-       // getAllRequest: { method: 'GET', useToken: true },
-      //  Approve: {url: appCONSTANTS.API_URL + 'Requests/:requestId/Approve', method: 'POST', useToken: true },
-      //  Reject: {url: appCONSTANTS.API_URL + 'Requests/:requestId/Reject', method: 'GET', useToken: true },
+       /* getAllRequest: { method: 'GET', useToken: true },
+        Approve: {url: appCONSTANTS.API_URL + 'Requests/:requestId/Approve', method: 'POST', useToken: true },
+        Reject: {url: appCONSTANTS.API_URL + 'Requests/:requestId/Reject', method: 'GET', useToken: true },*/
         create: { method: 'POST', useToken: true },
       })
     }

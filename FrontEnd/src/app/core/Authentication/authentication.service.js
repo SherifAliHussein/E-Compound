@@ -26,7 +26,7 @@
       request.then(authenticated,authenticaionFailed);
       return request;
         
-        //.error(authenticaionFailed);
+        /*.error(authenticaionFailed);*/
 
     }
 
@@ -79,7 +79,7 @@
 
     function requestToken(credentials, grantType) {
       angular.extend(credentials, {
-          //'client_id': vlCONSTANTS.API_Client_Id,
+          /*'client_id': vlCONSTANTS.API_Client_Id,*/
         'grant_type': grantType
       });
 

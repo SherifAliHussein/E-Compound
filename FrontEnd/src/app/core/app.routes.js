@@ -7,7 +7,7 @@
 
             $urlRouterProvider.otherwise('/');
 
-            // main views
+            /* main views*/
             $stateProvider
               .state('root', {
                     url: '/',
@@ -38,7 +38,7 @@
                 })
 
 
-                //$locationProvider.html5Mode(true);
+                /*$locationProvider.html5Mode(true);*/
                 .state('Items', {
                     url: '/feature/:featureId/restaurant/:restaurantId/menu/:menuId/Category/:categoryId/Item',
                     templateUrl: './app/items/Templates/Item.html',
@@ -46,7 +46,7 @@
                     'controllerAs': 'itemCtrl',
                     data: {
                         permissions: {
-                            // only: ['Waiter'],
+                            /* only: ['Waiter'],*/
                             redirectTo: 'root'
                         },
                         displayName: 'items'
@@ -76,7 +76,7 @@
                 else{
                     return OfflineDataResource.getMenus();
                 }
-                // return MenuResource.getAllMenus().$promise;
+                /* return MenuResource.getAllMenus().$promise;*/
                 
             }
             
@@ -94,7 +94,7 @@
         else{
             return OfflineDataResource.getAllItems($stateParams.menuId,$stateParams.categoryId);
         }
-        //return ItemsResource.getAllItems({ CategoryId: $stateParams.categoryId }).$promise;
+        /*return ItemsResource.getAllItems({ CategoryId: $stateParams.categoryId }).$promise;*/
         }
     
 }());

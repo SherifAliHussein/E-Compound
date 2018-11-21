@@ -96,6 +96,7 @@ namespace E_Compound.DAL.Entities
                 .WithMany()
                 .WillCascadeOnDelete(false);
 
+
             modelBuilder.Entity<RestaurantType>()
                 .HasRequired(c => c.Admin)
                 .WithMany()

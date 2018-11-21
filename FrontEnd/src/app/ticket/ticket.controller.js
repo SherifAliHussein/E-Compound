@@ -11,7 +11,7 @@
         vm.featureMode = true;
         $scope.$parent.globalInfo = {};
         $scope.$parent.globalInfo.featureMode = false;
-        //$scope.userCategoryList = CategoryResource; 
+        /*$scope.userCategoryList = CategoryResource; */
         $scope.selectedCategory = "";
         $scope.feature = featureDetailPrepService;
         console.log($scope.feature)
